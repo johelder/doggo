@@ -4,7 +4,10 @@
     "baseUrl": ".",
     "paths": {
       "@assets/*": ["./src/assets/*"],
-      "@components/*": ["./src/components/*"]
-    }
-  }
+      "@components/*": ["./src/components/*"],
+      "@providers/*": ["./src/providers/*"],
+      "@styles/*": ["./src/styles/*"]
+    },
+    "types": ["styled-components-react-native"],
+  },
 }
