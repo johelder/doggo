@@ -37,7 +37,8 @@
   "jest": {
     "preset": "react-native",
     "moduleNameMapper": {
-      "\\.svg": "<rootDir>/__mocks__/svgMock.js"
+      "\\.svg": "<rootDir>/__mocks__/svgMock.js",
+      "phosphor-react-native": "<rootDir>/__mocks__/svgMock.js"
     }
   }
 }
