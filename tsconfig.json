@@ -3,10 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@assets/*": ["./src/assets/*"],
-      "@components/*": ["./src/components/*"],
-      "@providers/*": ["./src/providers/*"],
-      "@styles/*": ["./src/styles/*"]
+      "@src/*": ["./src/*"],
     },
     "types": ["styled-components-react-native"],
   },
