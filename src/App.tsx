@@ -1,12 +1,12 @@
 import React from 'react';
-import {Text, View, SafeAreaView} from 'react-native';
+
+import { AppProvider } from '@src/providers';
+import { Routes } from '@src/routes';
 
 export function App(): JSX.Element {
   return (
-    <SafeAreaView>
-      <View>
-        <Text>Hello World</Text>
-      </View>
-    </SafeAreaView>
+    <AppProvider>
+      <Routes />
+    </AppProvider>
   );
 }
