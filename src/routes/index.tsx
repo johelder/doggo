@@ -1,7 +1,7 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 
-import {UnauthenticatedRoutes} from './unauthenticated.routes';
+import { UnauthenticatedRoutes } from './unauthenticated.routes';
 
 export function Routes() {
   return (

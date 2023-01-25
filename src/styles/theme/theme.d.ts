@@ -1,5 +1,5 @@
 import 'styled-components';
-import {theme} from '.';
+import { theme } from '.';
 
 declare module 'styled-components' {
   type ThemeType = typeof theme;
