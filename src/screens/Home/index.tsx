@@ -1,16 +1,10 @@
 import React from 'react';
 
 import Logo from '@src/assets/images/logo.svg';
-import MapIcon from 'phosphor-react-native/src/icons/MapTrifold';
-import PinIcon from 'phosphor-react-native/src/icons/MapPin';
-
-import { useTheme } from 'styled-components';
 
 import * as S from './styles';
 
 export function Home(): JSX.Element {
-  const theme = useTheme();
-
   return (
     <S.Container>
       <S.HeaderContainer>
@@ -25,32 +19,32 @@ export function Home(): JSX.Element {
       </S.HeaderContainer>
 
       <S.MainContainer>
-        <S.NavigationButton>
-          <S.NavigationButtonContent>
-            <S.NavigationButtonTitle>
+        <S.RedirectButton>
+          <S.RedirectButtonContent>
+            <S.RedirectButtonTitle>
               Comedouros perto de você
-            </S.NavigationButtonTitle>
-            <S.NavigationButtonDescription>
+            </S.RedirectButtonTitle>
+            <S.RedirectButtonDescription>
               Você pode ajudar reabastecendo comedouros próximos a você
-            </S.NavigationButtonDescription>
-          </S.NavigationButtonContent>
+            </S.RedirectButtonDescription>
+          </S.RedirectButtonContent>
 
-          <MapIcon size={28} color={theme.colors.secondary[600]} />
-        </S.NavigationButton>
+          <S.NearbyFeederIcon />
+        </S.RedirectButton>
 
-        <S.NavigationButton>
-          <S.NavigationButtonContent>
-            <S.NavigationButtonTitle>
+        <S.RedirectButton>
+          <S.RedirectButtonContent>
+            <S.RedirectButtonTitle>
               Cadastre o seu comedouro
-            </S.NavigationButtonTitle>
-            <S.NavigationButtonDescription>
+            </S.RedirectButtonTitle>
+            <S.RedirectButtonDescription>
               Você pode ajudar cadastrando seu comedouro, dessa forma, pessoas
               próximas de você podem reabastecê-lo.
-            </S.NavigationButtonDescription>
-          </S.NavigationButtonContent>
+            </S.RedirectButtonDescription>
+          </S.RedirectButtonContent>
 
-          <PinIcon size={28} color={theme.colors.secondary[600]} />
-        </S.NavigationButton>
+          <S.CreateFeederIcon />
+        </S.RedirectButton>
       </S.MainContainer>
     </S.Container>
   );
