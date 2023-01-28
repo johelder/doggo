@@ -1,8 +1,8 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { Home } from '@src/screens';
-import { TabBarIcon } from '@src/components/TabBarIcon';
+import { Home, Profile } from '@src/screens';
+import { TabBarIcon } from '@src/components';
 
 import { useTheme } from 'styled-components';
 
@@ -53,7 +53,7 @@ export function AuthenticatedRoutes() {
       />
       <Tab.Screen
         name="Profile"
-        component={Home}
+        component={Profile}
         options={{
           tabBarIcon: ({ focused }) => (
             <TabBarIcon isFocused={focused} screen="profile" />

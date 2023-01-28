@@ -1,6 +1,9 @@
 import styled from 'styled-components/native';
 import { StyleSheet } from 'react-native';
 
+import MapIcon from 'phosphor-react-native/src/icons/MapTrifold';
+import PinIcon from 'phosphor-react-native/src/icons/MapPin';
+
 export const Container = styled.SafeAreaView`
   flex: 1;
   background-color: ${({ theme }) => theme.colors.utils.white};
@@ -40,7 +43,7 @@ export const MainContainer = styled.View`
   margin-top: 20px;
 `;
 
-export const NavigationButton = styled.TouchableOpacity.attrs({
+export const RedirectButton = styled.TouchableOpacity.attrs({
   activeOpacity: 0.6,
 })`
   flex-direction: row;
@@ -53,18 +56,18 @@ export const NavigationButton = styled.TouchableOpacity.attrs({
   margin-bottom: 15px;
 `;
 
-export const NavigationButtonContent = styled.View`
+export const RedirectButtonContent = styled.View`
   width: 90%;
 `;
 
-export const NavigationButtonTitle = styled.Text`
+export const RedirectButtonTitle = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.semiBold};
   font-size: 14px;
 
   color: ${({ theme }) => theme.colors.gray[700]};
 `;
 
-export const NavigationButtonDescription = styled.Text`
+export const RedirectButtonDescription = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.regular};
   font-size: 12px;
 
@@ -72,3 +75,13 @@ export const NavigationButtonDescription = styled.Text`
 
   margin-top: 4px;
 `;
+
+export const NearbyFeederIcon = styled(MapIcon).attrs(({ theme }) => ({
+  size: 28,
+  color: theme.colors.secondary[600],
+}))``;
+
+export const CreateFeederIcon = styled(PinIcon).attrs(({ theme }) => ({
+  size: 28,
+  color: theme.colors.secondary[600],
+}))``;
