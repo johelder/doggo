@@ -14,7 +14,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "797929752112-v1qedpmt74devbj1tg3u75ot80i4a3cu.apps.googleusercontent.com",
+          "client_id": "797929752112-tlcem09i18iijhul09uln0bkqheo9jna.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.doggo",
@@ -22,7 +22,7 @@
           }
         },
         {
-          "client_id": "797929752112-75v3mnrg8f55tq1snkv45lijchevrp4j.apps.googleusercontent.com",
+          "client_id": "797929752112-o3orp1eembau9dd3gjscacvp62po470p.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -37,6 +37,13 @@
             {
               "client_id": "797929752112-75v3mnrg8f55tq1snkv45lijchevrp4j.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "797929752112-hru0t9l8o1shmf4cm6k49brct6s9qnsd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.doggo"
+              }
             }
           ]
         }
