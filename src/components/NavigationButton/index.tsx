@@ -8,11 +8,13 @@ export function NavigationButton({
   title,
   description,
   icon: IconComponent,
+  ...rest
 }: INavigationButtonProps) {
   return (
-    <S.Container>
+    <S.Container activeOpacity={0.6} {...rest}>
       <S.Content>
-        <IconComponent />
+        {IconComponent && <IconComponent />}
+
         <S.TitlesContainer>
           <S.Title>{title}</S.Title>
           <S.Description>{description}</S.Description>

@@ -2,9 +2,7 @@ import styled from 'styled-components/native';
 import { StyleSheet } from 'react-native';
 import CaretRight from 'phosphor-react-native/src/icons/CaretRight';
 
-export const Container = styled.TouchableOpacity.attrs({
-  activeOpacity: 0.6,
-})`
+export const Container = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
