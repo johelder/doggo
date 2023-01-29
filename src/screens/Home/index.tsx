@@ -25,7 +25,7 @@ export function Home(): JSX.Element {
               Comedouros perto de você
             </S.RedirectButtonTitle>
             <S.RedirectButtonDescription>
-              Você pode ajudar reabastecendo comedouros próximos a você
+              Você pode ajudar reabastecendo comedouros próximos a você.
             </S.RedirectButtonDescription>
           </S.RedirectButtonContent>
 
