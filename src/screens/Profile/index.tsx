@@ -1,10 +1,14 @@
 import React from 'react';
+import { Text, TouchableOpacity } from 'react-native';
 
+import { useAuth } from '@src/hooks';
 import { NavigationButton } from '@src/components';
 
 import * as S from './styles';
 
 export function Profile() {
+  const { handleSignOut } = useAuth();
+
   return (
     <S.Container>
       <S.HeaderContainer>
@@ -14,6 +18,10 @@ export function Profile() {
 
         <S.ProfileName>Johelder Humberto</S.ProfileName>
       </S.HeaderContainer>
+
+      <TouchableOpacity onPress={handleSignOut}>
+        <Text>Sair</Text>
+      </TouchableOpacity>
 
       <S.MainContent>
         <NavigationButton
