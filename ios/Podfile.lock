@@ -20,6 +20,9 @@ PODS:
     - FirebaseAuth (~> 10.3.0)
   - Firebase/CoreOnly (10.3.0):
     - FirebaseCore (= 10.3.0)
+  - Firebase/Crashlytics (10.3.0):
+    - Firebase/CoreOnly
+    - FirebaseCrashlytics (~> 10.3.0)
   - FirebaseAuth (10.3.0):
     - FirebaseCore (~> 10.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
@@ -29,10 +32,28 @@ PODS:
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
     - GoogleUtilities/Logger (~> 7.8)
+  - FirebaseCoreExtension (10.3.0):
+    - FirebaseCore (~> 10.0)
   - FirebaseCoreInternal (10.4.0):
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
+  - FirebaseCrashlytics (10.3.0):
+    - FirebaseCore (~> 10.0)
+    - FirebaseInstallations (~> 10.0)
+    - GoogleDataTransport (~> 9.2)
+    - GoogleUtilities/Environment (~> 7.8)
+    - nanopb (< 2.30910.0, >= 2.30908.0)
+    - PromisesObjC (~> 2.1)
+  - FirebaseInstallations (10.4.0):
+    - FirebaseCore (~> 10.0)
+    - GoogleUtilities/Environment (~> 7.8)
+    - GoogleUtilities/UserDefaults (~> 7.8)
+    - PromisesObjC (~> 2.1)
   - fmt (6.2.1)
   - glog (0.3.5)
+  - GoogleDataTransport (9.2.1):
+    - GoogleUtilities/Environment (~> 7.7)
+    - nanopb (< 2.30910.0, >= 2.30908.0)
+    - PromisesObjC (< 3.0, >= 1.2)
   - GoogleSignIn (6.2.4):
     - AppAuth (~> 1.5)
     - GTMAppAuth (~> 1.3)
@@ -52,6 +73,8 @@ PODS:
   - "GoogleUtilities/NSData+zlib (7.11.0)"
   - GoogleUtilities/Reachability (7.11.0):
     - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (7.11.0):
+    - GoogleUtilities/Logger
   - GTMAppAuth (1.3.1):
     - AppAuth/Core (~> 1.6)
     - GTMSessionFetcher/Core (< 3.0, >= 1.5)
@@ -60,6 +83,11 @@ PODS:
     - hermes-engine/Pre-built (= 0.71.1)
   - hermes-engine/Pre-built (0.71.1)
   - libevent (2.1.12)
+  - nanopb (2.30909.0):
+    - nanopb/decode (= 2.30909.0)
+    - nanopb/encode (= 2.30909.0)
+  - nanopb/decode (2.30909.0)
+  - nanopb/encode (2.30909.0)
   - PromisesObjC (2.1.1)
   - RCT-Folly (2021.07.22.00):
     - boost
@@ -374,6 +402,11 @@ PODS:
     - Firebase/Auth (= 10.3.0)
     - React-Core
     - RNFBApp
+  - RNFBCrashlytics (16.7.0):
+    - Firebase/Crashlytics (= 10.3.0)
+    - FirebaseCoreExtension (= 10.3.0)
+    - React-Core
+    - RNFBApp
   - RNGoogleSignin (9.0.2):
     - GoogleSignIn (~> 6.2)
     - React-Core
@@ -423,6 +456,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - "RNFBAuth (from `../node_modules/@react-native-firebase/auth`)"
+  - "RNFBCrashlytics (from `../node_modules/@react-native-firebase/crashlytics`)"
   - "RNGoogleSignin (from `../node_modules/@react-native-google-signin/google-signin`)"
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
@@ -434,13 +468,18 @@ SPEC REPOS:
     - Firebase
     - FirebaseAuth
     - FirebaseCore
+    - FirebaseCoreExtension
     - FirebaseCoreInternal
+    - FirebaseCrashlytics
+    - FirebaseInstallations
     - fmt
+    - GoogleDataTransport
     - GoogleSignIn
     - GoogleUtilities
     - GTMAppAuth
     - GTMSessionFetcher
     - libevent
+    - nanopb
     - PromisesObjC
 
 EXTERNAL SOURCES:
@@ -516,6 +555,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-firebase/app"
   RNFBAuth:
     :path: "../node_modules/@react-native-firebase/auth"
+  RNFBCrashlytics:
+    :path: "../node_modules/@react-native-firebase/crashlytics"
   RNGoogleSignin:
     :path: "../node_modules/@react-native-google-signin/google-signin"
   RNScreens:
@@ -534,15 +575,20 @@ SPEC CHECKSUMS:
   Firebase: f92fc551ead69c94168d36c2b26188263860acd9
   FirebaseAuth: 0e415d29d846c1dce2fb641e46f35e9888d9bec6
   FirebaseCore: 988754646ab3bd4bdcb740f1bfe26b9f6c0d5f2a
+  FirebaseCoreExtension: 93d252fabdc9696bf14a73b04d84877ab9b3a832
   FirebaseCoreInternal: e301297f4c15a17489e48ed722d733b1578e0c02
+  FirebaseCrashlytics: f20d956f8229010b645e534693c39e0b7843c268
+  FirebaseInstallations: 36b38c733fd37e50857e5e8d74138648f466f18c
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 791fe035093b84822da7f0870421a25839ca7870
+  GoogleDataTransport: ea169759df570f4e37bdee1623ec32a7e64e67c4
   GoogleSignIn: 5651ce3a61e56ca864160e79b484cd9ed3f49b7a
   GoogleUtilities: c2bdc4cf2ce786c4d2e6b3bcfd599a25ca78f06f
   GTMAppAuth: 0ff230db599948a9ad7470ca667337803b3fc4dd
   GTMSessionFetcher: 3a63d75eecd6aa32c2fc79f578064e1214dfdec2
   hermes-engine: 9eb202da6d69324865c39b327c4fda584d7525b8
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
+  nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
   RCT-Folly: 85766c3226c7ec638f05ad7cb3cf6a268d6c4241
   RCTRequired: fd4d923b964658aa0c4091a32c8b2004c6d9e3a6
@@ -574,6 +620,7 @@ SPEC CHECKSUMS:
   ReactCommon: fa9f2604824fa93b3504e8c1cd2670fc58e1d2df
   RNFBApp: 1ee535dcb7773ca612d3a2e53a1f78f8f2fb6abf
   RNFBAuth: 58ab8f774f9ff45707f2bfbf4fd74e8f7b4220b9
+  RNFBCrashlytics: 6256f4ad5d40c25c7ce731c7ed1b32dbbe85b747
   RNGoogleSignin: 22e468a9474dbcb8618d8847205ad4f0b2575d13
   RNScreens: ea4cd3a853063cda19a4e3c28d2e52180c80f4eb
   RNSVG: d787d64ca06b9158e763ad2638a8c4edce00782a
