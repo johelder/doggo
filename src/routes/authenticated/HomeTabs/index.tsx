@@ -5,10 +5,11 @@ import { Home, Profile } from '@src/screens';
 import { TabBarIcon } from '@src/components';
 
 import { useTheme } from 'styled-components';
+import { TRootTabParamList } from './types';
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<TRootTabParamList>();
 
-export function AuthenticatedRoutes() {
+export function HomeTabs() {
   const theme = useTheme();
 
   return (
