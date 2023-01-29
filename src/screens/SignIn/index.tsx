@@ -1,11 +1,15 @@
 import React from 'react';
 
+import { useAuth } from '@src/hooks';
+
 import DogLandscapeIllustration from '@src/assets/images/dog-landscape-illustration.svg';
 import GoogleLogo from '@src/assets/images/google-logo.svg';
 
 import * as S from './styles';
 
 export function SignIn(): JSX.Element {
+  const { handleSignIn } = useAuth();
+
   return (
     <S.Container>
       <DogLandscapeIllustration width="100%" />
@@ -18,7 +22,7 @@ export function SignIn(): JSX.Element {
         </S.GreetingsSubtitle>
       </S.GreetingsContainer>
 
-      <S.GoogleButton>
+      <S.GoogleButton onPress={handleSignIn}>
         <S.GoogleLogoContainer>
           <GoogleLogo />
         </S.GoogleLogoContainer>
