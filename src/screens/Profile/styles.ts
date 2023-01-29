@@ -1,7 +1,8 @@
-import styled from 'styled-components/native';
+import styled, { DefaultTheme } from 'styled-components/native';
 
 import CookingPot from 'phosphor-react-native/src/icons/CookingPot';
 import Heart from 'phosphor-react-native/src/icons/Heart';
+import Gear from 'phosphor-react-native/src/icons/Gear';
 
 export const Container = styled.SafeAreaView`
   flex: 1;
@@ -39,12 +40,19 @@ export const ProfileName = styled.Text`
 
 export const MainContent = styled.View``;
 
-export const FeederIcon = styled(CookingPot).attrs(({ theme }) => ({
+const iconsStyles = (theme: DefaultTheme) => ({
   size: 24,
   color: theme.colors.gray[700],
-}))``;
+});
 
-export const FavoriteIcon = styled(Heart).attrs(({ theme }) => ({
-  size: 24,
-  color: theme.colors.gray[700],
-}))``;
+export const FeederIcon = styled(CookingPot).attrs(({ theme }) =>
+  iconsStyles(theme),
+)``;
+
+export const FavoriteIcon = styled(Heart).attrs(({ theme }) =>
+  iconsStyles(theme),
+)``;
+
+export const ConfigurationIcon = styled(Gear).attrs(({ theme }) =>
+  iconsStyles(theme),
+)``;

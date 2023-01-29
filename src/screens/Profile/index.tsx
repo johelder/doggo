@@ -1,27 +1,30 @@
 import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
 
 import { useAuth } from '@src/hooks';
 import { NavigationButton } from '@src/components';
+import { ProfileHelper } from './helper';
+
+import UserAvatarPlaceholder from '@src/assets/images/userAvatarPlaceholder.svg';
 
 import * as S from './styles';
 
 export function Profile() {
-  const { handleSignOut } = useAuth();
+  const { user } = useAuth();
+  const { handleRedirectToConfigurations } = ProfileHelper();
 
   return (
     <S.Container>
       <S.HeaderContainer>
         <S.ProfilePhotoContainer>
-          <S.ProfilePhoto source={{ uri: 'https://github.com/johelder.png' }} />
+          {user?.photoURL ? (
+            <S.ProfilePhoto source={{ uri: user.photoURL }} />
+          ) : (
+            <UserAvatarPlaceholder />
+          )}
         </S.ProfilePhotoContainer>
 
-        <S.ProfileName>Johelder Humberto</S.ProfileName>
+        <S.ProfileName>{user?.displayName}</S.ProfileName>
       </S.HeaderContainer>
-
-      <TouchableOpacity onPress={handleSignOut}>
-        <Text>Sair</Text>
-      </TouchableOpacity>
 
       <S.MainContent>
         <NavigationButton
@@ -34,6 +37,13 @@ export function Profile() {
           title="Favoritos"
           description="Meus comedouros favoritos"
           icon={() => <S.FavoriteIcon />}
+        />
+
+        <NavigationButton
+          title="Configurações"
+          description="Minhas configurações de conta"
+          icon={() => <S.ConfigurationIcon />}
+          onPress={handleRedirectToConfigurations}
         />
       </S.MainContent>
     </S.Container>
