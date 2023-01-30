@@ -1,13 +1,17 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
-import { UnauthenticatedRoutes } from './unauthenticated.routes';
-import { AuthenticatedRoutes } from './authenticated.routes';
+import { useAuth } from '@src/hooks';
+
+import { UnauthenticatedRoutes } from './unauthenticated';
+import { AuthenticatedRoutes } from './authenticated';
 
 export function Routes() {
+  const { isUserLogged } = useAuth();
+
   return (
     <NavigationContainer>
-      <AuthenticatedRoutes />
+      {isUserLogged ? <AuthenticatedRoutes /> : <UnauthenticatedRoutes />}
     </NavigationContainer>
   );
 }

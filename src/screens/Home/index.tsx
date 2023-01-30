@@ -1,17 +1,24 @@
 import React from 'react';
 
+import { useAuth } from '@src/hooks';
+import { getDayGreetings } from '@src/utils';
+
 import Logo from '@src/assets/images/logo.svg';
 
 import * as S from './styles';
 
 export function Home(): JSX.Element {
+  const { user } = useAuth();
+
   return (
     <S.Container>
       <S.HeaderContainer>
         <Logo />
 
         <S.HeaderContent>
-          <S.HeaderTitle>Bom dia, Johelder</S.HeaderTitle>
+          <S.HeaderTitle>
+            {getDayGreetings(new Date().getHours())}, {user?.displayName}
+          </S.HeaderTitle>
           <S.HeaderSubtitle>
             Falta pouco para ajudar animais de rua.
           </S.HeaderSubtitle>
@@ -25,7 +32,7 @@ export function Home(): JSX.Element {
               Comedouros perto de você
             </S.RedirectButtonTitle>
             <S.RedirectButtonDescription>
-              Você pode ajudar reabastecendo comedouros próximos a você
+              Você pode ajudar reabastecendo comedouros próximos a você.
             </S.RedirectButtonDescription>
           </S.RedirectButtonContent>
 

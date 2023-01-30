@@ -1,5 +1,7 @@
-export interface INavigationButtonProps {
+import { TouchableOpacityProps } from 'react-native';
+
+export interface INavigationButtonProps extends TouchableOpacityProps {
   title: string;
-  description: string;
-  icon: () => JSX.Element;
+  description?: string;
+  icon?: () => JSX.Element;
 }
