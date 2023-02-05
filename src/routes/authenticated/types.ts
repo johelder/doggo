@@ -1,10 +1,9 @@
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import type { DrawerScreenProps } from '@react-navigation/drawer';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { TRootTabParamList } from './HomeTabs/types';
+import type { TRootDrawerParamList } from './HomeDrawer/types';
 
 export type TRootStackParamList = {
-  HomeTabs: BottomTabScreenProps<TRootTabParamList>;
-  Configurations: undefined;
+  HomeTabs: DrawerScreenProps<TRootDrawerParamList>;
 };
 
 export type TNavigationProps<T extends keyof TRootStackParamList> =
