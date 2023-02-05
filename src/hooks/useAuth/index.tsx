@@ -9,9 +9,10 @@ import React, {
 
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
-import crashlytics from '@react-native-firebase/crashlytics';
 
-import { IAuthContext, IAuthContextProps, IUser } from './types';
+import { errorHandler } from '@src/utils';
+
+import type { IAuthContext, IAuthContextProps, IUser } from './types';
 import { WEB_CLIENT_ID } from '@env';
 
 const AuthContext = createContext<IAuthContext>({} as IAuthContext);
@@ -37,9 +38,7 @@ function AuthContextProvider({ children }: IAuthContextProps) {
 
       setUser(response.user);
     } catch (error) {
-      crashlytics().recordError(
-        new Error(JSON.stringify({ method: 'handleSignIn', error })),
-      );
+      errorHandler.reportError(error, 'handleSignIn');
     }
   }, []);
 
@@ -51,9 +50,7 @@ function AuthContextProvider({ children }: IAuthContextProps) {
         auth().signOut(),
       ]);
     } catch (error) {
-      crashlytics().recordError(
-        new Error(JSON.stringify({ method: 'handleSignOut', error })),
-      );
+      errorHandler.reportError(error, 'handleSignOut');
     }
   }, []);
 
