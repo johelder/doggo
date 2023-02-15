@@ -10,6 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@react-native-community/geolocation": "^3.0.5",
     "@react-native-firebase/app": "^16.7.0",
     "@react-native-firebase/auth": "^16.7.0",
     "@react-native-firebase/crashlytics": "^16.7.0",
