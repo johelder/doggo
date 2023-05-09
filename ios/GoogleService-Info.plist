@@ -3,19 +3,19 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>797929752112-hru0t9l8o1shmf4cm6k49brct6s9qnsd.apps.googleusercontent.com</string>
+	<string>797929752112-c6a6sla6s6l2glsgul9grrmqdoeejunr.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.797929752112-hru0t9l8o1shmf4cm6k49brct6s9qnsd</string>
+	<string>com.googleusercontent.apps.797929752112-c6a6sla6s6l2glsgul9grrmqdoeejunr</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>797929752112-v1qedpmt74devbj1tg3u75ot80i4a3cu.apps.googleusercontent.com</string>
+	<string>797929752112-tlcem09i18iijhul09uln0bkqheo9jna.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDQqndTxk_wCPpc3_6aOnBd-7mfFCNgJbM</string>
+	<string>AIzaSyDb9U19wFGDvdm3FOmrfsjR-5RlSjDwlis</string>
 	<key>GCM_SENDER_ID</key>
 	<string>797929752112</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>org.reactjs.native.example.doggo</string>
+	<string>doggo</string>
 	<key>PROJECT_ID</key>
 	<string>app-doggo</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:797929752112:ios:58ff33c49730dedccc8ff5</string>
+	<string>1:797929752112:ios:d6f49b9393b6f3b7cc8ff5</string>
 </dict>
 </plist>
