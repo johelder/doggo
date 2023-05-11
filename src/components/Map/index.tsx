@@ -1,18 +1,27 @@
 import React from 'react';
 
+import { useMap } from './useMap';
+
 import * as S from './styles';
 
 export function Map() {
+  const { currentUserLocation, mapRef } = useMap();
+
   return (
     <S.Container>
-      <S.Map
-        initialRegion={{
-          latitude: 37.78825,
-          longitude: -122.4324,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}
-      />
+      {currentUserLocation && (
+        <S.Map
+          ref={mapRef}
+          initialRegion={{
+            latitude: currentUserLocation?.coords.latitude,
+            longitude: currentUserLocation?.coords.longitude,
+            latitudeDelta: 0.005,
+            longitudeDelta: 0.005,
+          }}
+          showsUserLocation
+          showsMyLocationButton={false}
+        />
+      )}
     </S.Container>
   );
 }
