@@ -1,5 +1,5 @@
 import { Button } from './Button';
 import { Map } from './Map';
-import { CustomDrawerContent } from './CustomDrawerContent';
+import { TabBarIcon } from './TabBarIcon';
 
-export { Button, Map, CustomDrawerContent };
+export { Button, Map, TabBarIcon };
