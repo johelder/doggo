@@ -1,18 +1,39 @@
 import React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { HomeDrawer } from './HomeDrawer';
+import { Home } from '@src/screens';
+import { TabBarIcon } from '@src/components';
 
-const Stack = createNativeStackNavigator();
+import { SafeAreaView } from 'react-native';
+import { containerStyles, tabBarOptions } from './styles';
+
+const Tab = createBottomTabNavigator();
 
 export function AuthenticatedRoutes() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="HomeDrawer"
-        component={HomeDrawer}
-        options={{ headerShown: false }}
-      />
-    </Stack.Navigator>
+    <SafeAreaView style={containerStyles}>
+      <Tab.Navigator screenOptions={tabBarOptions}>
+        <Tab.Screen
+          name="Map"
+          component={Home}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <TabBarIcon isFocused={focused} screen="map" />
+            ),
+            tabBarLabel: 'Mapa',
+          }}
+        />
+        <Tab.Screen
+          name="Profile"
+          component={Home}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <TabBarIcon isFocused={focused} screen="profile" />
+            ),
+            tabBarLabel: 'Perfil',
+          }}
+        />
+      </Tab.Navigator>
+    </SafeAreaView>
   );
 }
