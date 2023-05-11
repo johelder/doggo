@@ -10,7 +10,7 @@ export const Container = styled(DrawerContentScrollView).attrs({
     justifyContent: 'space-between',
   },
 })`
-  padding: 0 10px;
+  padding: 0 10px 16px;
 `;
 
 export const MainContent = styled.View``;
