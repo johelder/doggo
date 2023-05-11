@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  createDrawerNavigator,
-  DrawerNavigationOptions,
-} from '@react-navigation/drawer';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import { useTheme } from 'styled-components';
 
 import House from 'phosphor-react-native/src/icons/House';
@@ -12,31 +9,13 @@ import CookingPot from 'phosphor-react-native/src/icons/CookingPot';
 import { Home } from '@src/screens';
 import { CustomDrawerContent } from '@src/components';
 
+import { DrawerStyles } from './styles';
 import type { TRootDrawerParamList } from './types';
 
 const Drawer = createDrawerNavigator<TRootDrawerParamList>();
 
 export function HomeDrawer() {
   const theme = useTheme();
-
-  const DrawerStyles: DrawerNavigationOptions = {
-    headerTransparent: true,
-    headerTitle: '',
-    headerLeftContainerStyle: {
-      backgroundColor: theme.colors.utils.white,
-      width: 60,
-      height: 60,
-      marginTop: 15,
-      marginLeft: 15,
-      borderRadius: 30,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    headerTintColor: theme.colors.gray[700],
-    drawerActiveBackgroundColor: theme.colors.utils.white,
-    drawerActiveTintColor: theme.colors.gray[700],
-    drawerInactiveTintColor: theme.colors.gray[500],
-  };
 
   return (
     <Drawer.Navigator
