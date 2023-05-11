@@ -16,7 +16,6 @@
     "@react-native-firebase/crashlytics": "^16.7.0",
     "@react-native-google-signin/google-signin": "^9.0.2",
     "@react-navigation/bottom-tabs": "^6.5.7",
-    "@react-navigation/drawer": "^6.5.8",
     "@react-navigation/native": "^6.1.2",
     "@react-navigation/native-stack": "^6.9.8",
     "phosphor-react-native": "^1.1.2",
