@@ -1,10 +1,10 @@
 import React from 'react';
+import { SafeAreaView } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { Home } from '@src/screens';
+import { Home, Profile } from '@src/screens';
 import { TabBarIcon } from '@src/components';
 
-import { SafeAreaView } from 'react-native';
 import { containerStyles, tabBarOptions } from './styles';
 import { TRootTabParamList } from './types';
 
@@ -26,7 +26,7 @@ export function AuthenticatedRoutes() {
         />
         <Tab.Screen
           name="Profile"
-          component={Home}
+          component={Profile}
           options={{
             tabBarIcon: ({ focused }) => (
               <TabBarIcon isFocused={focused} screen="profile" />
