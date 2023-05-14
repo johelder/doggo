@@ -1,5 +1,5 @@
 import React from 'react';
-import { IAppProviderProps } from './types';
+import type { IAppProviderProps } from './types';
 
 import { AuthContextProvider } from '@src/hooks';
 

@@ -1,3 +1,4 @@
 import { getDayGreetings } from './getDayGreetings';
+import { errorHandler } from './errorHandler';
 
-export { getDayGreetings };
+export { getDayGreetings, errorHandler };

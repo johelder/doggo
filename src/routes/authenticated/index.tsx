@@ -1,38 +1,40 @@
 import React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useTheme } from 'styled-components';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { Configurations } from '@src/screens';
-import { HomeTabs } from './HomeTabs';
+import { Home } from '@src/screens';
+import { TabBarIcon } from '@src/components';
 
-const Stack = createNativeStackNavigator();
+import { SafeAreaView } from 'react-native';
+import { containerStyles, tabBarOptions } from './styles';
+import { TRootTabParamList } from './types';
+
+const Tab = createBottomTabNavigator<TRootTabParamList>();
 
 export function AuthenticatedRoutes() {
-  const theme = useTheme();
-
   return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="HomeTabs"
-        component={HomeTabs}
-        options={{ headerShown: false }}
-      />
-
-      <Stack.Group
-        screenOptions={{
-          headerBackTitle: '',
-          headerTitleStyle: {
-            fontFamily: theme.fonts.primary.semiBold,
-            fontSize: 14,
-          },
-          headerTintColor: theme.colors.gray[700],
-        }}>
-        <Stack.Screen
-          name="Configurations"
-          component={Configurations}
-          options={{ title: 'CONFIGURAÇÕES' }}
+    <SafeAreaView style={containerStyles}>
+      <Tab.Navigator screenOptions={tabBarOptions}>
+        <Tab.Screen
+          name="Map"
+          component={Home}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <TabBarIcon isFocused={focused} screen="map" />
+            ),
+            tabBarLabel: 'Mapa',
+          }}
         />
-      </Stack.Group>
-    </Stack.Navigator>
+        <Tab.Screen
+          name="Profile"
+          component={Home}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <TabBarIcon isFocused={focused} screen="profile" />
+            ),
+            tabBarLabel: 'Perfil',
+          }}
+        />
+      </Tab.Navigator>
+    </SafeAreaView>
   );
 }

@@ -46,6 +46,10 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Sua localizacão nos permite apresentar comedouros próximos a você</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Sua localizacão nos permite apresentar comedouros próximos a você</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>UIAppFonts</key>

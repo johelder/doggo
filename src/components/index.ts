@@ -1,5 +1,5 @@
-import { TabBarIcon } from './TabBarIcon';
-import { NavigationButton } from './NavigationButton';
 import { Button } from './Button';
+import { Map } from './Map';
+import { TabBarIcon } from './TabBarIcon';
 
-export { TabBarIcon, NavigationButton, Button };
+export { Button, Map, TabBarIcon };
