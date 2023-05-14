@@ -6,8 +6,9 @@ import { TabBarIcon } from '@src/components';
 
 import { SafeAreaView } from 'react-native';
 import { containerStyles, tabBarOptions } from './styles';
+import { TRootTabParamList } from './types';
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<TRootTabParamList>();
 
 export function AuthenticatedRoutes() {
   return (
