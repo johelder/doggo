@@ -1,10 +1,11 @@
 import React from 'react';
 
 import { useMap } from './useMap';
+import { IMapProps } from './types';
 
 import * as S from './styles';
 
-export function Map() {
+export function Map({ ...rest }: IMapProps) {
   const { currentUserLocation, mapRef } = useMap();
 
   return (
@@ -20,6 +21,7 @@ export function Map() {
           }}
           showsUserLocation
           showsMyLocationButton={false}
+          {...rest}
         />
       )}
     </S.Container>
