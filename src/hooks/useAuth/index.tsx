@@ -17,8 +17,9 @@ import { WEB_CLIENT_ID } from '@env';
 
 const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
-function AuthContextProvider({ children }: IAuthContextProps) {
+function AuthContextProvider({ children }: IAuthContextProps): JSX.Element {
   const [user, setUser] = useState<IUser>(null);
+  const [isLoadingAuth, setIsLoadingAuth] = useState(false);
 
   function onAuthStateChanged(userState: IUser) {
     setUser(userState);
@@ -26,6 +27,8 @@ function AuthContextProvider({ children }: IAuthContextProps) {
 
   const handleSignIn = useCallback(async () => {
     try {
+      setIsLoadingAuth(true);
+
       await GoogleSignin.hasPlayServices({
         showPlayServicesUpdateDialog: true,
       });
@@ -39,6 +42,8 @@ function AuthContextProvider({ children }: IAuthContextProps) {
       setUser(response.user);
     } catch (error) {
       errorHandler.reportError(error, 'handleSignIn');
+    } finally {
+      setIsLoadingAuth(false);
     }
   }, []);
 
@@ -69,7 +74,13 @@ function AuthContextProvider({ children }: IAuthContextProps) {
 
   return (
     <AuthContext.Provider
-      value={{ user, handleSignIn, handleSignOut, isUserLogged }}>
+      value={{
+        user,
+        handleSignIn,
+        handleSignOut,
+        isUserLogged,
+        isLoadingAuth,
+      }}>
       {children}
     </AuthContext.Provider>
   );
