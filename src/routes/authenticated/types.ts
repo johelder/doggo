@@ -1,9 +1,13 @@
-import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import type { TRootTabParamList } from './BottomTabs/types';
 
-export type TRootTabParamList = {
-  Map: undefined;
-  Profile: undefined;
+export type TRootStackParamList = {
+  HomeTabs: BottomTabNavigationProp<TRootTabParamList>;
+  NewFeeder: undefined;
 };
 
-export type TNavigationProps<T extends keyof TRootTabParamList> =
-  NativeStackNavigationProp<TRootTabParamList, T>;
+export type TNavigationProps<
+  T extends keyof TRootStackParamList,
+  K extends keyof TRootTabParamList,
+> = NativeStackScreenProps<TRootStackParamList, T, K>;

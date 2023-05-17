@@ -1,40 +1,27 @@
 import React from 'react';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NewFeeder } from '@src/screens/NewFeeder';
+import { HomeTabs } from './BottomTabs';
 import { SafeAreaView } from 'react-native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { TRootStackParamList } from './types';
 
-import { Home, Profile } from '@src/screens';
-import { TabBarIcon } from '@src/components';
+const Stack = createNativeStackNavigator<TRootStackParamList>();
 
-import { containerStyles, tabBarOptions } from './styles';
-import { TRootTabParamList } from './types';
-
-const Tab = createBottomTabNavigator<TRootTabParamList>();
+const wrapperOptions = {
+  flex: 1,
+};
 
 export function AuthenticatedRoutes() {
   return (
-    <SafeAreaView style={containerStyles}>
-      <Tab.Navigator screenOptions={tabBarOptions}>
-        <Tab.Screen
-          name="Map"
-          component={Home}
-          options={{
-            tabBarIcon: ({ focused }) => (
-              <TabBarIcon isFocused={focused} screen="map" />
-            ),
-            tabBarLabel: 'Mapa',
-          }}
+    <SafeAreaView style={wrapperOptions}>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="HomeTabs"
+          component={HomeTabs}
+          options={{ headerShown: false }}
         />
-        <Tab.Screen
-          name="Profile"
-          component={Profile}
-          options={{
-            tabBarIcon: ({ focused }) => (
-              <TabBarIcon isFocused={focused} screen="profile" />
-            ),
-            tabBarLabel: 'Perfil',
-          }}
-        />
-      </Tab.Navigator>
+        <Stack.Screen name="NewFeeder" component={NewFeeder} />
+      </Stack.Navigator>
     </SafeAreaView>
   );
 }
