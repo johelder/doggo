@@ -1,12 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import { useMap } from './useMap';
+import { useMap } from '@src/hooks';
 import { IMapProps } from './types';
 
 import * as S from './styles';
 
-export function Map({ ...rest }: IMapProps) {
-  const { currentUserLocation, mapRef } = useMap();
+export function Map({ children, ...rest }: IMapProps) {
+  const {
+    currentUserLocation,
+    mapRef,
+    watchUserPosition,
+    getUserCurrentPosition,
+  } = useMap();
+
+  useEffect(() => {
+    getUserCurrentPosition();
+  }, [getUserCurrentPosition]);
+
+  useEffect(() => {
+    watchUserPosition();
+  }, [watchUserPosition]);
 
   return (
     <S.Container>
@@ -19,10 +32,10 @@ export function Map({ ...rest }: IMapProps) {
             latitudeDelta: 0.005,
             longitudeDelta: 0.005,
           }}
-          showsUserLocation
           showsMyLocationButton={false}
-          {...rest}
-        />
+          {...rest}>
+          {children}
+        </S.Map>
       )}
     </S.Container>
   );
