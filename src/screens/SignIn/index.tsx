@@ -1,12 +1,12 @@
 import React from 'react';
 
 import { useAuth } from '@src/hooks';
+import { Loader } from '@src/components/Loader';
 
 import DogLandscapeIllustration from '@src/assets/images/dog-landscape-illustration.svg';
 import GoogleLogo from '@src/assets/images/google-logo.svg';
 
 import * as S from './styles';
-import { Loader } from '@src/components/Loader';
 
 export function SignIn(): JSX.Element {
   const { handleSignIn, isLoadingAuth } = useAuth();
