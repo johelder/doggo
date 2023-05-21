@@ -1,13 +1,13 @@
-import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
-import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import type { TRootTabParamList } from './BottomTabs/types';
+import { NavigatorScreenParams } from '@react-navigation/native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { TRootTabParamList } from '@src/routes/authenticated/BottomTabs/types';
+
+type TAppScreens = TRootTabParamList & TRootStackParamList;
 
 export type TRootStackParamList = {
-  HomeTabs: BottomTabNavigationProp<TRootTabParamList>;
+  HomeTabs: NavigatorScreenParams<TRootTabParamList>;
   NewFeeder: undefined;
 };
 
-export type TNavigationProps<
-  T extends keyof TRootStackParamList,
-  K extends keyof TRootTabParamList,
-> = NativeStackScreenProps<TRootStackParamList, T, K>;
+export type TDefaultScreensProps<T extends keyof TAppScreens> =
+  NativeStackScreenProps<TAppScreens, T>;
