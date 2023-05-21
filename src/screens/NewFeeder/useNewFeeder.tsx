@@ -1,15 +1,7 @@
-import React, {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useState,
-} from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { useCallback, useState } from 'react';
 import { Address, MarkerDragStartEndEvent } from 'react-native-maps';
 
 import { useMap } from '@src/hooks';
-import { Loader } from '@src/components';
-import { CustomHeaderTitle } from './components/CustomHeaderTitle';
 
 export function useNewFeeder() {
   const [isLoadingUserAddress, setIsLoadingUserAddress] = useState(false);
@@ -18,8 +10,6 @@ export function useNewFeeder() {
   );
 
   const { mapRef, currentUserLocation } = useMap();
-
-  const navigation = useNavigation();
 
   function onDragStart() {
     setIsLoadingUserAddress(true);
@@ -68,23 +58,11 @@ export function useNewFeeder() {
     }
   }, [currentUserLocation, getAddressByCoordinate]);
 
-  useEffect(() => {
-    fetchInitialUserAddress();
-  }, [fetchInitialUserAddress]);
-
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () =>
-        isLoadingUserAddress ? (
-          <Loader />
-        ) : (
-          <CustomHeaderTitle
-            title={`${userAddress?.thoroughfare}, ${userAddress?.name}`}
-            subTitle={`${userAddress?.subLocality} - ${userAddress?.subAdministrativeArea}`}
-          />
-        ),
-    });
-  }, [isLoadingUserAddress, navigation, userAddress]);
-
-  return { onDragStart, onDragEnd };
+  return {
+    onDragStart,
+    onDragEnd,
+    fetchInitialUserAddress,
+    isLoadingUserAddress,
+    userAddress,
+  };
 }
