@@ -1,7 +1,16 @@
-import styled from 'styled-components/native';
+import styled, { DefaultTheme } from 'styled-components/native';
 
 import CookingPot from 'phosphor-react-native/src/icons/CookingPot';
 import Heart from 'phosphor-react-native/src/icons/Heart';
+import SignOut from 'phosphor-react-native/src/icons/SignOut';
+import CirclesThreePlus from 'phosphor-react-native/src/icons/CirclesThreePlus';
+
+function iconsDefaultStyles(theme: DefaultTheme) {
+  return {
+    size: 24,
+    color: theme.colors.gray[700],
+  };
+}
 
 export const Container = styled.SafeAreaView`
   flex: 1;
@@ -9,13 +18,17 @@ export const Container = styled.SafeAreaView`
 `;
 
 export const Content = styled.View<{ tabBarHeight: number }>`
+  height: 100%;
   padding: ${({ tabBarHeight }) => `0 15px ${tabBarHeight}`}px;
+
+  justify-content: space-between;
 `;
 
 export const HeaderContainer = styled.View`
   flex-direction: row;
   align-items: center;
   gap: 15px;
+
   margin: 20px 0;
 `;
 
@@ -38,12 +51,22 @@ export const ProfileName = styled.Text`
 
 export const MainContent = styled.View``;
 
-export const FeederIcon = styled(CookingPot).attrs(({ theme }) => ({
-  size: 24,
-  color: theme.colors.gray[700],
-}))``;
+export const ButtonContainer = styled.View`
+  margin-bottom: 15px;
+`;
 
-export const FavoriteIcon = styled(Heart).attrs(({ theme }) => ({
-  size: 24,
-  color: theme.colors.gray[700],
-}))``;
+export const FeederIcon = styled(CookingPot).attrs(({ theme }) =>
+  iconsDefaultStyles(theme),
+)``;
+
+export const FavoriteIcon = styled(Heart).attrs(({ theme }) =>
+  iconsDefaultStyles(theme),
+)``;
+
+export const SignOutIcon = styled(SignOut).attrs(({ theme }) =>
+  iconsDefaultStyles(theme),
+)``;
+
+export const NewFeeder = styled(CirclesThreePlus).attrs(({ theme }) =>
+  iconsDefaultStyles(theme),
+)``;
