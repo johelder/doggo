@@ -4,6 +4,7 @@ export const theme = {
       500: '#F97316',
       400: '#FB923C',
       300: '#FDBA74',
+      200: '#fed7aa',
     },
     secondary: {
       600: '#0891B2',
@@ -15,6 +16,7 @@ export const theme = {
       500: '#64748B',
       300: '#CBD5E1',
       200: '#E2E8F0',
+      100: '#F1F5F9',
     },
     attention: {
       500: '#F43F5E',
@@ -28,6 +30,7 @@ export const theme = {
       white: '#FFFFFF',
       googleBlue: '#4B91FB',
       googleWhite: '#FBFFFF',
+      transparent: '#ffffff00',
     },
   },
 
