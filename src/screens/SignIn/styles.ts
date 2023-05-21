@@ -28,8 +28,11 @@ export const GreetingsSubtitle = styled.Text`
 export const GoogleButton = styled.TouchableOpacity.attrs({
   activeOpacity: 0.6,
 })`
+  height: 60px;
+
   flex-direction: row;
   align-items: center;
+  justify-content: center;
 
   margin: 0 15px 15px;
   padding: 6px;
@@ -37,6 +40,7 @@ export const GoogleButton = styled.TouchableOpacity.attrs({
   border-radius: 4px;
 
   background-color: ${({ theme }) => theme.colors.utils.googleBlue};
+  opacity: ${({ disabled }) => (disabled ? 0.2 : 1)};
 `;
 
 export const GoogleLogoContainer = styled.View`
