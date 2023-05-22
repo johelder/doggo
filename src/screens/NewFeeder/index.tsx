@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect, useLayoutEffect } from 'react';
+import React, { useCallback, useLayoutEffect } from 'react';
 
-import { Marker } from 'react-native-maps';
+import { Callout, Marker } from 'react-native-maps';
 
 import { useMap } from '@src/hooks';
 import { useNewFeeder } from './useNewFeeder';
@@ -16,7 +16,8 @@ export function NewFeeder({ navigation }: TNewFeederProps): JSX.Element {
   const {
     onDragStart,
     onDragEnd,
-    fetchInitialUserAddress,
+    onMapLoaded,
+    markerRef,
     isLoadingUserAddress,
     userAddress,
   } = useNewFeeder();
@@ -39,10 +40,6 @@ export function NewFeeder({ navigation }: TNewFeederProps): JSX.Element {
     );
   }, [isLoadingUserAddress, userAddress]);
 
-  useEffect(() => {
-    fetchInitialUserAddress();
-  }, [fetchInitialUserAddress]);
-
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: renderCustomHeaderTitle,
@@ -54,7 +51,7 @@ export function NewFeeder({ navigation }: TNewFeederProps): JSX.Element {
       <CustomHeader />
 
       {currentUserLocation && (
-        <Map>
+        <Map onMapLoaded={onMapLoaded}>
           <Marker
             draggable
             coordinate={{
@@ -63,7 +60,20 @@ export function NewFeeder({ navigation }: TNewFeederProps): JSX.Element {
             }}
             onDragStart={onDragStart}
             onDragEnd={onDragEnd}
-          />
+            ref={markerRef}>
+            <Callout tooltip>
+              <S.CalloutContainer>
+                <S.CalloutContent>
+                  <S.CalloutTitle>Você está aqui?</S.CalloutTitle>
+                  <S.CalloutDescription>
+                    Toque e segure para ajustar{'\n'} a localização
+                  </S.CalloutDescription>
+                </S.CalloutContent>
+
+                <S.ToolTipTriangle />
+              </S.CalloutContainer>
+            </Callout>
+          </Marker>
         </Map>
       )}
     </S.Container>
