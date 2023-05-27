@@ -5,11 +5,7 @@ import * as S from './styles';
 
 function ButtonRoot({ type, color, children, ...rest }: IButtonRootProps) {
   return (
-    <S.ButtonRootContainer
-      type={type}
-      color={color}
-      activeOpacity={0.6}
-      {...rest}>
+    <S.ButtonRootContainer type={type} color={color} {...rest}>
       {children}
     </S.ButtonRootContainer>
   );
