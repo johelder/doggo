@@ -67,6 +67,6 @@ export const SignOutIcon = styled(SignOut).attrs(({ theme }) =>
   iconsDefaultStyles(theme),
 )``;
 
-export const NewFeeder = styled(CirclesThreePlus).attrs(({ theme }) =>
+export const SelectLocation = styled(CirclesThreePlus).attrs(({ theme }) =>
   iconsDefaultStyles(theme),
 )``;

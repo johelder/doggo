@@ -28,8 +28,8 @@ export function Profile({ navigation }: TProfileProps): JSX.Element {
           <NavigationButton
             title="Novo comedouro"
             description="Cadastre um comedouro"
-            icon={() => <S.NewFeeder />}
-            onPress={() => navigation.navigate('NewFeeder')}
+            icon={() => <S.SelectLocation />}
+            onPress={() => navigation.navigate('SelectLocation')}
           />
 
           <NavigationButton
