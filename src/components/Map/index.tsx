@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 
 import { useMap } from '@src/hooks';
 import { IMapProps } from './types';
+import { LATITUDE_DELTA, LONGITUDE_DELTA } from './constants';
 
 import * as S from './styles';
 
@@ -29,8 +30,8 @@ export function Map({ children, ...rest }: IMapProps) {
           initialRegion={{
             latitude: currentUserLocation?.coords.latitude,
             longitude: currentUserLocation?.coords.longitude,
-            latitudeDelta: 0.005,
-            longitudeDelta: 0.005,
+            latitudeDelta: LATITUDE_DELTA,
+            longitudeDelta: LONGITUDE_DELTA,
           }}
           showsMyLocationButton={false}
           {...rest}>
