@@ -10,15 +10,25 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 
+import {
+  ANIMATION_DURATION,
+  INPUT_RANGE,
+  IS_ANIMATED_INFINITE,
+  OUTPUT_RANGE,
+  IS_REVERSE_ANIMATION,
+  INITIAL_ANIMATION_VALUE,
+  FINAL_ANIMATION_VALUE,
+} from './constants';
+
 export function useLoaderBall(initialDelay: number) {
-  const ball = useSharedValue(0);
+  const ball = useSharedValue(INITIAL_ANIMATION_VALUE);
   const theme = useTheme();
 
   const animatedBallStyle = useAnimatedStyle(() => {
     return {
       backgroundColor: interpolateColor(
         ball.value,
-        [0, 1],
+        [INPUT_RANGE, OUTPUT_RANGE],
         [theme.colors.primary[200], theme.colors.primary[500]],
       ),
     };
@@ -28,11 +38,11 @@ export function useLoaderBall(initialDelay: number) {
     ball.value = withDelay(
       initialDelay,
       withRepeat(
-        withTiming(1, {
-          duration: 1000,
+        withTiming(FINAL_ANIMATION_VALUE, {
+          duration: ANIMATION_DURATION,
         }),
-        -1,
-        false,
+        IS_ANIMATED_INFINITE,
+        IS_REVERSE_ANIMATION,
       ),
     );
   }, [ball, initialDelay]);
