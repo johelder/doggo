@@ -28,13 +28,20 @@ export const ButtonRootContainer = styled.TouchableOpacity<IButtonRootProps>`
       border: 1px solid ${color};
       background-color: transparent;
     `}
+
+    ${({ disabled, theme }) =>
+    disabled &&
+    css`
+      border: 1px solid ${theme.colors.gray[300]};
+      background-color: ${theme.colors.gray[300]};
+    `}
 `;
 
 export const ButtonIconContainer = styled.View``;
 
 export const ButtonTextContainer = styled.Text<IButtonTextProps>`
   font-family: ${({ theme }) => theme.fonts.primary.semiBold};
-  font-size: 16px;
+  font-size: 14px;
 
   color: ${({ color }) => color};
 `;
