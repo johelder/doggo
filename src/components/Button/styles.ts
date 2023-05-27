@@ -3,8 +3,8 @@ import { IButtonRootProps, IButtonTextProps } from './types';
 
 export const ButtonRootContainer = styled.TouchableOpacity<IButtonRootProps>`
   width: 100%;
+  height: 56px;
 
-  padding: 14px;
   margin-bottom: 15px;
   border-radius: 4px;
 
