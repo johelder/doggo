@@ -3,7 +3,7 @@ import { SafeAreaView } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useTheme } from 'styled-components';
 
-import { NewFeeder } from '@src/screens/NewFeeder';
+import { SelectLocation, CreateFeeder } from '@src/screens';
 import { HomeTabs } from './BottomTabs';
 
 import { TRootStackParamList } from './types';
@@ -29,11 +29,14 @@ export function AuthenticatedRoutes() {
           component={HomeTabs}
           options={{ headerShown: false }}
         />
-        <Stack.Screen
-          name="NewFeeder"
-          component={NewFeeder}
-          options={{ headerTransparent: true }}
-        />
+        <Stack.Group screenOptions={{ headerTransparent: true }}>
+          <Stack.Screen name="SelectLocation" component={SelectLocation} />
+          <Stack.Screen
+            name="CreateFeeder"
+            component={CreateFeeder}
+            options={{ headerTitle: '' }}
+          />
+        </Stack.Group>
       </Stack.Navigator>
     </SafeAreaView>
   );
