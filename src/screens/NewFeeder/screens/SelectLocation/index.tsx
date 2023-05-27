@@ -23,28 +23,10 @@ export function SelectLocation({
     markerRef,
     isLoadingUserAddress,
     userAddress,
+    handleNavigateToCreateFeeder,
   } = useSelectLocation();
   const { currentUserLocation } = useMap();
   const theme = useTheme();
-
-  function handleNavigateToCreateFeeder() {
-    if (!userAddress || !currentUserLocation) {
-      return;
-    }
-
-    navigation.navigate('CreateFeeder', {
-      address: {
-        street: userAddress?.thoroughfare,
-        houseNumber: userAddress?.name,
-        neighborhood: userAddress?.subLocality,
-        city: userAddress?.subAdministrativeArea,
-      },
-      coordinate: {
-        latitude: currentUserLocation?.coords.latitude,
-        longitude: currentUserLocation?.coords.longitude,
-      },
-    });
-  }
 
   const renderCustomHeaderTitle = useCallback(() => {
     if (!userAddress) {

@@ -1,8 +1,11 @@
 import { useCallback, useRef, useState } from 'react';
 import { Address, MapMarker, MarkerDragStartEndEvent } from 'react-native-maps';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 
 import { useMap } from '@src/hooks';
 import { errorHandler } from '@src/utils';
+
+import { TRootStackParamList } from '@src/routes/authenticated/types';
 
 export function useSelectLocation() {
   const [isLoadingUserAddress, setIsLoadingUserAddress] = useState(false);
@@ -10,7 +13,29 @@ export function useSelectLocation() {
     undefined,
   );
   const markerRef = useRef<MapMarker>(null);
-  const { mapRef, currentUserLocation } = useMap();
+  const { mapRef, currentUserLocation, setCurrentUserLocation } = useMap();
+
+  const navigation =
+    useNavigation<NavigationProp<TRootStackParamList, 'SelectLocation'>>();
+
+  function handleNavigateToCreateFeeder() {
+    if (!userAddress || !currentUserLocation) {
+      return;
+    }
+
+    navigation.navigate('CreateFeeder', {
+      address: {
+        street: userAddress?.thoroughfare,
+        houseNumber: userAddress?.name,
+        neighborhood: userAddress?.subLocality,
+        city: userAddress?.subAdministrativeArea,
+      },
+      coordinate: {
+        latitude: currentUserLocation?.coords.latitude,
+        longitude: currentUserLocation?.coords.longitude,
+      },
+    });
+  }
 
   function onDragStart() {
     setIsLoadingUserAddress(true);
@@ -25,6 +50,12 @@ export function useSelectLocation() {
       longitude,
     );
 
+    setCurrentUserLocation({
+      coords: {
+        latitude,
+        longitude,
+      },
+    });
     setUserAddress(fetchedUserAddress);
     setIsLoadingUserAddress(false);
   }
@@ -73,5 +104,6 @@ export function useSelectLocation() {
     markerRef,
     isLoadingUserAddress,
     userAddress,
+    handleNavigateToCreateFeeder,
   };
 }
