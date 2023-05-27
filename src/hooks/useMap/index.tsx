@@ -5,17 +5,19 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import Geolocation, {
-  GeolocationResponse,
-} from '@react-native-community/geolocation';
+import Geolocation from '@react-native-community/geolocation';
 import MapView from 'react-native-maps';
-import type { IMapContextProps, IMapProviderProps } from './types';
+import type {
+  IMapContextProps,
+  IMapProviderProps,
+  TCurrentUSerLocation,
+} from './types';
 
 const MapContext = createContext<IMapContextProps>({} as IMapContextProps);
 
 function MapProvider({ children }: IMapProviderProps) {
   const [currentUserLocation, setCurrentUserLocation] =
-    useState<GeolocationResponse | null>(null);
+    useState<TCurrentUSerLocation>(null);
   const mapRef = useRef<MapView>(null);
 
   const getUserCurrentPosition = useCallback(() => {
@@ -58,6 +60,7 @@ function MapProvider({ children }: IMapProviderProps) {
         currentUserLocation,
         getUserCurrentPosition,
         watchUserPosition,
+        setCurrentUserLocation,
       }}>
       {children}
     </MapContext.Provider>
