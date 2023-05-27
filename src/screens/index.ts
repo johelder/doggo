@@ -1,6 +1,7 @@
 import { SignIn } from './SignIn';
 import { Home } from './Home';
 import { Profile } from './Profile';
-import { NewFeeder } from './NewFeeder';
+import { SelectLocation } from './NewFeeder/screens/SelectLocation';
+import { CreateFeeder } from './NewFeeder/screens/CreateFeeder';
 
-export { SignIn, Home, Profile, NewFeeder };
+export { SignIn, Home, Profile, SelectLocation, CreateFeeder };
