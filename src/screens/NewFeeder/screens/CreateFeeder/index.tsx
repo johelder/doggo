@@ -12,7 +12,7 @@ import Dog from 'phosphor-react-native/src/icons/Dog';
 import Cat from 'phosphor-react-native/src/icons/Cat';
 import DotsThreeCircle from 'phosphor-react-native/src/icons/DotsThreeCircle';
 
-import { Button, ChipButton, Input } from '@src/components';
+import { Button, ChipButton, Input, Loader } from '@src/components';
 
 import { CustomHeader } from '../../components/CustomHeader';
 import { useCreateFeeder } from './useCreateFeeder';
@@ -34,6 +34,8 @@ export function CreateFeeder({ route }: TCreateFeederProps): JSX.Element {
     setAddressReference,
     handleToggleFeedFoods,
     feederFoods,
+    handleCreateFeeder,
+    isLoading,
   } = useCreateFeeder();
 
   return (
@@ -90,7 +92,7 @@ export function CreateFeeder({ route }: TCreateFeederProps): JSX.Element {
                       placeholder="Complemento"
                     />
 
-                    <S.FieldDescription>Apt / Bloco / Casa</S.FieldDescription>
+                    <S.FieldDescription>Apto / Bloco / Casa</S.FieldDescription>
                   </S.InputContainer>
                 </S.InputsWrapper>
 
@@ -155,10 +157,18 @@ export function CreateFeeder({ route }: TCreateFeederProps): JSX.Element {
               </>
             </S.FormContent>
 
-            <Button.Root type="filled" color={theme.colors.primary[500]}>
-              <Button.Text color={theme.colors.utils.white}>
-                Salvar comedouro
-              </Button.Text>
+            <Button.Root
+              type="filled"
+              color={theme.colors.primary[500]}
+              onPress={handleCreateFeeder}
+              disabled={isLoading}>
+              {isLoading ? (
+                <Loader />
+              ) : (
+                <Button.Text color={theme.colors.utils.white}>
+                  Salvar comedouro
+                </Button.Text>
+              )}
             </Button.Root>
           </S.FormContainer>
         </KeyboardAvoidingView>
