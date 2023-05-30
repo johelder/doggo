@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { LayoutChangeEvent } from 'react-native';
+import type { LayoutChangeEvent } from 'react-native';
 import { useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
 
 export function useInput() {

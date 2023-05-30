@@ -4,8 +4,8 @@ import { useRoute } from '@react-navigation/native';
 
 import { useAuth, useMap } from '@src/hooks';
 
-import { TFood } from '@src/models/food';
-import { TRouteProps } from '@src/routes/authenticated/types';
+import type { TFood } from '@src/types/common';
+import type { TRouteProps } from '@src/routes/authenticated/types';
 
 export function useCreateFeeder() {
   const [addressNumber, setAddressNumber] = useState('');

@@ -1,4 +1,4 @@
-import { IconProps } from 'phosphor-react-native/src/lib';
+import type { IconProps } from 'phosphor-react-native/src/lib';
 
 export type TScreenName = 'map' | 'profile';
 

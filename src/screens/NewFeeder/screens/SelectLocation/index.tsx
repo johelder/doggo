@@ -9,7 +9,8 @@ import { useSelectLocation } from './useSelectLocation';
 import { Button, Loader, Map } from '@src/components';
 import { CustomHeader } from '../../components/CustomHeader';
 import { CustomHeaderTitle } from '../../components/CustomHeaderTitle';
-import { TSelectLocationProps } from './types';
+
+import type { TSelectLocationProps } from './types';
 
 import * as S from './styles';
 
@@ -69,7 +70,7 @@ export function SelectLocation({
             <Callout tooltip>
               <S.CalloutContainer>
                 <S.CalloutContent>
-                  <S.CalloutTitle>Você está aqui?</S.CalloutTitle>
+                  <S.CalloutTitle>Seu comedouro é aqui?</S.CalloutTitle>
                   <S.CalloutDescription>
                     Toque e segure para ajustar{'\n'} a localização
                   </S.CalloutDescription>

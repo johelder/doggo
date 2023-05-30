@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { INavigationButtonProps } from './types';
+import type { INavigationButtonProps } from './types';
 
 import * as S from './styles';
 

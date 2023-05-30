@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 
 import { useMap } from '@src/hooks';
-import { IMapProps } from './types';
+
 import { LATITUDE_DELTA, LONGITUDE_DELTA } from './constants';
+import type { IMapProps } from './types';
 
 import * as S from './styles';
 

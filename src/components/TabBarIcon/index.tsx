@@ -2,8 +2,8 @@ import React from 'react';
 
 import { useTheme } from 'styled-components';
 
-import { ITabBarIconProps } from './types';
 import { useTabBarIcon } from './useTabBarIcon';
+import type { ITabBarIconProps } from './types';
 
 export function TabBarIcon({ screen, isFocused }: ITabBarIconProps) {
   const { getTabBarIcon } = useTabBarIcon();

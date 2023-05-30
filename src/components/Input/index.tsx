@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useInput } from './useInput';
-import { IInputProps } from './types';
+import type { IInputProps } from './types';
 
 import * as S from './styles';
 

@@ -5,7 +5,7 @@ import { Home, Profile } from '@src/screens';
 import { TabBarIcon } from '@src/components';
 
 import { tabBarOptions } from './options';
-import { TRootTabParamList } from './types';
+import type { TRootTabParamList } from './types';
 
 const Tab = createBottomTabNavigator<TRootTabParamList>();
 

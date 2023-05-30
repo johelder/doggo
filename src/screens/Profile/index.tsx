@@ -4,7 +4,8 @@ import { useTheme } from 'styled-components';
 
 import { useAuth } from '@src/hooks';
 import { Button, NavigationButton } from '@src/components';
-import { TProfileProps } from './types';
+
+import type { TProfileProps } from './types';
 
 import * as S from './styles';
 

@@ -1,11 +1,15 @@
 import { useCallback, useRef, useState } from 'react';
-import { Address, MapMarker, MarkerDragStartEndEvent } from 'react-native-maps';
+import type {
+  Address,
+  MapMarker,
+  MarkerDragStartEndEvent,
+} from 'react-native-maps';
 import { useNavigation } from '@react-navigation/native';
 
 import { useMap } from '@src/hooks';
 import { errorHandler } from '@src/utils';
 
-import { TNavigationProps } from '@src/routes/authenticated/types';
+import type { TNavigationProps } from '@src/routes/authenticated/types';
 
 export function useSelectLocation() {
   const [isLoadingUserAddress, setIsLoadingUserAddress] = useState(false);

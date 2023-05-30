@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IChipButtonProps } from './types';
+import type { IChipButtonProps } from './types';
 
 import * as S from './styles';
 

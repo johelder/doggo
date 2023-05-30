@@ -3,7 +3,7 @@ import React from 'react';
 import { useTheme } from 'styled-components';
 
 import { useToast } from './useToast';
-import { IToastProps } from './types';
+import type { IToastProps } from './types';
 
 import * as S from './styles';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ICustomHeaderTitle } from './types';
+import type { ICustomHeaderTitle } from './types';
 
 import * as S from './styles';
 

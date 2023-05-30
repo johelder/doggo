@@ -1,4 +1,4 @@
-import { TEvent, TListener } from './types';
+import type { TEvent, TListener } from './types';
 
 export default class EventManager {
   listeners: Map<TEvent, any>;

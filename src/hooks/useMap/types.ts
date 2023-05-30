@@ -1,6 +1,7 @@
-import { Dispatch, ReactNode, RefObject, SetStateAction } from 'react';
-import MapView from 'react-native-maps';
-import { GeolocationResponse } from '@react-native-community/geolocation';
+import type { Dispatch, ReactNode, RefObject, SetStateAction } from 'react';
+import type MapView from 'react-native-maps';
+import type { GeolocationResponse } from '@react-native-community/geolocation';
+import type { TCoordinates } from '@src/types/common';
 
 export interface IMapContextProps {
   mapRef: RefObject<MapView>;
@@ -15,10 +16,7 @@ export interface IMapProviderProps {
 }
 
 export interface IUserLocation {
-  coords: {
-    latitude: number;
-    longitude: number;
-  };
+  coords: TCoordinates;
 }
 
 export type TCurrentUSerLocation = GeolocationResponse | IUserLocation | null;

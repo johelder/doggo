@@ -1,11 +1,13 @@
-import {
+import type {
   NavigationProp,
   NavigatorScreenParams,
   RouteProp,
 } from '@react-navigation/native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { TAddress } from '@src/models';
-import { TRootTabParamList } from '@src/routes/authenticated/BottomTabs/types';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+
+import type { TDomainAddress } from '@src/types/domain';
+import type { TRootTabParamList } from '@src/routes/authenticated/BottomTabs/types';
+import type { TCoordinates } from '@src/types/common';
 
 type TAppScreens = TRootTabParamList & TRootStackParamList;
 
@@ -13,11 +15,8 @@ export type TRootStackParamList = {
   HomeTabs: NavigatorScreenParams<TRootTabParamList>;
   SelectLocation: undefined;
   CreateFeeder: {
-    address: TAddress;
-    coordinate: {
-      latitude: number;
-      longitude: number;
-    };
+    address: TDomainAddress;
+    coordinate: TCoordinates;
   };
 };
 

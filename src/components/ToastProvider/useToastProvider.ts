@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { toastEventManager } from '@src/utils/showToast';
 
-import { IToast } from './types';
+import type { IToast } from './types';
 
 export function useToastProvider() {
   const [toast, setToast] = useState<IToast | null>(null);

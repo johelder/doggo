@@ -16,9 +16,10 @@ import { Button, ChipButton, Input, Loader } from '@src/components';
 
 import { CustomHeader } from '../../components/CustomHeader';
 import { useCreateFeeder } from './useCreateFeeder';
-import { TCreateFeederProps } from './types';
+
 import { LATITUDE_DELTA, LONGITUDE_DELTA } from '@src/components/Map/constants';
 import { MAX_ZOOM_LEVEL, MIN_ZOOM_LEVEL } from './constants';
+import type { TCreateFeederProps } from './types';
 
 import * as S from './styles';
 

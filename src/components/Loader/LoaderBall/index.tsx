@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useLoaderBall } from './useLoaderBall';
-import { ILoaderBallProps } from './types';
+import type { ILoaderBallProps } from './types';
 
 import * as S from './styles';
 

@@ -1,5 +1,9 @@
 import React from 'react';
-import { IButtonIconProps, IButtonRootProps, IButtonTextProps } from './types';
+import type {
+  IButtonIconProps,
+  IButtonRootProps,
+  IButtonTextProps,
+} from './types';
 
 import * as S from './styles';
 

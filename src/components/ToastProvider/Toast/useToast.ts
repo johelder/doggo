@@ -11,14 +11,14 @@ import {
 import CheckCircle from 'phosphor-react-native/src/icons/CheckCircle';
 import WarningCircle from 'phosphor-react-native/src/icons/WarningCircle';
 
-import { TToastType } from '../types';
-import { IToastProps } from './types';
 import {
   DEFAULT_TOAST_DURATION,
   INITIAL_HIDDEN_TOAST_VALUE,
   UNMOUNT_ANIMATION_DURATION,
   VISIBLE_TOAST_VALUE,
 } from './constants';
+import type { TToastType } from '../types';
+import type { IToastProps } from './types';
 
 const toastIconMapper = {
   success: CheckCircle,
