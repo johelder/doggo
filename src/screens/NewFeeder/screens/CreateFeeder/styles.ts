@@ -37,7 +37,7 @@ export const Subtitle = styled.Text`
 `;
 
 export const FormContent = styled.View`
-  margin-bottom: 26px;
+  margin: 26px 0 26px;
 `;
 
 export const InputsWrapper = styled.View`
