@@ -1,4 +1,8 @@
-import { NavigatorScreenParams } from '@react-navigation/native';
+import {
+  NavigationProp,
+  NavigatorScreenParams,
+  RouteProp,
+} from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { TAddress } from '@src/models';
 import { TRootTabParamList } from '@src/routes/authenticated/BottomTabs/types';
@@ -19,3 +23,13 @@ export type TRootStackParamList = {
 
 export type TDefaultScreensProps<T extends keyof TAppScreens> =
   NativeStackScreenProps<TAppScreens, T>;
+
+export type TNavigationProps<T extends keyof TAppScreens> = NavigationProp<
+  TAppScreens,
+  T
+>;
+
+export type TRouteProps<T extends keyof TAppScreens> = RouteProp<
+  TAppScreens,
+  T
+>;
