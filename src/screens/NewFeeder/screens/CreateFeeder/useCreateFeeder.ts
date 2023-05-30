@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import database from '@react-native-firebase/database';
-import { RouteProp, useRoute } from '@react-navigation/native';
+import { useRoute } from '@react-navigation/native';
 
 import { useAuth, useMap } from '@src/hooks';
 
 import { TFood } from '@src/models/food';
-import { TRootStackParamList } from '@src/routes/authenticated/types';
+import { TRouteProps } from '@src/routes/authenticated/types';
 
 export function useCreateFeeder() {
   const [addressNumber, setAddressNumber] = useState('');
@@ -21,7 +21,7 @@ export function useCreateFeeder() {
   const { user } = useAuth();
   const { currentUserLocation } = useMap();
 
-  const route = useRoute<RouteProp<TRootStackParamList, 'CreateFeeder'>>();
+  const route = useRoute<TRouteProps<'CreateFeeder'>>();
 
   function handleToggleFeedFoods(food: TFood) {
     setFeederFoods(prevFoods => ({

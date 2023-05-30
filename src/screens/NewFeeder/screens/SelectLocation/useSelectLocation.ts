@@ -1,11 +1,11 @@
 import { useCallback, useRef, useState } from 'react';
 import { Address, MapMarker, MarkerDragStartEndEvent } from 'react-native-maps';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 import { useMap } from '@src/hooks';
 import { errorHandler } from '@src/utils';
 
-import { TRootStackParamList } from '@src/routes/authenticated/types';
+import { TNavigationProps } from '@src/routes/authenticated/types';
 
 export function useSelectLocation() {
   const [isLoadingUserAddress, setIsLoadingUserAddress] = useState(false);
@@ -15,8 +15,7 @@ export function useSelectLocation() {
   const markerRef = useRef<MapMarker>(null);
   const { mapRef, currentUserLocation, setCurrentUserLocation } = useMap();
 
-  const navigation =
-    useNavigation<NavigationProp<TRootStackParamList, 'SelectLocation'>>();
+  const navigation = useNavigation<TNavigationProps<'SelectLocation'>>();
 
   function handleNavigateToCreateFeeder() {
     if (!userAddress || !currentUserLocation) {
