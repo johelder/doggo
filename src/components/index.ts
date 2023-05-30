@@ -5,5 +5,15 @@ import { NavigationButton } from './NavigationButton';
 import { Loader } from './Loader';
 import { Input } from './Input';
 import { ChipButton } from './ChipButton';
+import { ToastProvider } from './ToastProvider';
 
-export { Button, Map, TabBarIcon, NavigationButton, Loader, Input, ChipButton };
+export {
+  Button,
+  Map,
+  TabBarIcon,
+  NavigationButton,
+  Loader,
+  Input,
+  ChipButton,
+  ToastProvider,
+};
