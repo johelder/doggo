@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 import { FeedersRepository } from '@src/services/database/repositories/FeedersRepository';
 import { useAuth, useMap } from '@src/hooks';
@@ -7,7 +7,10 @@ import { errorHandler, showToast } from '@src/utils';
 
 import { IDomainFeeder } from '@src/types/domain';
 import type { TFood } from '@src/types/common';
-import type { TRouteProps } from '@src/routes/authenticated/types';
+import type {
+  TNavigationProps,
+  TRouteProps,
+} from '@src/routes/authenticated/types';
 
 export function useCreateFeeder() {
   const [addressNumber, setAddressNumber] = useState('');
@@ -24,12 +27,24 @@ export function useCreateFeeder() {
   const { currentUserLocation } = useMap();
 
   const route = useRoute<TRouteProps<'CreateFeeder'>>();
+  const navigation = useNavigation<TNavigationProps<'CreateFeeder'>>();
 
   function handleToggleFeedFoods(food: TFood) {
     setFeederFoods(prevFoods => ({
       ...prevFoods,
       [food]: !prevFoods[food],
     }));
+  }
+
+  function clearFields() {
+    setAddressNumber('');
+    setAddressComplement('');
+    setAddressReference('');
+    setFeederFoods({
+      dog: false,
+      cat: false,
+      others: false,
+    });
   }
 
   async function handleCreateFeeder() {
@@ -57,6 +72,10 @@ export function useCreateFeeder() {
         message: 'Comedouro criado com sucesso.',
         duration: 5000,
       });
+
+      clearFields();
+
+      navigation.navigate('MyFeeders');
     } catch (error) {
       showToast({
         type: 'error',
