@@ -5,7 +5,12 @@ import type { IInputProps } from './types';
 
 import * as S from './styles';
 
-export function Input({ placeholder, value, ...rest }: IInputProps) {
+export function Input({
+  placeholder,
+  value,
+  isOptional = false,
+  ...rest
+}: IInputProps) {
   const {
     onLayout,
     animatedPlaceholderPositionStyle,
@@ -20,6 +25,8 @@ export function Input({ placeholder, value, ...rest }: IInputProps) {
         onLayout={onLayout}
         style={animatedPlaceholderPositionStyle}>
         <S.Placeholder>{placeholder}</S.Placeholder>
+
+        {isOptional && <S.OptionalLabel>(Opcional)</S.OptionalLabel>}
       </S.AnimatedPlaceholderContainer>
 
       <S.Input

@@ -28,6 +28,18 @@ export const Placeholder = styled.Text`
   color: ${({ theme }) => theme.colors.gray[500]};
 `;
 
+export const OptionalLabel = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.primary.semiBold};
+  font-size: 10px;
+
+  color: ${({ theme }) => theme.colors.gray[500]};
+
+  margin-left: 6px;
+`;
+
 export const AnimatedPlaceholderContainer = styled(Animated.View)`
   position: absolute;
+
+  flex-direction: row;
+  align-items: center;
 `;
