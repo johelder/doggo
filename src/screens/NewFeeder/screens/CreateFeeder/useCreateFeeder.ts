@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import database from '@react-native-firebase/database';
 import { useRoute } from '@react-navigation/native';
 
+import { FeedersRepository } from '@src/services/database/repositories/FeedersRepository';
 import { useAuth, useMap } from '@src/hooks';
+import { errorHandler, showToast } from '@src/utils';
 
+import { IDomainFeeder } from '@src/types/domain';
 import type { TFood } from '@src/types/common';
 import type { TRouteProps } from '@src/routes/authenticated/types';
 
@@ -34,28 +36,36 @@ export function useCreateFeeder() {
     try {
       setIsLoading(true);
 
-      const newReference = database().ref('/feeders').push();
+      if (!user || !currentUserLocation) {
+        return;
+      }
 
-      const newFeeder = {
-        user_id: user?.uid,
+      const feeder: IDomainFeeder = {
+        userId: user?.uid,
         coordinates: {
           latitude: currentUserLocation?.coords.latitude,
           longitude: currentUserLocation?.coords.longitude,
         },
-        address: {
-          street: route.params.address.street,
-          neighborhood: route.params.address.neighborhood,
-          city: route.params.address.city,
-          house_number: addressNumber,
-          complement: addressComplement,
-          reference: addressReference,
-        },
+        address: { ...route.params.address },
         foods: feederFoods,
       };
 
-      await newReference.set(newFeeder);
+      await FeedersRepository.create(feeder);
+
+      showToast({
+        type: 'success',
+        message: 'Comedouro criado com sucesso.',
+        duration: 5000,
+      });
     } catch (error) {
-      console.log({ error });
+      showToast({
+        type: 'error',
+        message:
+          'Ocorreu um erro ao criar seu comedouro, por favor, tente novamente mais tarde.',
+        duration: 5000,
+      });
+
+      errorHandler.reportError(error, 'handleCreateFeeder');
     } finally {
       setIsLoading(false);
     }
