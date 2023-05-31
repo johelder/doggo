@@ -51,8 +51,11 @@ export const Message = styled.Text`
   flex: 8;
 
   font-family: ${({ theme }) => theme.fonts.primary.medium};
+  font-size: 14px;
+  line-height: 20px;
 
   color: ${({ theme }) => theme.colors.utils.white};
+  padding: 0 10px;
 `;
 
 export const CloseButton = styled.TouchableOpacity`
