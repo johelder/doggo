@@ -39,14 +39,17 @@ export function CreateFeeder({ route }: TCreateFeederProps): JSX.Element {
     isLoading,
   } = useCreateFeeder();
 
+  const { latitude, longitude } = route.params.coordinate;
+  const { street, neighborhood, city } = route.params.address;
+
   return (
     <S.Container>
       <CustomHeader />
 
       <S.MapPreview
         initialRegion={{
-          latitude: route.params.coordinate.latitude,
-          longitude: route.params.coordinate.longitude,
+          latitude,
+          longitude,
           latitudeDelta: LATITUDE_DELTA,
           longitudeDelta: LONGITUDE_DELTA,
         }}
@@ -59,8 +62,8 @@ export function CreateFeeder({ route }: TCreateFeederProps): JSX.Element {
         maxZoomLevel={MAX_ZOOM_LEVEL}>
         <Marker
           coordinate={{
-            latitude: route.params.coordinate.latitude,
-            longitude: route.params.coordinate.longitude,
+            latitude,
+            longitude,
           }}
         />
       </S.MapPreview>
@@ -69,9 +72,9 @@ export function CreateFeeder({ route }: TCreateFeederProps): JSX.Element {
         <KeyboardAvoidingView behavior="position">
           <S.FormContainer>
             <>
-              <S.Title>{route.params.address.street}</S.Title>
+              <S.Title>{street}</S.Title>
               <S.Subtitle>
-                {route.params.address.neighborhood}, {route.params.address.city}
+                {neighborhood}, {city}
               </S.Subtitle>
             </>
 
