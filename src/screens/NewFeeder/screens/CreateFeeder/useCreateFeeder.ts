@@ -36,6 +36,10 @@ export function useCreateFeeder() {
     }));
   }
 
+  function hasSomeMandatoryFieldNotFilled() {
+    return Object.values(feederFoods).every(food => !food) || !addressNumber;
+  }
+
   function clearFields() {
     setAddressNumber('');
     setAddressComplement('');
@@ -49,11 +53,21 @@ export function useCreateFeeder() {
 
   async function handleCreateFeeder() {
     try {
-      setIsLoading(true);
+      if (hasSomeMandatoryFieldNotFilled()) {
+        showToast({
+          type: 'warning',
+          message: 'Preencha todos os campos obrigatórios para continuar.',
+          duration: 4000,
+        });
+
+        return;
+      }
 
       if (!user || !currentUserLocation) {
         return;
       }
+
+      setIsLoading(true);
 
       const feeder: IDomainFeeder = {
         userId: user?.uid,
@@ -70,7 +84,7 @@ export function useCreateFeeder() {
       showToast({
         type: 'success',
         message: 'Comedouro criado com sucesso.',
-        duration: 5000,
+        duration: 4000,
       });
 
       clearFields();
@@ -81,7 +95,7 @@ export function useCreateFeeder() {
         type: 'error',
         message:
           'Ocorreu um erro ao criar seu comedouro, por favor, tente novamente mais tarde.',
-        duration: 5000,
+        duration: 4000,
       });
 
       errorHandler.reportError(error, 'handleCreateFeeder');

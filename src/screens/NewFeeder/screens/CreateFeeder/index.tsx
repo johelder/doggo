@@ -94,6 +94,7 @@ export function CreateFeeder({ route }: TCreateFeederProps): JSX.Element {
                       value={addressComplement}
                       onChangeText={setAddressComplement}
                       placeholder="Complemento"
+                      isOptional
                     />
 
                     <S.FieldDescription>Apto / Bloco / Casa</S.FieldDescription>
@@ -105,6 +106,7 @@ export function CreateFeeder({ route }: TCreateFeederProps): JSX.Element {
                     value={addressReference}
                     onChangeText={setAddressReference}
                     placeholder="Ponto de referência"
+                    isOptional
                   />
                 </S.InputsWrapper>
 
