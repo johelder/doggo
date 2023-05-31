@@ -57,7 +57,7 @@ export function SelectLocation({
       <CustomHeader />
 
       {currentUserLocation && (
-        <Map onMapLoaded={onMapLoaded}>
+        <Map onMapLoaded={onMapLoaded} showsUserLocation>
           <Marker
             draggable
             coordinate={{
