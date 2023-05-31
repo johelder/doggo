@@ -10,7 +10,7 @@ import React, {
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
 
-import { errorHandler } from '@src/utils';
+import { errorHandler, showToast } from '@src/utils';
 
 import type { IAuthContext, IAuthContextProps, IUser } from './types';
 import { WEB_CLIENT_ID } from '@env';
@@ -41,6 +41,13 @@ function AuthContextProvider({ children }: IAuthContextProps): JSX.Element {
 
       setUser(response.user);
     } catch (error) {
+      showToast({
+        type: 'error',
+        message:
+          'Ocorreu um erro no servidor, por favor, tente novamente mais tarde.',
+        duration: 5000,
+      });
+
       errorHandler.reportError(error, 'handleSignIn');
     } finally {
       setIsLoadingAuth(false);
