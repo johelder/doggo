@@ -37,7 +37,18 @@ export function AuthenticatedRoutes() {
             options={{ headerTitle: '' }}
           />
         </Stack.Group>
-        <Stack.Screen name="MyFeeders" component={MyFeeders} />
+        <Stack.Screen
+          name="MyFeeders"
+          component={MyFeeders}
+          options={{
+            headerTitle: 'MEUS COMEDOUROS',
+            headerTitleStyle: {
+              fontSize: 14,
+              color: theme.colors.gray[700],
+              fontFamily: theme.fonts.primary.semiBold,
+            },
+          }}
+        />
       </Stack.Navigator>
     </SafeAreaView>
   );
