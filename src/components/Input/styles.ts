@@ -33,8 +33,6 @@ export const OptionalLabel = styled.Text`
   font-size: 10px;
 
   color: ${({ theme }) => theme.colors.gray[500]};
-
-  margin-left: 6px;
 `;
 
 export const AnimatedPlaceholderContainer = styled(Animated.View)`
@@ -42,4 +40,6 @@ export const AnimatedPlaceholderContainer = styled(Animated.View)`
 
   flex-direction: row;
   align-items: center;
+
+  gap: 6px;
 `;
