@@ -34,9 +34,10 @@ export function Profile({ navigation }: TProfileProps): JSX.Element {
           />
 
           <NavigationButton
-            title="Comedouros"
+            title="Meus comedouros"
             description="Minha central de comedouros"
             icon={() => <S.FeederIcon />}
+            onPress={() => navigation.navigate('MyFeeders')}
           />
 
           <NavigationButton
