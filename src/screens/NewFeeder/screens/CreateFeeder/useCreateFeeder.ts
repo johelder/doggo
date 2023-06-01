@@ -63,14 +63,17 @@ export function useCreateFeeder() {
         return;
       }
 
-      if (!user || !currentUserLocation) {
+      if (!user?.displayName || !currentUserLocation) {
         return;
       }
 
       setIsLoading(true);
 
       const feeder: IDomainFeeder = {
-        userId: user?.uid,
+        user: {
+          id: user.uid,
+          name: user.displayName,
+        },
         coordinates: {
           latitude: currentUserLocation?.coords.latitude,
           longitude: currentUserLocation?.coords.longitude,

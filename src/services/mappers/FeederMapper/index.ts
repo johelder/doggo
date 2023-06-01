@@ -4,7 +4,10 @@ import type { IPersistanceFeeder } from '@src/types/persistance/feeder';
 export const FeederMapper = {
   toPersistance(domainFeeder: IDomainFeeder): IPersistanceFeeder {
     return {
-      user_id: domainFeeder.userId,
+      user: {
+        id: domainFeeder.user.id,
+        name: domainFeeder.user.name,
+      },
       coordinates: domainFeeder.coordinates,
       address: {
         street: domainFeeder.address.street,
@@ -20,7 +23,10 @@ export const FeederMapper = {
 
   toDomain(persistanceFeeder: IPersistanceFeeder): IDomainFeeder {
     return {
-      userId: persistanceFeeder.user_id,
+      user: {
+        id: persistanceFeeder.user.id,
+        name: persistanceFeeder.user.name,
+      },
       coordinates: persistanceFeeder.coordinates,
       address: {
         street: persistanceFeeder.address.street,
