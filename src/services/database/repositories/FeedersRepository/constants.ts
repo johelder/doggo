@@ -1,1 +1,1 @@
-export const DATABASE_FEEDERS_REF = '/feeders';
+export const DATABASE_FEEDERS_COLLECTION = 'feeders';
