@@ -69,7 +69,7 @@ export function useCreateFeeder() {
 
       setIsLoading(true);
 
-      const feeder: IDomainFeeder = {
+      const feeder = {
         user: {
           id: user.uid,
           name: user.displayName,
@@ -78,11 +78,16 @@ export function useCreateFeeder() {
           latitude: currentUserLocation?.coords.latitude,
           longitude: currentUserLocation?.coords.longitude,
         },
-        address: { ...route.params.address },
+        address: {
+          ...route.params.address,
+          houseNumber: addressNumber,
+          complement: addressComplement,
+          reference: addressReference,
+        },
         foods: feederFoods,
       };
 
-      await FeedersRepository.create(feeder);
+      await FeedersRepository.create(feeder as IDomainFeeder);
 
       showToast({
         type: 'success',
