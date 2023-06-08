@@ -23,6 +23,7 @@ export function AuthenticatedRoutes() {
         screenOptions={{
           headerTintColor: theme.colors.primary[500],
           headerTitleAlign: 'center',
+          headerShadowVisible: false,
         }}>
         <Stack.Screen
           name="HomeTabs"
