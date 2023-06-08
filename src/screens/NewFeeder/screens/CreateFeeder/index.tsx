@@ -169,7 +169,7 @@ export function CreateFeeder({ route }: TCreateFeederProps): JSX.Element {
               onPress={handleCreateFeeder}
               disabled={isLoading}>
               {isLoading ? (
-                <Loader />
+                <Loader.Component />
               ) : (
                 <Button.Text color={theme.colors.utils.white}>
                   Salvar comedouro

@@ -35,7 +35,7 @@ export function SelectLocation({
     }
 
     if (isLoadingUserAddress) {
-      return <Loader />;
+      return <Loader.Component />;
     }
 
     return (

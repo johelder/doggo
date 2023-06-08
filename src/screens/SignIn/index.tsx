@@ -25,7 +25,7 @@ export function SignIn(): JSX.Element {
 
       <S.GoogleButton onPress={handleSignIn} disabled={isLoadingAuth}>
         {isLoadingAuth ? (
-          <Loader />
+          <Loader.Component />
         ) : (
           <>
             <S.GoogleLogoContainer>

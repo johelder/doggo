@@ -9,5 +9,8 @@ export const Container = styled.SafeAreaView`
 `;
 
 export const LoaderContainer = styled.View`
-  position: absolute;
+  flex: 1;
+
+  align-items: center;
+  justify-content: center;
 `;

@@ -9,12 +9,25 @@ import {
 
 import * as S from './styles';
 
-export function Loader() {
+function Component() {
   return (
-    <S.Container>
+    <S.ComponentContainer>
       <LoaderBall initialDelay={FIRST_BALL_ANIMATION_DURATION} />
       <LoaderBall initialDelay={SECOND_BALL_ANIMATION_DURATION} />
       <LoaderBall initialDelay={THIRD_BALL_ANIMATION_DURATION} />
-    </S.Container>
+    </S.ComponentContainer>
   );
 }
+
+function Page() {
+  return (
+    <S.PageContainer>
+      <Component />
+    </S.PageContainer>
+  );
+}
+
+export const Loader = {
+  Component,
+  Page,
+};
