@@ -1,87 +1,127 @@
 import React from 'react';
-import { useTheme } from 'styled-components';
 
-import MapPin from 'phosphor-react-native/src/icons/MapPin';
-import User from 'phosphor-react-native/src/icons/User';
-import CookingPot from 'phosphor-react-native/src/icons/CookingPot';
-import Signpost from 'phosphor-react-native/src/icons/Signpost';
-import CaretDown from 'phosphor-react-native/src/icons/CaretDown';
-import CaretUp from 'phosphor-react-native/src/icons/CaretUp';
-import PushPin from 'phosphor-react-native/src/icons/PushPin';
-import Heart from 'phosphor-react-native/src/icons/Heart';
+import type { IReadOnlyCardProps } from './types';
 
-import { useFeederCard } from './useFeederCard';
-import type { IFeederCardProps } from './types';
+import { Icon, Label, Root } from './components';
 
 import * as S from './styles';
 
-export function FeederCard({
-  sideButton,
-  isReadOnly = true,
-}: IFeederCardProps) {
-  const { isCollapsed, handleToggleCollapseSession } = useFeederCard();
+// export function WithActions({ feeder }: IFeederCardProps) {
+//   const { isCollapsed, handleToggleCollapseSession } = useFeederCard();
 
-  const theme = useTheme();
+//   const theme = useTheme();
+
+//   const {
+//     address: { street, houseNumber, neighborhood, city, complement, reference },
+//     user,
+//   } = feeder;
+
+//   return (
+//     <Root>
+//       <Session>
+//         <Icon name="map" />
+//       </Session>
+//     </Root>
+//     // <S.Container>
+//     //   <S.Header>
+//     //     <MapPin color={theme.colors.gray[700]} size={24} />
+
+//     //     <S.Title>
+//     //       {street}, {houseNumber}, {neighborhood}, {city}
+//     //     </S.Title>
+
+//     //     {sideButton}
+//     //   </S.Header>
+
+//     //   <>
+//     //     <S.LabelContainer>
+//     //       <User color={theme.colors.gray[500]} size={24} />
+//     //       <S.Label>
+//     //         Comedouro de {user.name} - {complement}
+//     //       </S.Label>
+//     //     </S.LabelContainer>
+
+//     //     <S.LabelContainer>
+//     //       <CookingPot color={theme.colors.gray[500]} size={24} />
+//     //       <S.Label>Comida para gatos e cachorros</S.Label>
+//     //     </S.LabelContainer>
+//     //   </>
+
+//     //   {reference && (
+//     //     <>
+//     //       <S.CollapseButton onPress={handleToggleCollapseSession}>
+//     //         {isCollapsed ? (
+//     //           <CaretUp weight="bold" color={theme.colors.gray[500]} size={20} />
+//     //         ) : (
+//     //           <CaretDown
+//     //             weight="bold"
+//     //             color={theme.colors.gray[500]}
+//     //             size={20}
+//     //           />
+//     //         )}
+//     //       </S.CollapseButton>
+
+//     //       {isCollapsed && (
+//     //         <S.LabelContainer>
+//     //           <PushPin color={theme.colors.gray[500]} size={24} />
+//     //           <S.Label>{reference}</S.Label>
+//     //         </S.LabelContainer>
+//     //       )}
+//     //     </>
+//     //   )}
+
+//     //   {!isReadOnly && (
+//     //     <S.ButtonsContainer>
+//     //       <S.ActionButton>
+//     //         <Signpost color={theme.colors.gray[500]} size={24} />
+//     //         <S.Label>Ver rotas</S.Label>
+//     //       </S.ActionButton>
+
+//     //       <S.ActionButton>
+//     //         <Heart color={theme.colors.gray[500]} size={24} />
+//     //         <S.Label>Favoritar</S.Label>
+//     //       </S.ActionButton>
+//     //     </S.ButtonsContainer>
+//     //   )}
+//     // </S.Container>
+//   );
+// }
+
+function ReadOnly({ feeder, sideButton }: IReadOnlyCardProps) {
+  const {
+    address: { street, houseNumber, neighborhood, city, complement, reference },
+  } = feeder;
 
   return (
-    <S.Container>
+    <Root>
       <S.Header>
-        <S.LabelContainer>
-          <MapPin color={theme.colors.gray[700]} size={24} />
-          <S.Title>Rua da Opala, 356, Dom Avelar, Petrolina (500m)</S.Title>
-        </S.LabelContainer>
+        <S.Session>
+          <Icon name="map" isTitle />
+          <Label
+            label={`${street}, ${houseNumber}, ${neighborhood}, ${city} - ${complement}`}
+            isTitle
+          />
+        </S.Session>
 
         {sideButton}
       </S.Header>
 
-      <>
-        <S.LabelContainer>
-          <User color={theme.colors.gray[500]} size={24} />
-          <S.Label>Comedouro de Johelder - Casa</S.Label>
-        </S.LabelContainer>
+      <S.Session>
+        <Icon name="cookingPot" />
+        <Label label="Comida para gatos e cachorros" />
+      </S.Session>
 
-        <S.LabelContainer>
-          <CookingPot color={theme.colors.gray[500]} size={24} />
-          <S.Label>Comida para gatos e cachorros</S.Label>
-        </S.LabelContainer>
-      </>
-
-      {true && (
-        <>
-          <S.CollapseButton onPress={handleToggleCollapseSession}>
-            {isCollapsed ? (
-              <CaretUp weight="bold" color={theme.colors.gray[500]} size={20} />
-            ) : (
-              <CaretDown
-                weight="bold"
-                color={theme.colors.gray[500]}
-                size={20}
-              />
-            )}
-          </S.CollapseButton>
-
-          {isCollapsed && (
-            <S.LabelContainer>
-              <PushPin color={theme.colors.gray[500]} size={24} />
-              <S.Label>Próximo ao ponto de ônibus</S.Label>
-            </S.LabelContainer>
-          )}
-        </>
+      {reference && (
+        <S.Session>
+          <Icon name="pushPin" />
+          <Label label={reference} />
+        </S.Session>
       )}
-
-      {!isReadOnly && (
-        <S.ButtonsContainer>
-          <S.ActionButton>
-            <Signpost color={theme.colors.gray[500]} size={24} />
-            <S.Label>Ver rotas</S.Label>
-          </S.ActionButton>
-
-          <S.ActionButton>
-            <Heart color={theme.colors.gray[500]} size={24} />
-            <S.Label>Favoritar</S.Label>
-          </S.ActionButton>
-        </S.ButtonsContainer>
-      )}
-    </S.Container>
+    </Root>
   );
 }
+
+export const FeederCard = {
+  // WithActions,
+  ReadOnly,
+};
