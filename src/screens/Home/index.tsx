@@ -14,11 +14,7 @@ export function Home(): JSX.Element {
       <StatusBar barStyle="dark-content" backgroundColor="transparent" />
 
       <S.Container>
-        {isLoadingMap && (
-          <S.LoaderContainer>
-            <Loader />
-          </S.LoaderContainer>
-        )}
+        {isLoadingMap && <Loader.Page />}
 
         <Map showsUserLocation onMapLoaded={onMapLoaded} />
       </S.Container>
