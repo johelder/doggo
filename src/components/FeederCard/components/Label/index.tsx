@@ -4,6 +4,10 @@ import type { ILabelProps } from './types';
 
 import * as S from './styles';
 
-export function Label({ label, isTitle = false }: ILabelProps) {
-  return <S.Container isTitle={isTitle}>{label}</S.Container>;
+export function Label({ label, isTitle = false, ...rest }: ILabelProps) {
+  return (
+    <S.Container isTitle={isTitle} {...rest}>
+      {label}
+    </S.Container>
+  );
 }

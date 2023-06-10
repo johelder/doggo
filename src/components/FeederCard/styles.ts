@@ -1,4 +1,4 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 
 export const Header = styled.View`
   flex-direction: row;
@@ -6,12 +6,16 @@ export const Header = styled.View`
   justify-content: space-between;
 `;
 
-export const Session = styled.View`
+export const Session = styled.View<{ isFirstSession?: boolean }>`
   flex-direction: row;
   align-items: center;
   gap: 8px;
 
-  flex: 8;
+  ${({ isFirstSession }) =>
+    isFirstSession &&
+    css`
+      flex: 8;
+    `};
 `;
 
 export const CollapseButton = styled.TouchableOpacity`

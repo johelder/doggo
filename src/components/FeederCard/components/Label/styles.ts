@@ -1,4 +1,4 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 
 export const Container = styled.Text<{ isTitle: boolean }>`
   font-family: ${({ theme, isTitle }) =>
@@ -6,7 +6,12 @@ export const Container = styled.Text<{ isTitle: boolean }>`
   font-size: 14px;
   line-height: 20px;
 
-  flex: 8;
+  color: ${({ theme }) => theme.colors.gray[500]};
 
-  color: ${({ theme, isTitle }) => theme.colors.gray[isTitle ? 700 : 500]};
+  ${({ isTitle, theme }) =>
+    isTitle &&
+    css`
+      flex: 8;
+      color: ${theme.colors.gray[700]};
+    `}
 `;

@@ -95,10 +95,12 @@ function ReadOnly({ feeder, sideButton }: IReadOnlyCardProps) {
   return (
     <Root>
       <S.Header>
-        <S.Session>
+        <S.Session isFirstSession>
           <Icon name="map" isTitle />
           <Label
-            label={`${street}, ${houseNumber}, ${neighborhood}, ${city} - ${complement}`}
+            label={`${street}, ${houseNumber}, ${neighborhood}, ${city} ${
+              complement ?? '- ' + complement
+            }`}
             isTitle
           />
         </S.Session>
