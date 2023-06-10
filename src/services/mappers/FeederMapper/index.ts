@@ -4,7 +4,6 @@ import type { IPersistanceFeeder } from '@src/types/persistance/feeder';
 export const FeederMapper = {
   toPersistance(domainFeeder: IDomainFeeder): IPersistanceFeeder {
     return {
-      id: domainFeeder.id,
       user: {
         id: domainFeeder.user.id,
         name: domainFeeder.user.name,
@@ -19,7 +18,7 @@ export const FeederMapper = {
         reference: domainFeeder.address.reference,
       },
       foods: domainFeeder.foods,
-    };
+    } as IPersistanceFeeder;
   },
 
   toDomain(persistanceFeeder: IPersistanceFeeder): IDomainFeeder {
