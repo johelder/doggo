@@ -31,7 +31,7 @@ export function useMyFeeders() {
       const response = await FeedersRepository.findAll();
 
       setFeeders(response);
-      setPageStatus('error');
+      setPageStatus('success');
     } catch (error) {
       setPageStatus('error');
       errorHandler.reportError(error, 'getFeeders');
