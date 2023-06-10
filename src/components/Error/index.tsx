@@ -1,6 +1,8 @@
 import React from 'react';
 import { useTheme } from 'styled-components';
 
+import ArrowsClockwise from 'phosphor-react-native/src/icons/ArrowsClockwise';
+
 import { Button } from '@src/components';
 import ErrorIllustration from '@src/assets/images/error-illustration.svg';
 import { useError } from './useError';
@@ -24,6 +26,10 @@ export function Error({ title, onTryAgain }: IErrorProps) {
           type="filled"
           color={theme.colors.attention[500]}
           onPress={onTryAgain}>
+          <Button.Icon>
+            <ArrowsClockwise color={theme.colors.utils.white} size={24} />
+          </Button.Icon>
+
           <Button.Text color={theme.colors.utils.white}>
             Tentar novamente
           </Button.Text>
