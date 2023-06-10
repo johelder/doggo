@@ -7,6 +7,7 @@ import { Input } from './Input';
 import { ChipButton } from './ChipButton';
 import { ToastProvider } from './ToastProvider';
 import { FeederCard } from './FeederCard';
+import { Error } from './Error';
 
 export {
   Button,
@@ -18,4 +19,5 @@ export {
   ChipButton,
   ToastProvider,
   FeederCard,
+  Error,
 };
