@@ -46,7 +46,7 @@ export const ToolTipTriangle = styled.View`
 
 export const ButtonContainer = styled.View`
   position: absolute;
-  bottom: 50px;
+  bottom: 66px;
   left: 0;
   right: 0;
 

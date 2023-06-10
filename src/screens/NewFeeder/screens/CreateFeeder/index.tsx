@@ -11,6 +11,7 @@ import { useTheme } from 'styled-components';
 import Dog from 'phosphor-react-native/src/icons/Dog';
 import Cat from 'phosphor-react-native/src/icons/Cat';
 import DotsThreeCircle from 'phosphor-react-native/src/icons/DotsThreeCircle';
+import ArchiveBox from 'phosphor-react-native/src/icons/ArchiveBox';
 
 import { Button, ChipButton, Input, Loader } from '@src/components';
 
@@ -171,9 +172,15 @@ export function CreateFeeder({ route }: TCreateFeederProps): JSX.Element {
               {isLoading ? (
                 <Loader.Component />
               ) : (
-                <Button.Text color={theme.colors.utils.white}>
-                  Salvar comedouro
-                </Button.Text>
+                <>
+                  <Button.Icon>
+                    <ArchiveBox color={theme.colors.utils.white} />
+                  </Button.Icon>
+
+                  <Button.Text color={theme.colors.utils.white}>
+                    Salvar comedouro
+                  </Button.Text>
+                </>
               )}
             </Button.Root>
           </S.FormContainer>
