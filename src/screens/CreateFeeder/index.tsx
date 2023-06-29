@@ -14,8 +14,7 @@ import DotsThreeCircle from 'phosphor-react-native/src/icons/DotsThreeCircle';
 import ArchiveBox from 'phosphor-react-native/src/icons/ArchiveBox';
 
 import { Button, ChipButton, Input, Loader } from '@src/components';
-
-import { CustomHeader } from '../../components/CustomHeader';
+import { CustomHeader } from '@src/components/CustomHeader';
 import { useCreateFeeder } from './useCreateFeeder';
 
 import { LATITUDE_DELTA, LONGITUDE_DELTA } from '@src/components/Map/constants';
