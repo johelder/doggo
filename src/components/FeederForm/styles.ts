@@ -43,6 +43,6 @@ export const Label = styled.Text<{ isSelected?: boolean }>`
 `;
 
 export const FormFooter = styled.View`
-  margin-top: 16px;
+  margin: 16px 0;
   gap: 16px;
 `;
