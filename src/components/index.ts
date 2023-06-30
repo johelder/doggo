@@ -8,6 +8,7 @@ import { ChipButton } from './ChipButton';
 import { ToastProvider } from './ToastProvider';
 import { FeederCard } from './FeederCard';
 import { Error } from './Error';
+import { FeederForm } from './FeederForm';
 
 export {
   Button,
@@ -20,4 +21,5 @@ export {
   ToastProvider,
   FeederCard,
   Error,
+  FeederForm,
 };
