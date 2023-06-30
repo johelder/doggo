@@ -6,6 +6,7 @@ export const ButtonRootContainer = styled.TouchableOpacity<IButtonRootProps>`
   height: 56px;
 
   border-radius: 4px;
+  border-width: 1px;
 
   flex-direction: row;
   align-items: center;
@@ -18,20 +19,20 @@ export const ButtonRootContainer = styled.TouchableOpacity<IButtonRootProps>`
     type === 'filled' &&
     css`
       background-color: ${color};
-      border: 1px solid ${color};
+      border-color: ${color};
     `}
 
   ${({ type, color }) =>
     type === 'outline' &&
     css`
-      border: 1px solid ${color};
       background-color: transparent;
+      border-color: ${color};
     `}
 
     ${({ disabled, theme }) =>
     disabled &&
     css`
-      border: 1px solid ${theme.colors.gray[300]};
+      border-color: ${theme.colors.gray[300]};
       background-color: ${theme.colors.gray[300]};
     `}
 `;

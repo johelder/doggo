@@ -1,4 +1,7 @@
 import React from 'react';
+
+import { theme } from '@src/styles/theme';
+import { Loader } from '@src/components/Loader';
 import type {
   IButtonIconProps,
   IButtonRootProps,
@@ -7,10 +10,16 @@ import type {
 
 import * as S from './styles';
 
-function ButtonRoot({ type, color, children, ...rest }: IButtonRootProps) {
+function ButtonRoot({
+  type = 'filled',
+  color = theme.colors.primary[500],
+  isLoading = false,
+  children,
+  ...rest
+}: IButtonRootProps) {
   return (
     <S.ButtonRootContainer type={type} color={color} {...rest}>
-      {children}
+      {isLoading ? <Loader.Component /> : children}
     </S.ButtonRootContainer>
   );
 }
@@ -19,7 +28,10 @@ function ButtonIcon({ children }: IButtonIconProps) {
   return <S.ButtonIconContainer>{children}</S.ButtonIconContainer>;
 }
 
-function ButtonText({ color, children }: IButtonTextProps) {
+function ButtonText({
+  color = theme.colors.utils.white,
+  children,
+}: IButtonTextProps) {
   return (
     <S.ButtonTextContainer color={color}>{children}</S.ButtonTextContainer>
   );
