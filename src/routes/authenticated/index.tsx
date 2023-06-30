@@ -1,40 +1,56 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useTheme } from 'styled-components';
 
-import { Home, Profile } from '@src/screens';
-import { TabBarIcon } from '@src/components';
+import { SelectLocation, CreateFeeder, MyFeeders } from '@src/screens';
+import { HomeTabs } from './BottomTabs';
 
-import { containerStyles, tabBarOptions } from './styles';
-import { TRootTabParamList } from './types';
+import { TRootStackParamList } from './types';
 
-const Tab = createBottomTabNavigator<TRootTabParamList>();
+const Stack = createNativeStackNavigator<TRootStackParamList>();
+
+const wrapperOptions = {
+  flex: 1,
+};
 
 export function AuthenticatedRoutes() {
+  const theme = useTheme();
+
   return (
-    <SafeAreaView style={containerStyles}>
-      <Tab.Navigator screenOptions={tabBarOptions}>
-        <Tab.Screen
-          name="Map"
-          component={Home}
+    <SafeAreaView style={wrapperOptions}>
+      <Stack.Navigator
+        screenOptions={{
+          headerTintColor: theme.colors.primary[500],
+          headerTitleAlign: 'center',
+          headerShadowVisible: false,
+        }}>
+        <Stack.Screen
+          name="HomeTabs"
+          component={HomeTabs}
+          options={{ headerShown: false }}
+        />
+        <Stack.Group screenOptions={{ headerTransparent: true }}>
+          <Stack.Screen name="SelectLocation" component={SelectLocation} />
+          <Stack.Screen
+            name="CreateFeeder"
+            component={CreateFeeder}
+            options={{ headerTitle: '' }}
+          />
+        </Stack.Group>
+        <Stack.Screen
+          name="MyFeeders"
+          component={MyFeeders}
           options={{
-            tabBarIcon: ({ focused }) => (
-              <TabBarIcon isFocused={focused} screen="map" />
-            ),
-            tabBarLabel: 'Mapa',
+            headerTitle: 'MEUS COMEDOUROS',
+            headerTitleStyle: {
+              fontSize: 14,
+              color: theme.colors.gray[700],
+              fontFamily: theme.fonts.primary.semiBold,
+            },
           }}
         />
-        <Tab.Screen
-          name="Profile"
-          component={Profile}
-          options={{
-            tabBarIcon: ({ focused }) => (
-              <TabBarIcon isFocused={focused} screen="profile" />
-            ),
-            tabBarLabel: 'Perfil',
-          }}
-        />
-      </Tab.Navigator>
+      </Stack.Navigator>
     </SafeAreaView>
   );
 }

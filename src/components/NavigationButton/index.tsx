@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { INavigationButtonProps } from './types';
+import type { INavigationButtonProps } from './types';
 
 import * as S from './styles';
 
@@ -8,13 +8,16 @@ export function NavigationButton({
   title,
   description,
   icon: IconComponent,
+  ...rest
 }: INavigationButtonProps) {
   return (
-    <S.Container>
+    <S.Container {...rest}>
       <S.Content>
         <IconComponent />
+
         <S.TitlesContainer>
           <S.Title>{title}</S.Title>
+
           <S.Description>{description}</S.Description>
         </S.TitlesContainer>
       </S.Content>

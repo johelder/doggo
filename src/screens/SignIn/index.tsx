@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useAuth } from '@src/hooks';
+import { Loader } from '@src/components/Loader';
 
 import DogLandscapeIllustration from '@src/assets/images/dog-landscape-illustration.svg';
 import GoogleLogo from '@src/assets/images/google-logo.svg';
@@ -8,7 +9,7 @@ import GoogleLogo from '@src/assets/images/google-logo.svg';
 import * as S from './styles';
 
 export function SignIn(): JSX.Element {
-  const { handleSignIn } = useAuth();
+  const { handleSignIn, isLoadingAuth } = useAuth();
 
   return (
     <S.Container>
@@ -22,14 +23,20 @@ export function SignIn(): JSX.Element {
         </S.GreetingsSubtitle>
       </S.GreetingsContainer>
 
-      <S.GoogleButton onPress={handleSignIn}>
-        <S.GoogleLogoContainer>
-          <GoogleLogo />
-        </S.GoogleLogoContainer>
+      <S.GoogleButton onPress={handleSignIn} disabled={isLoadingAuth}>
+        {isLoadingAuth ? (
+          <Loader.Component />
+        ) : (
+          <>
+            <S.GoogleLogoContainer>
+              <GoogleLogo />
+            </S.GoogleLogoContainer>
 
-        <S.GoogleButtonLabelContainer>
-          <S.GoogleButtonLabel>Continuar com o Google</S.GoogleButtonLabel>
-        </S.GoogleButtonLabelContainer>
+            <S.GoogleButtonLabelContainer>
+              <S.GoogleButtonLabel>Continuar com o Google</S.GoogleButtonLabel>
+            </S.GoogleButtonLabelContainer>
+          </>
+        )}
       </S.GoogleButton>
     </S.Container>
   );

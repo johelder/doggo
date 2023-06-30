@@ -11,6 +11,7 @@ export interface IAuthContext {
   handleSignIn: () => Promise<void>;
   handleSignOut: () => Promise<void>;
   isUserLogged: boolean;
+  isLoadingAuth: boolean;
 }
 
 export interface IAuthContextProps {

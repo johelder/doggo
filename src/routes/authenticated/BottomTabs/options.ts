@@ -29,6 +29,7 @@ export const tabBarOptions: BottomTabNavigationOptions = {
     left: TAB_BAR_LEFT_SPACING,
     right: TAB_BAR_RIGHT_SPACING,
     borderRadius: TAB_BAR_BORDER_RADIUS,
+    backgroundColor: theme.colors.gray[100],
   },
   tabBarItemStyle: {
     borderRadius: TAB_BAR_ITEM_BORDER_RADIUS,

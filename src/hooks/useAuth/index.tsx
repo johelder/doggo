@@ -10,15 +10,16 @@ import React, {
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
 
-import { errorHandler } from '@src/utils';
+import { errorHandler, showToast } from '@src/utils';
 
 import type { IAuthContext, IAuthContextProps, IUser } from './types';
 import { WEB_CLIENT_ID } from '@env';
 
 const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
-function AuthContextProvider({ children }: IAuthContextProps) {
+function AuthContextProvider({ children }: IAuthContextProps): JSX.Element {
   const [user, setUser] = useState<IUser>(null);
+  const [isLoadingAuth, setIsLoadingAuth] = useState(false);
 
   function onAuthStateChanged(userState: IUser) {
     setUser(userState);
@@ -26,6 +27,8 @@ function AuthContextProvider({ children }: IAuthContextProps) {
 
   const handleSignIn = useCallback(async () => {
     try {
+      setIsLoadingAuth(true);
+
       await GoogleSignin.hasPlayServices({
         showPlayServicesUpdateDialog: true,
       });
@@ -38,7 +41,16 @@ function AuthContextProvider({ children }: IAuthContextProps) {
 
       setUser(response.user);
     } catch (error) {
+      showToast({
+        type: 'error',
+        message:
+          'Ocorreu um erro no servidor, por favor, tente novamente mais tarde.',
+        duration: 5000,
+      });
+
       errorHandler.reportError(error, 'handleSignIn');
+    } finally {
+      setIsLoadingAuth(false);
     }
   }, []);
 
@@ -69,7 +81,13 @@ function AuthContextProvider({ children }: IAuthContextProps) {
 
   return (
     <AuthContext.Provider
-      value={{ user, handleSignIn, handleSignOut, isUserLogged }}>
+      value={{
+        user,
+        handleSignIn,
+        handleSignOut,
+        isUserLogged,
+        isLoadingAuth,
+      }}>
       {children}
     </AuthContext.Provider>
   );

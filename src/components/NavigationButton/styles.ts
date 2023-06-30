@@ -1,8 +1,9 @@
 import styled from 'styled-components/native';
 import { StyleSheet } from 'react-native';
 import CaretRight from 'phosphor-react-native/src/icons/CaretRight';
+import { INavigationButtonProps } from './types';
 
-export const Container = styled.TouchableOpacity.attrs({
+export const Container = styled.TouchableOpacity.attrs<INavigationButtonProps>({
   activeOpacity: 0.6,
 })`
   flex-direction: row;
@@ -16,7 +17,7 @@ export const Container = styled.TouchableOpacity.attrs({
 export const Content = styled.View`
   flex-direction: row;
   align-items: center;
-  padding: 15px 0;
+  padding: 16px 0;
 `;
 
 export const TitlesContainer = styled.View`
