@@ -7,8 +7,8 @@ import { useMap } from '@src/hooks';
 import { useSelectLocation } from './useSelectLocation';
 
 import { Button, Loader, Map } from '@src/components';
-import { CustomHeader } from '../../components/CustomHeader';
-import { CustomHeaderTitle } from '../../components/CustomHeader/CustomHeaderTitle';
+import { CustomHeader } from '@src/components/CustomHeader';
+import { CustomHeaderTitle } from '@src/components/CustomHeader/components/CustomHeaderTitle';
 
 import type { TSelectLocationProps } from './types';
 

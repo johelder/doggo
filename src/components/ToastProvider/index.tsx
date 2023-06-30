@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Toast } from './Toast';
+import { Toast } from './components/Toast';
 import { useToastProvider } from './useToastProvider';
 
 export function ToastProvider() {

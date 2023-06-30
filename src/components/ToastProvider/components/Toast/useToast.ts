@@ -17,7 +17,7 @@ import {
   UNMOUNT_ANIMATION_DURATION,
   VISIBLE_TOAST_VALUE,
 } from './constants';
-import type { TToastType } from '../types';
+import type { TToastType } from '../../types';
 import type { IToastProps } from './types';
 
 const toastIconMapper = {
