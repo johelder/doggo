@@ -3,6 +3,7 @@ import React from 'react';
 import type { IReadOnlyCardProps } from './types';
 
 import { Icon, Label, Root } from './components';
+import { useFeederCard } from './useFeederCard';
 
 import * as S from './styles';
 
@@ -90,7 +91,9 @@ import * as S from './styles';
 function ReadOnly({ feeder, sideButton }: IReadOnlyCardProps) {
   const {
     address: { street, houseNumber, neighborhood, city, complement, reference },
+    foods,
   } = feeder;
+  const { getFoodsLabel } = useFeederCard();
 
   return (
     <Root>
@@ -110,7 +113,7 @@ function ReadOnly({ feeder, sideButton }: IReadOnlyCardProps) {
 
       <S.Session>
         <Icon name="cookingPot" />
-        <Label label="Comida para gatos e cachorros" />
+        <Label label={getFoodsLabel(foods)} />
       </S.Session>
 
       {reference && (
