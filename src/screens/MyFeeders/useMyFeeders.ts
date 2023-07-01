@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
+import { Modalize } from 'react-native-modalize';
 
-import { errorHandler } from '@src/utils';
+import { errorHandler, showToast } from '@src/utils';
 import { FeedersRepository } from '@src/services/database/repositories/FeedersRepository';
 
 import type { IDomainFeeder } from '@src/types/domain';
@@ -11,6 +12,10 @@ import type { TNavigationProps } from '@src/routes/authenticated/types';
 export function useMyFeeders() {
   const [feeders, setFeeders] = useState<IDomainFeeder[]>([]);
   const [pageStatus, setPageStatus] = useState<TPageStatus>('idle');
+  const [isLoadingDelete, setIsLoadingDelete] = useState(false);
+  const [currentFeederToEdit, setCurrentFeederToEdit] =
+    useState<IDomainFeeder | null>(null);
+  const detailsModalRef = useRef<Modalize>(null);
 
   const isScreenFocused = useIsFocused();
 
@@ -22,6 +27,43 @@ export function useMyFeeders() {
 
   function handleTryAgain() {
     getFeeders();
+  }
+
+  function handleOpenDetailsModal(feeder: IDomainFeeder) {
+    setCurrentFeederToEdit(feeder);
+    detailsModalRef.current?.open();
+  }
+
+  function handleCloseDetailsModal() {
+    setCurrentFeederToEdit(null);
+    detailsModalRef.current?.close();
+  }
+
+  async function handleDeleteFeeder(feederId: string) {
+    try {
+      setIsLoadingDelete(true);
+
+      await FeedersRepository.delete(feederId);
+
+      showToast({
+        type: 'success',
+        message: 'Comedouro deletado com sucesso.',
+        duration: 3000,
+      });
+
+      handleCloseDetailsModal();
+      getFeeders();
+    } catch (error) {
+      errorHandler.reportError(error, 'handleDeleteFeeder');
+      showToast({
+        type: 'error',
+        message:
+          'Ocorreu um erro ao deletar, por favor, tente novamente mais tarde.',
+        duration: 3000,
+      });
+    } finally {
+      setIsLoadingDelete(false);
+    }
   }
 
   const getFeeders = useCallback(async () => {
@@ -49,5 +91,11 @@ export function useMyFeeders() {
     pageStatus,
     handleTryAgain,
     handleRedirectToSelectLocation,
+    detailsModalRef,
+    handleOpenDetailsModal,
+    handleCloseDetailsModal,
+    currentFeederToEdit,
+    handleDeleteFeeder,
+    isLoadingDelete,
   };
 }
