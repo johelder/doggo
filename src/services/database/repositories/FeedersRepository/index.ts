@@ -24,4 +24,8 @@ export const FeedersRepository = {
       } as IPersistanceFeeder),
     );
   },
+
+  async delete(feederId: string) {
+    firestore().collection(DATABASE_FEEDERS_COLLECTION).doc(feederId).delete();
+  },
 };
