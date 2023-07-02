@@ -10,6 +10,7 @@ import { FeederAddress } from './FeederAddress';
 import { Error } from './Error';
 import { FeederForm } from './FeederForm';
 import { Modal } from './Modal';
+import { CustomHeader } from './CustomHeader';
 
 export {
   Button,
@@ -24,4 +25,5 @@ export {
   Error,
   FeederForm,
   Modal,
+  CustomHeader,
 };
