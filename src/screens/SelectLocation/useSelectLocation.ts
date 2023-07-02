@@ -1,9 +1,5 @@
-import { useCallback, useRef, useState } from 'react';
-import type {
-  Address,
-  MapMarker,
-  MarkerDragStartEndEvent,
-} from 'react-native-maps';
+import { useCallback, useState } from 'react';
+import type { Address, Region } from 'react-native-maps';
 import { useNavigation } from '@react-navigation/native';
 
 import { useMap } from '@src/hooks';
@@ -16,7 +12,7 @@ export function useSelectLocation() {
   const [userAddress, setUserAddress] = useState<Address | undefined>(
     undefined,
   );
-  const markerRef = useRef<MapMarker>(null);
+  const [isShowingTooltip, setIsShowingTooltip] = useState(true);
   const { mapRef, currentUserLocation, setCurrentUserLocation } = useMap();
 
   const navigation = useNavigation<TNavigationProps<'SelectLocation'>>();
@@ -40,13 +36,13 @@ export function useSelectLocation() {
     });
   }
 
-  function onDragStart() {
+  function onTouchStart() {
     setIsLoadingUserAddress(true);
-    markerRef.current?.hideCallout();
+    setIsShowingTooltip(false);
   }
 
-  async function onDragEnd(event: MarkerDragStartEndEvent) {
-    const { latitude, longitude } = event.nativeEvent.coordinate;
+  async function onRegionChangeComplete(region: Region) {
+    const { latitude, longitude } = region;
 
     const fetchedUserAddress = await getAddressByCoordinate(
       latitude,
@@ -63,9 +59,8 @@ export function useSelectLocation() {
     setIsLoadingUserAddress(false);
   }
 
-  function onMapLoaded() {
+  function onMapReady() {
     fetchInitialUserAddress();
-    markerRef.current?.showCallout();
   }
 
   const getAddressByCoordinate = useCallback(
@@ -92,8 +87,8 @@ export function useSelectLocation() {
     }
 
     const fetchedUserAddress = await getAddressByCoordinate(
-      currentUserLocation?.coords.latitude,
-      currentUserLocation?.coords.longitude,
+      currentUserLocation.coords.latitude,
+      currentUserLocation.coords.longitude,
     );
 
     setUserAddress(fetchedUserAddress);
@@ -101,12 +96,12 @@ export function useSelectLocation() {
   }, [currentUserLocation, getAddressByCoordinate]);
 
   return {
-    onDragStart,
-    onDragEnd,
-    onMapLoaded,
-    markerRef,
+    onTouchStart,
+    onRegionChangeComplete,
+    onMapReady,
     isLoadingUserAddress,
     userAddress,
     handleNavigateToCreateFeeder,
+    isShowingTooltip,
   };
 }

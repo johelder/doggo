@@ -1,14 +1,13 @@
 import React, { useCallback, useLayoutEffect } from 'react';
 
-import { Callout, Marker } from 'react-native-maps';
 import { useTheme } from 'styled-components';
 
 import { useMap } from '@src/hooks';
 import { useSelectLocation } from './useSelectLocation';
 
-import { Button, Loader, Map } from '@src/components';
-import { CustomHeader } from '@src/components/CustomHeader';
+import { Button, Loader, Map, CustomHeader } from '@src/components';
 import { CustomHeaderTitle } from '@src/components/CustomHeader/components/CustomHeaderTitle';
+import { Marker } from './components/Marker';
 
 import type { TSelectLocationProps } from './types';
 
@@ -18,13 +17,13 @@ export function SelectLocation({
   navigation,
 }: TSelectLocationProps): JSX.Element {
   const {
-    onDragStart,
-    onDragEnd,
-    onMapLoaded,
-    markerRef,
+    onTouchStart,
+    onRegionChangeComplete,
+    onMapReady,
     isLoadingUserAddress,
     userAddress,
     handleNavigateToCreateFeeder,
+    isShowingTooltip,
   } = useSelectLocation();
   const { currentUserLocation } = useMap();
   const theme = useTheme();
@@ -57,31 +56,15 @@ export function SelectLocation({
       <CustomHeader />
 
       {currentUserLocation && (
-        <Map onMapLoaded={onMapLoaded} showsUserLocation>
-          <Marker
-            draggable
-            coordinate={{
-              latitude: currentUserLocation?.coords.latitude,
-              longitude: currentUserLocation?.coords.longitude,
-            }}
-            onDragStart={onDragStart}
-            onDragEnd={onDragEnd}
-            ref={markerRef}>
-            <Callout tooltip>
-              <S.CalloutContainer>
-                <S.CalloutContent>
-                  <S.CalloutTitle>Seu comedouro é aqui?</S.CalloutTitle>
-                  <S.CalloutDescription>
-                    Toque e segure para ajustar{'\n'} a localização
-                  </S.CalloutDescription>
-                </S.CalloutContent>
-
-                <S.ToolTipTriangle />
-              </S.CalloutContainer>
-            </Callout>
-          </Marker>
-        </Map>
+        <Map
+          onMapReady={onMapReady}
+          showsUserLocation
+          onRegionChangeComplete={onRegionChangeComplete}
+          onTouchStart={onTouchStart}
+        />
       )}
+
+      <Marker isTooltipVisible={isShowingTooltip} />
 
       <S.ButtonContainer>
         <Button.Root
@@ -89,7 +72,7 @@ export function SelectLocation({
           type="filled"
           color={theme.colors.primary[500]}
           onPress={handleNavigateToCreateFeeder}>
-          <Button.Text color={theme.colors.utils.white}>Confirmar</Button.Text>
+          <Button.Text color={theme.colors.utils.white}>Continuar</Button.Text>
         </Button.Root>
       </S.ButtonContainer>
     </S.Container>
