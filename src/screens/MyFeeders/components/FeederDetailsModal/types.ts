@@ -7,5 +7,6 @@ export interface IFeederDetailsModal {
   feeder: IDomainFeeder | null;
   onCancel: () => void;
   onDelete: (feederId: string) => Promise<void>;
+  onEdit: () => void;
   isLoadingDelete: boolean;
 }

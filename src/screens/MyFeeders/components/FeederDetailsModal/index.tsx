@@ -16,13 +16,10 @@ export function FeederDetailsModal({
   feeder,
   onCancel,
   onDelete,
+  onEdit,
   isLoadingDelete,
 }: IFeederDetailsModal) {
   const theme = useTheme();
-
-  if (!feeder) {
-    return null;
-  }
 
   return (
     <Modal
@@ -38,14 +35,16 @@ export function FeederDetailsModal({
       <S.Container>
         <S.Header>
           <S.Title>
-            {feeder.address.street}, {feeder.address.houseNumber},{' '}
-            {feeder.address.neighborhood} - {feeder.address.city}
+            {feeder?.address.street}, {feeder?.address.houseNumber},{' '}
+            {feeder?.address.neighborhood} - {feeder?.address.city}
           </S.Title>
 
-          {(feeder.address.complement || feeder.address.reference) && (
+          {(feeder?.address.complement || feeder?.address.reference) && (
             <S.Description>
-              {feeder.address.reference ? `${feeder.address.reference} - ` : ''}{' '}
-              {feeder.address.complement}
+              {feeder?.address.reference
+                ? `${feeder?.address.reference} - `
+                : ''}{' '}
+              {feeder?.address.complement}
             </S.Description>
           )}
         </S.Header>
@@ -54,7 +53,7 @@ export function FeederDetailsModal({
           <Button.Root
             type="outline"
             color={theme.colors.gray[200]}
-            onPress={() => onDelete(feeder.id)}
+            onPress={() => onDelete(feeder ? feeder.id : '')}
             isLoading={isLoadingDelete}>
             <Button.Icon>
               <Trash color={theme.colors.gray[700]} weight="light" />
@@ -67,10 +66,14 @@ export function FeederDetailsModal({
             </Button.Text>
           </Button.Root>
 
-          <Button.Root type="outline" color={theme.colors.gray[200]}>
+          <Button.Root
+            type="outline"
+            color={theme.colors.gray[200]}
+            onPress={onEdit}>
             <Button.Icon>
               <PencilSimpleLine color={theme.colors.gray[700]} weight="light" />
             </Button.Icon>
+
             <Button.Text
               color={theme.colors.gray[700]}
               style={{ fontFamily: theme.fonts.primary.medium }}>
