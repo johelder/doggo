@@ -18,7 +18,7 @@ export function FeederAddress({ feeder, onOpenDetails }: IFeederAddressProps) {
 
   return (
     <S.Container>
-      <MapPin color={theme.colors.gray[700]} />
+      <MapPin weight="fill" color={theme.colors.primary[500]} />
 
       <S.LabelsContainer>
         <S.Title>
@@ -28,7 +28,7 @@ export function FeederAddress({ feeder, onOpenDetails }: IFeederAddressProps) {
       </S.LabelsContainer>
 
       <TouchableOpacity onPress={onOpenDetails}>
-        <DotsThreeVertical color={theme.colors.secondary[600]} weight="bold" />
+        <DotsThreeVertical color={theme.colors.gray[700]} weight="bold" />
       </TouchableOpacity>
     </S.Container>
   );
