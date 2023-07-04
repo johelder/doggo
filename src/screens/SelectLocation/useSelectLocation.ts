@@ -1,48 +1,56 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import type { Address, Region } from 'react-native-maps';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 import { useMap } from '@src/hooks';
-import { errorHandler } from '@src/utils';
+import { errorHandler, showToast } from '@src/utils';
 
-import type { TNavigationProps } from '@src/routes/authenticated/types';
+import type {
+  TNavigationProps,
+  TRouteProps,
+} from '@src/routes/authenticated/types';
+import { FeedersRepository } from '@src/services/database/repositories/FeedersRepository';
+import { TCoordinates } from '@src/types/common';
 
 export function useSelectLocation() {
-  const [isLoadingUserAddress, setIsLoadingUserAddress] = useState(false);
-  const [userAddress, setUserAddress] = useState<Address | undefined>(
-    undefined,
-  );
+  const [isLoadingAddress, setIsLoadingAddress] = useState(false);
+  const [address, setAddress] = useState<Address | undefined>(undefined);
   const [isShowingTooltip, setIsShowingTooltip] = useState(true);
+  const [initialRegion, setInitialRegion] = useState<TCoordinates | null>(null);
   const { mapRef, currentUserLocation, setCurrentUserLocation } = useMap();
 
   const navigation = useNavigation<TNavigationProps<'SelectLocation'>>();
+  const route = useRoute<TRouteProps<'SelectLocation'>>();
+  const isEditingFeederAddress = route.params?.feederId;
+
+  const region = initialRegion ? initialRegion : currentUserLocation?.coords;
 
   function handleNavigateToCreateFeeder() {
-    if (!userAddress || !currentUserLocation) {
+    if (!address || !region) {
       return;
     }
 
     navigation.navigate('CreateFeeder', {
       address: {
-        street: userAddress?.thoroughfare,
-        houseNumber: userAddress?.name,
-        neighborhood: userAddress?.subLocality,
-        city: userAddress?.subAdministrativeArea,
+        street: address.thoroughfare,
+        houseNumber: address.name,
+        neighborhood: address.subLocality,
+        city: address.subAdministrativeArea,
       },
       coordinate: {
-        latitude: currentUserLocation?.coords.latitude,
-        longitude: currentUserLocation?.coords.longitude,
+        latitude: region.latitude,
+        longitude: region.longitude,
       },
     });
   }
 
   function onTouchStart() {
-    setIsLoadingUserAddress(true);
+    setIsLoadingAddress(true);
     setIsShowingTooltip(false);
   }
 
-  async function onRegionChangeComplete(region: Region) {
-    const { latitude, longitude } = region;
+  async function onRegionChangeComplete(currentRegion: Region) {
+    const { latitude, longitude } = currentRegion;
 
     const fetchedUserAddress = await getAddressByCoordinate(
       latitude,
@@ -55,32 +63,75 @@ export function useSelectLocation() {
         longitude,
       },
     });
-    setUserAddress(fetchedUserAddress);
-    setIsLoadingUserAddress(false);
+    setAddress(fetchedUserAddress);
+    setIsLoadingAddress(false);
   }
 
   function onMapReady() {
+    if (isEditingFeederAddress) {
+      return;
+    }
+
     fetchInitialUserAddress();
   }
 
   const getAddressByCoordinate = useCallback(
     async (latitude: number, longitude: number) => {
       try {
-        const address = await mapRef.current?.addressForCoordinate({
+        const currentAddress = await mapRef.current?.addressForCoordinate({
           latitude,
           longitude,
         });
 
-        return address;
+        return currentAddress;
       } catch (error) {
-        errorHandler.reportError(error, 'getAddressByCoordinate');
+        errorHandler.reportError(error, getAddressByCoordinate.name);
       }
     },
     [mapRef],
   );
 
+  const fetchFeederAddressToEdit = useCallback(
+    async (id: string) => {
+      try {
+        setIsLoadingAddress(true);
+
+        const response = await FeedersRepository.findById(id);
+
+        if (!response) {
+          showToast({
+            type: 'warning',
+            message: 'Endereço não encontrado, tente novamente mais tarde.',
+            duration: 4000,
+          });
+
+          return;
+        }
+
+        const fetchedAddress = await getAddressByCoordinate(
+          response.coordinates.latitude,
+          response.coordinates.longitude,
+        );
+
+        setAddress(fetchedAddress);
+        setInitialRegion(response.coordinates);
+        setIsLoadingAddress(false);
+      } catch (error) {
+        errorHandler.reportError(error, fetchFeederAddressToEdit.name);
+
+        showToast({
+          type: 'error',
+          message:
+            'Ocorreu um erro no servidor, por favor, tente novamente mais tarde.',
+          duration: 4000,
+        });
+      }
+    },
+    [getAddressByCoordinate],
+  );
+
   const fetchInitialUserAddress = useCallback(async () => {
-    setIsLoadingUserAddress(true);
+    setIsLoadingAddress(true);
 
     if (!currentUserLocation) {
       return;
@@ -91,17 +142,29 @@ export function useSelectLocation() {
       currentUserLocation.coords.longitude,
     );
 
-    setUserAddress(fetchedUserAddress);
-    setIsLoadingUserAddress(false);
+    setAddress(fetchedUserAddress);
+    setIsLoadingAddress(false);
   }, [currentUserLocation, getAddressByCoordinate]);
+
+  useEffect(() => {
+    if (isEditingFeederAddress) {
+      fetchFeederAddressToEdit(route.params.feederId);
+    }
+  }, [
+    fetchFeederAddressToEdit,
+    isEditingFeederAddress,
+    route.params?.feederId,
+  ]);
 
   return {
     onTouchStart,
     onRegionChangeComplete,
     onMapReady,
-    isLoadingUserAddress,
-    userAddress,
+    isLoadingAddress,
+    address,
     handleNavigateToCreateFeeder,
     isShowingTooltip,
+    initialRegion,
+    region,
   };
 }

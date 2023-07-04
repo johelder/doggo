@@ -12,7 +12,14 @@ export const Container = styled.View`
   justify-content: center;
 `;
 
+export const Content = styled.View`
+  align-items: center;
+  justify-content: center;
+`;
+
 export const TooltipContainer = styled.View`
+  position: absolute;
+  bottom: 100%;
   margin-bottom: 10px;
 `;
 
@@ -58,4 +65,6 @@ export const Marker = styled(MapPin).attrs(({ theme }) => ({
   weight: 'fill',
   size: 42,
   color: theme.colors.primary[500],
-}))``;
+}))`
+  margin-bottom: 21px;
+`;

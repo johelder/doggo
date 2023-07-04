@@ -2,12 +2,12 @@ import React, { useCallback, useLayoutEffect } from 'react';
 
 import { useTheme } from 'styled-components';
 
-import { useMap } from '@src/hooks';
 import { useSelectLocation } from './useSelectLocation';
 
 import { Button, Loader, Map, CustomHeader } from '@src/components';
 import { CustomHeaderTitle } from '@src/components/CustomHeader/components/CustomHeaderTitle';
 import { Marker } from './components/Marker';
+import { LATITUDE_DELTA, LONGITUDE_DELTA } from '@src/components/Map/constants';
 
 import type { TSelectLocationProps } from './types';
 
@@ -20,30 +20,30 @@ export function SelectLocation({
     onTouchStart,
     onRegionChangeComplete,
     onMapReady,
-    isLoadingUserAddress,
-    userAddress,
+    isLoadingAddress,
+    address,
     handleNavigateToCreateFeeder,
     isShowingTooltip,
+    region,
   } = useSelectLocation();
-  const { currentUserLocation } = useMap();
   const theme = useTheme();
 
   const renderCustomHeaderTitle = useCallback(() => {
-    if (!userAddress) {
+    if (!address) {
       return '';
     }
 
-    if (isLoadingUserAddress) {
+    if (isLoadingAddress) {
       return <Loader.Component />;
     }
 
     return (
       <CustomHeaderTitle
-        title={`${userAddress?.thoroughfare}, ${userAddress?.name}`}
-        subTitle={`${userAddress?.subLocality} - ${userAddress?.subAdministrativeArea}`}
+        title={`${address?.thoroughfare}, ${address?.name}`}
+        subTitle={`${address?.subLocality} - ${address?.subAdministrativeArea}`}
       />
     );
-  }, [isLoadingUserAddress, userAddress]);
+  }, [isLoadingAddress, address]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -55,12 +55,18 @@ export function SelectLocation({
     <S.Container>
       <CustomHeader />
 
-      {currentUserLocation && (
+      {region && (
         <Map
           onMapReady={onMapReady}
           showsUserLocation
           onRegionChangeComplete={onRegionChangeComplete}
           onTouchStart={onTouchStart}
+          region={{
+            latitude: region.latitude,
+            longitude: region.longitude,
+            latitudeDelta: LATITUDE_DELTA,
+            longitudeDelta: LONGITUDE_DELTA,
+          }}
         />
       )}
 
@@ -68,7 +74,7 @@ export function SelectLocation({
 
       <S.ButtonContainer>
         <Button.Root
-          disabled={isLoadingUserAddress}
+          disabled={isLoadingAddress}
           type="filled"
           color={theme.colors.primary[500]}
           onPress={handleNavigateToCreateFeeder}>
