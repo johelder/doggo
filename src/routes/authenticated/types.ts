@@ -13,7 +13,7 @@ type TAppScreens = TRootTabParamList & TRootStackParamList;
 
 export type TRootStackParamList = {
   HomeTabs: NavigatorScreenParams<TRootTabParamList>;
-  SelectLocation: undefined;
+  SelectLocation: { feederId?: string } | undefined;
   CreateFeeder: {
     address: TDomainAddress;
     coordinate: TCoordinates;
