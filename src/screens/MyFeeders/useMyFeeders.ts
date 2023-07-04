@@ -55,6 +55,7 @@ export function useMyFeeders() {
       getFeeders();
     } catch (error) {
       errorHandler.reportError(error, 'handleDeleteFeeder');
+
       showToast({
         type: 'error',
         message:
@@ -64,6 +65,12 @@ export function useMyFeeders() {
     } finally {
       setIsLoadingDelete(false);
     }
+  }
+
+  function handleNavigateToSelectLocation() {
+    navigation.navigate('SelectLocation', {
+      feederId: currentFeederToEdit?.id,
+    });
   }
 
   const getFeeders = useCallback(async () => {
@@ -97,5 +104,6 @@ export function useMyFeeders() {
     currentFeederToEdit,
     handleDeleteFeeder,
     isLoadingDelete,
+    handleNavigateToSelectLocation,
   };
 }

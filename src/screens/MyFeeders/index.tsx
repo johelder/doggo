@@ -26,6 +26,7 @@ export function MyFeeders(): JSX.Element {
     currentFeederToEdit,
     isLoadingDelete,
     handleDeleteFeeder,
+    handleNavigateToSelectLocation,
   } = useMyFeeders();
   const theme = useTheme();
 
@@ -107,6 +108,7 @@ export function MyFeeders(): JSX.Element {
         feeder={currentFeederToEdit}
         onCancel={handleCloseDetailsModal}
         onDelete={handleDeleteFeeder}
+        onEdit={handleNavigateToSelectLocation}
         isLoadingDelete={isLoadingDelete}
       />
     </S.Container>
