@@ -12,20 +12,35 @@ export const FeedersRepository = {
       .add(FeederMapper.toPersistance(feeder));
   },
 
+  async findById(id: string) {
+    const feeder = await firestore()
+      .collection<IPersistanceFeeder>(DATABASE_FEEDERS_COLLECTION)
+      .doc(id)
+      .get();
+
+    const data = feeder.data();
+
+    if (!data) {
+      return null;
+    }
+
+    return FeederMapper.toDomain({ ...data, id: feeder.id });
+  },
+
   async findAll() {
     const snapshot = await firestore()
-      .collection(DATABASE_FEEDERS_COLLECTION)
+      .collection<IPersistanceFeeder>(DATABASE_FEEDERS_COLLECTION)
       .get();
 
     return snapshot.docs.map(documentSnapshot =>
       FeederMapper.toDomain({
-        id: documentSnapshot.id,
         ...documentSnapshot.data(),
-      } as IPersistanceFeeder),
+        id: documentSnapshot.id,
+      }),
     );
   },
 
-  async delete(feederId: string) {
-    firestore().collection(DATABASE_FEEDERS_COLLECTION).doc(feederId).delete();
+  async delete(id: string) {
+    firestore().collection(DATABASE_FEEDERS_COLLECTION).doc(id).delete();
   },
 };
