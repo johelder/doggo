@@ -14,10 +14,16 @@ type TAppScreens = TRootTabParamList & TRootStackParamList;
 export type TRootStackParamList = {
   HomeTabs: NavigatorScreenParams<TRootTabParamList>;
   SelectLocation: { feederId?: string } | undefined;
+  EditFeeder: {
+    feederId: string;
+    address: TDomainAddress;
+    coordinate: TCoordinates;
+  };
   CreateFeeder: {
     address: TDomainAddress;
     coordinate: TCoordinates;
   };
+
   MyFeeders: undefined;
 };
 
