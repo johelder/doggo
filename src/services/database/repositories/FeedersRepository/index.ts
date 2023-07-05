@@ -40,6 +40,13 @@ export const FeedersRepository = {
     );
   },
 
+  async update(feeder: IDomainFeeder) {
+    firestore()
+      .collection(DATABASE_FEEDERS_COLLECTION)
+      .doc(feeder.id)
+      .set(FeederMapper.toPersistance(feeder));
+  },
+
   async delete(id: string) {
     firestore().collection(DATABASE_FEEDERS_COLLECTION).doc(id).delete();
   },
