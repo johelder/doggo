@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { TFood } from '@src/types/common';
-import { IUseFeederFormProps } from './types';
+import type { TFood } from '@src/types/common';
+import type { IUseFeederFormProps } from './types';
+import type { IDomainFeeder } from '@src/types/domain';
 
 export function useFeederForm({ onSubmit }: IUseFeederFormProps) {
   const [addressNumber, setAddressNumber] = useState('');
@@ -18,6 +19,13 @@ export function useFeederForm({ onSubmit }: IUseFeederFormProps) {
       ...prevFoods,
       [food]: !prevFoods[food],
     }));
+  }
+
+  function populateFields(feeder: IDomainFeeder) {
+    setAddressNumber(feeder.address.houseNumber);
+    setAddressComplement(feeder.address.complement ?? '');
+    setAddressReference(feeder.address.reference ?? '');
+    setFeederFoods(feeder.foods);
   }
 
   function clearFields() {
@@ -57,5 +65,6 @@ export function useFeederForm({ onSubmit }: IUseFeederFormProps) {
     setIsLoading,
     handleSubmit,
     clearFields,
+    populateFields,
   };
 }

@@ -28,12 +28,14 @@ export const FeederForm = forwardRef<IFeederFormRef, IFeederFormProps>(
       isLoading,
       handleSubmit,
       clearFields,
+      populateFields,
     } = useFeederForm({ onSubmit });
 
     useImperativeHandle(ref, () => ({
       feederFoods,
       addressNumber,
       clearFields,
+      populateFields,
     }));
 
     return (
