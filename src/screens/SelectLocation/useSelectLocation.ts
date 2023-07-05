@@ -30,7 +30,7 @@ export function useSelectLocation() {
       return;
     }
 
-    navigation.navigate('CreateFeeder', {
+    const params = {
       address: {
         street: address.thoroughfare,
         houseNumber: address.name,
@@ -41,7 +41,18 @@ export function useSelectLocation() {
         latitude: region.latitude,
         longitude: region.longitude,
       },
-    });
+    };
+
+    if (isEditingFeederAddress) {
+      navigation.navigate('EditFeeder', {
+        ...params,
+        feederId: route.params?.feederId,
+      });
+
+      return;
+    }
+
+    navigation.navigate('CreateFeeder', params);
   }
 
   function onTouchStart() {
