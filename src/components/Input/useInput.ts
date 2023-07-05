@@ -1,8 +1,8 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { LayoutChangeEvent } from 'react-native';
 import { useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
 
-export function useInput() {
+export function useInput(value?: string) {
   const [isInputFocused, setIsInputFocused] = useState(false);
   const isInputFilled = useRef(false);
 
@@ -34,6 +34,13 @@ export function useInput() {
       transform: [{ translateY: placeholderPosition.value }],
     };
   });
+
+  useEffect(() => {
+    if (value) {
+      isInputFilled.current = true;
+      placeholderPosition.value = -placeholderContainerHeight.current;
+    }
+  }, [placeholderPosition, value]);
 
   return {
     onLayout,
