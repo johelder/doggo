@@ -1,5 +1,4 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
 
 import { useTheme } from 'styled-components';
 
@@ -17,7 +16,7 @@ export function FeederAddress({ feeder, onOpenDetails }: IFeederAddressProps) {
   const theme = useTheme();
 
   return (
-    <S.Container>
+    <S.Container onPress={onOpenDetails}>
       <MapPin weight="fill" color={theme.colors.primary[500]} />
 
       <S.LabelsContainer>
@@ -27,9 +26,7 @@ export function FeederAddress({ feeder, onOpenDetails }: IFeederAddressProps) {
         <S.Description>{getFoodsLabel(feeder.foods)}</S.Description>
       </S.LabelsContainer>
 
-      <TouchableOpacity onPress={onOpenDetails}>
-        <DotsThreeVertical color={theme.colors.gray[700]} weight="bold" />
-      </TouchableOpacity>
+      <DotsThreeVertical color={theme.colors.gray[700]} weight="bold" />
     </S.Container>
   );
 }

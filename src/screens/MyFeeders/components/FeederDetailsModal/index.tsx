@@ -53,7 +53,7 @@ export function FeederDetailsModal({
           <Button.Root
             type="outline"
             color={theme.colors.gray[200]}
-            onPress={() => onDelete(feeder ? feeder.id : '')}
+            onPress={() => onDelete(feeder?.id ?? '')}
             isLoading={isLoadingDelete}>
             <Button.Icon>
               <Trash color={theme.colors.gray[700]} weight="light" />
