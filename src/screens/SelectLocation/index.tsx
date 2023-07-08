@@ -1,14 +1,13 @@
 import React, { useCallback, useLayoutEffect } from 'react';
 
-import { Callout, Marker } from 'react-native-maps';
 import { useTheme } from 'styled-components';
 
-import { useMap } from '@src/hooks';
 import { useSelectLocation } from './useSelectLocation';
 
-import { Button, Loader, Map } from '@src/components';
-import { CustomHeader } from '../../components/CustomHeader';
-import { CustomHeaderTitle } from '../../components/CustomHeader/CustomHeaderTitle';
+import { Button, Loader, Map, CustomHeader } from '@src/components';
+import { CustomHeaderTitle } from '@src/components/CustomHeader/components/CustomHeaderTitle';
+import { Marker } from './components/Marker';
+import { LATITUDE_DELTA, LONGITUDE_DELTA } from '@src/components/Map/constants';
 
 import type { TSelectLocationProps } from './types';
 
@@ -18,33 +17,33 @@ export function SelectLocation({
   navigation,
 }: TSelectLocationProps): JSX.Element {
   const {
-    onDragStart,
-    onDragEnd,
-    onMapLoaded,
-    markerRef,
-    isLoadingUserAddress,
-    userAddress,
+    onTouchStart,
+    onRegionChangeComplete,
+    onMapReady,
+    isLoadingAddress,
+    address,
     handleNavigateToCreateFeeder,
+    isShowingTooltip,
+    initialRegion,
   } = useSelectLocation();
-  const { currentUserLocation } = useMap();
   const theme = useTheme();
 
   const renderCustomHeaderTitle = useCallback(() => {
-    if (!userAddress) {
+    if (!address) {
       return '';
     }
 
-    if (isLoadingUserAddress) {
+    if (isLoadingAddress) {
       return <Loader.Component />;
     }
 
     return (
       <CustomHeaderTitle
-        title={`${userAddress?.thoroughfare}, ${userAddress?.name}`}
-        subTitle={`${userAddress?.subLocality} - ${userAddress?.subAdministrativeArea}`}
+        title={`${address?.thoroughfare}, ${address?.name}`}
+        subTitle={`${address?.subLocality} - ${address?.subAdministrativeArea}`}
       />
     );
-  }, [isLoadingUserAddress, userAddress]);
+  }, [isLoadingAddress, address]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -56,40 +55,30 @@ export function SelectLocation({
     <S.Container>
       <CustomHeader />
 
-      {currentUserLocation && (
-        <Map onMapLoaded={onMapLoaded} showsUserLocation>
-          <Marker
-            draggable
-            coordinate={{
-              latitude: currentUserLocation?.coords.latitude,
-              longitude: currentUserLocation?.coords.longitude,
-            }}
-            onDragStart={onDragStart}
-            onDragEnd={onDragEnd}
-            ref={markerRef}>
-            <Callout tooltip>
-              <S.CalloutContainer>
-                <S.CalloutContent>
-                  <S.CalloutTitle>Seu comedouro é aqui?</S.CalloutTitle>
-                  <S.CalloutDescription>
-                    Toque e segure para ajustar{'\n'} a localização
-                  </S.CalloutDescription>
-                </S.CalloutContent>
-
-                <S.ToolTipTriangle />
-              </S.CalloutContainer>
-            </Callout>
-          </Marker>
-        </Map>
+      {initialRegion && (
+        <Map
+          onMapReady={onMapReady}
+          showsUserLocation
+          onRegionChangeComplete={onRegionChangeComplete}
+          onTouchStart={onTouchStart}
+          region={{
+            latitude: initialRegion.latitude,
+            longitude: initialRegion.longitude,
+            latitudeDelta: LATITUDE_DELTA,
+            longitudeDelta: LONGITUDE_DELTA,
+          }}
+        />
       )}
+
+      <Marker isTooltipVisible={isShowingTooltip} />
 
       <S.ButtonContainer>
         <Button.Root
-          disabled={isLoadingUserAddress}
+          disabled={isLoadingAddress}
           type="filled"
           color={theme.colors.primary[500]}
           onPress={handleNavigateToCreateFeeder}>
-          <Button.Text color={theme.colors.utils.white}>Confirmar</Button.Text>
+          <Button.Text color={theme.colors.utils.white}>Continuar</Button.Text>
         </Button.Root>
       </S.ButtonContainer>
     </S.Container>

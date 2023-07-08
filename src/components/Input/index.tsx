@@ -17,7 +17,7 @@ export function Input({
     onFocus,
     onBlur,
     isInputFocused,
-  } = useInput();
+  } = useInput(value);
 
   return (
     <S.Container isInputFocused={isInputFocused}>

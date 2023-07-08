@@ -8,12 +8,14 @@ export const ButtonRootContainer = styled.TouchableOpacity<IButtonRootProps>`
   border-radius: 4px;
   border-width: 1px;
 
+  flex-shrink: 1;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 5px;
 
   background-color: transparent;
+  border-color: transparent;
 
   ${({ type, color }) =>
     type === 'filled' &&

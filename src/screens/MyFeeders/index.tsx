@@ -3,11 +3,11 @@ import { ListRenderItemInfo, View } from 'react-native';
 
 import { useTheme } from 'styled-components';
 
-import DotsThreeVertical from 'phosphor-react-native/src/icons/DotsThreeVertical';
 import CirclesThreePlus from 'phosphor-react-native/src/icons/CirclesThreePlus';
 import FolderOpen from 'phosphor-react-native/src/icons/FolderOpen';
 
-import { Button, Error, FeederCard, Loader } from '@src/components';
+import { Button, Error, FeederAddress, Loader } from '@src/components';
+import { FeederDetailsModal } from './components/FeederDetailsModal';
 import { useMyFeeders } from './useMyFeeders';
 
 import type { IDomainFeeder } from '@src/types/domain';
@@ -19,24 +19,27 @@ export function MyFeeders(): JSX.Element {
     feeders,
     pageStatus,
     handleTryAgain,
+    detailsModalRef,
     handleRedirectToSelectLocation,
+    handleOpenDetailsModal,
+    handleCloseDetailsModal,
+    currentFeederToEdit,
+    isLoadingDelete,
+    handleDeleteFeeder,
+    handleNavigateToSelectLocation,
   } = useMyFeeders();
   const theme = useTheme();
 
   const renderFeeder = useCallback(
     ({ item: feeder }: ListRenderItemInfo<IDomainFeeder>) => {
       return (
-        <FeederCard.ReadOnly
+        <FeederAddress
           feeder={feeder}
-          sideButton={
-            <S.DetailsButton>
-              <DotsThreeVertical color={theme.colors.gray[700]} weight="bold" />
-            </S.DetailsButton>
-          }
+          onOpenDetails={() => handleOpenDetailsModal(feeder)}
         />
       );
     },
-    [theme.colors.gray],
+    [handleOpenDetailsModal],
   );
 
   const renderListEmptyComponent = useCallback(() => {
@@ -99,6 +102,15 @@ export function MyFeeders(): JSX.Element {
           ListEmptyComponent={renderListEmptyComponent}
         />
       </S.Content>
+
+      <FeederDetailsModal
+        detailsModalRef={detailsModalRef}
+        feeder={currentFeederToEdit}
+        onCancel={handleCloseDetailsModal}
+        onDelete={handleDeleteFeeder}
+        onEdit={handleNavigateToSelectLocation}
+        isLoadingDelete={isLoadingDelete}
+      />
     </S.Container>
   );
 }

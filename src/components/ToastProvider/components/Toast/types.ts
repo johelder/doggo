@@ -1,4 +1,4 @@
-import type { IToast } from '../types';
+import type { IToast } from '../../types';
 
 export interface IToastProps {
   isVisible: boolean;

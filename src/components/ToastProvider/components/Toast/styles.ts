@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components/native';
 import X from 'phosphor-react-native/src/icons/X';
-import { TToastType } from '../types';
+import { TToastType } from '../../types';
 
 import Animated from 'react-native-reanimated';
 

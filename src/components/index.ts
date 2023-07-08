@@ -6,9 +6,11 @@ import { Loader } from './Loader';
 import { Input } from './Input';
 import { ChipButton } from './ChipButton';
 import { ToastProvider } from './ToastProvider';
-import { FeederCard } from './FeederCard';
+import { FeederAddress } from './FeederAddress';
 import { Error } from './Error';
 import { FeederForm } from './FeederForm';
+import { Modal } from './Modal';
+import { CustomHeader } from './CustomHeader';
 
 export {
   Button,
@@ -19,7 +21,9 @@ export {
   Input,
   ChipButton,
   ToastProvider,
-  FeederCard,
+  FeederAddress,
   Error,
   FeederForm,
+  Modal,
+  CustomHeader,
 };

@@ -9,15 +9,15 @@ import { useHeaderHeight } from '@react-navigation/elements';
 import { FeederForm } from '@src/components';
 import { CustomHeader } from '@src/components/CustomHeader';
 import { MiniMap } from '@src/components/Map/components/MiniMap';
-import { useCreateFeeder } from './useCreateFeeder';
+import { useEditFeeder } from './useEditFeeder';
 
-import type { TCreateFeederProps } from './types';
+import type { TEditFeederProps } from './types';
 
 import * as S from './styles';
 
-export function CreateFeeder({ route }: TCreateFeederProps): JSX.Element {
+export function EditFeeder({ route }: TEditFeederProps): JSX.Element {
   const headerHeight = useHeaderHeight();
-  const { feederFormRef, handleCreateFeeder } = useCreateFeeder();
+  const { feederFormRef, handleUpdateFeeder } = useEditFeeder();
 
   const { latitude, longitude } = route.params.coordinate;
   const { street, neighborhood, city } = route.params.address;
@@ -38,7 +38,7 @@ export function CreateFeeder({ route }: TCreateFeederProps): JSX.Element {
               </S.Subtitle>
             </>
 
-            <FeederForm ref={feederFormRef} onSubmit={handleCreateFeeder} />
+            <FeederForm ref={feederFormRef} onSubmit={handleUpdateFeeder} />
           </S.FormContainer>
         </KeyboardAvoidingView>
       </TouchableWithoutFeedback>

@@ -31,9 +31,12 @@ function ButtonIcon({ children }: IButtonIconProps) {
 function ButtonText({
   color = theme.colors.utils.white,
   children,
+  ...rest
 }: IButtonTextProps) {
   return (
-    <S.ButtonTextContainer color={color}>{children}</S.ButtonTextContainer>
+    <S.ButtonTextContainer color={color} {...rest}>
+      {children}
+    </S.ButtonTextContainer>
   );
 }
 
