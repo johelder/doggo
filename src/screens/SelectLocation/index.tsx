@@ -24,7 +24,7 @@ export function SelectLocation({
     address,
     handleNavigateToCreateFeeder,
     isShowingTooltip,
-    region,
+    initialRegion,
   } = useSelectLocation();
   const theme = useTheme();
 
@@ -55,15 +55,15 @@ export function SelectLocation({
     <S.Container>
       <CustomHeader />
 
-      {region && (
+      {initialRegion && (
         <Map
           onMapReady={onMapReady}
           showsUserLocation
           onRegionChangeComplete={onRegionChangeComplete}
           onTouchStart={onTouchStart}
           region={{
-            latitude: region.latitude,
-            longitude: region.longitude,
+            latitude: initialRegion.latitude,
+            longitude: initialRegion.longitude,
             latitudeDelta: LATITUDE_DELTA,
             longitudeDelta: LONGITUDE_DELTA,
           }}

@@ -17,18 +17,25 @@ export function useSelectLocation() {
   const [address, setAddress] = useState<Address | undefined>(undefined);
   const [isShowingTooltip, setIsShowingTooltip] = useState(true);
   const [initialRegion, setInitialRegion] = useState<TCoordinates | null>(null);
+  const [temporaryUserLocation, setTemporaryUserLocation] =
+    useState<TCoordinates | null>(null);
   const { mapRef, currentUserLocation, setCurrentUserLocation } = useMap();
 
   const navigation = useNavigation<TNavigationProps<'SelectLocation'>>();
   const route = useRoute<TRouteProps<'SelectLocation'>>();
   const isEditingFeederAddress = route.params?.feederId;
 
-  const region = initialRegion ? initialRegion : currentUserLocation?.coords;
-
   function handleNavigateToCreateFeeder() {
-    if (!address || !region) {
+    if (!address || !temporaryUserLocation) {
       return;
     }
+
+    setCurrentUserLocation({
+      coords: {
+        latitude: temporaryUserLocation?.latitude,
+        longitude: temporaryUserLocation.longitude,
+      },
+    });
 
     const params = {
       address: {
@@ -38,8 +45,8 @@ export function useSelectLocation() {
         city: address.subAdministrativeArea,
       },
       coordinate: {
-        latitude: region.latitude,
-        longitude: region.longitude,
+        latitude: temporaryUserLocation.latitude,
+        longitude: temporaryUserLocation.longitude,
       },
     };
 
@@ -68,12 +75,7 @@ export function useSelectLocation() {
       longitude,
     );
 
-    setCurrentUserLocation({
-      coords: {
-        latitude,
-        longitude,
-      },
-    });
+    setTemporaryUserLocation({ latitude, longitude });
     setAddress(fetchedUserAddress);
     setIsLoadingAddress(false);
   }
@@ -175,7 +177,6 @@ export function useSelectLocation() {
     address,
     handleNavigateToCreateFeeder,
     isShowingTooltip,
-    initialRegion,
-    region,
+    initialRegion: initialRegion ?? currentUserLocation?.coords,
   };
 }
