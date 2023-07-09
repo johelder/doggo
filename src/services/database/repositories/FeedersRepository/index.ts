@@ -66,4 +66,19 @@ export const FeedersRepository = {
   async delete(id: string) {
     firestore().collection(DATABASE_FEEDERS_COLLECTION).doc(id).delete();
   },
+
+  watchFeeders(onChange: (feeders: IDomainFeeder[]) => void) {
+    return firestore()
+      .collection<IPersistanceFeeder>(DATABASE_FEEDERS_COLLECTION)
+      .onSnapshot(collectionSnapshot =>
+        onChange(
+          collectionSnapshot.docs.map(document =>
+            FeederMapper.toDomain({
+              ...document.data(),
+              id: document.id,
+            }),
+          ),
+        ),
+      );
+  },
 };

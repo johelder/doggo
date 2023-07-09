@@ -1,3 +1,5 @@
+import { IDomainFeeder } from '@src/types/domain';
+import { FlatList, FlatListProps } from 'react-native';
 import styled from 'styled-components/native';
 
 export const Container = styled.SafeAreaView`
@@ -14,3 +16,16 @@ export const LoaderContainer = styled.View`
   align-items: center;
   justify-content: center;
 `;
+
+export const Feeders = styled(
+  FlatList as new (
+    props: FlatListProps<IDomainFeeder>,
+  ) => FlatList<IDomainFeeder>,
+).attrs({
+  showsVerticalScrollIndicator: false,
+  contentContainerStyle: {
+    flex: 1,
+    padding: 16,
+    gap: 16,
+  },
+})``;
