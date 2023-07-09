@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { Modalize } from 'react-native-modalize';
 
+import { useAuth } from '@src/hooks';
 import { errorHandler, showToast } from '@src/utils';
 import { FeedersRepository } from '@src/services/database/repositories/FeedersRepository';
 
@@ -16,6 +17,7 @@ export function useMyFeeders() {
   const [currentFeederToEdit, setCurrentFeederToEdit] =
     useState<IDomainFeeder | null>(null);
   const detailsModalRef = useRef<Modalize>(null);
+  const { user } = useAuth();
 
   const isScreenFocused = useIsFocused();
 
@@ -75,9 +77,13 @@ export function useMyFeeders() {
 
   const getFeeders = useCallback(async () => {
     try {
+      if (!user?.uid) {
+        return;
+      }
+
       setPageStatus('loading');
 
-      const response = await FeedersRepository.findAll();
+      const response = await FeedersRepository.findAllById(user.uid);
 
       setFeeders(response);
       setPageStatus('success');
@@ -85,7 +91,7 @@ export function useMyFeeders() {
       setPageStatus('error');
       errorHandler.reportError(error, 'getFeeders');
     }
-  }, []);
+  }, [user?.uid]);
 
   useEffect(() => {
     if (isScreenFocused) {

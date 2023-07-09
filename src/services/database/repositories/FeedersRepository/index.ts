@@ -40,6 +40,22 @@ export const FeedersRepository = {
     );
   },
 
+  async findAllById(id: string) {
+    const userId = new firestore.FieldPath('user', 'id');
+
+    const snapshot = await firestore()
+      .collection<IPersistanceFeeder>(DATABASE_FEEDERS_COLLECTION)
+      .where(userId, '==', id)
+      .get();
+
+    return snapshot.docs.map(documentSnapshot =>
+      FeederMapper.toDomain({
+        ...documentSnapshot.data(),
+        id: documentSnapshot.id,
+      }),
+    );
+  },
+
   async update(feeder: IDomainFeeder) {
     firestore()
       .collection(DATABASE_FEEDERS_COLLECTION)
