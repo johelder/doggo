@@ -1,9 +1,11 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
-import { Marker } from 'react-native-maps';
+import { Callout, Marker } from 'react-native-maps';
 
 import { useHome } from './useHome';
 import { Loader, Map } from '@src/components';
+import { CustomMarker } from './components/CustomMarker';
+import { CustomCallout } from './components/CustomCallout';
 
 import * as S from './styles';
 
@@ -24,8 +26,13 @@ export function Home(): JSX.Element {
               coordinate={{
                 latitude: feeder.coordinates.latitude,
                 longitude: feeder.coordinates.longitude,
-              }}
-            />
+              }}>
+              <CustomMarker />
+
+              <Callout tooltip>
+                <CustomCallout feeder={feeder} />
+              </Callout>
+            </Marker>
           ))}
         </Map>
       </S.Container>

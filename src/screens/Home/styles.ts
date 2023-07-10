@@ -1,6 +1,6 @@
-import { IDomainFeeder } from '@src/types/domain';
-import { FlatList, FlatListProps } from 'react-native';
 import styled from 'styled-components/native';
+import { FlatList, FlatListProps } from 'react-native';
+import type { IDomainFeeder } from '@src/types/domain';
 
 export const Container = styled.SafeAreaView`
   flex: 1;
