@@ -58,7 +58,6 @@ export const Feeders = styled(
 ).attrs({
   showsVerticalScrollIndicator: false,
   contentContainerStyle: {
-    flex: 1,
     padding: 16,
     gap: 16,
   },
