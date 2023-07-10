@@ -20,13 +20,15 @@ export function Home(): JSX.Element {
         {isLoadingMap && <Loader.Page />}
 
         <Map isClustering showsUserLocation onMapLoaded={onMapLoaded}>
-          {feeders.map(feeder => (
+          {feeders.map((feeder, index) => (
             <Marker
               key={feeder.id}
+              zIndex={index}
               coordinate={{
                 latitude: feeder.coordinates.latitude,
                 longitude: feeder.coordinates.longitude,
-              }}>
+              }}
+              tracksViewChanges={false}>
               <CustomMarker />
 
               <Callout tooltip>
