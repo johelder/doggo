@@ -1,6 +1,10 @@
 import { TFood, TFoods } from '@src/types/common';
 
-export function getFoodsLabel(foods: TFoods): string {
+export function getFoodsLabel(foods?: TFoods): string {
+  if (!foods) {
+    return '';
+  }
+
   const selectedFoods = Object.entries(foods)
     .filter(([_, isSelected]) => isSelected)
     .map(([food]) => translateFoodName(food as TFood));
