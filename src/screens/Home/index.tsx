@@ -1,6 +1,6 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
-import { Callout, Marker } from 'react-native-maps';
+import { Marker } from 'react-native-maps';
 
 import { useHome } from './useHome';
 import { Loader, Map } from '@src/components';
@@ -10,7 +10,15 @@ import { CustomCallout } from './components/CustomCallout';
 import * as S from './styles';
 
 export function Home(): JSX.Element {
-  const { isLoadingMap, onMapLoaded, feeders } = useHome();
+  const {
+    isLoadingMap,
+    onMapLoaded,
+    feeders,
+    isTooltipVisible,
+    setIsTooltipVisible,
+    currentFeederOpened,
+    handleOpenTooltip,
+  } = useHome();
 
   return (
     <>
@@ -19,7 +27,11 @@ export function Home(): JSX.Element {
       <S.Container>
         {isLoadingMap && <Loader.Page />}
 
-        <Map isClustering showsUserLocation onMapLoaded={onMapLoaded}>
+        <Map
+          isClustering
+          showsUserLocation
+          onMapLoaded={onMapLoaded}
+          onPress={() => setIsTooltipVisible(false)}>
           {feeders.map((feeder, index) => (
             <Marker
               key={feeder.id}
@@ -28,15 +40,14 @@ export function Home(): JSX.Element {
                 latitude: feeder.coordinates.latitude,
                 longitude: feeder.coordinates.longitude,
               }}
-              tracksViewChanges={false}>
+              tracksViewChanges={false}
+              onPress={() => handleOpenTooltip(feeder)}>
               <CustomMarker />
-
-              <Callout tooltip>
-                <CustomCallout feeder={feeder} />
-              </Callout>
             </Marker>
           ))}
         </Map>
+
+        {isTooltipVisible && <CustomCallout feeder={currentFeederOpened} />}
       </S.Container>
     </>
   );

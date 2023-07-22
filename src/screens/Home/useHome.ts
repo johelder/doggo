@@ -5,9 +5,17 @@ import { FeedersRepository } from '@src/services/database/repositories/FeedersRe
 export function useHome() {
   const [isLoadingMap, setIsLoadingMap] = useState(true);
   const [feeders, setFeeders] = useState<IDomainFeeder[]>([]);
+  const [isTooltipVisible, setIsTooltipVisible] = useState(false);
+  const [currentFeederOpened, setCurrentFeederOpened] =
+    useState<IDomainFeeder | null>(null);
 
   function onMapLoaded() {
     setIsLoadingMap(false);
+  }
+
+  function handleOpenTooltip(feeder: IDomainFeeder) {
+    setIsTooltipVisible(true);
+    setCurrentFeederOpened(feeder);
   }
 
   function onFeedersChange(feedersToUpdate: IDomainFeeder[]) {
@@ -20,5 +28,13 @@ export function useHome() {
     return () => subscriber();
   }, []);
 
-  return { isLoadingMap, onMapLoaded, feeders };
+  return {
+    isLoadingMap,
+    onMapLoaded,
+    feeders,
+    isTooltipVisible,
+    setIsTooltipVisible,
+    currentFeederOpened,
+    handleOpenTooltip,
+  };
 }
