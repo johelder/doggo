@@ -6,6 +6,7 @@ export interface IButtonRootProps extends TouchableOpacityProps {
   type: 'filled' | 'unfilled' | 'outline';
   color?: string;
   isLoading?: boolean;
+  height?: number;
 }
 
 export interface IButtonIconProps {
