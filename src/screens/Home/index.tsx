@@ -49,7 +49,12 @@ export function Home(): JSX.Element {
           ))}
         </Map>
 
-        {isTooltipVisible && <CustomCallout feeder={currentFeederOpened} />}
+        {isTooltipVisible && (
+          <CustomCallout
+            feeder={currentFeederOpened}
+            onClose={() => setIsTooltipVisible(false)}
+          />
+        )}
       </S.Container>
     </>
   );

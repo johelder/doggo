@@ -8,6 +8,9 @@ export const Container = styled.View`
   padding: 16px;
   border-radius: 4px;
   margin-bottom: 10px;
+
+  border-width: 2px;
+  border-color: ${({ theme }) => theme.colors.primary[200]};
 `;
 
 export const Content = styled.View`
@@ -18,6 +21,7 @@ export const Content = styled.View`
 `;
 
 export const Session = styled.View`
+  flex: 1;
   flex-direction: row;
   align-items: center;
   gap: 8px;
@@ -42,4 +46,23 @@ export const Actions = styled.View`
   flex-direction: row;
   flex-shrink: 1;
   gap: 8px;
+
+  margin-top: 16px;
+`;
+
+export const Header = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const CloseButton = styled.TouchableOpacity`
+  width: 30px;
+  height: 30px;
+  background-color: ${({ theme }) => theme.colors.gray[100]};
+
+  border-radius: 15px;
+
+  align-items: center;
+  justify-content: center;
 `;

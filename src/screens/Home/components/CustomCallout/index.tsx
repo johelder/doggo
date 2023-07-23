@@ -6,6 +6,7 @@ import MapPin from 'phosphor-react-native/src/icons/MapPin';
 import User from 'phosphor-react-native/src/icons/User';
 import Signpost from 'phosphor-react-native/src/icons/Signpost';
 import Heart from 'phosphor-react-native/src/icons/Heart';
+import X from 'phosphor-react-native/src/icons/X';
 
 import { Button } from '@src/components';
 import { getFoodsLabel } from '@src/utils/getFoodsLabel';
@@ -14,7 +15,7 @@ import type { ICustomCalloutProps } from './types';
 
 import * as S from './styles';
 
-export function CustomCallout({ feeder }: ICustomCalloutProps) {
+export function CustomCallout({ feeder, onClose }: ICustomCalloutProps) {
   const { handleOpenDirections, estimatedDistanceUntilTheFeeder } =
     useCustomCallout(feeder);
 
@@ -23,11 +24,16 @@ export function CustomCallout({ feeder }: ICustomCalloutProps) {
   return (
     <S.Container>
       <S.Content>
-        <S.Session>
-          <CookingPot color={theme.colors.gray[700]} />
+        <S.Header>
+          <S.Session>
+            <CookingPot color={theme.colors.gray[700]} />
+            <S.Title>{getFoodsLabel(feeder?.foods)}</S.Title>
+          </S.Session>
 
-          <S.Title>{getFoodsLabel(feeder?.foods)}</S.Title>
-        </S.Session>
+          <S.CloseButton onPress={onClose}>
+            <X size={18} color={theme.colors.gray[700]} weight="bold" />
+          </S.CloseButton>
+        </S.Header>
 
         <S.Session>
           <MapPin color={theme.colors.gray[500]} />
