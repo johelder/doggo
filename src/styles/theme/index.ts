@@ -31,6 +31,7 @@ export const theme = {
       googleBlue: '#4B91FB',
       googleWhite: '#FBFFFF',
       transparent: '#ffffff00',
+      shadow: '#091E42',
     },
   },
 
