@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  Keyboard,
-  KeyboardAvoidingView,
-  TouchableWithoutFeedback,
-} from 'react-native';
+import { ScrollView } from 'react-native';
 import { useHeaderHeight } from '@react-navigation/elements';
 
 import { FeederForm } from '@src/components';
@@ -26,22 +22,19 @@ export function CreateFeeder({ route }: TCreateFeederProps): JSX.Element {
     <S.Container>
       <CustomHeader />
 
-      <MiniMap coords={{ latitude, longitude }} headerHeight={headerHeight} />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <MiniMap coords={{ latitude, longitude }} headerHeight={headerHeight} />
 
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <KeyboardAvoidingView behavior="position">
-          <S.FormContainer>
-            <>
-              <S.Title>{street}</S.Title>
-              <S.Subtitle>
-                {neighborhood}, {city}
-              </S.Subtitle>
-            </>
+        <S.FormContainer>
+          <S.Title>{street}</S.Title>
 
-            <FeederForm ref={feederFormRef} onSubmit={handleCreateFeeder} />
-          </S.FormContainer>
-        </KeyboardAvoidingView>
-      </TouchableWithoutFeedback>
+          <S.Subtitle>
+            {neighborhood}, {city}
+          </S.Subtitle>
+
+          <FeederForm ref={feederFormRef} onSubmit={handleCreateFeeder} />
+        </S.FormContainer>
+      </ScrollView>
     </S.Container>
   );
 }
