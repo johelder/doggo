@@ -7,6 +7,7 @@ import { useSelectLocation } from './useSelectLocation';
 import { Button, Loader, Map, CustomHeader } from '@src/components';
 import { CustomHeaderTitle } from '@src/components/CustomHeader/components/CustomHeaderTitle';
 import { Marker } from './components/Marker';
+import { grayScale } from '@src/components/Map/customStyles';
 import { LATITUDE_DELTA, LONGITUDE_DELTA } from '@src/components/Map/constants';
 
 import type { TSelectLocationProps } from './types';
@@ -39,8 +40,8 @@ export function SelectLocation({
 
     return (
       <CustomHeaderTitle
-        title={`${address?.thoroughfare}, ${address?.name}`}
-        subTitle={`${address?.subLocality} - ${address?.subAdministrativeArea}`}
+        title={`${address.thoroughfare}, ${address.name}`}
+        subTitle={`${address.subLocality} - ${address.subAdministrativeArea}`}
       />
     );
   }, [isLoadingAddress, address]);
@@ -67,6 +68,7 @@ export function SelectLocation({
             latitudeDelta: LATITUDE_DELTA,
             longitudeDelta: LONGITUDE_DELTA,
           }}
+          customMapStyle={grayScale}
         />
       )}
 

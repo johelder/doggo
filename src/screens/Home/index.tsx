@@ -4,6 +4,7 @@ import { Marker } from 'react-native-maps';
 
 import { useHome } from './useHome';
 import { Loader, Map } from '@src/components';
+import { grayScale } from '@src/components/Map/customStyles';
 import { CustomMarker } from './components/CustomMarker';
 import { CustomCallout } from './components/CustomCallout';
 
@@ -31,7 +32,8 @@ export function Home(): JSX.Element {
           isClustering
           showsUserLocation
           onMapLoaded={onMapLoaded}
-          onPress={() => setIsTooltipVisible(false)}>
+          onPress={() => setIsTooltipVisible(false)}
+          customMapStyle={grayScale}>
           {feeders.map((feeder, index) => (
             <Marker
               key={feeder.id}
