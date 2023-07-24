@@ -8,21 +8,32 @@ import React, {
 } from 'react';
 
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
-import auth from '@react-native-firebase/auth';
+import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 
 import { errorHandler, showToast } from '@src/utils';
+import { UsersRepository } from '@src/services/database/repositories/UsersRepository';
 
-import type { IAuthContext, IAuthContextProps, IUser } from './types';
 import { WEB_CLIENT_ID } from '@env';
+
+import type { IAuthContext, IAuthContextProps } from './types';
+import type { IDomainUser } from '@src/types/domain';
 
 const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
 function AuthContextProvider({ children }: IAuthContextProps): JSX.Element {
-  const [user, setUser] = useState<IUser>(null);
+  const [user, setUser] = useState<IDomainUser | null>(null);
   const [isLoadingAuth, setIsLoadingAuth] = useState(false);
 
-  function onAuthStateChanged(userState: IUser) {
-    setUser(userState);
+  async function onAuthStateChanged(userState: FirebaseAuthTypes.User | null) {
+    if (!userState) {
+      setUser(null);
+
+      return;
+    }
+
+    const storedUser = await UsersRepository.findById(userState.uid);
+
+    setUser(storedUser);
   }
 
   const handleSignInWithGoogle = useCallback(async () => {
@@ -39,7 +50,23 @@ function AuthContextProvider({ children }: IAuthContextProps): JSX.Element {
 
       const response = await auth().signInWithCredential(googleCredential);
 
-      setUser(response.user);
+      if (response.additionalUserInfo?.isNewUser) {
+        const newUser = {
+          id: response.user.uid,
+          name: response.user.displayName,
+          email: response.user.email,
+          photo: response.user.photoURL,
+          favorites: [],
+        };
+
+        await UsersRepository.create(newUser);
+
+        return;
+      }
+
+      const storedUser = await UsersRepository.findById(response.user.uid);
+
+      setUser(storedUser);
     } catch (error) {
       showToast({
         type: 'error',
