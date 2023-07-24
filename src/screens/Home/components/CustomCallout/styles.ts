@@ -43,7 +43,6 @@ export const SubTitle = styled(Title)`
 `;
 
 export const Actions = styled.View`
-  flex-direction: row;
   flex-shrink: 1;
   gap: 8px;
 

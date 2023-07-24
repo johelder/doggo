@@ -53,27 +53,29 @@ export function CustomCallout({ feeder, onClose }: ICustomCalloutProps) {
 
         <S.Actions>
           <Button.Root
+            type="filled"
+            color={theme.colors.primary[500]}
+            height={45}
+            onPress={handleOpenDirections}>
+            <Button.Icon>
+              <Signpost color={theme.colors.utils.white} />
+            </Button.Icon>
+
+            <Button.Text color={theme.colors.utils.white}>
+              Ver rotas
+            </Button.Text>
+          </Button.Root>
+
+          <Button.Root
             type="outline"
             color={theme.colors.gray[700]}
-            height={40}
+            height={45}
             onPress={() => console.log('press2')}>
             <Button.Icon>
               <Heart color={theme.colors.gray[700]} />
             </Button.Icon>
 
             <Button.Text color={theme.colors.gray[700]}>Favoritar</Button.Text>
-          </Button.Root>
-
-          <Button.Root
-            type="outline"
-            color={theme.colors.gray[700]}
-            height={40}
-            onPress={handleOpenDirections}>
-            <Button.Icon>
-              <Signpost color={theme.colors.gray[700]} />
-            </Button.Icon>
-
-            <Button.Text color={theme.colors.gray[700]}>Ver rotas</Button.Text>
           </Button.Root>
         </S.Actions>
       </S.Content>
