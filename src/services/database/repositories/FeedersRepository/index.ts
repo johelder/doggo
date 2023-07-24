@@ -1,7 +1,7 @@
 import firestore from '@react-native-firebase/firestore';
 import { FeederMapper } from '@src/services/mappers/FeederMapper';
 
-import { DATABASE_FEEDERS_COLLECTION } from './constants';
+import { DATABASE_FEEDERS_COLLECTION } from '../constants';
 import type { IDomainFeeder } from '@src/types/domain/feeder';
 import type { IPersistanceFeeder } from '@src/types/persistance';
 
