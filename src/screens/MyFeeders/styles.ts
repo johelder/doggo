@@ -12,7 +12,7 @@ export const Content = styled.View`
 `;
 
 export const EmptyListContainer = styled.View`
-  height: 100%;
+  flex: 1;
   justify-content: center;
   align-items: center;
   gap: 16px;
@@ -60,5 +60,6 @@ export const Feeders = styled(
   contentContainerStyle: {
     padding: 16,
     gap: 16,
+    flexGrow: 1,
   },
 })``;
