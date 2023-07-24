@@ -7,10 +7,10 @@ import { Input } from './Input';
 import { ChipButton } from './ChipButton';
 import { ToastProvider } from './ToastProvider';
 import { FeederAddress } from './FeederAddress';
-import { Error } from './Error';
 import { FeederForm } from './FeederForm';
 import { Modal } from './Modal';
 import { CustomHeader } from './CustomHeader';
+import { PageAlert } from './PageAlert';
 
 export {
   Button,
@@ -22,8 +22,8 @@ export {
   ChipButton,
   ToastProvider,
   FeederAddress,
-  Error,
   FeederForm,
   Modal,
   CustomHeader,
+  PageAlert,
 };
