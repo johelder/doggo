@@ -25,7 +25,7 @@ function AuthContextProvider({ children }: IAuthContextProps): JSX.Element {
     setUser(userState);
   }
 
-  const handleSignIn = useCallback(async () => {
+  const handleSignInWithGoogle = useCallback(async () => {
     try {
       setIsLoadingAuth(true);
 
@@ -48,7 +48,7 @@ function AuthContextProvider({ children }: IAuthContextProps): JSX.Element {
         duration: 5000,
       });
 
-      errorHandler.reportError(error, 'handleSignIn');
+      errorHandler.reportError(error, handleSignInWithGoogle.name);
     } finally {
       setIsLoadingAuth(false);
     }
@@ -62,7 +62,7 @@ function AuthContextProvider({ children }: IAuthContextProps): JSX.Element {
         auth().signOut(),
       ]);
     } catch (error) {
-      errorHandler.reportError(error, 'handleSignOut');
+      errorHandler.reportError(error, handleSignOut.name);
     }
   }, []);
 
@@ -83,7 +83,7 @@ function AuthContextProvider({ children }: IAuthContextProps): JSX.Element {
     <AuthContext.Provider
       value={{
         user,
-        handleSignIn,
+        handleSignInWithGoogle,
         handleSignOut,
         isUserLogged,
         isLoadingAuth,

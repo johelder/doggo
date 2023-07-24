@@ -8,7 +8,7 @@ export type IUser = {
 
 export interface IAuthContext {
   user: IUser;
-  handleSignIn: () => Promise<void>;
+  handleSignInWithGoogle: () => Promise<void>;
   handleSignOut: () => Promise<void>;
   isUserLogged: boolean;
   isLoadingAuth: boolean;
