@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { Linking, Platform } from 'react-native';
-import { calculateDistanceBetweenTwoPoints } from '@src/utils/calculateDistanceBetweenTwoPoints';
+import { calculateDistanceBetweenTwoPoints } from '@src/utils';
 import { useMap } from '@src/hooks';
 
 import type { IDomainFeeder } from '@src/types/domain';
