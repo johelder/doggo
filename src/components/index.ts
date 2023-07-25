@@ -11,6 +11,7 @@ import { FeederForm } from './FeederForm';
 import { Modal } from './Modal';
 import { CustomHeader } from './CustomHeader';
 import { PageAlert } from './PageAlert';
+import { FeederCard } from './FeederCard';
 
 export {
   Button,
@@ -26,4 +27,5 @@ export {
   Modal,
   CustomHeader,
   PageAlert,
+  FeederCard,
 };
