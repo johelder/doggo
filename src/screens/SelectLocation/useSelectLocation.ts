@@ -62,7 +62,7 @@ export function useSelectLocation() {
     navigation.navigate('CreateFeeder', params);
   }
 
-  function onTouchStart() {
+  function onPanDrag() {
     setIsLoadingAddress(true);
     setIsShowingTooltip(false);
   }
@@ -170,7 +170,7 @@ export function useSelectLocation() {
   ]);
 
   return {
-    onTouchStart,
+    onPanDrag,
     onRegionChangeComplete,
     onMapReady,
     isLoadingAddress,

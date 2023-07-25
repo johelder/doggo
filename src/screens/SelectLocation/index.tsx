@@ -18,7 +18,7 @@ export function SelectLocation({
   navigation,
 }: TSelectLocationProps): JSX.Element {
   const {
-    onTouchStart,
+    onPanDrag,
     onRegionChangeComplete,
     onMapReady,
     isLoadingAddress,
@@ -61,7 +61,7 @@ export function SelectLocation({
           onMapReady={onMapReady}
           showsUserLocation
           onRegionChangeComplete={onRegionChangeComplete}
-          onTouchStart={onTouchStart}
+          onPanDrag={onPanDrag}
           region={{
             latitude: initialRegion.latitude,
             longitude: initialRegion.longitude,
