@@ -10,6 +10,14 @@ export const Container = styled.SafeAreaView`
   background-color: ${({ theme }) => theme.colors.utils.white};
 `;
 
+export const CustomCalloutContainer = styled.View`
+  max-width: 350px;
+
+  position: absolute;
+  background-color: ${({ theme }) => theme.colors.utils.white};
+  margin-bottom: 10px;
+`;
+
 export const LoaderContainer = styled.View`
   flex: 1;
 
@@ -25,7 +33,6 @@ export const Feeders = styled(
   showsVerticalScrollIndicator: false,
   contentContainerStyle: {
     flex: 1,
-    padding: 16,
     gap: 16,
   },
 })``;

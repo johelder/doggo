@@ -3,10 +3,9 @@ import { StatusBar } from 'react-native';
 import { Marker } from 'react-native-maps';
 
 import { useHome } from './useHome';
-import { Loader, Map } from '@src/components';
+import { Loader, Map, FeederCard } from '@src/components';
 import { grayScale } from '@src/components/Map/customStyles';
 import { CustomMarker } from './components/CustomMarker';
-import { CustomCallout } from './components/CustomCallout';
 
 import * as S from './styles';
 
@@ -50,10 +49,12 @@ export function Home(): JSX.Element {
         </Map>
 
         {isTooltipVisible && (
-          <CustomCallout
-            feeder={currentFeederOpened}
-            onClose={() => setIsTooltipVisible(false)}
-          />
+          <S.CustomCalloutContainer>
+            <FeederCard
+              feeder={currentFeederOpened}
+              onClose={() => setIsTooltipVisible(false)}
+            />
+          </S.CustomCalloutContainer>
         )}
       </S.Container>
     </>
