@@ -44,6 +44,7 @@ export function Profile({ navigation }: TProfileProps): JSX.Element {
             title="Favoritos"
             description="Meus comedouros favoritos"
             icon={() => <S.FavoriteIcon />}
+            onPress={() => navigation.navigate('Favorites')}
           />
         </S.MainContent>
 
