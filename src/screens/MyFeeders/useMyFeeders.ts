@@ -56,7 +56,7 @@ export function useMyFeeders() {
       handleCloseDetailsModal();
       getFeeders();
     } catch (error) {
-      errorHandler.reportError(error, 'handleDeleteFeeder');
+      errorHandler.reportError(error, handleDeleteFeeder.name);
 
       showToast({
         type: 'error',
@@ -77,21 +77,21 @@ export function useMyFeeders() {
 
   const getFeeders = useCallback(async () => {
     try {
-      if (!user?.uid) {
+      if (!user?.id) {
         return;
       }
 
       setPageStatus('loading');
 
-      const response = await FeedersRepository.findAllById(user.uid);
+      const response = await FeedersRepository.findAllById(user.id);
 
       setFeeders(response);
       setPageStatus('success');
     } catch (error) {
       setPageStatus('error');
-      errorHandler.reportError(error, 'getFeeders');
+      errorHandler.reportError(error, getFeeders.name);
     }
-  }, [user?.uid]);
+  }, [user?.id]);
 
   useEffect(() => {
     if (isScreenFocused) {
