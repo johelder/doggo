@@ -61,6 +61,8 @@ function AuthContextProvider({ children }: IAuthContextProps): JSX.Element {
 
         await UsersRepository.create(newUser);
 
+        setUser(newUser);
+
         return;
       }
 
