@@ -1,5 +1,7 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useLayoutEffect } from 'react';
 import { ListRenderItemInfo } from 'react-native';
+import { StackActions } from '@react-navigation/native';
+import { HeaderBackButton } from '@react-navigation/elements';
 
 import { useTheme } from 'styled-components';
 
@@ -14,10 +16,11 @@ import { FeederDetailsModal } from './components/FeederDetailsModal';
 import { useMyFeeders } from './useMyFeeders';
 
 import type { IDomainFeeder } from '@src/types/domain';
+import type { TMyFeedersProps } from './types';
 
 import * as S from './styles';
 
-export function MyFeeders(): JSX.Element {
+export function MyFeeders({ navigation }: TMyFeedersProps): JSX.Element {
   const {
     feeders,
     pageStatus,
@@ -32,6 +35,17 @@ export function MyFeeders(): JSX.Element {
     handleNavigateToSelectLocation,
   } = useMyFeeders();
   const theme = useTheme();
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => (
+        <HeaderBackButton
+          onPress={() => navigation.dispatch(StackActions.popToTop())}
+          tintColor={theme.colors.primary[500]}
+        />
+      ),
+    });
+  }, [navigation, theme.colors.primary]);
 
   const renderFeeder = useCallback(
     ({ item: feeder }: ListRenderItemInfo<IDomainFeeder>) => {
