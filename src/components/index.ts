@@ -1,6 +1,6 @@
 import { Button } from './Button';
 import { Map } from './Map';
-import { TabBarIcon } from './TabBarIcon';
+import { TabBarIcon } from './CustomTabBar/TabBarIcon';
 import { NavigationButton } from './NavigationButton';
 import { Loader } from './Loader';
 import { Input } from './Input';
@@ -12,6 +12,7 @@ import { Modal } from './Modal';
 import { CustomHeader } from './CustomHeader';
 import { PageAlert } from './PageAlert';
 import { FeederCard } from './FeederCard';
+import { CustomTabBar } from './CustomTabBar';
 
 export {
   Button,
@@ -28,4 +29,5 @@ export {
   CustomHeader,
   PageAlert,
   FeederCard,
+  CustomTabBar,
 };
