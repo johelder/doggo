@@ -18,7 +18,7 @@ export const containerStyles = {
 export const tabBarOptions: BottomTabNavigationOptions = {
   headerShown: false,
   tabBarInactiveTintColor: theme.colors.gray[500],
-  tabBarActiveTintColor: theme.colors.primary[500],
+  tabBarActiveTintColor: theme.colors.primary[200],
   tabBarActiveBackgroundColor: theme.colors.primary[300],
   tabBarLabelStyle: {
     fontFamily: theme.fonts.primary.semiBold,

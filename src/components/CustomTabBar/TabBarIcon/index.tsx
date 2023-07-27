@@ -19,7 +19,7 @@ export function TabBarIcon({ screen, isFocused }: ITabBarIconProps) {
     <IconComponent
       weight={isFocused ? 'fill' : 'regular'}
       size={26}
-      color={isFocused ? theme.colors.primary[500] : theme.colors.gray[500]}
+      color={isFocused ? theme.colors.primary[200] : theme.colors.gray[500]}
     />
   );
 }
