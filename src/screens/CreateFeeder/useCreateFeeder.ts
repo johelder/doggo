@@ -46,14 +46,14 @@ export function useCreateFeeder() {
         return;
       }
 
-      if (!user?.displayName || !currentUserLocation) {
+      if (!user?.name || !currentUserLocation) {
         return;
       }
 
       const feeder = {
         user: {
-          id: user.uid,
-          name: user.displayName,
+          id: user.id,
+          name: user.name,
         },
         coordinates: {
           latitude: currentUserLocation?.coords.latitude,

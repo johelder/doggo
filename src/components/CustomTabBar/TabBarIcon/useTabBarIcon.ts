@@ -1,9 +1,9 @@
-import MapIcon from 'phosphor-react-native/src/icons/MapTrifold';
+import MapPinLine from 'phosphor-react-native/src/icons/MapPinLine';
 import ProfileIcon from 'phosphor-react-native/src/icons/User';
 import type { TPhosphorIcon, TScreenName } from './types';
 
 const tabBarIconMapping = {
-  map: MapIcon,
+  map: MapPinLine,
   profile: ProfileIcon,
 };
 

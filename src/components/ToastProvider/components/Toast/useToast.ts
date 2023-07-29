@@ -10,6 +10,7 @@ import {
 
 import CheckCircle from 'phosphor-react-native/src/icons/CheckCircle';
 import WarningCircle from 'phosphor-react-native/src/icons/WarningCircle';
+import Info from 'phosphor-react-native/src/icons/Info';
 
 import {
   DEFAULT_TOAST_DURATION,
@@ -23,7 +24,7 @@ import type { IToastProps } from './types';
 const toastIconMapper = {
   success: CheckCircle,
   error: WarningCircle,
-  warning: WarningCircle,
+  warning: Info,
 };
 
 export function useToast({ isVisible, toast, onRemove }: IToastProps) {

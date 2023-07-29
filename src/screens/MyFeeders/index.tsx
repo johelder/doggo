@@ -1,20 +1,26 @@
-import React, { useCallback } from 'react';
-import { ListRenderItemInfo, View } from 'react-native';
+import React, { useCallback, useLayoutEffect } from 'react';
+import { ListRenderItemInfo } from 'react-native';
+import { StackActions } from '@react-navigation/native';
+import { HeaderBackButton } from '@react-navigation/elements';
 
 import { useTheme } from 'styled-components';
 
 import CirclesThreePlus from 'phosphor-react-native/src/icons/CirclesThreePlus';
 import FolderOpen from 'phosphor-react-native/src/icons/FolderOpen';
+import Warning from 'phosphor-react-native/src/icons/Warning';
+import ArrowClockwise from 'phosphor-react-native/src/icons/ArrowClockwise';
 
-import { Button, Error, FeederAddress, Loader } from '@src/components';
+import { handleOpenSupport } from '@src/utils';
+import { Button, FeederAddress, Loader, PageAlert } from '@src/components';
 import { FeederDetailsModal } from './components/FeederDetailsModal';
 import { useMyFeeders } from './useMyFeeders';
 
 import type { IDomainFeeder } from '@src/types/domain';
+import type { TMyFeedersProps } from './types';
 
 import * as S from './styles';
 
-export function MyFeeders(): JSX.Element {
+export function MyFeeders({ navigation }: TMyFeedersProps): JSX.Element {
   const {
     feeders,
     pageStatus,
@@ -30,6 +36,17 @@ export function MyFeeders(): JSX.Element {
   } = useMyFeeders();
   const theme = useTheme();
 
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => (
+        <HeaderBackButton
+          onPress={() => navigation.dispatch(StackActions.popToTop())}
+          tintColor={theme.colors.primary[500]}
+        />
+      ),
+    });
+  }, [navigation, theme.colors.primary]);
+
   const renderFeeder = useCallback(
     ({ item: feeder }: ListRenderItemInfo<IDomainFeeder>) => {
       return (
@@ -44,33 +61,25 @@ export function MyFeeders(): JSX.Element {
 
   const renderListEmptyComponent = useCallback(() => {
     return (
-      <S.EmptyListContainer>
-        <S.IconContainer>
-          <FolderOpen color={theme.colors.gray[700]} size={24} />
-        </S.IconContainer>
+      <PageAlert
+        title="Sem comedouros"
+        description="Cadastre um novo comedouro para ajudar animais de rua próximos a você."
+        icon={<FolderOpen color={theme.colors.gray[700]} size={24} />}
+        actionButton={
+          <Button.Root
+            type="filled"
+            color={theme.colors.primary[500]}
+            onPress={handleRedirectToSelectLocation}>
+            <Button.Icon>
+              <CirclesThreePlus size={24} color={theme.colors.utils.white} />
+            </Button.Icon>
 
-        <View>
-          <S.Title>Sem comedouros</S.Title>
-
-          <S.Label>
-            Cadastre um novo comedouro para ajudar animais de rua próximos a
-            você.
-          </S.Label>
-        </View>
-
-        <Button.Root
-          type="filled"
-          color={theme.colors.primary[500]}
-          onPress={handleRedirectToSelectLocation}>
-          <Button.Icon>
-            <CirclesThreePlus size={24} color={theme.colors.utils.white} />
-          </Button.Icon>
-
-          <Button.Text color={theme.colors.utils.white}>
-            Cadastrar novo comedouro
-          </Button.Text>
-        </Button.Root>
-      </S.EmptyListContainer>
+            <Button.Text color={theme.colors.utils.white}>
+              Cadastrar novo comedouro
+            </Button.Text>
+          </Button.Root>
+        }
+      />
     );
   }, [
     handleRedirectToSelectLocation,
@@ -85,9 +94,35 @@ export function MyFeeders(): JSX.Element {
 
   if (pageStatus === 'error') {
     return (
-      <Error
-        title="Desculpe, ocorreu um erro ao se conectar com o servidor"
-        onTryAgain={handleTryAgain}
+      <PageAlert
+        title="Nós tivemos um pequeno problema"
+        description="Ocorreu um erro ao se conectar com o servidor."
+        icon={<Warning color={theme.colors.utils.white} size={24} />}
+        color={theme.colors.attention[400]}
+        actionButton={
+          <>
+            <Button.Root
+              type="filled"
+              color={theme.colors.attention[500]}
+              onPress={handleTryAgain}>
+              <Button.Icon>
+                <ArrowClockwise color={theme.colors.utils.white} size={24} />
+              </Button.Icon>
+
+              <Button.Text color={theme.colors.utils.white}>
+                Tentar novamente
+              </Button.Text>
+            </Button.Root>
+
+            <S.Label>
+              Se o problema persistir, por favor,{' '}
+              <S.Highlighted onPress={handleOpenSupport}>
+                contate-nos
+              </S.Highlighted>
+              .
+            </S.Label>
+          </>
+        }
       />
     );
   }

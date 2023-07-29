@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { Modalize } from 'react-native-modalize';
 
+import { useAuth } from '@src/hooks';
 import { errorHandler, showToast } from '@src/utils';
 import { FeedersRepository } from '@src/services/database/repositories/FeedersRepository';
 
@@ -16,6 +17,7 @@ export function useMyFeeders() {
   const [currentFeederToEdit, setCurrentFeederToEdit] =
     useState<IDomainFeeder | null>(null);
   const detailsModalRef = useRef<Modalize>(null);
+  const { user } = useAuth();
 
   const isScreenFocused = useIsFocused();
 
@@ -54,7 +56,7 @@ export function useMyFeeders() {
       handleCloseDetailsModal();
       getFeeders();
     } catch (error) {
-      errorHandler.reportError(error, 'handleDeleteFeeder');
+      errorHandler.reportError(error, handleDeleteFeeder.name);
 
       showToast({
         type: 'error',
@@ -75,17 +77,21 @@ export function useMyFeeders() {
 
   const getFeeders = useCallback(async () => {
     try {
+      if (!user?.id) {
+        return;
+      }
+
       setPageStatus('loading');
 
-      const response = await FeedersRepository.findAll();
+      const response = await FeedersRepository.findAllById(user.id);
 
       setFeeders(response);
       setPageStatus('success');
     } catch (error) {
       setPageStatus('error');
-      errorHandler.reportError(error, 'getFeeders');
+      errorHandler.reportError(error, getFeeders.name);
     }
-  }, []);
+  }, [user?.id]);
 
   useEffect(() => {
     if (isScreenFocused) {

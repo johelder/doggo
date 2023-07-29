@@ -4,7 +4,7 @@ export const Container = styled.TouchableOpacity<{ isSelected: boolean }>`
   border-width: 1px;
   border-radius: 8px;
   border-color: ${({ theme, isSelected }) =>
-    isSelected ? theme.colors.gray[500] : theme.colors.gray[300]};
+    isSelected ? theme.colors.primary[500] : theme.colors.gray[500]};
 
   padding: 12px 0;
 

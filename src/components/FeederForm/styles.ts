@@ -34,12 +34,16 @@ export const FieldDescription = styled.Text`
   margin-top: 10px;
 `;
 
-export const Label = styled.Text<{ isSelected?: boolean }>`
+export const ChipButtonLabel = styled.Text<{ isSelected?: boolean }>`
   font-family: ${({ theme }) => theme.fonts.primary.semiBold};
   font-size: 14px;
 
   color: ${({ theme, isSelected = true }) =>
-    isSelected ? theme.colors.gray[500] : theme.colors.gray[300]};
+    isSelected ? theme.colors.primary[500] : theme.colors.gray[500]};
+`;
+
+export const Label = styled(ChipButtonLabel)`
+  color: ${({ theme }) => theme.colors.gray[500]};
 `;
 
 export const FormFooter = styled.View`

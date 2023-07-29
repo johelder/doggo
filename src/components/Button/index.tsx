@@ -14,11 +14,12 @@ function ButtonRoot({
   type = 'filled',
   color = theme.colors.primary[500],
   isLoading = false,
+  height,
   children,
   ...rest
 }: IButtonRootProps) {
   return (
-    <S.ButtonRootContainer type={type} color={color} {...rest}>
+    <S.ButtonRootContainer type={type} color={color} height={height} {...rest}>
       {isLoading ? <Loader.Component /> : children}
     </S.ButtonRootContainer>
   );

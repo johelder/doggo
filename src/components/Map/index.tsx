@@ -1,44 +1,42 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { Dimensions, StyleSheet, View } from 'react-native';
 
 import { useMap } from '@src/hooks';
 
+import { useMapComponent } from './useMapComponent';
 import { LATITUDE_DELTA, LONGITUDE_DELTA } from './constants';
 import type { IMapProps } from './types';
 
-import * as S from './styles';
+export function Map({ isClustering = false, children, ...rest }: IMapProps) {
+  const { currentUserLocation, mapRef } = useMap();
+  const { MapComponent } = useMapComponent(isClustering);
 
-export function Map({ children, ...rest }: IMapProps) {
-  const {
-    currentUserLocation,
-    mapRef,
-    watchUserPosition,
-    getUserCurrentPosition,
-  } = useMap();
-
-  useEffect(() => {
-    getUserCurrentPosition();
-  }, [getUserCurrentPosition]);
-
-  useEffect(() => {
-    watchUserPosition();
-  }, [watchUserPosition]);
+  if (!currentUserLocation) {
+    return null;
+  }
 
   return (
-    <S.Container>
-      {currentUserLocation && (
-        <S.Map
-          ref={mapRef}
-          initialRegion={{
-            latitude: currentUserLocation?.coords.latitude,
-            longitude: currentUserLocation?.coords.longitude,
-            latitudeDelta: LATITUDE_DELTA,
-            longitudeDelta: LONGITUDE_DELTA,
-          }}
-          showsMyLocationButton={false}
-          {...rest}>
-          {children}
-        </S.Map>
-      )}
-    </S.Container>
+    <View>
+      <MapComponent
+        ref={mapRef}
+        initialRegion={{
+          latitude: currentUserLocation?.coords.latitude,
+          longitude: currentUserLocation?.coords.longitude,
+          latitudeDelta: LATITUDE_DELTA,
+          longitudeDelta: LONGITUDE_DELTA,
+        }}
+        showsMyLocationButton={false}
+        style={mapStyles.container}
+        {...rest}>
+        {children}
+      </MapComponent>
+    </View>
   );
 }
+
+const mapStyles = StyleSheet.create({
+  container: {
+    minWidth: Dimensions.get('screen').width,
+    minHeight: Dimensions.get('screen').height,
+  },
+});

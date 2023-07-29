@@ -46,15 +46,15 @@ export function useEditFeeder() {
         return;
       }
 
-      if (!user?.displayName || !currentUserLocation) {
+      if (!user?.name || !currentUserLocation) {
         return;
       }
 
       const payload = {
         id: feederId,
         user: {
-          id: user.uid,
-          name: user.displayName,
+          id: user.id,
+          name: user.name,
         },
         coordinates: {
           latitude: currentUserLocation?.coords.latitude,

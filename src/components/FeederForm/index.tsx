@@ -81,11 +81,13 @@ export const FeederForm = forwardRef<IFeederFormRef, IFeederFormProps>(
                 <Dog
                   color={
                     feederFoods.dog
-                      ? theme.colors.gray[500]
-                      : theme.colors.gray[300]
+                      ? theme.colors.primary[500]
+                      : theme.colors.gray[500]
                   }
                 />
-                <S.Label isSelected={feederFoods.dog}>Cachorros</S.Label>
+                <S.ChipButtonLabel isSelected={feederFoods.dog}>
+                  Cachorros
+                </S.ChipButtonLabel>
               </ChipButton>
             </S.ChipButtonContainer>
 
@@ -96,11 +98,13 @@ export const FeederForm = forwardRef<IFeederFormRef, IFeederFormProps>(
                 <Cat
                   color={
                     feederFoods.cat
-                      ? theme.colors.gray[500]
-                      : theme.colors.gray[300]
+                      ? theme.colors.primary[500]
+                      : theme.colors.gray[500]
                   }
                 />
-                <S.Label isSelected={feederFoods.cat}>Gatos</S.Label>
+                <S.ChipButtonLabel isSelected={feederFoods.cat}>
+                  Gatos
+                </S.ChipButtonLabel>
               </ChipButton>
             </S.ChipButtonContainer>
           </S.ChipsWrapper>
@@ -111,11 +115,13 @@ export const FeederForm = forwardRef<IFeederFormRef, IFeederFormProps>(
             <DotsThreeCircle
               color={
                 feederFoods.others
-                  ? theme.colors.gray[500]
-                  : theme.colors.gray[300]
+                  ? theme.colors.primary[500]
+                  : theme.colors.gray[500]
               }
             />
-            <S.Label isSelected={feederFoods.others}>Outros</S.Label>
+            <S.ChipButtonLabel isSelected={feederFoods.others}>
+              Outros
+            </S.ChipButtonLabel>
           </ChipButton>
         </S.FormFooter>
 

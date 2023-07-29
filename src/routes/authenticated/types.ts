@@ -23,8 +23,8 @@ export type TRootStackParamList = {
     address: TDomainAddress;
     coordinate: TCoordinates;
   };
-
   MyFeeders: undefined;
+  Favorites: undefined;
 };
 
 export type TDefaultScreensProps<T extends keyof TAppScreens> =

@@ -8,6 +8,7 @@ import {
   CreateFeeder,
   MyFeeders,
   EditFeeder,
+  Favorites,
 } from '@src/screens';
 import { HomeTabs } from './BottomTabs';
 
@@ -48,18 +49,30 @@ export function AuthenticatedRoutes() {
             options={{ headerTitle: '' }}
           />
         </Stack.Group>
-        <Stack.Screen
-          name="MyFeeders"
-          component={MyFeeders}
-          options={{
-            headerTitle: 'MEUS COMEDOUROS',
+
+        <Stack.Group
+          screenOptions={{
             headerTitleStyle: {
+              fontFamily: theme.fonts.primary.semiBold,
               fontSize: 14,
               color: theme.colors.gray[700],
-              fontFamily: theme.fonts.primary.semiBold,
             },
-          }}
-        />
+          }}>
+          <Stack.Screen
+            name="MyFeeders"
+            component={MyFeeders}
+            options={{
+              headerTitle: 'MEUS COMEDOUROS',
+            }}
+          />
+          <Stack.Screen
+            name="Favorites"
+            component={Favorites}
+            options={{
+              headerTitle: 'FAVORITOS',
+            }}
+          />
+        </Stack.Group>
       </Stack.Navigator>
     </SafeAreaView>
   );

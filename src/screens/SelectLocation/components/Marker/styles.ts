@@ -29,6 +29,12 @@ export const TooltipContent = styled.View`
   padding: 16px 22px;
 
   border-radius: 8px;
+
+  shadow-color: ${({ theme }) => theme.colors.utils.shadow};
+  shadow-offset: 1px 1px;
+  shadow-opacity: 0.1;
+  shadow-radius: 3px;
+  elevation: 2;
 `;
 
 export const TooltipTitle = styled.Text`

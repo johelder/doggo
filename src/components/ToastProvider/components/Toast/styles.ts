@@ -43,23 +43,19 @@ export const Content = styled.View<{ type: TToastType }>`
     `}
 `;
 
-export const IconContainer = styled.View`
-  flex: 1;
-`;
+export const IconContainer = styled.View``;
 
 export const Message = styled.Text`
-  flex: 8;
-
   font-family: ${({ theme }) => theme.fonts.primary.medium};
   font-size: 14px;
   line-height: 20px;
+
+  flex-shrink: 1;
 
   color: ${({ theme }) => theme.colors.utils.white};
   padding: 0 10px;
 `;
 
-export const CloseButton = styled.TouchableOpacity`
-  flex: 1;
-`;
+export const CloseButton = styled.TouchableOpacity``;
 
 export const CloseIcon = styled(X)``;

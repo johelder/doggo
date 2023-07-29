@@ -20,10 +20,10 @@ export function Profile({ navigation }: TProfileProps): JSX.Element {
         <S.MainContent>
           <S.HeaderContainer>
             <S.ProfilePhotoContainer>
-              <S.ProfilePhoto source={{ uri: user?.photoURL ?? '' }} />
+              <S.ProfilePhoto source={{ uri: user?.photo ?? '' }} />
             </S.ProfilePhotoContainer>
 
-            <S.ProfileName>{user?.displayName}</S.ProfileName>
+            <S.ProfileName>{user?.name}</S.ProfileName>
           </S.HeaderContainer>
 
           <NavigationButton
@@ -44,6 +44,7 @@ export function Profile({ navigation }: TProfileProps): JSX.Element {
             title="Favoritos"
             description="Meus comedouros favoritos"
             icon={() => <S.FavoriteIcon />}
+            onPress={() => navigation.navigate('Favorites')}
           />
         </S.MainContent>
 
