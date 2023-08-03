@@ -49,12 +49,15 @@ export function Home(): JSX.Element {
         </Map>
 
         {isTooltipVisible && (
-          <S.CustomCalloutContainer>
-            <FeederCard
-              feeder={currentFeederOpened}
-              onClose={() => setIsTooltipVisible(false)}
-            />
-          </S.CustomCalloutContainer>
+          <>
+            <S.Overlay />
+            <S.CustomCalloutContainer>
+              <FeederCard
+                feeder={currentFeederOpened}
+                onClose={() => setIsTooltipVisible(false)}
+              />
+            </S.CustomCalloutContainer>
+          </>
         )}
       </S.Container>
     </>
