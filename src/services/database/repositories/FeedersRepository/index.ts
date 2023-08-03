@@ -2,8 +2,11 @@ import firestore from '@react-native-firebase/firestore';
 import { FeederMapper } from '@src/services/mappers/FeederMapper';
 
 import { DATABASE_FEEDERS_COLLECTION } from '../constants';
+
 import type { IDomainFeeder } from '@src/types/domain/feeder';
 import type { IPersistanceFeeder } from '@src/types/persistance';
+import type { TMaintenanceStatus } from '@src/types/common';
+import type { IDomainUser } from '@src/types/domain';
 
 export const FeedersRepository = {
   async create(feeder: IDomainFeeder) {
@@ -61,6 +64,65 @@ export const FeedersRepository = {
       .collection(DATABASE_FEEDERS_COLLECTION)
       .doc(feeder.id)
       .set(FeederMapper.toPersistance(feeder));
+  },
+
+  async updateMaintenance(
+    maintenanceStatus: TMaintenanceStatus[],
+    feederId: string,
+    user: IDomainUser,
+  ) {
+    if (maintenanceStatus.length > 1) {
+      let maintenance_status = {};
+
+      maintenanceStatus.forEach(status => {
+        maintenance_status = {
+          ...maintenance_status,
+          [status]: {
+            updated_at: firestore.FieldValue.serverTimestamp(),
+            updated_by: {
+              user_id: user.id,
+              user_name: user.name,
+            },
+          },
+        };
+      });
+
+      firestore().collection(DATABASE_FEEDERS_COLLECTION).doc(feederId).update({
+        maintenance_status,
+      });
+
+      return;
+    }
+
+    if (maintenanceStatus.includes('supply')) {
+      firestore()
+        .collection(DATABASE_FEEDERS_COLLECTION)
+        .doc(feederId)
+        .update({
+          'maintenance_status.supply': {
+            updated_at: firestore.FieldValue.serverTimestamp(),
+            updated_by: {
+              user_id: user.id,
+              user_name: user.name,
+            },
+          },
+        });
+
+      return;
+    }
+
+    firestore()
+      .collection(DATABASE_FEEDERS_COLLECTION)
+      .doc(feederId)
+      .update({
+        'maintenance_status.cleaning': {
+          updated_at: firestore.FieldValue.serverTimestamp(),
+          updated_by: {
+            user_id: user.id,
+            user_name: user.name,
+          },
+        },
+      });
   },
 
   async delete(id: string) {

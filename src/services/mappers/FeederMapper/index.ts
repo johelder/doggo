@@ -3,8 +3,7 @@ import type { IPersistanceFeeder } from '@src/types/persistance/feeder';
 
 export const FeederMapper = {
   toPersistance(domainFeeder: IDomainFeeder): IPersistanceFeeder {
-    return {
-      id: domainFeeder.id ?? '',
+    const commonFeederAttributes = {
       user: {
         id: domainFeeder.user.id,
         name: domainFeeder.user.name,
@@ -19,7 +18,33 @@ export const FeederMapper = {
         reference: domainFeeder.address.reference,
       },
       foods: domainFeeder.foods,
-    } as IPersistanceFeeder;
+      maintenance_status: {
+        supply: {
+          updated_at: domainFeeder.maintenanceStatus.supply.updatedAt,
+          updated_by: {
+            user_id: domainFeeder.maintenanceStatus.supply.updatedBy.userId,
+            user_name: domainFeeder.maintenanceStatus.supply.updatedBy.userName,
+          },
+        },
+        cleaning: {
+          updated_at: domainFeeder.maintenanceStatus.cleaning.updatedAt,
+          updated_by: {
+            user_id: domainFeeder.maintenanceStatus.cleaning.updatedBy.userId,
+            user_name:
+              domainFeeder.maintenanceStatus.cleaning.updatedBy.userName,
+          },
+        },
+      },
+    };
+
+    if (domainFeeder?.id) {
+      return {
+        ...commonFeederAttributes,
+        id: domainFeeder.id,
+      };
+    }
+
+    return commonFeederAttributes;
   },
 
   toDomain(persistanceFeeder: IPersistanceFeeder): IDomainFeeder {
@@ -39,6 +64,27 @@ export const FeederMapper = {
         reference: persistanceFeeder.address.reference,
       },
       foods: persistanceFeeder.foods,
+      maintenanceStatus: {
+        supply: {
+          updatedAt: persistanceFeeder.maintenance_status.supply.updated_at,
+          updatedBy: {
+            userId:
+              persistanceFeeder.maintenance_status.supply.updated_by.user_id,
+            userName:
+              persistanceFeeder.maintenance_status.supply.updated_by.user_name,
+          },
+        },
+        cleaning: {
+          updatedAt: persistanceFeeder.maintenance_status.cleaning.updated_at,
+          updatedBy: {
+            userId:
+              persistanceFeeder.maintenance_status.cleaning.updated_by.user_id,
+            userName:
+              persistanceFeeder.maintenance_status.cleaning.updated_by
+                .user_name,
+          },
+        },
+      },
     };
   },
 };
