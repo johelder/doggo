@@ -13,6 +13,39 @@ export const Container = styled.View`
   padding: 16px;
 `;
 
+export const HighlightedWarningContainer = styled.View<{
+  isReadOnly?: boolean;
+}>`
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+
+  align-self: center;
+  margin-left: ${({ isReadOnly }) => (isReadOnly ? 0 : 'auto')};
+`;
+
+export const HighlightedWarning = styled.Text<{ isNeedMaintenance: boolean }>`
+  font-family: ${({ theme }) => theme.fonts.primary.semiBold};
+  font-size: 14px;
+
+  color: ${({ theme, isNeedMaintenance }) =>
+    isNeedMaintenance
+      ? theme.colors.attention[500]
+      : theme.colors.success[500]};
+`;
+
+export const HighlightedLabel = styled.Text<{ isNeedMaintenance: boolean }>`
+  font-family: ${({ theme }) => theme.fonts.primary.medium};
+  font-size: 12px;
+
+  color: ${({ theme, isNeedMaintenance }) =>
+    isNeedMaintenance
+      ? theme.colors.attention[500]
+      : theme.colors.success[500]};
+
+  flex-shrink: 1;
+`;
+
 export const Session = styled.View`
   flex: 1;
   flex-direction: row;
@@ -23,7 +56,7 @@ export const Session = styled.View`
 export const Title = styled.Text`
   flex-shrink: 1;
 
-  font-family: ${({ theme }) => theme.fonts.primary.semiBold};
+  font-family: ${({ theme }) => theme.fonts.primary.medium};
   font-size: 12px;
   line-height: 18px;
 
@@ -45,7 +78,7 @@ export const Actions = styled.View`
 export const Header = styled.View`
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 `;
 
 export const CloseButton = styled.TouchableOpacity`
@@ -57,4 +90,14 @@ export const CloseButton = styled.TouchableOpacity`
 
   align-items: center;
   justify-content: center;
+
+  margin-left: auto;
+`;
+
+export const Separator = styled.View`
+  width: 100%;
+  height: 1px;
+
+  background-color: ${({ theme }) => theme.colors.gray[300]};
+  margin: 8px 0;
 `;
