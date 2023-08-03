@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import firestore from '@react-native-firebase/firestore';
 
 import { FeedersRepository } from '@src/services/database/repositories/FeedersRepository';
 import { useAuth, useMap } from '@src/hooks';
@@ -50,7 +51,7 @@ export function useCreateFeeder() {
         return;
       }
 
-      const feeder = {
+      const feeder: IDomainFeeder = {
         user: {
           id: user.id,
           name: user.name,
@@ -66,9 +67,25 @@ export function useCreateFeeder() {
           reference: addressReference,
         },
         foods: feederFoods,
+        maintenanceStatus: {
+          supply: {
+            updatedAt: firestore.FieldValue.serverTimestamp(),
+            updatedBy: {
+              userId: user.id,
+              userName: user.name,
+            },
+          },
+          cleaning: {
+            updatedAt: firestore.FieldValue.serverTimestamp(),
+            updatedBy: {
+              userId: user.id,
+              userName: user.name,
+            },
+          },
+        },
       };
 
-      await FeedersRepository.create(feeder as IDomainFeeder);
+      await FeedersRepository.create(feeder);
 
       showToast({
         type: 'success',

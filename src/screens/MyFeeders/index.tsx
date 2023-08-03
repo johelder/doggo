@@ -132,7 +132,7 @@ export function MyFeeders({ navigation }: TMyFeedersProps): JSX.Element {
       <S.Content>
         <S.Feeders
           data={feeders}
-          keyExtractor={feeder => feeder.id}
+          keyExtractor={feeder => String(feeder.id)}
           renderItem={renderFeeder}
           ListEmptyComponent={renderListEmptyComponent}
         />

@@ -1,8 +1,8 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 import { FeedersRepository } from '@src/services/database/repositories/FeedersRepository';
-import { useAuth, useMap } from '@src/hooks';
+import { useMap } from '@src/hooks';
 import { errorHandler, showToast } from '@src/utils';
 
 import type {
@@ -11,9 +11,12 @@ import type {
 } from '@src/routes/authenticated/types';
 import type { IFeederFormRef } from '@src/components/FeederForm/types';
 import type { IFeederAddress } from './types';
+import type { IDomainFeeder } from '@src/types/domain';
 
 export function useEditFeeder() {
-  const { user } = useAuth();
+  const [currentFeederToEdit, setCurrentFeederToEdit] = useState<IDomainFeeder>(
+    {} as IDomainFeeder,
+  );
   const { currentUserLocation } = useMap();
   const feederFormRef = useRef<IFeederFormRef>(null);
 
@@ -46,16 +49,12 @@ export function useEditFeeder() {
         return;
       }
 
-      if (!user?.name || !currentUserLocation) {
+      if (!currentUserLocation) {
         return;
       }
 
       const payload = {
-        id: feederId,
-        user: {
-          id: user.id,
-          name: user.name,
-        },
+        ...currentFeederToEdit,
         coordinates: {
           latitude: currentUserLocation?.coords.latitude,
           longitude: currentUserLocation?.coords.longitude,
@@ -106,6 +105,7 @@ export function useEditFeeder() {
         return;
       }
 
+      setCurrentFeederToEdit(feeder);
       feederFormRef.current?.populateFields(feeder);
     } catch (error) {
       errorHandler.reportError(error, fetchFeederInformation.name);
