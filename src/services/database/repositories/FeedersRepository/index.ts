@@ -72,24 +72,28 @@ export const FeedersRepository = {
     user: IDomainUser,
   ) {
     if (maintenanceStatus.length > 1) {
-      let maintenance_status = {};
+      firestore()
+        .collection(DATABASE_FEEDERS_COLLECTION)
+        .doc(feederId)
+        .update({
+          maintenance_status: {
+            supply: {
+              updated_at: firestore.FieldValue.serverTimestamp(),
+              updated_by: {
+                user_id: user.id,
+                user_name: user.name,
+              },
+            },
 
-      maintenanceStatus.forEach(status => {
-        maintenance_status = {
-          ...maintenance_status,
-          [status]: {
-            updated_at: firestore.FieldValue.serverTimestamp(),
-            updated_by: {
-              user_id: user.id,
-              user_name: user.name,
+            cleaning: {
+              updated_at: firestore.FieldValue.serverTimestamp(),
+              updated_by: {
+                user_id: user.id,
+                user_name: user.name,
+              },
             },
           },
-        };
-      });
-
-      firestore().collection(DATABASE_FEEDERS_COLLECTION).doc(feederId).update({
-        maintenance_status,
-      });
+        });
 
       return;
     }
