@@ -1,10 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { createContext, useCallback, useContext } from 'react';
-import type { IFavoriteContextProps, IFavoriteProviderProps } from './types';
+import React, {
+  useEffect,
+  useState,
+  createContext,
+  useCallback,
+  useContext,
+} from 'react';
+
 import { useAuth } from '../useAuth';
-import { IDomainFeeder } from '@src/types/domain';
 import { UsersRepository } from '@src/services/database/repositories/UsersRepository';
 import { errorHandler, showToast } from '@src/utils';
+
+import type { IFeeder } from '@src/types';
+import type { IFavoriteContextProps, IFavoriteProviderProps } from './types';
 
 const FavoriteContext = createContext<IFavoriteContextProps>(
   {} as IFavoriteContextProps,
@@ -13,7 +20,7 @@ const FavoriteContext = createContext<IFavoriteContextProps>(
 function FavoriteProvider({ children }: IFavoriteProviderProps) {
   const { user } = useAuth();
   const [favoritesList, setFavoritesList] = useState<
-    IDomainFeeder[] | undefined
+    (string | undefined)[] | undefined
   >(user?.favorites);
 
   const isFavorite = useCallback(
@@ -22,13 +29,13 @@ function FavoriteProvider({ children }: IFavoriteProviderProps) {
         return false;
       }
 
-      return !!favoritesList?.find(feeder => feeder.id === feederId);
+      return !!favoritesList?.find(feeder => feeder === feederId);
     },
     [favoritesList],
   );
 
   const addFavorite = useCallback(
-    async (feeder: IDomainFeeder) => {
+    async (feeder: IFeeder) => {
       if (!user?.id || !feeder.id) {
         return;
       }
@@ -37,15 +44,17 @@ function FavoriteProvider({ children }: IFavoriteProviderProps) {
 
       setFavoritesList(prevState => {
         if (prevState) {
-          return [...prevState, feeder];
+          return [...prevState, feeder.id];
         }
+
+        return [];
       });
     },
     [user?.id],
   );
 
   const removeFavorite = useCallback(
-    async (feeder: IDomainFeeder) => {
+    async (feeder: IFeeder) => {
       if (!user?.id || !feeder.id) {
         return;
       }
@@ -53,14 +62,14 @@ function FavoriteProvider({ children }: IFavoriteProviderProps) {
       await UsersRepository.removeFavoriteFeeder(user.id, feeder.id);
 
       setFavoritesList(prevState =>
-        prevState?.filter(storedFeeder => storedFeeder.id !== feeder.id),
+        prevState?.filter(storedFeeder => storedFeeder !== feeder.id),
       );
     },
     [user?.id],
   );
 
   const handleToggleFavoriteFeeder = useCallback(
-    async (feeder: IDomainFeeder | null) => {
+    async (feeder: IFeeder | null) => {
       try {
         if (!feeder) {
           return;

@@ -15,7 +15,7 @@ import { Button, FeederAddress, Loader, PageAlert } from '@src/components';
 import { FeederDetailsModal } from './components/FeederDetailsModal';
 import { useMyFeeders } from './useMyFeeders';
 
-import type { IDomainFeeder } from '@src/types/domain';
+import type { IFeeder } from '@src/types';
 import type { TMyFeedersProps } from './types';
 
 import * as S from './styles';
@@ -48,7 +48,7 @@ export function MyFeeders({ navigation }: TMyFeedersProps): JSX.Element {
   }, [navigation, theme.colors.primary]);
 
   const renderFeeder = useCallback(
-    ({ item: feeder }: ListRenderItemInfo<IDomainFeeder>) => {
+    ({ item: feeder }: ListRenderItemInfo<IFeeder>) => {
       return (
         <FeederAddress
           feeder={feeder}

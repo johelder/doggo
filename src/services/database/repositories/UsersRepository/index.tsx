@@ -4,26 +4,17 @@ import {
   DATABASE_FEEDERS_COLLECTION,
   DATABASE_USERS_COLLECTION,
 } from '../constants';
-import { UserMapper } from '@src/services/mappers/UserMapper';
-import { FeederMapper } from '@src/services/mappers/FeederMapper';
 
-import type { IDomainUser } from '@src/types/domain';
-import type {
-  IPersistanceFeeder,
-  IPersistanceUser,
-} from '@src/types/persistance';
+import type { IFeeder, IUser } from '@src/types';
 
 export const UsersRepository = {
-  async create(user: IDomainUser) {
-    firestore()
-      .collection(DATABASE_USERS_COLLECTION)
-      .doc(user.id)
-      .set(UserMapper.toPersistance(user));
+  async create(user: IUser) {
+    firestore().collection(DATABASE_USERS_COLLECTION).doc(user.id).set(user);
   },
 
   async findById(id: string) {
     const user = await firestore()
-      .collection<IPersistanceUser>(DATABASE_USERS_COLLECTION)
+      .collection<IUser>(DATABASE_USERS_COLLECTION)
       .doc(id)
       .get();
 
@@ -33,7 +24,7 @@ export const UsersRepository = {
       return null;
     }
 
-    return UserMapper.toDomain({ ...data, id: user.id });
+    return { ...data, id: user.id };
   },
 
   async addNewFavoriteFeeder(userId: string, feederId: string) {
@@ -62,7 +53,7 @@ export const UsersRepository = {
 
   async findAllFavoritesFeederByUserId(id: string) {
     const user = await firestore()
-      .collection<IPersistanceUser>(DATABASE_USERS_COLLECTION)
+      .collection<IUser>(DATABASE_USERS_COLLECTION)
       .doc(id)
       .get();
 
@@ -73,15 +64,13 @@ export const UsersRepository = {
     }
 
     const snapshot = await firestore()
-      .collection<IPersistanceFeeder>(DATABASE_FEEDERS_COLLECTION)
+      .collection<IFeeder>(DATABASE_FEEDERS_COLLECTION)
       .where(firestore.FieldPath.documentId(), 'in', userFavorites)
       .get();
 
-    return snapshot.docs.map(documentSnapshot =>
-      FeederMapper.toDomain({
-        ...documentSnapshot.data(),
-        id: documentSnapshot.id,
-      }),
-    );
+    return snapshot.docs.map(documentSnapshot => ({
+      ...documentSnapshot.data(),
+      id: documentSnapshot.id,
+    }));
   },
 };

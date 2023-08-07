@@ -1,4 +1,4 @@
-import { TFood, TFoods } from '@src/types/common';
+import { TFood, TFoods } from '@src/types';
 
 export function getFoodsLabel(foods?: TFoods): string {
   if (!foods) {

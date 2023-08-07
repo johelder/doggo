@@ -4,13 +4,13 @@ import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { useAuth } from '@src/hooks';
 import { UsersRepository } from '@src/services/database/repositories/UsersRepository';
 
-import type { TPageStatus } from '@src/types/common';
-import type { IDomainFeeder } from '@src/types/domain';
 import { errorHandler } from '@src/utils';
-import { TNavigationProps } from '@src/routes/authenticated/types';
+
+import type { TNavigationProps } from '@src/routes/authenticated/types';
+import type { TPageStatus, IFeeder } from '@src/types';
 
 export function useFavorites() {
-  const [feeders, setFeeders] = useState<IDomainFeeder[]>([]);
+  const [feeders, setFeeders] = useState<IFeeder[]>([]);
   const [pageStatus, setPageStatus] = useState<TPageStatus>('idle');
   const { user } = useAuth();
   const isScreenFocused = useIsFocused();

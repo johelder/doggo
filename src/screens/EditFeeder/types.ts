@@ -1,5 +1,5 @@
 import type { TDefaultScreensProps } from '@src/routes/authenticated/types';
-import type { TFoods } from '@src/types/common';
+import type { TFoods } from '@src/types';
 
 export type TEditFeederProps = TDefaultScreensProps<'EditFeeder'>;
 

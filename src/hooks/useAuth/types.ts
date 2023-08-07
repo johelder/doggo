@@ -1,8 +1,8 @@
-import { IDomainUser } from '@src/types/domain';
 import type { ReactNode } from 'react';
+import type { IUser } from '@src/types';
 
 export interface IAuthContext {
-  user: IDomainUser | null;
+  user: IUser | null;
   handleSignInWithGoogle: () => Promise<void>;
   handleSignOut: () => Promise<void>;
   isUserLogged: boolean;

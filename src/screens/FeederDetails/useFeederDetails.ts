@@ -19,7 +19,7 @@ import type {
 import { FeedersRepository } from '@src/services/database/repositories/FeedersRepository';
 
 import type { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
-import type { TMaintenanceStatus } from '@src/types/common';
+import type { TMaintenanceStatus } from '@src/types';
 import type { IInitialState, TActions, TMaintenanceProps } from './types';
 
 const initialState: IInitialState = {

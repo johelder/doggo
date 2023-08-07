@@ -1,8 +1,8 @@
-import type { IDomainFeeder } from '@src/types/domain';
-import { ReactElement } from 'react';
+import type { ReactElement } from 'react';
+import type { IFeeder } from '@src/types';
 
 export interface IFeedCardProps {
-  feeder: IDomainFeeder | null;
+  feeder: IFeeder | null;
   sideButton: ReactElement;
   onClose?: () => void;
 }

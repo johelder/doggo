@@ -1,4 +1,4 @@
-export type TDomainAddress = {
+export type TAddress = {
   street: string;
   houseNumber: string;
   neighborhood: string;

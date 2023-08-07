@@ -10,7 +10,7 @@ import type {
   TRouteProps,
 } from '@src/routes/authenticated/types';
 import { FeedersRepository } from '@src/services/database/repositories/FeedersRepository';
-import { TCoordinates } from '@src/types/common';
+import { TCoordinates } from '@src/types';
 
 export function useSelectLocation() {
   const [isLoadingAddress, setIsLoadingAddress] = useState(false);

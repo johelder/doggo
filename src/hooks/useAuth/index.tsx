@@ -15,13 +15,13 @@ import { UsersRepository } from '@src/services/database/repositories/UsersReposi
 
 import { WEB_CLIENT_ID } from '@env';
 
+import type { IUser } from '@src/types';
 import type { IAuthContext, IAuthContextProps } from './types';
-import type { IDomainUser } from '@src/types/domain';
 
 const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
 function AuthContextProvider({ children }: IAuthContextProps): JSX.Element {
-  const [user, setUser] = useState<IDomainUser | null>(null);
+  const [user, setUser] = useState<IUser | null>(null);
   const [isLoadingAuth, setIsLoadingAuth] = useState(false);
 
   async function onAuthStateChanged(userState: FirebaseAuthTypes.User | null) {

@@ -9,13 +9,13 @@ import type {
   TNavigationProps,
   TRouteProps,
 } from '@src/routes/authenticated/types';
+import type { IFeeder } from '@src/types';
 import type { IFeederFormRef } from '@src/components/FeederForm/types';
 import type { IFeederAddress } from './types';
-import type { IDomainFeeder } from '@src/types/domain';
 
 export function useEditFeeder() {
-  const [currentFeederToEdit, setCurrentFeederToEdit] = useState<IDomainFeeder>(
-    {} as IDomainFeeder,
+  const [currentFeederToEdit, setCurrentFeederToEdit] = useState<IFeeder>(
+    {} as IFeeder,
   );
   const { currentUserLocation } = useMap();
   const feederFormRef = useRef<IFeederFormRef>(null);

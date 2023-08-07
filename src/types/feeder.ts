@@ -1,15 +1,14 @@
 import type { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
-import type { TCoordinates, TFoods, TMaintenanceStatus } from '../common';
-import type { TDomainAddress } from '.';
+import type { TCoordinates, TFoods, TMaintenanceStatus, TAddress } from '.';
 
-export interface IDomainFeeder {
+export interface IFeeder {
   id?: string;
   user: {
     id: string;
     name: string;
   };
   coordinates: TCoordinates;
-  address: TDomainAddress;
+  address: TAddress;
   foods: TFoods;
   maintenanceStatus: {
     [key in TMaintenanceStatus]: {

@@ -6,14 +6,11 @@ import {
 } from '@src/utils';
 import { useMap } from '@src/hooks';
 
-import type { IDomainFeeder } from '@src/types/domain';
 import type { TNavigationProps } from '@src/routes/authenticated/types';
 import type { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
+import { IFeeder } from '@src/types';
 
-export function useFeederCard(
-  feeder: IDomainFeeder | null,
-  onClose?: () => void,
-) {
+export function useFeederCard(feeder: IFeeder | null, onClose?: () => void) {
   const { currentUserLocation } = useMap();
 
   const navigation = useNavigation<TNavigationProps<'Map'>>();

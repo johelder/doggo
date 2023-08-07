@@ -6,16 +6,15 @@ import { useAuth } from '@src/hooks';
 import { errorHandler, showToast } from '@src/utils';
 import { FeedersRepository } from '@src/services/database/repositories/FeedersRepository';
 
-import type { IDomainFeeder } from '@src/types/domain';
-import type { TPageStatus } from '@src/types/common';
+import type { TPageStatus, IFeeder } from '@src/types';
 import type { TNavigationProps } from '@src/routes/authenticated/types';
 
 export function useMyFeeders() {
-  const [feeders, setFeeders] = useState<IDomainFeeder[]>([]);
+  const [feeders, setFeeders] = useState<IFeeder[]>([]);
   const [pageStatus, setPageStatus] = useState<TPageStatus>('idle');
   const [isLoadingDelete, setIsLoadingDelete] = useState(false);
   const [currentFeederToEdit, setCurrentFeederToEdit] =
-    useState<IDomainFeeder | null>(null);
+    useState<IFeeder | null>(null);
   const detailsModalRef = useRef<Modalize>(null);
   const { user } = useAuth();
 
@@ -31,7 +30,7 @@ export function useMyFeeders() {
     getFeeders();
   }
 
-  function handleOpenDetailsModal(feeder: IDomainFeeder) {
+  function handleOpenDetailsModal(feeder: IFeeder) {
     setCurrentFeederToEdit(feeder);
     detailsModalRef.current?.open();
   }

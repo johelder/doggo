@@ -1,24 +1,24 @@
 import { useEffect, useState } from 'react';
-import { IDomainFeeder } from '@src/types/domain';
 import { FeedersRepository } from '@src/services/database/repositories/FeedersRepository';
+import { IFeeder } from '@src/types';
 
 export function useHome() {
   const [isLoadingMap, setIsLoadingMap] = useState(true);
-  const [feeders, setFeeders] = useState<IDomainFeeder[]>([]);
+  const [feeders, setFeeders] = useState<IFeeder[]>([]);
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
   const [currentFeederOpened, setCurrentFeederOpened] =
-    useState<IDomainFeeder | null>(null);
+    useState<IFeeder | null>(null);
 
   function onMapLoaded() {
     setIsLoadingMap(false);
   }
 
-  function handleOpenTooltip(feeder: IDomainFeeder) {
+  function handleOpenTooltip(feeder: IFeeder) {
     setIsTooltipVisible(true);
     setCurrentFeederOpened(feeder);
   }
 
-  function onFeedersChange(feedersToUpdate: IDomainFeeder[]) {
+  function onFeedersChange(feedersToUpdate: IFeeder[]) {
     setFeeders(feedersToUpdate);
   }
 

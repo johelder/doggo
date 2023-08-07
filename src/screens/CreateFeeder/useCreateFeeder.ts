@@ -6,11 +6,11 @@ import { FeedersRepository } from '@src/services/database/repositories/FeedersRe
 import { useAuth, useMap } from '@src/hooks';
 import { errorHandler, showToast } from '@src/utils';
 
-import { IDomainFeeder } from '@src/types/domain';
 import type {
   TNavigationProps,
   TRouteProps,
 } from '@src/routes/authenticated/types';
+import type { IFeeder } from '@src/types';
 import type { IFeederFormRef } from '@src/components/FeederForm/types';
 import type { IFeederAddress } from './types';
 
@@ -51,7 +51,7 @@ export function useCreateFeeder() {
         return;
       }
 
-      const feeder: IDomainFeeder = {
+      const feeder: IFeeder = {
         user: {
           id: user.id,
           name: user.name,

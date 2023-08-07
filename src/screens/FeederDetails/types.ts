@@ -1,7 +1,6 @@
-import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
-import { TDefaultScreensProps } from '@src/routes/authenticated/types';
-import { TMaintenanceStatus, TPageStatus } from '@src/types/common';
-import { IDomainFeeder } from '@src/types/domain';
+import type { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
+import type { TDefaultScreensProps } from '@src/routes/authenticated/types';
+import type { TMaintenanceStatus, TPageStatus, IFeeder } from '@src/types';
 
 export interface IFeederDetailsProps
   extends TDefaultScreensProps<'FeederDetails'> {}
@@ -22,7 +21,7 @@ export type TUpdateProps = {
 
 export interface IInitialState {
   maintenanceStatus: TMaintenanceStatus[];
-  feeder: IDomainFeeder | null;
+  feeder: IFeeder | null;
   isNeedMaintenance: boolean;
   lastUpdated: TUpdateProps | null;
   pageStatus: TPageStatus;
@@ -41,7 +40,7 @@ export type TActions =
 type TUpdateInitialState = {
   type: 'update_feeder_state';
   payload: {
-    feeder: IDomainFeeder | null;
+    feeder: IFeeder | null;
   };
 };
 

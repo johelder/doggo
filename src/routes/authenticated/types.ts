@@ -5,9 +5,8 @@ import type {
 } from '@react-navigation/native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-import type { TDomainAddress } from '@src/types/domain';
 import type { TRootTabParamList } from '@src/routes/authenticated/BottomTabs/types';
-import type { TCoordinates } from '@src/types/common';
+import type { TCoordinates, TAddress } from '@src/types';
 
 type TAppScreens = TRootTabParamList & TRootStackParamList;
 
@@ -16,11 +15,11 @@ export type TRootStackParamList = {
   SelectLocation: { feederId?: string } | undefined;
   EditFeeder: {
     feederId: string;
-    address: TDomainAddress;
+    address: TAddress;
     coordinate: TCoordinates;
   };
   CreateFeeder: {
-    address: TDomainAddress;
+    address: TAddress;
     coordinate: TCoordinates;
   };
   MyFeeders: undefined;
