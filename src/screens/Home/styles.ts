@@ -25,7 +25,7 @@ export const CustomCalloutContainer = styled.View`
 
   position: absolute;
   background-color: ${({ theme }) => theme.colors.utils.white};
-  margin-bottom: 10px;
+  border-radius: 4px;
 `;
 
 export const LoaderContainer = styled.View`
@@ -46,3 +46,16 @@ export const Feeders = styled(
     gap: 16,
   },
 })``;
+
+export const CloseButton = styled.TouchableOpacity`
+  width: 30px;
+  height: 30px;
+  background-color: ${({ theme }) => theme.colors.gray[100]};
+
+  border-radius: 15px;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-left: auto;
+`;

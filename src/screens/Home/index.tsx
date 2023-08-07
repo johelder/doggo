@@ -1,6 +1,9 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
 import { Marker } from 'react-native-maps';
+import { useTheme } from 'styled-components';
+
+import X from 'phosphor-react-native/src/icons/X';
 
 import { useHome } from './useHome';
 import { Loader, Map, FeederCard } from '@src/components';
@@ -19,6 +22,7 @@ export function Home(): JSX.Element {
     currentFeederOpened,
     handleOpenTooltip,
   } = useHome();
+  const theme = useTheme();
 
   return (
     <>
@@ -50,11 +54,17 @@ export function Home(): JSX.Element {
 
         {isTooltipVisible && (
           <>
-            <S.Overlay />
+            <S.Overlay pointerEvents="none" />
+
             <S.CustomCalloutContainer>
               <FeederCard
                 feeder={currentFeederOpened}
                 onClose={() => setIsTooltipVisible(false)}
+                sideButton={
+                  <S.CloseButton onPress={() => setIsTooltipVisible(false)}>
+                    <X size={18} color={theme.colors.gray[700]} weight="bold" />
+                  </S.CloseButton>
+                }
               />
             </S.CustomCalloutContainer>
           </>
