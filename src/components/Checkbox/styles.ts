@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components/native';
 
-export const Container = styled.View<{ isSelected: boolean }>`
-  width: 30px;
-  height: 30px;
+export const Container = styled.View<{ isSelected: boolean; color?: string }>`
+  width: 20px;
+  height: 20px;
 
   border-radius: 4px;
   border-width: 2px;
@@ -10,10 +10,10 @@ export const Container = styled.View<{ isSelected: boolean }>`
   border-color: ${({ theme }) => theme.colors.gray[500]};
   background-color: ${({ theme }) => theme.colors.utils.white};
 
-  ${({ isSelected, theme }) =>
+  ${({ isSelected, color, theme }) =>
     isSelected &&
     css`
-      border-color: ${theme.colors.primary[500]};
-      background-color: ${theme.colors.primary[500]};
+      border-color: ${color ?? theme.colors.primary[500]};
+      background-color: ${color ?? theme.colors.primary[500]};
     `}
 `;
