@@ -6,7 +6,7 @@ import { CreateFeeder } from './CreateFeeder';
 import { EditFeeder } from './EditFeeder';
 import { MyFeeders } from './MyFeeders';
 import { Favorites } from './Favorites';
-import { Maintenance } from './Maintenance';
+import { FeederDetails } from './FeederDetails';
 
 export {
   SignIn,
@@ -17,5 +17,5 @@ export {
   EditFeeder,
   MyFeeders,
   Favorites,
-  Maintenance,
+  FeederDetails,
 };

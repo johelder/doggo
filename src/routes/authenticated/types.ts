@@ -25,7 +25,7 @@ export type TRootStackParamList = {
   };
   MyFeeders: undefined;
   Favorites: undefined;
-  Maintenance: {
+  FeederDetails: {
     feederId: string;
   };
 };

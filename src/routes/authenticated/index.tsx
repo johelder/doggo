@@ -9,7 +9,7 @@ import {
   MyFeeders,
   EditFeeder,
   Favorites,
-  Maintenance,
+  FeederDetails,
 } from '@src/screens';
 import { HomeTabs } from './BottomTabs';
 
@@ -73,13 +73,7 @@ export function AuthenticatedRoutes() {
               headerTitle: 'FAVORITOS',
             }}
           />
-          <Stack.Screen
-            name="Maintenance"
-            component={Maintenance}
-            options={{
-              headerTitle: 'MANUTENÇÃO',
-            }}
-          />
+          <Stack.Screen name="FeederDetails" component={FeederDetails} />
         </Stack.Group>
       </Stack.Navigator>
     </SafeAreaView>
