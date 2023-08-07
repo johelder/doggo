@@ -5,6 +5,7 @@ import { calculateDistanceBetweenTwoPoints } from './calculateDistanceBetweenTwo
 import { handleOpenSupport } from './handleOpenSupport';
 import { formatRelativeDate } from './formatRelativeDate';
 import { getDaysDifference } from './getDaysDifference';
+import { getFoodsLabel } from './getFoodsLabel';
 
 export {
   getDayGreetings,
@@ -14,4 +15,5 @@ export {
   handleOpenSupport,
   formatRelativeDate,
   getDaysDifference,
+  getFoodsLabel,
 };
