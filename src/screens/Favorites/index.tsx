@@ -6,8 +6,10 @@ import Warning from 'phosphor-react-native/src/icons/Warning';
 import ArrowClockwise from 'phosphor-react-native/src/icons/ArrowClockwise';
 import HeartBreak from 'phosphor-react-native/src/icons/HeartBreak';
 import MapTrifold from 'phosphor-react-native/src/icons/MapTrifold';
+import Heart from 'phosphor-react-native/src/icons/Heart';
 
 import { handleOpenSupport } from '@src/utils';
+import { useFavorite } from '@src/hooks';
 import { Button, FeederCard, Loader, PageAlert } from '@src/components';
 import { useFavorites } from './useFavorites';
 
@@ -18,13 +20,39 @@ import * as S from './styles';
 export function Favorites(): JSX.Element {
   const { feeders, pageStatus, handleTryAgain, handleRedirectToMap } =
     useFavorites();
+  const { isFavorite, handleToggleFavoriteFeeder } = useFavorite();
   const theme = useTheme();
 
   const renderFeeder = useCallback(
     ({ item: feeder }: ListRenderItemInfo<IDomainFeeder>) => {
-      return <FeederCard feeder={feeder} isReadOnly />;
+      return (
+        <S.FeederCardContainer>
+          <FeederCard
+            feeder={feeder}
+            sideButton={
+              <S.FavoriteButton
+                onPress={() => handleToggleFavoriteFeeder(feeder)}>
+                <Heart
+                  size={28}
+                  weight={isFavorite(feeder.id) ? 'fill' : 'regular'}
+                  color={
+                    isFavorite(feeder.id)
+                      ? theme.colors.attention[500]
+                      : theme.colors.gray[700]
+                  }
+                />
+              </S.FavoriteButton>
+            }
+          />
+        </S.FeederCardContainer>
+      );
     },
-    [],
+    [
+      handleToggleFavoriteFeeder,
+      isFavorite,
+      theme.colors.attention,
+      theme.colors.gray,
+    ],
   );
 
   const renderListEmptyComponent = useCallback(() => {
