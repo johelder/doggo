@@ -5,7 +5,7 @@ export const Container = styled.SafeAreaView`
   background-color: ${({ theme }) => theme.colors.utils.white};
 `;
 
-export const Content = styled.View`
+export const Content = styled.ScrollView`
   flex: 1;
 `;
 
