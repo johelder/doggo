@@ -29,11 +29,11 @@ function FavoriteProvider({ children }: IFavoriteProviderProps) {
 
   const addFavorite = useCallback(
     async (feeder: IDomainFeeder) => {
-      if (!user?.id) {
+      if (!user?.id || !feeder.id) {
         return;
       }
 
-      await UsersRepository.addNewFavoriteFeeder(user.id, feeder);
+      await UsersRepository.addNewFavoriteFeeder(user.id, feeder.id);
 
       setFavoritesList(prevState => {
         if (prevState) {
@@ -46,11 +46,11 @@ function FavoriteProvider({ children }: IFavoriteProviderProps) {
 
   const removeFavorite = useCallback(
     async (feeder: IDomainFeeder) => {
-      if (!user?.id) {
+      if (!user?.id || !feeder.id) {
         return;
       }
 
-      await UsersRepository.removeFavoriteFeeder(user.id, feeder);
+      await UsersRepository.removeFavoriteFeeder(user.id, feeder.id);
 
       setFavoritesList(prevState =>
         prevState?.filter(storedFeeder => storedFeeder.id !== feeder.id),
@@ -75,7 +75,6 @@ function FavoriteProvider({ children }: IFavoriteProviderProps) {
         await addFavorite(feeder);
       } catch (error) {
         errorHandler.reportError(error, handleToggleFavoriteFeeder.name);
-
         showToast({
           type: 'error',
           message: 'Ocorreu um erro ao favoritar, tente novamente mais tarde.',

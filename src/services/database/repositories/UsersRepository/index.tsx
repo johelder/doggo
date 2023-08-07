@@ -1,10 +1,17 @@
 import firestore from '@react-native-firebase/firestore';
 
-import { DATABASE_USERS_COLLECTION } from '../constants';
+import {
+  DATABASE_FEEDERS_COLLECTION,
+  DATABASE_USERS_COLLECTION,
+} from '../constants';
 import { UserMapper } from '@src/services/mappers/UserMapper';
-import type { IDomainFeeder, IDomainUser } from '@src/types/domain';
-import type { IPersistanceUser } from '@src/types/persistance';
 import { FeederMapper } from '@src/services/mappers/FeederMapper';
+
+import type { IDomainUser } from '@src/types/domain';
+import type {
+  IPersistanceFeeder,
+  IPersistanceUser,
+} from '@src/types/persistance';
 
 export const UsersRepository = {
   async create(user: IDomainUser) {
@@ -29,25 +36,21 @@ export const UsersRepository = {
     return UserMapper.toDomain({ ...data, id: user.id });
   },
 
-  async addNewFavoriteFeeder(userId: string, feeder: IDomainFeeder) {
+  async addNewFavoriteFeeder(userId: string, feederId: string) {
     firestore()
       .collection(DATABASE_USERS_COLLECTION)
       .doc(userId)
       .update({
-        favorites: firestore.FieldValue.arrayUnion(
-          FeederMapper.toPersistance(feeder),
-        ),
+        favorites: firestore.FieldValue.arrayUnion(feederId),
       });
   },
 
-  async removeFavoriteFeeder(userId: string, feeder: IDomainFeeder) {
+  async removeFavoriteFeeder(userId: string, feederId: string) {
     firestore()
       .collection(DATABASE_USERS_COLLECTION)
       .doc(userId)
       .update({
-        favorites: firestore.FieldValue.arrayRemove(
-          FeederMapper.toPersistance(feeder),
-        ),
+        favorites: firestore.FieldValue.arrayRemove(feederId),
       });
   },
 
@@ -63,12 +66,22 @@ export const UsersRepository = {
       .doc(id)
       .get();
 
-    const userData = user.data();
+    const userFavorites = user.data()?.favorites;
 
-    if (!userData) {
+    if (!userFavorites?.length) {
       return [];
     }
 
-    return UserMapper.toDomain(userData).favorites;
+    const snapshot = await firestore()
+      .collection<IPersistanceFeeder>(DATABASE_FEEDERS_COLLECTION)
+      .where(firestore.FieldPath.documentId(), 'in', userFavorites)
+      .get();
+
+    return snapshot.docs.map(documentSnapshot =>
+      FeederMapper.toDomain({
+        ...documentSnapshot.data(),
+        id: documentSnapshot.id,
+      }),
+    );
   },
 };
