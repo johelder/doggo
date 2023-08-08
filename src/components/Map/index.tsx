@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { useMap } from '@src/hooks';
 
@@ -36,7 +36,7 @@ export function Map({ isClustering = false, children, ...rest }: IMapProps) {
 
 const mapStyles = StyleSheet.create({
   container: {
-    minWidth: Dimensions.get('screen').width,
-    minHeight: Dimensions.get('screen').height,
+    minWidth: '100%',
+    minHeight: '100%',
   },
 });

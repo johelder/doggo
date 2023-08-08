@@ -26,7 +26,7 @@ export function FeederCard({ feeder, sideButton, onClose }: IFeedCardProps) {
   return (
     <S.Container>
       <S.Header>
-        <S.HighlightedWarningContainer>
+        <S.HighlightedWarningContainer hasActionButton={!!sideButton}>
           {isNeedMaintenance() ? (
             <Info color={theme.colors.attention[500]} />
           ) : (

@@ -10,6 +10,24 @@ export const Container = styled.SafeAreaView`
   background-color: ${({ theme }) => theme.colors.utils.white};
 `;
 
+export const MapContainer = styled.View``;
+
+export const NearFeedersContainer = styled.View<{ tabBarHeight: number }>`
+  position: absolute;
+  bottom: 0;
+
+  padding: 16px 0 ${({ tabBarHeight }) => tabBarHeight + 16}px;
+  gap: 16px;
+  background-color: ${({ theme }) => theme.colors.utils.white};
+`;
+
+export const NearFeederContainer = styled.View`
+  flex: 1;
+  border-radius: 4px;
+  border-width: 1px;
+  border-color: ${({ theme }) => theme.colors.gray[200]};
+`;
+
 export const Overlay = styled.View`
   position: absolute;
   top: 0;
@@ -17,7 +35,19 @@ export const Overlay = styled.View`
   right: 0;
   bottom: 0;
 
+  align-items: center;
+  justify-content: center;
+
   background-color: ${({ theme }) => theme.colors.utils.overlay};
+`;
+
+export const Title = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.primary.semiBold};
+  font-size: 14px;
+
+  color: ${({ theme }) => theme.colors.gray[700]};
+
+  padding: 0 16px;
 `;
 
 export const CustomCalloutContainer = styled.View`
@@ -35,13 +65,13 @@ export const LoaderContainer = styled.View`
   justify-content: center;
 `;
 
-export const Feeders = styled(
+export const NearFeeders = styled(
   FlatList as new (props: FlatListProps<IFeeder>) => FlatList<IFeeder>,
 ).attrs({
-  showsVerticalScrollIndicator: false,
+  horizontal: true,
   contentContainerStyle: {
-    flex: 1,
-    gap: 16,
+    gap: 10,
+    paddingRight: 16,
   },
 })``;
 

@@ -3,6 +3,6 @@ import type { IFeeder } from '@src/types';
 
 export interface IFeedCardProps {
   feeder: IFeeder | null;
-  sideButton: ReactElement;
+  sideButton?: ReactElement;
   onClose?: () => void;
 }

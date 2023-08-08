@@ -1,23 +1,21 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
-  width: 100%;
-
-  align-self: center;
   gap: 8px;
+  padding: 16px;
 
   border-radius: 4px;
-
-  padding: 16px;
 `;
 
-export const HighlightedWarningContainer = styled.View`
+export const HighlightedWarningContainer = styled.View<{
+  hasActionButton?: boolean;
+}>`
   flex-direction: row;
   align-items: center;
   gap: 8px;
 
   align-self: center;
-  margin-left: auto;
+  margin-left: ${({ hasActionButton }) => (hasActionButton ? 'auto' : 0)};
 `;
 
 export const HighlightedWarning = styled.Text<{ isNeedMaintenance: boolean }>`
@@ -31,7 +29,6 @@ export const HighlightedWarning = styled.Text<{ isNeedMaintenance: boolean }>`
 `;
 
 export const Session = styled.View`
-  flex: 1;
   flex-direction: row;
   align-items: center;
   gap: 8px;
