@@ -12,6 +12,8 @@ export const Header = styled.View`
 export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.semiBold};
   font-size: 14px;
+  line-height: 22px;
+  text-align: center;
 
   color: ${({ theme }) => theme.colors.gray[700]};
 `;

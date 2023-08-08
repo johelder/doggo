@@ -1,8 +1,8 @@
 import { useCallback, useMemo } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import {
-  calculateDistanceBetweenTwoPoints,
   getDaysDifference,
+  getFormattedDistanceBetweenTwoPoints,
 } from '@src/utils';
 import { useMap } from '@src/hooks';
 
@@ -37,7 +37,7 @@ export function useFeederCard(feeder: IFeeder | null, onClose?: () => void) {
       return 0;
     }
 
-    return calculateDistanceBetweenTwoPoints(
+    return getFormattedDistanceBetweenTwoPoints(
       currentUserLocation.coords,
       feeder.coordinates,
     );

@@ -4,10 +4,10 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 
 import { useAuth, useMap } from '@src/hooks';
 import {
-  calculateDistanceBetweenTwoPoints,
   errorHandler,
   formatRelativeDate,
   getDaysDifference,
+  getFormattedDistanceBetweenTwoPoints,
   showToast,
 } from '@src/utils';
 import { LAST_FIFTEEN_DAYS, YESTERDAY } from './constants';
@@ -167,7 +167,7 @@ export function useFeederDetails() {
       return 0;
     }
 
-    return calculateDistanceBetweenTwoPoints(
+    return getFormattedDistanceBetweenTwoPoints(
       currentUserLocation.coords,
       state.feeder.coordinates,
     );
