@@ -44,8 +44,8 @@ export function useFeederCard(feeder: IFeeder | null, onClose?: () => void) {
   }, [currentUserLocation?.coords, feeder?.coordinates]);
 
   const isNeedMaintenance = useCallback(() => {
-    const supplyUpdate = getDaysDifference(lastSupplyDate.toDate());
-    const cleaningDate = getDaysDifference(lastCleaningDate.toDate());
+    const supplyUpdate = getDaysDifference(lastSupplyDate?.toDate());
+    const cleaningDate = getDaysDifference(lastCleaningDate?.toDate());
 
     return supplyUpdate < -1 || cleaningDate < -15;
   }, [lastCleaningDate, lastSupplyDate]);

@@ -182,9 +182,9 @@ export function useFeederDetails() {
       const supplyNameUpdater = supply?.updatedBy.userName;
       const cleaningNameUpdater = cleaning?.updatedBy.userName;
 
-      const supplyUpdate = getDaysDifference(convertedLastSupplyDate.toDate());
+      const supplyUpdate = getDaysDifference(convertedLastSupplyDate?.toDate());
       const cleaningDate = getDaysDifference(
-        convertedLastCleaningDate.toDate(),
+        convertedLastCleaningDate?.toDate(),
       );
 
       dispatch({

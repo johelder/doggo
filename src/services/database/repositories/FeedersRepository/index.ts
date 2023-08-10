@@ -61,27 +61,22 @@ export const FeedersRepository = {
     feederId: string,
     user: IUser,
   ) {
+    const payload = {
+      updatedAt: firestore.FieldValue.serverTimestamp(),
+      updatedBy: {
+        userId: user.id,
+        userName: user.name,
+      },
+    };
+
     if (maintenanceStatus.length > 1) {
       firestore()
         .collection(DATABASE_FEEDERS_COLLECTION)
         .doc(feederId)
         .update({
-          maintenance_status: {
-            supply: {
-              updated_at: firestore.FieldValue.serverTimestamp(),
-              updated_by: {
-                user_id: user.id,
-                user_name: user.name,
-              },
-            },
-
-            cleaning: {
-              updated_at: firestore.FieldValue.serverTimestamp(),
-              updated_by: {
-                user_id: user.id,
-                user_name: user.name,
-              },
-            },
+          maintenanceStatus: {
+            supply: payload,
+            cleaning: payload,
           },
         });
 
@@ -89,34 +84,16 @@ export const FeedersRepository = {
     }
 
     if (maintenanceStatus.includes('supply')) {
-      firestore()
-        .collection(DATABASE_FEEDERS_COLLECTION)
-        .doc(feederId)
-        .update({
-          'maintenance_status.supply': {
-            updated_at: firestore.FieldValue.serverTimestamp(),
-            updated_by: {
-              user_id: user.id,
-              user_name: user.name,
-            },
-          },
-        });
+      firestore().collection(DATABASE_FEEDERS_COLLECTION).doc(feederId).update({
+        'maintenanceStatus.supply': payload,
+      });
 
       return;
     }
 
-    firestore()
-      .collection(DATABASE_FEEDERS_COLLECTION)
-      .doc(feederId)
-      .update({
-        'maintenance_status.cleaning': {
-          updated_at: firestore.FieldValue.serverTimestamp(),
-          updated_by: {
-            user_id: user.id,
-            user_name: user.name,
-          },
-        },
-      });
+    firestore().collection(DATABASE_FEEDERS_COLLECTION).doc(feederId).update({
+      'maintenanceStatus.cleaning': payload,
+    });
   },
 
   async delete(id: string) {
