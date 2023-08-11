@@ -3,7 +3,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import firestore from '@react-native-firebase/firestore';
 
 import { FeedersRepository } from '@src/services/database/repositories/FeedersRepository';
-import { useAuth, useMap } from '@src/hooks';
+import { useAuth } from '@src/hooks';
 import { errorHandler, showToast } from '@src/utils';
 
 import type {
@@ -16,7 +16,6 @@ import type { IFeederAddress } from './types';
 
 export function useCreateFeeder() {
   const { user } = useAuth();
-  const { currentUserLocation } = useMap();
   const feederFormRef = useRef<IFeederFormRef>(null);
 
   const route = useRoute<TRouteProps<'CreateFeeder'>>();
@@ -47,7 +46,7 @@ export function useCreateFeeder() {
         return;
       }
 
-      if (!user?.name || !currentUserLocation) {
+      if (!user?.name) {
         return;
       }
 
@@ -57,8 +56,8 @@ export function useCreateFeeder() {
           name: user.name,
         },
         coordinates: {
-          latitude: currentUserLocation?.coords.latitude,
-          longitude: currentUserLocation?.coords.longitude,
+          latitude: route.params.coordinate.latitude,
+          longitude: route.params.coordinate.longitude,
         },
         address: {
           ...route.params.address,
