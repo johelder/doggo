@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import { FlatList, FlatListProps } from 'react-native';
 import type { IFeeder } from '@src/types';
 
-export const Container = styled.SafeAreaView<{ hasNearFeeders: boolean }>`
+export const Container = styled.SafeAreaView`
   flex: 1;
   align-items: center;
   justify-content: center;

@@ -48,7 +48,7 @@ export function Home(): JSX.Element {
 
       {isLoadingMap && <Loader.Page />}
 
-      <S.Container hasNearFeeders={nearFeeders.length > 0}>
+      <S.Container>
         <S.Content>
           <S.MapContainer hasNearFeeders={nearFeeders.length > 0}>
             <Map
