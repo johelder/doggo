@@ -19,7 +19,12 @@ export function useSelectLocation() {
   const [initialRegion, setInitialRegion] = useState<TCoordinates | null>(null);
   const [temporaryUserLocation, setTemporaryUserLocation] =
     useState<TCoordinates | null>(null);
-  const { mapRef, currentUserLocation, setCurrentUserLocation } = useMap();
+  const {
+    mapRef,
+    currentUserLocation,
+    setCurrentUserLocation,
+    getUserCurrentPosition,
+  } = useMap();
 
   const navigation = useNavigation<TNavigationProps<'SelectLocation'>>();
   const route = useRoute<TRouteProps<'SelectLocation'>>();
@@ -163,8 +168,11 @@ export function useSelectLocation() {
     if (isEditingFeederAddress) {
       fetchFeederAddressToEdit(route.params.feederId);
     }
+
+    return () => getUserCurrentPosition();
   }, [
     fetchFeederAddressToEdit,
+    getUserCurrentPosition,
     isEditingFeederAddress,
     route.params?.feederId,
   ]);

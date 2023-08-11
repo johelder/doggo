@@ -1,9 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
+
 import { FeedersRepository } from '@src/services/database/repositories/FeedersRepository';
-import { IFeeder } from '@src/types';
 import { useMap } from '@src/hooks';
 import { calculateDistanceBetweenTwoPoints } from '@src/utils';
+
 import { THREE_KILOMETER_IN_METERS } from './constants';
+import type { IFeeder, TCoordinates } from '@src/types';
 
 export function useHome() {
   const [isLoadingMap, setIsLoadingMap] = useState(true);
@@ -12,7 +14,7 @@ export function useHome() {
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
   const [currentFeederOpened, setCurrentFeederOpened] =
     useState<IFeeder | null>(null);
-  const { currentUserLocation } = useMap();
+  const { currentUserLocation, mapRef } = useMap();
 
   function onMapLoaded() {
     setIsLoadingMap(false);
@@ -23,13 +25,39 @@ export function useHome() {
     setCurrentFeederOpened(feeder);
   }
 
-  const getNearestFeeders = useCallback(
-    (allFeeders: IFeeder[]) => {
+  const sortFeedersByNearDistance = useCallback(
+    (feedersToSort: IFeeder[]) => {
       if (!currentUserLocation) {
-        return;
+        return [];
       }
 
-      const nearestFeeders = allFeeders.filter(storedFeeder => {
+      return feedersToSort.sort((a, b) => {
+        const firstFeederDistance = calculateDistanceBetweenTwoPoints(
+          currentUserLocation.coords,
+          a.coordinates,
+        );
+        const secondFeederDistance = calculateDistanceBetweenTwoPoints(
+          currentUserLocation.coords,
+          b.coordinates,
+        );
+
+        if (firstFeederDistance < secondFeederDistance) {
+          return -1;
+        }
+
+        return 1;
+      });
+    },
+    [currentUserLocation],
+  );
+
+  const getFeedersInThreeKilometerRadio = useCallback(
+    (allFeeders: IFeeder[]) => {
+      if (!currentUserLocation) {
+        return [];
+      }
+
+      return allFeeders.filter(storedFeeder => {
         const distanceBetweenUserAndFeeder = calculateDistanceBetweenTwoPoints(
           currentUserLocation?.coords,
           storedFeeder.coordinates,
@@ -39,11 +67,33 @@ export function useHome() {
           return storedFeeder;
         }
       });
-
-      setNearFeeders(nearestFeeders.slice(0, 10));
     },
     [currentUserLocation],
   );
+
+  const getNearestFeeders = useCallback(
+    (allFeeders: IFeeder[]) => {
+      if (!currentUserLocation) {
+        return [];
+      }
+
+      const nearestFeeders = getFeedersInThreeKilometerRadio(allFeeders);
+      const orderedFeeders = sortFeedersByNearDistance(nearestFeeders);
+
+      setNearFeeders(orderedFeeders.slice(0, 10));
+    },
+    [
+      currentUserLocation,
+      getFeedersInThreeKilometerRadio,
+      sortFeedersByNearDistance,
+    ],
+  );
+
+  function handleClickOnNearFeeder(coords: TCoordinates) {
+    mapRef.current?.animateCamera({
+      center: coords,
+    });
+  }
 
   const onFeedersChange = useCallback(
     (feedersToUpdate: IFeeder[]) => {
@@ -68,5 +118,6 @@ export function useHome() {
     setIsTooltipVisible,
     currentFeederOpened,
     handleOpenTooltip,
+    handleClickOnNearFeeder,
   };
 }

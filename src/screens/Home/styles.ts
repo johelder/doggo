@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import { FlatList, FlatListProps } from 'react-native';
 import type { IFeeder } from '@src/types';
 
-export const Container = styled.SafeAreaView`
+export const Container = styled.SafeAreaView<{ hasNearFeeders: boolean }>`
   flex: 1;
   align-items: center;
   justify-content: center;
@@ -10,19 +10,29 @@ export const Container = styled.SafeAreaView`
   background-color: ${({ theme }) => theme.colors.utils.white};
 `;
 
-export const MapContainer = styled.View``;
+export const Content = styled.View`
+  flex: 1;
+`;
+
+export const MapContainer = styled.View<{ hasNearFeeders: boolean }>`
+  height: ${({ hasNearFeeders }) => (hasNearFeeders ? '60%' : '100%')};
+`;
 
 export const NearFeedersContainer = styled.View<{ tabBarHeight: number }>`
+  width: 100%;
+
   position: absolute;
   bottom: 0;
 
   padding: 16px 0 ${({ tabBarHeight }) => tabBarHeight + 16}px;
-  gap: 16px;
   background-color: ${({ theme }) => theme.colors.utils.white};
+
+  border-top-right-radius: 16px;
+  border-top-left-radius: 16px;
 `;
 
-export const NearFeederContainer = styled.View`
-  flex: 1;
+export const NearFeederContainer = styled.TouchableOpacity`
+  max-width: 350px;
   border-radius: 4px;
   border-width: 1px;
   border-color: ${({ theme }) => theme.colors.gray[200]};
@@ -47,7 +57,7 @@ export const Title = styled.Text`
 
   color: ${({ theme }) => theme.colors.gray[700]};
 
-  padding: 0 16px;
+  padding: 0 16px 16px;
 `;
 
 export const CustomCalloutContainer = styled.View`
@@ -71,7 +81,7 @@ export const NearFeeders = styled(
   horizontal: true,
   contentContainerStyle: {
     gap: 10,
-    paddingRight: 16,
+    paddingHorizontal: 16,
   },
 })``;
 

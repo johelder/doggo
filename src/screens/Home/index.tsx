@@ -25,6 +25,7 @@ export function Home(): JSX.Element {
     setIsTooltipVisible,
     currentFeederOpened,
     handleOpenTooltip,
+    handleClickOnNearFeeder,
   } = useHome();
   const theme = useTheme();
   const tabBarHeight = useBottomTabBarHeight();
@@ -32,54 +33,59 @@ export function Home(): JSX.Element {
   const renderNearFeeder = useCallback(
     ({ item: nearFeeder }: ListRenderItemInfo<IFeeder>) => {
       return (
-        <S.NearFeederContainer>
+        <S.NearFeederContainer
+          onPress={() => handleClickOnNearFeeder(nearFeeder.coordinates)}>
           <FeederCard feeder={nearFeeder} />
         </S.NearFeederContainer>
       );
     },
-    [],
+    [handleClickOnNearFeeder],
   );
 
   return (
     <>
       <StatusBar barStyle="dark-content" backgroundColor="transparent" />
 
-      <S.Container>
-        {isLoadingMap && <Loader.Page />}
+      {isLoadingMap && <Loader.Page />}
 
-        <S.MapContainer>
-          <Map
-            isClustering
-            showsUserLocation
-            onMapLoaded={onMapLoaded}
-            onPress={() => setIsTooltipVisible(false)}
-            customMapStyle={grayScale}>
-            {feeders.map((feeder, index) => (
-              <Marker
-                key={feeder.id}
-                zIndex={index}
-                coordinate={{
-                  latitude: feeder.coordinates.latitude,
-                  longitude: feeder.coordinates.longitude,
-                }}
-                tracksViewChanges={false}
-                onPress={() => handleOpenTooltip(feeder)}>
-                <CustomMarker />
-              </Marker>
-            ))}
-          </Map>
-        </S.MapContainer>
+      <S.Container hasNearFeeders={nearFeeders.length > 0}>
+        <S.Content>
+          <S.MapContainer hasNearFeeders={nearFeeders.length > 0}>
+            <Map
+              isClustering
+              showsUserLocation
+              onMapReady={onMapLoaded}
+              onPress={() => setIsTooltipVisible(false)}
+              customMapStyle={grayScale}>
+              {feeders.map((feeder, index) => (
+                <Marker
+                  key={feeder.id}
+                  zIndex={index}
+                  coordinate={{
+                    latitude: feeder.coordinates.latitude,
+                    longitude: feeder.coordinates.longitude,
+                  }}
+                  tracksViewChanges={false}
+                  onPress={() => handleOpenTooltip(feeder)}>
+                  <CustomMarker />
+                </Marker>
+              ))}
+            </Map>
+          </S.MapContainer>
+        </S.Content>
 
-        <S.NearFeedersContainer tabBarHeight={tabBarHeight}>
-          <S.Title>Comedouros perto de você</S.Title>
+        {nearFeeders.length > 0 && (
+          <S.NearFeedersContainer tabBarHeight={tabBarHeight}>
+            <S.Title>Comedouros perto de você</S.Title>
 
-          <S.NearFeeders
-            data={nearFeeders}
-            keyExtractor={nearFeeder => String(nearFeeder.id)}
-            renderItem={renderNearFeeder}
-            showsHorizontalScrollIndicator={false}
-          />
-        </S.NearFeedersContainer>
+            <S.NearFeeders
+              data={nearFeeders}
+              keyExtractor={nearFeeder => String(nearFeeder.id)}
+              renderItem={renderNearFeeder}
+              showsHorizontalScrollIndicator={false}
+            />
+          </S.NearFeedersContainer>
+        )}
 
         {isTooltipVisible && (
           <>

@@ -1,9 +1,4 @@
 import styled from 'styled-components/native';
-import { Dimensions } from 'react-native';
-
-const deviceHeight = Dimensions.get('screen').height;
-const windowHeight = Dimensions.get('window').height;
-const bottomNavBarHeight = deviceHeight - windowHeight;
 
 export const Container = styled.SafeAreaView``;
 
@@ -51,7 +46,7 @@ export const ToolTipTriangle = styled.View`
 
 export const ButtonContainer = styled.View`
   position: absolute;
-  bottom: ${bottomNavBarHeight > 24 ? 82 : 66}px;
+  bottom: 16px;
   left: 0;
   right: 0;
 
