@@ -9,7 +9,6 @@ export const Container = styled.TouchableOpacity`
 
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
 `;
 
 export const LabelsContainer = styled.View`
@@ -32,4 +31,8 @@ export const Description = styled.Text`
   font-size: 12px;
 
   color: ${({ theme }) => theme.colors.gray[500]};
+`;
+
+export const IconContainer = styled.View`
+  margin-left: auto;
 `;
