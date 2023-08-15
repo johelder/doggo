@@ -7,6 +7,7 @@ import { EditFeeder } from './EditFeeder';
 import { MyFeeders } from './MyFeeders';
 import { Favorites } from './Favorites';
 import { FeederDetails } from './FeederDetails';
+import { Welcome } from './Welcome';
 
 export {
   SignIn,
@@ -18,4 +19,5 @@ export {
   MyFeeders,
   Favorites,
   FeederDetails,
+  Welcome,
 };

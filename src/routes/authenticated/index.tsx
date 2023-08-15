@@ -10,6 +10,7 @@ import {
   EditFeeder,
   Favorites,
   FeederDetails,
+  Welcome,
 } from '@src/screens';
 import { HomeTabs } from './BottomTabs';
 
@@ -32,11 +33,13 @@ export function AuthenticatedRoutes() {
           headerTitleAlign: 'center',
           headerShadowVisible: false,
         }}>
-        <Stack.Screen
-          name="HomeTabs"
-          component={HomeTabs}
-          options={{ headerShown: false }}
-        />
+        <Stack.Group
+          screenOptions={{
+            headerShown: false,
+          }}>
+          <Stack.Screen name="HomeTabs" component={HomeTabs} />
+          <Stack.Screen name="Welcome" component={Welcome} />
+        </Stack.Group>
         <Stack.Group screenOptions={{ headerTransparent: true }}>
           <Stack.Screen name="SelectLocation" component={SelectLocation} />
           <Stack.Screen
