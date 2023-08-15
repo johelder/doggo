@@ -61,7 +61,7 @@ export const Title = styled.Text`
 `;
 
 export const CustomCalloutContainer = styled.View`
-  max-width: 350px;
+  width: 90%;
 
   position: absolute;
   background-color: ${({ theme }) => theme.colors.utils.white};
