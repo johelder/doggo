@@ -2,6 +2,7 @@ import React, {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useRef,
   useState,
 } from 'react';
@@ -52,6 +53,14 @@ function MapProvider({ children }: IMapProviderProps) {
       },
     );
   }, []);
+
+  useEffect(() => {
+    getUserCurrentPosition();
+  }, [getUserCurrentPosition]);
+
+  useEffect(() => {
+    watchUserPosition();
+  }, [watchUserPosition]);
 
   return (
     <MapContext.Provider
