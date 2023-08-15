@@ -1,11 +1,11 @@
 import React from 'react';
 
 import { TabBarIcon } from './TabBarIcon';
+import { useCustomTabBar } from './useCustomTabBar';
 
 import type { ICustomTabBarProps } from './types';
 
 import * as S from './styles';
-import { useCustomTabBar } from './useCustomTabBar';
 
 export function CustomTabBar({
   state,
