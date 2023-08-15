@@ -7,11 +7,17 @@ import React, {
   useMemo,
 } from 'react';
 
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import {
+  GoogleSignin,
+  statusCodes,
+  NativeModuleError,
+} from '@react-native-google-signin/google-signin';
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 
 import { errorHandler, showToast } from '@src/utils';
 import { UsersRepository } from '@src/services/database/repositories/UsersRepository';
+import { useStorage } from '../useStorage';
+import { IS_FIRST_ACCESS_KEY } from '../useStorage/constants';
 
 import { WEB_CLIENT_ID } from '@env';
 
@@ -23,6 +29,7 @@ const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 function AuthContextProvider({ children }: IAuthContextProps): JSX.Element {
   const [user, setUser] = useState<IUser | null>(null);
   const [isLoadingAuth, setIsLoadingAuth] = useState(false);
+  const { setValueInStorage } = useStorage(IS_FIRST_ACCESS_KEY, true);
 
   async function onAuthStateChanged(userState: FirebaseAuthTypes.User | null) {
     if (!userState) {
@@ -62,6 +69,7 @@ function AuthContextProvider({ children }: IAuthContextProps): JSX.Element {
         await UsersRepository.create(newUser);
 
         setUser(newUser);
+        setValueInStorage(false);
 
         return;
       }
@@ -70,6 +78,12 @@ function AuthContextProvider({ children }: IAuthContextProps): JSX.Element {
 
       setUser(storedUser);
     } catch (error) {
+      const googleSignInError = error as NativeModuleError;
+
+      if (googleSignInError.code === statusCodes.SIGN_IN_CANCELLED) {
+        return;
+      }
+
       showToast({
         type: 'error',
         message:
@@ -81,7 +95,7 @@ function AuthContextProvider({ children }: IAuthContextProps): JSX.Element {
     } finally {
       setIsLoadingAuth(false);
     }
-  }, []);
+  }, [setValueInStorage]);
 
   const handleSignOut = useCallback(async () => {
     try {
