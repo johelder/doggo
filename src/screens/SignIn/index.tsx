@@ -18,8 +18,8 @@ export function SignIn(): JSX.Element {
       <S.GreetingsContainer>
         <S.GreetingsTitle>Bem vindo(a) ao Doggo</S.GreetingsTitle>
         <S.GreetingsSubtitle>
-          Cadastre e compartilhe seu comedouro ou ajude comedouros públicos
-          perto de você!
+          Cadastre o seu comedouro ou reabasteça comedouros próximos a você e
+          faça parte de uma rede de compaixão animal.
         </S.GreetingsSubtitle>
       </S.GreetingsContainer>
 

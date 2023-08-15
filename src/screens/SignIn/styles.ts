@@ -21,6 +21,7 @@ export const GreetingsTitle = styled.Text`
 export const GreetingsSubtitle = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.regular};
   font-size: 16px;
+  line-height: 24px;
 
   color: ${({ theme }) => theme.colors.gray[500]};
 `;
