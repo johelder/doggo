@@ -5,6 +5,8 @@ import { useTheme } from 'styled-components';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 
 import X from 'phosphor-react-native/src/icons/X';
+import CaretDown from 'phosphor-react-native/src/icons/CaretDown';
+import CaretUp from 'phosphor-react-native/src/icons/CaretUp';
 
 import { useHome } from './useHome';
 import { Loader, Map, FeederCard } from '@src/components';
@@ -26,6 +28,8 @@ export function Home(): JSX.Element {
     currentFeederOpened,
     handleOpenTooltip,
     handleClickOnNearFeeder,
+    isNearFeederListExpanded,
+    handleToggleNearFeederList,
   } = useHome();
   const theme = useTheme();
   const tabBarHeight = useBottomTabBarHeight();
@@ -50,7 +54,9 @@ export function Home(): JSX.Element {
 
       <S.Container>
         <S.Content>
-          <S.MapContainer hasNearFeeders={nearFeeders.length > 0}>
+          <S.MapContainer
+            hasNearFeeders={nearFeeders.length > 0}
+            isNearFeederListExpanded={isNearFeederListExpanded}>
             <Map
               isClustering
               showsUserLocation
@@ -76,14 +82,23 @@ export function Home(): JSX.Element {
 
         {nearFeeders.length > 0 && (
           <S.NearFeedersContainer tabBarHeight={tabBarHeight}>
-            <S.Title>Comedouros perto de você</S.Title>
+            <S.HeaderContainer onPress={handleToggleNearFeederList}>
+              <S.Title>Comedouros perto de você</S.Title>
+              {isNearFeederListExpanded ? (
+                <CaretDown weight="bold" color={theme.colors.gray[700]} />
+              ) : (
+                <CaretUp weight="bold" color={theme.colors.gray[700]} />
+              )}
+            </S.HeaderContainer>
 
-            <S.NearFeeders
-              data={nearFeeders}
-              keyExtractor={nearFeeder => String(nearFeeder.id)}
-              renderItem={renderNearFeeder}
-              showsHorizontalScrollIndicator={false}
-            />
+            {isNearFeederListExpanded && (
+              <S.NearFeeders
+                data={nearFeeders}
+                keyExtractor={nearFeeder => String(nearFeeder.id)}
+                renderItem={renderNearFeeder}
+                showsHorizontalScrollIndicator={false}
+              />
+            )}
           </S.NearFeedersContainer>
         )}
 

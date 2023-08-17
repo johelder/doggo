@@ -14,7 +14,13 @@ export function useHome() {
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
   const [currentFeederOpened, setCurrentFeederOpened] =
     useState<IFeeder | null>(null);
+  const [isNearFeederListExpanded, setIsNearFeederListExpanded] =
+    useState(true);
   const { currentUserLocation, mapRef } = useMap();
+
+  function handleToggleNearFeederList() {
+    setIsNearFeederListExpanded(prevState => !prevState);
+  }
 
   function onMapLoaded() {
     setIsLoadingMap(false);
@@ -119,5 +125,7 @@ export function useHome() {
     currentFeederOpened,
     handleOpenTooltip,
     handleClickOnNearFeeder,
+    isNearFeederListExpanded,
+    handleToggleNearFeederList,
   };
 }

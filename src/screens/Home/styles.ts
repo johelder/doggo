@@ -14,8 +14,12 @@ export const Content = styled.View`
   flex: 1;
 `;
 
-export const MapContainer = styled.View<{ hasNearFeeders: boolean }>`
-  height: ${({ hasNearFeeders }) => (hasNearFeeders ? '60%' : '100%')};
+export const MapContainer = styled.View<{
+  hasNearFeeders: boolean;
+  isNearFeederListExpanded: boolean;
+}>`
+  height: ${({ hasNearFeeders, isNearFeederListExpanded }) =>
+    hasNearFeeders && isNearFeederListExpanded ? '60%' : '100%'};
 `;
 
 export const NearFeedersContainer = styled.View<{ tabBarHeight: number }>`
@@ -29,6 +33,14 @@ export const NearFeedersContainer = styled.View<{ tabBarHeight: number }>`
 
   border-top-right-radius: 16px;
   border-top-left-radius: 16px;
+`;
+
+export const HeaderContainer = styled.TouchableOpacity`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 16px 16px;
 `;
 
 export const NearFeederContainer = styled.TouchableOpacity`
@@ -56,8 +68,6 @@ export const Title = styled.Text`
   font-size: 14px;
 
   color: ${({ theme }) => theme.colors.gray[700]};
-
-  padding: 0 16px 16px;
 `;
 
 export const CustomCalloutContainer = styled.View`
