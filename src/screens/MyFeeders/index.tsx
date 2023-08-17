@@ -1,6 +1,5 @@
 import React, { useCallback, useLayoutEffect } from 'react';
 import { ListRenderItemInfo } from 'react-native';
-import { StackActions } from '@react-navigation/native';
 import { HeaderBackButton } from '@react-navigation/elements';
 
 import { useTheme } from 'styled-components';
@@ -40,7 +39,7 @@ export function MyFeeders({ navigation }: TMyFeedersProps): JSX.Element {
     navigation.setOptions({
       headerLeft: () => (
         <HeaderBackButton
-          onPress={() => navigation.dispatch(StackActions.popToTop())}
+          onPress={() => navigation.navigate('Profile')}
           tintColor={theme.colors.primary[500]}
         />
       ),
