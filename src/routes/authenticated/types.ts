@@ -28,6 +28,7 @@ export type TRootStackParamList = {
     feederId: string;
   };
   Welcome: undefined;
+  Settings: undefined;
 };
 
 export type TDefaultScreensProps<T extends keyof TAppScreens> =

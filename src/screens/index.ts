@@ -8,6 +8,7 @@ import { MyFeeders } from './MyFeeders';
 import { Favorites } from './Favorites';
 import { FeederDetails } from './FeederDetails';
 import { Welcome } from './Welcome';
+import { Settings } from './Settings';
 
 export {
   SignIn,
@@ -20,4 +21,5 @@ export {
   Favorites,
   FeederDetails,
   Welcome,
+  Settings,
 };

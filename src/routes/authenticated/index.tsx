@@ -11,6 +11,7 @@ import {
   Favorites,
   FeederDetails,
   Welcome,
+  Settings,
 } from '@src/screens';
 import { HomeTabs } from './BottomTabs';
 import { useStorage } from '@src/hooks';
@@ -81,6 +82,13 @@ export function AuthenticatedRoutes() {
             }}
           />
           <Stack.Screen name="FeederDetails" component={FeederDetails} />
+          <Stack.Screen
+            name="Settings"
+            component={Settings}
+            options={{
+              headerTitle: 'CONFIGURAÇÕES',
+            }}
+          />
         </Stack.Group>
       </Stack.Navigator>
     </SafeAreaView>
