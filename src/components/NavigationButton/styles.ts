@@ -34,6 +34,8 @@ export const Description = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.medium};
   font-size: 10px;
   color: ${({ theme }) => theme.colors.gray[500]};
+
+  flex-shrink: 1;
 `;
 
 export const ArrowRight = styled(CaretRight).attrs(({ theme }) => ({
