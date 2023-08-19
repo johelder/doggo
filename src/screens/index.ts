@@ -9,6 +9,7 @@ import { Favorites } from './Favorites';
 import { FeederDetails } from './FeederDetails';
 import { Welcome } from './Welcome';
 import { Settings } from './Settings';
+import { LocationPermission } from './LocationPermission';
 
 export {
   SignIn,
@@ -22,4 +23,5 @@ export {
   FeederDetails,
   Welcome,
   Settings,
+  LocationPermission,
 };
