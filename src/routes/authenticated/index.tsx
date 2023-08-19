@@ -12,6 +12,7 @@ import {
   FeederDetails,
   Welcome,
   Settings,
+  LocationPermission,
 } from '@src/screens';
 import { HomeTabs } from './BottomTabs';
 import { useStorage } from '@src/hooks';
@@ -37,11 +38,15 @@ export function AuthenticatedRoutes() {
           headerTitleAlign: 'center',
           headerShadowVisible: false,
         }}
-        initialRouteName={isFirstAccess ? 'Welcome' : 'HomeTabs'}>
+        initialRouteName={true ? 'LocationPermission' : 'HomeTabs'}>
         <Stack.Group
           screenOptions={{
             headerShown: false,
           }}>
+          <Stack.Screen
+            name="LocationPermission"
+            component={LocationPermission}
+          />
           <Stack.Screen name="Welcome" component={Welcome} />
           <Stack.Screen name="HomeTabs" component={HomeTabs} />
         </Stack.Group>
