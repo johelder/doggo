@@ -40,6 +40,7 @@ function AuthContextProvider({ children }: IAuthContextProps): JSX.Element {
 
     const storedUser = await UsersRepository.findById(userState.uid);
 
+    setValueInStorage(false);
     setUser(storedUser);
   }
 
@@ -76,6 +77,7 @@ function AuthContextProvider({ children }: IAuthContextProps): JSX.Element {
 
       const storedUser = await UsersRepository.findById(response.user.uid);
 
+      setValueInStorage(false);
       setUser(storedUser);
     } catch (error) {
       const googleSignInError = error as NativeModuleError;
