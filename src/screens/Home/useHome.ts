@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import Geolocation from '@react-native-community/geolocation';
 
 import { FeedersRepository } from '@src/services/database/repositories/FeedersRepository';
 import { useMap } from '@src/hooks';
@@ -6,6 +7,7 @@ import { calculateDistanceBetweenTwoPoints } from '@src/utils';
 
 import { THREE_KILOMETER_IN_METERS } from './constants';
 import type { IFeeder, TCoordinates } from '@src/types';
+import { useIsFocused } from '@react-navigation/native';
 
 export function useHome() {
   const [isLoadingMap, setIsLoadingMap] = useState(true);
@@ -16,7 +18,15 @@ export function useHome() {
     useState<IFeeder | null>(null);
   const [isNearFeederListExpanded, setIsNearFeederListExpanded] =
     useState(true);
-  const { currentUserLocation, mapRef } = useMap();
+  const {
+    currentUserLocation,
+    mapRef,
+    getUserCurrentPosition,
+    watchUserPosition,
+    requestLocationPermissionModalRef,
+    isLocationAvailable,
+  } = useMap();
+  const isScreenFocused = useIsFocused();
 
   function handleToggleNearFeederList() {
     setIsNearFeederListExpanded(prevState => !prevState);
@@ -115,6 +125,18 @@ export function useHome() {
     return () => subscriber();
   }, [onFeedersChange]);
 
+  useEffect(() => {
+    if (isScreenFocused) {
+      getUserCurrentPosition();
+    }
+
+    const watchId = watchUserPosition();
+
+    setIsLoadingMap(false);
+
+    return () => Geolocation.clearWatch(watchId);
+  }, [getUserCurrentPosition, isScreenFocused, watchUserPosition]);
+
   return {
     isLoadingMap,
     onMapLoaded,
@@ -127,5 +149,7 @@ export function useHome() {
     handleClickOnNearFeeder,
     isNearFeederListExpanded,
     handleToggleNearFeederList,
+    requestLocationPermissionModalRef,
+    isLocationAvailable,
   };
 }

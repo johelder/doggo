@@ -9,7 +9,13 @@ import CaretDown from 'phosphor-react-native/src/icons/CaretDown';
 import CaretUp from 'phosphor-react-native/src/icons/CaretUp';
 
 import { useHome } from './useHome';
-import { Loader, Map, FeederCard } from '@src/components';
+import {
+  Loader,
+  Map,
+  FeederCard,
+  RequestLocationPermissionModal,
+  RequestLocationPermissionBanner,
+} from '@src/components';
 import { grayScale } from '@src/components/Map/customStyles';
 import { CustomMarker } from './components/CustomMarker';
 
@@ -30,6 +36,8 @@ export function Home(): JSX.Element {
     handleClickOnNearFeeder,
     isNearFeederListExpanded,
     handleToggleNearFeederList,
+    requestLocationPermissionModalRef,
+    isLocationAvailable,
   } = useHome();
   const theme = useTheme();
   const tabBarHeight = useBottomTabBarHeight();
@@ -46,13 +54,25 @@ export function Home(): JSX.Element {
     [handleClickOnNearFeeder],
   );
 
+  if (!isLocationAvailable) {
+    return (
+      <S.LocationNotAvailableContainer>
+        <RequestLocationPermissionBanner />
+
+        <RequestLocationPermissionModal
+          modalRef={requestLocationPermissionModalRef}
+        />
+      </S.LocationNotAvailableContainer>
+    );
+  }
+
   return (
     <>
       <StatusBar barStyle="dark-content" backgroundColor="transparent" />
 
-      {isLoadingMap && <Loader.Page />}
-
       <S.Container>
+        {isLoadingMap && <Loader.Page />}
+
         <S.Content>
           <S.MapContainer
             hasNearFeeders={nearFeeders.length > 0}
@@ -80,7 +100,7 @@ export function Home(): JSX.Element {
           </S.MapContainer>
         </S.Content>
 
-        {nearFeeders.length > 0 && (
+        {nearFeeders.length > 0 && isLocationAvailable && (
           <S.NearFeedersContainer tabBarHeight={tabBarHeight}>
             <S.HeaderContainer onPress={handleToggleNearFeederList}>
               <S.Title>Comedouros perto de você</S.Title>

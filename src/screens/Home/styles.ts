@@ -107,3 +107,9 @@ export const CloseButton = styled.TouchableOpacity`
 
   margin-left: auto;
 `;
+
+export const LocationNotAvailableContainer = styled.View`
+  flex: 1;
+  background-color: ${({ theme }) => theme.colors.utils.white};
+  padding: 16px;
+`;
