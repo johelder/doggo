@@ -1,6 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import type { Address, Region } from 'react-native-maps';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import {
+  useIsFocused,
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native';
+import Geolocation from '@react-native-community/geolocation';
 
 import { useMap } from '@src/hooks';
 import { errorHandler, showToast } from '@src/utils';
@@ -24,7 +29,9 @@ export function useSelectLocation() {
     currentUserLocation,
     setCurrentUserLocation,
     getUserCurrentPosition,
+    watchUserPosition,
   } = useMap();
+  const isScreenFocused = useIsFocused();
 
   const navigation = useNavigation<TNavigationProps<'SelectLocation'>>();
   const route = useRoute<TRouteProps<'SelectLocation'>>();
@@ -176,6 +183,16 @@ export function useSelectLocation() {
     isEditingFeederAddress,
     route.params?.feederId,
   ]);
+
+  useEffect(() => {
+    if (isScreenFocused) {
+      getUserCurrentPosition();
+    }
+
+    const watchId = watchUserPosition();
+
+    return () => Geolocation.clearWatch(watchId);
+  }, [getUserCurrentPosition, isScreenFocused, watchUserPosition]);
 
   return {
     onPanDrag,
