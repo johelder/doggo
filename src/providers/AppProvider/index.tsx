@@ -1,5 +1,6 @@
 import React from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { Host } from 'react-native-portalize';
 
 import { AuthContextProvider, MapProvider, FavoriteProvider } from '@src/hooks';
 import { ToastProvider } from '@src/components';
@@ -14,12 +15,14 @@ export function AppProvider({ children }: IAppProviderProps) {
     // eslint-disable-next-line react-native/no-inline-styles
     <GestureHandlerRootView style={{ flex: 1 }}>
       <ThemeProvider theme={theme}>
-        <AuthContextProvider>
-          <FavoriteProvider>
-            <ToastProvider />
-            <MapProvider>{children}</MapProvider>
-          </FavoriteProvider>
-        </AuthContextProvider>
+        <Host>
+          <AuthContextProvider>
+            <FavoriteProvider>
+              <ToastProvider />
+              <MapProvider>{children}</MapProvider>
+            </FavoriteProvider>
+          </AuthContextProvider>
+        </Host>
       </ThemeProvider>
     </GestureHandlerRootView>
   );
