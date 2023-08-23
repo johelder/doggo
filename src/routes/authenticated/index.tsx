@@ -38,7 +38,7 @@ export function AuthenticatedRoutes() {
           headerTitleAlign: 'center',
           headerShadowVisible: false,
         }}
-        initialRouteName={true ? 'LocationPermission' : 'HomeTabs'}>
+        initialRouteName={isFirstAccess ? 'LocationPermission' : 'HomeTabs'}>
         <Stack.Group
           screenOptions={{
             headerShown: false,
