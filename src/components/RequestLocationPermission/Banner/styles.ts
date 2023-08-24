@@ -10,7 +10,7 @@ export const TextsContainer = styled.View`
 
 export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.semiBold};
-  font-size: 16px;
+  font-size: 20px;
   text-align: center;
 
   color: ${({ theme }) => theme.colors.gray[700]};
@@ -18,9 +18,9 @@ export const Title = styled.Text`
 
 export const Description = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.medium};
-  font-size: 14px;
+  font-size: 16px;
   text-align: center;
-  line-height: 20px;
+  line-height: 24px;
 
   color: ${({ theme }) => theme.colors.gray[500]};
 `;
