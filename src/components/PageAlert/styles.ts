@@ -7,6 +7,8 @@ export const Container = styled.View`
   gap: 16px;
 
   padding: 0 32px;
+
+  background-color: ${({ theme }) => theme.colors.utils.white};
 `;
 
 export const IconContainer = styled.View<{ color?: string }>`

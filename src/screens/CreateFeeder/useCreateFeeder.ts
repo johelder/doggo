@@ -1,21 +1,21 @@
 import { useRef } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import firestore from '@react-native-firebase/firestore';
 
 import { FeedersRepository } from '@src/services/database/repositories/FeedersRepository';
-import { useAuth, useMap } from '@src/hooks';
+import { useAuth } from '@src/hooks';
 import { errorHandler, showToast } from '@src/utils';
 
-import { IDomainFeeder } from '@src/types/domain';
 import type {
   TNavigationProps,
   TRouteProps,
 } from '@src/routes/authenticated/types';
+import type { IFeeder } from '@src/types';
 import type { IFeederFormRef } from '@src/components/FeederForm/types';
 import type { IFeederAddress } from './types';
 
 export function useCreateFeeder() {
   const { user } = useAuth();
-  const { currentUserLocation } = useMap();
   const feederFormRef = useRef<IFeederFormRef>(null);
 
   const route = useRoute<TRouteProps<'CreateFeeder'>>();
@@ -46,18 +46,18 @@ export function useCreateFeeder() {
         return;
       }
 
-      if (!user?.name || !currentUserLocation) {
+      if (!user?.name) {
         return;
       }
 
-      const feeder = {
+      const feeder: IFeeder = {
         user: {
           id: user.id,
           name: user.name,
         },
         coordinates: {
-          latitude: currentUserLocation?.coords.latitude,
-          longitude: currentUserLocation?.coords.longitude,
+          latitude: route.params.coordinate.latitude,
+          longitude: route.params.coordinate.longitude,
         },
         address: {
           ...route.params.address,
@@ -66,9 +66,25 @@ export function useCreateFeeder() {
           reference: addressReference,
         },
         foods: feederFoods,
+        maintenanceStatus: {
+          supply: {
+            updatedAt: firestore.FieldValue.serverTimestamp(),
+            updatedBy: {
+              userId: user.id,
+              userName: user.name,
+            },
+          },
+          cleaning: {
+            updatedAt: firestore.FieldValue.serverTimestamp(),
+            updatedBy: {
+              userId: user.id,
+              userName: user.name,
+            },
+          },
+        },
       };
 
-      await FeedersRepository.create(feeder as IDomainFeeder);
+      await FeedersRepository.create(feeder);
 
       showToast({
         type: 'success',

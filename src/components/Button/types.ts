@@ -15,5 +15,5 @@ export interface IButtonIconProps {
 
 export interface IButtonTextProps extends TextProps {
   children: string;
-  color: string;
+  color?: string;
 }

@@ -9,10 +9,16 @@ import {
   MyFeeders,
   EditFeeder,
   Favorites,
+  FeederDetails,
+  Welcome,
+  Settings,
+  LocationPermission,
 } from '@src/screens';
 import { HomeTabs } from './BottomTabs';
+import { useStorage } from '@src/hooks';
+import { IS_FIRST_ACCESS_KEY } from '@src/hooks/useStorage/constants';
 
-import { TRootStackParamList } from './types';
+import type { TRootStackParamList } from './types';
 
 const Stack = createNativeStackNavigator<TRootStackParamList>();
 
@@ -22,6 +28,7 @@ const wrapperOptions = {
 
 export function AuthenticatedRoutes() {
   const theme = useTheme();
+  const { storedValue: isFirstAccess } = useStorage(IS_FIRST_ACCESS_KEY, true);
 
   return (
     <SafeAreaView style={wrapperOptions}>
@@ -30,12 +37,19 @@ export function AuthenticatedRoutes() {
           headerTintColor: theme.colors.primary[500],
           headerTitleAlign: 'center',
           headerShadowVisible: false,
-        }}>
-        <Stack.Screen
-          name="HomeTabs"
-          component={HomeTabs}
-          options={{ headerShown: false }}
-        />
+        }}
+        initialRouteName={isFirstAccess ? 'LocationPermission' : 'HomeTabs'}>
+        <Stack.Group
+          screenOptions={{
+            headerShown: false,
+          }}>
+          <Stack.Screen
+            name="LocationPermission"
+            component={LocationPermission}
+          />
+          <Stack.Screen name="Welcome" component={Welcome} />
+          <Stack.Screen name="HomeTabs" component={HomeTabs} />
+        </Stack.Group>
         <Stack.Group screenOptions={{ headerTransparent: true }}>
           <Stack.Screen name="SelectLocation" component={SelectLocation} />
           <Stack.Screen
@@ -70,6 +84,14 @@ export function AuthenticatedRoutes() {
             component={Favorites}
             options={{
               headerTitle: 'FAVORITOS',
+            }}
+          />
+          <Stack.Screen name="FeederDetails" component={FeederDetails} />
+          <Stack.Screen
+            name="Settings"
+            component={Settings}
+            options={{
+              headerTitle: 'CONFIGURAÇÕES',
             }}
           />
         </Stack.Group>

@@ -26,7 +26,9 @@ export function FeederAddress({ feeder, onOpenDetails }: IFeederAddressProps) {
         <S.Description>{getFoodsLabel(feeder.foods)}</S.Description>
       </S.LabelsContainer>
 
-      <DotsThreeVertical color={theme.colors.gray[700]} weight="bold" />
+      <S.IconContainer>
+        <DotsThreeVertical color={theme.colors.gray[700]} weight="bold" />
+      </S.IconContainer>
     </S.Container>
   );
 }

@@ -1,4 +1,4 @@
-import { TCoordinates } from '@src/types/common';
+import { TCoordinates } from '@src/types';
 
 const EARTH_RADIUS_IN_METERS = 6371e3;
 const ONE_KILOMETER_IN_METERS = 1000;
@@ -28,6 +28,15 @@ export function calculateDistanceBetweenTwoPoints(
     );
 
   const distance = Number(earthRadius * angularDistanceInRadians);
+
+  return distance;
+}
+
+export function getFormattedDistanceBetweenTwoPoints(
+  firstPoint: TCoordinates,
+  secondPoint: TCoordinates,
+) {
+  const distance = calculateDistanceBetweenTwoPoints(firstPoint, secondPoint);
 
   if (distance > ONE_KILOMETER_IN_METERS) {
     return `${(distance / ONE_KILOMETER_IN_METERS).toFixed(0)}km`;

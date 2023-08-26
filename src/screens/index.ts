@@ -6,6 +6,11 @@ import { CreateFeeder } from './CreateFeeder';
 import { EditFeeder } from './EditFeeder';
 import { MyFeeders } from './MyFeeders';
 import { Favorites } from './Favorites';
+import { FeederDetails } from './FeederDetails';
+import { Welcome } from './Welcome';
+import { Settings } from './Settings';
+import { LocationPermission } from './LocationPermission';
+import { Splash } from './Splash';
 
 export {
   SignIn,
@@ -16,4 +21,9 @@ export {
   EditFeeder,
   MyFeeders,
   Favorites,
+  FeederDetails,
+  Welcome,
+  Settings,
+  LocationPermission,
+  Splash,
 };

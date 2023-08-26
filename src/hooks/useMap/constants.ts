@@ -1,0 +1,2 @@
+export const LOCATION_PERMISSION_DENIED = 1;
+export const IS_LOCATION_TURN_OFF = 2;

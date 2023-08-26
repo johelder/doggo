@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import { FlatList, FlatListProps } from 'react-native';
-import type { IDomainFeeder } from '@src/types/domain';
+import type { IFeeder } from '@src/types';
 
 export const Container = styled.SafeAreaView`
   flex: 1;
@@ -21,9 +21,7 @@ export const Label = styled.Text`
 `;
 
 export const Feeders = styled(
-  FlatList as new (
-    props: FlatListProps<IDomainFeeder>,
-  ) => FlatList<IDomainFeeder>,
+  FlatList as new (props: FlatListProps<IFeeder>) => FlatList<IFeeder>,
 ).attrs({
   showsVerticalScrollIndicator: false,
   contentContainerStyle: {

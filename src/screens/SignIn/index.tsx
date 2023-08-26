@@ -9,7 +9,7 @@ import GoogleLogo from '@src/assets/images/google-logo.svg';
 import * as S from './styles';
 
 export function SignIn(): JSX.Element {
-  const { handleSignInWithGoogle, isLoadingAuth } = useAuth();
+  const { handleSignInWithGoogle, isLoadingSignIn } = useAuth();
 
   return (
     <S.Container>
@@ -18,13 +18,15 @@ export function SignIn(): JSX.Element {
       <S.GreetingsContainer>
         <S.GreetingsTitle>Bem vindo(a) ao Doggo</S.GreetingsTitle>
         <S.GreetingsSubtitle>
-          Cadastre e compartilhe seu comedouro ou ajude comedouros públicos
-          perto de você!
+          Cadastre o seu comedouro ou reabasteça comedouros próximos a você e
+          faça parte de uma rede de compaixão animal.
         </S.GreetingsSubtitle>
       </S.GreetingsContainer>
 
-      <S.GoogleButton onPress={handleSignInWithGoogle} disabled={isLoadingAuth}>
-        {isLoadingAuth ? (
+      <S.GoogleButton
+        onPress={handleSignInWithGoogle}
+        disabled={isLoadingSignIn}>
+        {isLoadingSignIn ? (
           <Loader.Component />
         ) : (
           <>

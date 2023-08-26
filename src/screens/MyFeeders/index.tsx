@@ -1,6 +1,5 @@
 import React, { useCallback, useLayoutEffect } from 'react';
 import { ListRenderItemInfo } from 'react-native';
-import { StackActions } from '@react-navigation/native';
 import { HeaderBackButton } from '@react-navigation/elements';
 
 import { useTheme } from 'styled-components';
@@ -15,7 +14,7 @@ import { Button, FeederAddress, Loader, PageAlert } from '@src/components';
 import { FeederDetailsModal } from './components/FeederDetailsModal';
 import { useMyFeeders } from './useMyFeeders';
 
-import type { IDomainFeeder } from '@src/types/domain';
+import type { IFeeder } from '@src/types';
 import type { TMyFeedersProps } from './types';
 
 import * as S from './styles';
@@ -40,7 +39,7 @@ export function MyFeeders({ navigation }: TMyFeedersProps): JSX.Element {
     navigation.setOptions({
       headerLeft: () => (
         <HeaderBackButton
-          onPress={() => navigation.dispatch(StackActions.popToTop())}
+          onPress={() => navigation.navigate('Profile')}
           tintColor={theme.colors.primary[500]}
         />
       ),
@@ -48,7 +47,7 @@ export function MyFeeders({ navigation }: TMyFeedersProps): JSX.Element {
   }, [navigation, theme.colors.primary]);
 
   const renderFeeder = useCallback(
-    ({ item: feeder }: ListRenderItemInfo<IDomainFeeder>) => {
+    ({ item: feeder }: ListRenderItemInfo<IFeeder>) => {
       return (
         <FeederAddress
           feeder={feeder}
@@ -132,7 +131,7 @@ export function MyFeeders({ navigation }: TMyFeedersProps): JSX.Element {
       <S.Content>
         <S.Feeders
           data={feeders}
-          keyExtractor={feeder => feeder.id}
+          keyExtractor={feeder => String(feeder.id)}
           renderItem={renderFeeder}
           ListEmptyComponent={renderListEmptyComponent}
         />

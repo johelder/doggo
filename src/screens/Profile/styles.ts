@@ -4,6 +4,7 @@ import CookingPot from 'phosphor-react-native/src/icons/CookingPot';
 import Heart from 'phosphor-react-native/src/icons/Heart';
 import SignOut from 'phosphor-react-native/src/icons/SignOut';
 import CirclesThreePlus from 'phosphor-react-native/src/icons/CirclesThreePlus';
+import Gear from 'phosphor-react-native/src/icons/Gear';
 
 function iconsDefaultStyles(theme: DefaultTheme) {
   return {
@@ -32,6 +33,10 @@ export const HeaderContainer = styled.View`
   margin: 20px 0;
 `;
 
+export const InfoContainer = styled.View`
+  flex-direction: column;
+`;
+
 export const ProfilePhotoContainer = styled.View`
   width: 60px;
   height: 60px;
@@ -49,11 +54,13 @@ export const ProfileName = styled.Text`
   color: ${({ theme }) => theme.colors.gray[700]};
 `;
 
-export const MainContent = styled.View``;
-
-export const ButtonContainer = styled.View`
-  margin-bottom: 15px;
+export const ProfileEmail = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.primary.medium};
+  font-size: 14px;
+  color: ${({ theme }) => theme.colors.gray[500]};
 `;
+
+export const MainContent = styled.View``;
 
 export const FeederIcon = styled(CookingPot).attrs(({ theme }) =>
   iconsDefaultStyles(theme),
@@ -68,5 +75,9 @@ export const SignOutIcon = styled(SignOut).attrs(({ theme }) =>
 )``;
 
 export const SelectLocation = styled(CirclesThreePlus).attrs(({ theme }) =>
+  iconsDefaultStyles(theme),
+)``;
+
+export const ConfigIcon = styled(Gear).attrs(({ theme }) =>
   iconsDefaultStyles(theme),
 )``;

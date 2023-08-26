@@ -45,9 +45,10 @@ export const ButtonTabContent = styled.View<{ isFocused: boolean }>`
 export const ButtonTabIconContainer = styled.View``;
 
 export const ButtonTabBarLabel = styled.Text<{ isFocused: boolean }>`
-  font-family: ${({ theme }) => theme.fonts.primary.semiBold};
+  font-family: ${({ theme, isFocused }) =>
+    theme.fonts.primary[isFocused ? 'semiBold' : 'medium']};
   font-size: 12px;
 
   color: ${({ theme, isFocused }) =>
-    isFocused ? theme.colors.gray[100] : theme.colors.gray[500]};
+    isFocused ? theme.colors.primary[200] : theme.colors.gray[500]};
 `;

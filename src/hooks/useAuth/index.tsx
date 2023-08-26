@@ -7,7 +7,11 @@ import React, {
   useMemo,
 } from 'react';
 
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import {
+  GoogleSignin,
+  statusCodes,
+  NativeModuleError,
+} from '@react-native-google-signin/google-signin';
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 
 import { errorHandler, showToast } from '@src/utils';
@@ -15,14 +19,15 @@ import { UsersRepository } from '@src/services/database/repositories/UsersReposi
 
 import { WEB_CLIENT_ID } from '@env';
 
+import type { IUser } from '@src/types';
 import type { IAuthContext, IAuthContextProps } from './types';
-import type { IDomainUser } from '@src/types/domain';
 
 const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
 function AuthContextProvider({ children }: IAuthContextProps): JSX.Element {
-  const [user, setUser] = useState<IDomainUser | null>(null);
-  const [isLoadingAuth, setIsLoadingAuth] = useState(false);
+  const [user, setUser] = useState<IUser | null>(null);
+  const [isLoadingSignIn, setIsLoadingSignIn] = useState(false);
+  const [isLoadingAuthState, setIsLoadingAuthState] = useState(true);
 
   async function onAuthStateChanged(userState: FirebaseAuthTypes.User | null) {
     if (!userState) {
@@ -38,7 +43,7 @@ function AuthContextProvider({ children }: IAuthContextProps): JSX.Element {
 
   const handleSignInWithGoogle = useCallback(async () => {
     try {
-      setIsLoadingAuth(true);
+      setIsLoadingSignIn(true);
 
       await GoogleSignin.hasPlayServices({
         showPlayServicesUpdateDialog: true,
@@ -70,6 +75,12 @@ function AuthContextProvider({ children }: IAuthContextProps): JSX.Element {
 
       setUser(storedUser);
     } catch (error) {
+      const googleSignInError = error as NativeModuleError;
+
+      if (googleSignInError.code === statusCodes.SIGN_IN_CANCELLED) {
+        return;
+      }
+
       showToast({
         type: 'error',
         message:
@@ -79,7 +90,7 @@ function AuthContextProvider({ children }: IAuthContextProps): JSX.Element {
 
       errorHandler.reportError(error, handleSignInWithGoogle.name);
     } finally {
-      setIsLoadingAuth(false);
+      setIsLoadingSignIn(false);
     }
   }, []);
 
@@ -115,7 +126,9 @@ function AuthContextProvider({ children }: IAuthContextProps): JSX.Element {
         handleSignInWithGoogle,
         handleSignOut,
         isUserLogged,
-        isLoadingAuth,
+        isLoadingSignIn,
+        isLoadingAuthState,
+        setIsLoadingAuthState,
       }}>
       {children}
     </AuthContext.Provider>

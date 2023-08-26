@@ -1,15 +1,12 @@
 import React from 'react';
 import { View } from 'react-native';
-import { useTheme } from 'styled-components';
 
-import CookingPot from 'phosphor-react-native/src/icons/CookingPot';
+import Bone from '@src/assets/icons/bone.svg';
 
 export function CustomMarker() {
-  const theme = useTheme();
-
   return (
     <View>
-      <CookingPot size={38} weight="fill" color={theme.colors.secondary[600]} />
+      <Bone width={50} height={50} color="red" />
     </View>
   );
 }

@@ -5,8 +5,16 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import Geolocation from '@react-native-community/geolocation';
+import Geolocation, {
+  GeolocationError,
+} from '@react-native-community/geolocation';
 import MapView from 'react-native-maps';
+import { useModalize } from 'react-native-modalize';
+
+import { errorHandler } from '@src/utils';
+
+import { LOCATION_PERMISSION_DENIED, IS_LOCATION_TURN_OFF } from './constants';
+
 import type {
   IMapContextProps,
   IMapProviderProps,
@@ -18,24 +26,45 @@ const MapContext = createContext<IMapContextProps>({} as IMapContextProps);
 function MapProvider({ children }: IMapProviderProps) {
   const [currentUserLocation, setCurrentUserLocation] =
     useState<TCurrentUSerLocation>(null);
+  const [isLocationAvailable, setIsLocationAvailable] = useState(true);
   const mapRef = useRef<MapView>(null);
+  const {
+    ref: requestLocationPermissionModalRef,
+    open: openRequestLocationPermissionModalRef,
+  } = useModalize();
+
+  const handleLocationError = useCallback(
+    (error: GeolocationError) => {
+      if (
+        error.code === LOCATION_PERMISSION_DENIED ||
+        error.code === IS_LOCATION_TURN_OFF
+      ) {
+        openRequestLocationPermissionModalRef();
+        setIsLocationAvailable(false);
+
+        return;
+      }
+
+      errorHandler.reportError(error, handleLocationError.name);
+    },
+    [openRequestLocationPermissionModalRef],
+  );
 
   const getUserCurrentPosition = useCallback(() => {
     Geolocation.getCurrentPosition(
       location => {
+        setIsLocationAvailable(true);
         setCurrentUserLocation(location);
       },
-      () => {
-        console.log('error');
-      },
+      handleLocationError,
       {
         enableHighAccuracy: true,
       },
     );
-  }, []);
+  }, [handleLocationError]);
 
   const watchUserPosition = useCallback(() => {
-    Geolocation.watchPosition(
+    const watchId = Geolocation.watchPosition(
       location => {
         setCurrentUserLocation(location);
 
@@ -43,15 +72,15 @@ function MapProvider({ children }: IMapProviderProps) {
           center: location.coords,
         });
       },
-      () => {
-        console.log('error');
-      },
+      handleLocationError,
       {
         enableHighAccuracy: true,
         timeout: 1000,
       },
     );
-  }, []);
+
+    return watchId;
+  }, [handleLocationError]);
 
   return (
     <MapContext.Provider
@@ -61,6 +90,8 @@ function MapProvider({ children }: IMapProviderProps) {
         getUserCurrentPosition,
         watchUserPosition,
         setCurrentUserLocation,
+        requestLocationPermissionModalRef,
+        isLocationAvailable,
       }}>
       {children}
     </MapContext.Provider>

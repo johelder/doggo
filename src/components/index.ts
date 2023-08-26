@@ -13,6 +13,11 @@ import { CustomHeader } from './CustomHeader';
 import { PageAlert } from './PageAlert';
 import { FeederCard } from './FeederCard';
 import { CustomTabBar } from './CustomTabBar';
+import { Checkbox } from './Checkbox';
+import {
+  RequestLocationPermissionModal,
+  RequestLocationPermissionBanner,
+} from './RequestLocationPermission';
 
 export {
   Button,
@@ -30,4 +35,7 @@ export {
   PageAlert,
   FeederCard,
   CustomTabBar,
+  Checkbox,
+  RequestLocationPermissionModal,
+  RequestLocationPermissionBanner,
 };

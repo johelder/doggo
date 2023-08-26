@@ -1,18 +1,16 @@
 import React from 'react';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
-import { useTheme } from 'styled-components';
 
 import { useAuth } from '@src/hooks';
-import { Button, NavigationButton } from '@src/components';
+import { NavigationButton } from '@src/components';
 
 import type { TProfileProps } from './types';
 
 import * as S from './styles';
 
 export function Profile({ navigation }: TProfileProps): JSX.Element {
-  const { user, handleSignOut } = useAuth();
+  const { user } = useAuth();
   const tabBarHeight = useBottomTabBarHeight();
-  const theme = useTheme();
 
   return (
     <S.Container>
@@ -23,7 +21,10 @@ export function Profile({ navigation }: TProfileProps): JSX.Element {
               <S.ProfilePhoto source={{ uri: user?.photo ?? '' }} />
             </S.ProfilePhotoContainer>
 
-            <S.ProfileName>{user?.name}</S.ProfileName>
+            <S.InfoContainer>
+              <S.ProfileName>{user?.name}</S.ProfileName>
+              <S.ProfileEmail>{user?.email}</S.ProfileEmail>
+            </S.InfoContainer>
           </S.HeaderContainer>
 
           <NavigationButton
@@ -46,20 +47,14 @@ export function Profile({ navigation }: TProfileProps): JSX.Element {
             icon={() => <S.FavoriteIcon />}
             onPress={() => navigation.navigate('Favorites')}
           />
+
+          <NavigationButton
+            title="Configurações"
+            description="Minhas configurações e informações sobre o app"
+            icon={() => <S.ConfigIcon />}
+            onPress={() => navigation.navigate('Settings')}
+          />
         </S.MainContent>
-
-        <S.ButtonContainer>
-          <Button.Root
-            type="outline"
-            color={theme.colors.gray[200]}
-            onPress={handleSignOut}>
-            <Button.Icon>
-              <S.SignOutIcon />
-            </Button.Icon>
-
-            <Button.Text color={theme.colors.gray[700]}>Sair</Button.Text>
-          </Button.Root>
-        </S.ButtonContainer>
       </S.Content>
     </S.Container>
   );

@@ -1,6 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import type { Address, Region } from 'react-native-maps';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import {
+  useIsFocused,
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native';
+import Geolocation from '@react-native-community/geolocation';
 
 import { useMap } from '@src/hooks';
 import { errorHandler, showToast } from '@src/utils';
@@ -10,7 +15,7 @@ import type {
   TRouteProps,
 } from '@src/routes/authenticated/types';
 import { FeedersRepository } from '@src/services/database/repositories/FeedersRepository';
-import { TCoordinates } from '@src/types/common';
+import { TCoordinates } from '@src/types';
 
 export function useSelectLocation() {
   const [isLoadingAddress, setIsLoadingAddress] = useState(false);
@@ -19,7 +24,14 @@ export function useSelectLocation() {
   const [initialRegion, setInitialRegion] = useState<TCoordinates | null>(null);
   const [temporaryUserLocation, setTemporaryUserLocation] =
     useState<TCoordinates | null>(null);
-  const { mapRef, currentUserLocation, setCurrentUserLocation } = useMap();
+  const {
+    mapRef,
+    currentUserLocation,
+    setCurrentUserLocation,
+    getUserCurrentPosition,
+    watchUserPosition,
+  } = useMap();
+  const isScreenFocused = useIsFocused();
 
   const navigation = useNavigation<TNavigationProps<'SelectLocation'>>();
   const route = useRoute<TRouteProps<'SelectLocation'>>();
@@ -163,11 +175,24 @@ export function useSelectLocation() {
     if (isEditingFeederAddress) {
       fetchFeederAddressToEdit(route.params.feederId);
     }
+
+    return () => getUserCurrentPosition();
   }, [
     fetchFeederAddressToEdit,
+    getUserCurrentPosition,
     isEditingFeederAddress,
     route.params?.feederId,
   ]);
+
+  useEffect(() => {
+    if (isScreenFocused) {
+      getUserCurrentPosition();
+    }
+
+    const watchId = watchUserPosition();
+
+    return () => Geolocation.clearWatch(watchId);
+  }, [getUserCurrentPosition, isScreenFocused, watchUserPosition]);
 
   return {
     onPanDrag,

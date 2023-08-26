@@ -1,22 +1,20 @@
 import firestore from '@react-native-firebase/firestore';
 
-import { DATABASE_USERS_COLLECTION } from '../constants';
-import { UserMapper } from '@src/services/mappers/UserMapper';
-import type { IDomainFeeder, IDomainUser } from '@src/types/domain';
-import type { IPersistanceUser } from '@src/types/persistance';
-import { FeederMapper } from '@src/services/mappers/FeederMapper';
+import {
+  DATABASE_FEEDERS_COLLECTION,
+  DATABASE_USERS_COLLECTION,
+} from '../constants';
+
+import type { IFeeder, IUser } from '@src/types';
 
 export const UsersRepository = {
-  async create(user: IDomainUser) {
-    firestore()
-      .collection(DATABASE_USERS_COLLECTION)
-      .doc(user.id)
-      .set(UserMapper.toPersistance(user));
+  async create(user: IUser) {
+    firestore().collection(DATABASE_USERS_COLLECTION).doc(user.id).set(user);
   },
 
   async findById(id: string) {
     const user = await firestore()
-      .collection<IPersistanceUser>(DATABASE_USERS_COLLECTION)
+      .collection<IUser>(DATABASE_USERS_COLLECTION)
       .doc(id)
       .get();
 
@@ -26,28 +24,24 @@ export const UsersRepository = {
       return null;
     }
 
-    return UserMapper.toDomain({ ...data, id: user.id });
+    return { ...data, id: user.id };
   },
 
-  async addNewFavoriteFeeder(userId: string, feeder: IDomainFeeder) {
+  async addNewFavoriteFeeder(userId: string, feederId: string) {
     firestore()
       .collection(DATABASE_USERS_COLLECTION)
       .doc(userId)
       .update({
-        favorites: firestore.FieldValue.arrayUnion(
-          FeederMapper.toPersistance(feeder),
-        ),
+        favorites: firestore.FieldValue.arrayUnion(feederId),
       });
   },
 
-  async removeFavoriteFeeder(userId: string, feeder: IDomainFeeder) {
+  async removeFavoriteFeeder(userId: string, feederId: string) {
     firestore()
       .collection(DATABASE_USERS_COLLECTION)
       .doc(userId)
       .update({
-        favorites: firestore.FieldValue.arrayRemove(
-          FeederMapper.toPersistance(feeder),
-        ),
+        favorites: firestore.FieldValue.arrayRemove(feederId),
       });
   },
 
@@ -59,16 +53,24 @@ export const UsersRepository = {
 
   async findAllFavoritesFeederByUserId(id: string) {
     const user = await firestore()
-      .collection<IPersistanceUser>(DATABASE_USERS_COLLECTION)
+      .collection<IUser>(DATABASE_USERS_COLLECTION)
       .doc(id)
       .get();
 
-    const userData = user.data();
+    const userFavorites = user.data()?.favorites;
 
-    if (!userData) {
+    if (!userFavorites?.length) {
       return [];
     }
 
-    return UserMapper.toDomain(userData).favorites;
+    const snapshot = await firestore()
+      .collection<IFeeder>(DATABASE_FEEDERS_COLLECTION)
+      .where(firestore.FieldPath.documentId(), 'in', userFavorites)
+      .get();
+
+    return snapshot.docs.map(documentSnapshot => ({
+      ...documentSnapshot.data(),
+      id: documentSnapshot.id,
+    }));
   },
 };

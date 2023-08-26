@@ -1,6 +1,6 @@
 {
   "name": "doggo",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -25,7 +25,9 @@
     "react-native-gesture-handler": "^2.9.0",
     "react-native-map-clustering": "^3.4.2",
     "react-native-maps": "^1.7.1",
+    "react-native-mmkv": "^2.10.1",
     "react-native-modalize": "^2.1.1",
+    "react-native-portalize": "^1.0.7",
     "react-native-reanimated": "^2.14.4",
     "react-native-safe-area-context": "^4.5.0",
     "react-native-screens": "^3.20.0",

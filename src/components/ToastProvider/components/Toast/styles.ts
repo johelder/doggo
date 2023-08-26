@@ -19,7 +19,7 @@ export const Container = styled(Animated.View)`
 export const Content = styled.View<{ type: TToastType }>`
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 
   padding: 16px;
   border-radius: 4px;
@@ -56,6 +56,8 @@ export const Message = styled.Text`
   padding: 0 10px;
 `;
 
-export const CloseButton = styled.TouchableOpacity``;
+export const CloseButton = styled.TouchableOpacity`
+  margin-left: auto;
+`;
 
 export const CloseIcon = styled(X)``;
