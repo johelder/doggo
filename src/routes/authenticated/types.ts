@@ -30,6 +30,8 @@ export type TRootStackParamList = {
   Welcome: undefined;
   Settings: undefined;
   LocationPermission: undefined;
+  PrivacyPolicy: undefined;
+  DeleteAccount: undefined;
 };
 
 export type TDefaultScreensProps<T extends keyof TAppScreens> =

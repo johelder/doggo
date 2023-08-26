@@ -11,6 +11,8 @@ import { Welcome } from './Welcome';
 import { Settings } from './Settings';
 import { LocationPermission } from './LocationPermission';
 import { Splash } from './Splash';
+import { PrivacyPolicy } from './PrivacyPolicy';
+import { DeleteAccount } from './DeleteAccount';
 
 export {
   SignIn,
@@ -26,4 +28,6 @@ export {
   Settings,
   LocationPermission,
   Splash,
+  PrivacyPolicy,
+  DeleteAccount,
 };

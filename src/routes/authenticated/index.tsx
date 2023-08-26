@@ -13,6 +13,8 @@ import {
   Welcome,
   Settings,
   LocationPermission,
+  PrivacyPolicy,
+  DeleteAccount,
 } from '@src/screens';
 import { HomeTabs } from './BottomTabs';
 import { useStorage } from '@src/hooks';
@@ -92,6 +94,20 @@ export function AuthenticatedRoutes() {
             component={Settings}
             options={{
               headerTitle: 'CONFIGURAÇÕES',
+            }}
+          />
+          <Stack.Screen
+            name="PrivacyPolicy"
+            component={PrivacyPolicy}
+            options={{
+              headerTitle: 'POLÍTICA DE PRIVACIDADE',
+            }}
+          />
+          <Stack.Screen
+            name="DeleteAccount"
+            component={DeleteAccount}
+            options={{
+              headerTitle: 'EXCLUIR MINHA CONTA',
             }}
           />
         </Stack.Group>
