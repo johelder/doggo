@@ -10,6 +10,7 @@ import { FeederDetails } from './FeederDetails';
 import { Welcome } from './Welcome';
 import { Settings } from './Settings';
 import { LocationPermission } from './LocationPermission';
+import { Splash } from './Splash';
 
 export {
   SignIn,
@@ -24,4 +25,5 @@ export {
   Welcome,
   Settings,
   LocationPermission,
+  Splash,
 };

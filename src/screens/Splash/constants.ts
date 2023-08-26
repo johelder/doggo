@@ -1,0 +1,2 @@
+export const TIME_TO_LOAD_AUTH_STATE = 2000;
+export const SPLASH_ANIMATION_FINAL_VALUE = 50;
