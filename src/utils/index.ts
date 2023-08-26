@@ -9,6 +9,7 @@ import { handleOpenSupport } from './handleOpenSupport';
 import { formatRelativeDate } from './formatRelativeDate';
 import { getDaysDifference } from './getDaysDifference';
 import { getFoodsLabel } from './getFoodsLabel';
+import { delay } from './delay';
 
 export {
   getDayGreetings,
@@ -20,4 +21,5 @@ export {
   formatRelativeDate,
   getDaysDifference,
   getFoodsLabel,
+  delay,
 };
