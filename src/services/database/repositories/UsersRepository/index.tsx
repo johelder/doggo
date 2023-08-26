@@ -73,4 +73,8 @@ export const UsersRepository = {
       id: documentSnapshot.id,
     }));
   },
+
+  async delete(id: string) {
+    firestore().collection(DATABASE_USERS_COLLECTION).doc(id).delete();
+  },
 };
