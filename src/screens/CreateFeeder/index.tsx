@@ -7,11 +7,13 @@ import { CustomHeader } from '@src/components/CustomHeader';
 import { MiniMap } from '@src/components/Map/components/MiniMap';
 import { useCreateFeeder } from './useCreateFeeder';
 
-import type { TCreateFeederProps } from './types';
+import type { TRootStackScreenProps } from '@src/routes/authenticated/types';
 
 import * as S from './styles';
 
-export function CreateFeeder({ route }: TCreateFeederProps): JSX.Element {
+export function CreateFeeder({
+  route,
+}: TRootStackScreenProps<'CreateFeeder'>): JSX.Element {
   const headerHeight = useHeaderHeight();
   const { feederFormRef, handleCreateFeeder } = useCreateFeeder();
 

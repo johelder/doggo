@@ -6,7 +6,6 @@ import { UsersRepository } from '@src/services/database/repositories/UsersReposi
 
 import { errorHandler } from '@src/utils';
 
-import type { TNavigationProps } from '@src/routes/authenticated/types';
 import type { TPageStatus, IFeeder } from '@src/types';
 
 export function useFavorites() {
@@ -14,7 +13,7 @@ export function useFavorites() {
   const [pageStatus, setPageStatus] = useState<TPageStatus>('idle');
   const { user } = useAuth();
   const isScreenFocused = useIsFocused();
-  const navigation = useNavigation<TNavigationProps<'Favorites'>>();
+  const navigation = useNavigation();
 
   function handleRedirectToMap() {
     navigation.navigate('Map');

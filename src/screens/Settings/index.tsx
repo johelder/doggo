@@ -8,11 +8,11 @@ import { version } from '../../../package.json';
 import { Button, NavigationButton } from '@src/components';
 import { useAuth } from '@src/hooks';
 
-import type { ISettingsProps } from './types';
+import type { TRootStackScreenProps } from '@src/routes/authenticated/types';
 
 import * as S from './styles';
 
-export function Settings({ navigation }: ISettingsProps) {
+export function Settings({ navigation }: TRootStackScreenProps<'Settings'>) {
   const { handleSignOut } = useAuth();
 
   const theme = useTheme();

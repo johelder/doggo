@@ -6,14 +6,13 @@ import {
 } from '@src/utils';
 import { useMap } from '@src/hooks';
 
-import type { TNavigationProps } from '@src/routes/authenticated/types';
 import type { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
-import { IFeeder } from '@src/types';
+import type { IFeeder } from '@src/types';
 
 export function useFeederCard(feeder: IFeeder | null, onClose?: () => void) {
   const { currentUserLocation } = useMap();
 
-  const navigation = useNavigation<TNavigationProps<'Map'>>();
+  const navigation = useNavigation();
 
   const lastSupplyDate = feeder?.maintenanceStatus.supply
     .updatedAt as FirebaseFirestoreTypes.Timestamp;

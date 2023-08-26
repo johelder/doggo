@@ -10,13 +10,13 @@ import { Marker } from './components/Marker';
 import { grayScale } from '@src/components/Map/customStyles';
 import { LATITUDE_DELTA, LONGITUDE_DELTA } from '@src/components/Map/constants';
 
-import type { TSelectLocationProps } from './types';
+import type { TRootStackScreenProps } from '@src/routes/authenticated/types';
 
 import * as S from './styles';
 
 export function SelectLocation({
   navigation,
-}: TSelectLocationProps): JSX.Element {
+}: TRootStackScreenProps<'SelectLocation'>): JSX.Element {
   const {
     onPanDrag,
     onRegionChangeComplete,

@@ -7,11 +7,13 @@ import { CustomHeader } from '@src/components/CustomHeader';
 import { MiniMap } from '@src/components/Map/components/MiniMap';
 import { useEditFeeder } from './useEditFeeder';
 
-import type { TEditFeederProps } from './types';
+import { TRootStackScreenProps } from '@src/routes/authenticated/types';
 
 import * as S from './styles';
 
-export function EditFeeder({ route }: TEditFeederProps): JSX.Element {
+export function EditFeeder({
+  route,
+}: TRootStackScreenProps<'EditFeeder'>): JSX.Element {
   const headerHeight = useHeaderHeight();
   const { feederFormRef, handleUpdateFeeder } = useEditFeeder();
 

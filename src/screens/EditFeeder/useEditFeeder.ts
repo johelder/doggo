@@ -5,12 +5,9 @@ import { FeedersRepository } from '@src/services/database/repositories/FeedersRe
 import { useMap } from '@src/hooks';
 import { errorHandler, showToast } from '@src/utils';
 
-import type {
-  TNavigationProps,
-  TRouteProps,
-} from '@src/routes/authenticated/types';
 import type { IFeeder } from '@src/types';
 import type { IFeederFormRef } from '@src/components/FeederForm/types';
+import type { TRootStackScreenProps } from '@src/routes/authenticated/types';
 import type { IFeederAddress } from './types';
 
 export function useEditFeeder() {
@@ -20,8 +17,8 @@ export function useEditFeeder() {
   const { currentUserLocation } = useMap();
   const feederFormRef = useRef<IFeederFormRef>(null);
 
-  const route = useRoute<TRouteProps<'EditFeeder'>>();
-  const navigation = useNavigation<TNavigationProps<'EditFeeder'>>();
+  const route = useRoute<TRootStackScreenProps<'EditFeeder'>['route']>();
+  const navigation = useNavigation();
   const feederId = route.params.feederId;
 
   function hasSomeMandatoryFieldNotFilled() {

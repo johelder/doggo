@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { useIsFocused } from '@react-navigation/native';
 import Geolocation from '@react-native-community/geolocation';
 
 import { FeedersRepository } from '@src/services/database/repositories/FeedersRepository';
@@ -7,7 +8,6 @@ import { calculateDistanceBetweenTwoPoints } from '@src/utils';
 
 import { THREE_KILOMETER_IN_METERS } from './constants';
 import type { IFeeder, TCoordinates } from '@src/types';
-import { useIsFocused } from '@react-navigation/native';
 
 export function useHome() {
   const [isLoadingMap, setIsLoadingMap] = useState(true);

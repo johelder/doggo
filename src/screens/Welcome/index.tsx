@@ -8,11 +8,13 @@ import { useAuth } from '@src/hooks';
 import { getDayGreetings } from '@src/utils';
 import { NavigationButton } from './components/NavigationButton';
 
-import type { IWelcomeProps } from './types';
+import type { TRootStackScreenProps } from '@src/routes/authenticated/types';
 
 import * as S from './styles';
 
-export function Welcome({ navigation }: IWelcomeProps): JSX.Element {
+export function Welcome({
+  navigation,
+}: TRootStackScreenProps<'Welcome'>): JSX.Element {
   const { user } = useAuth();
   const theme = useTheme();
 

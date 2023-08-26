@@ -6,20 +6,17 @@ import { FeedersRepository } from '@src/services/database/repositories/FeedersRe
 import { useAuth } from '@src/hooks';
 import { errorHandler, showToast } from '@src/utils';
 
-import type {
-  TNavigationProps,
-  TRouteProps,
-} from '@src/routes/authenticated/types';
 import type { IFeeder } from '@src/types';
 import type { IFeederFormRef } from '@src/components/FeederForm/types';
 import type { IFeederAddress } from './types';
+import type { TRootStackScreenProps } from '@src/routes/authenticated/types';
 
 export function useCreateFeeder() {
   const { user } = useAuth();
   const feederFormRef = useRef<IFeederFormRef>(null);
 
-  const route = useRoute<TRouteProps<'CreateFeeder'>>();
-  const navigation = useNavigation<TNavigationProps<'CreateFeeder'>>();
+  const route = useRoute<TRootStackScreenProps<'CreateFeeder'>['route']>();
+  const navigation = useNavigation();
 
   function hasSomeMandatoryFieldNotFilled() {
     return (

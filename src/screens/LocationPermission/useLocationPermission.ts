@@ -12,10 +12,8 @@ import {
   IS_LOCATION_TURN_OFF,
 } from '@src/hooks/useMap/constants';
 
-import type { TNavigationProps } from '@src/routes/authenticated/types';
-
 export function useLocationPermission() {
-  const navigation = useNavigation<TNavigationProps<'LocationPermission'>>();
+  const navigation = useNavigation();
   const { ref: requestPermissionModalRef, open: openRequestPermissionModal } =
     useModalize();
   const { setValueInStorage } = useStorage(IS_FIRST_ACCESS_KEY, true);

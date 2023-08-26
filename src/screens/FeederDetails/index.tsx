@@ -1,5 +1,5 @@
 import React, { useCallback, useLayoutEffect } from 'react';
-import { useTheme } from 'styled-components';
+import { useTheme } from 'styled-components/native';
 
 import Repeat from 'phosphor-react-native/src/icons/Repeat';
 import ToiletPaper from 'phosphor-react-native/src/icons/ToiletPaper';
@@ -13,15 +13,17 @@ import MapPin from 'phosphor-react-native/src/icons/MapPin';
 import Heart from 'phosphor-react-native/src/icons/Heart';
 
 import { Button, Checkbox, Loader } from '@src/components';
+import { useFavorite } from '@src/hooks';
 import { getFoodsLabel } from '@src/utils';
 import { useFeederDetails } from './useFeederDetails';
 
-import type { IFeederDetailsProps } from './types';
+import type { TRootStackScreenProps } from '@src/routes/authenticated/types';
 
 import * as S from './styles';
-import { useFavorite } from '@src/hooks';
 
-export function FeederDetails({ navigation }: IFeederDetailsProps) {
+export function FeederDetails({
+  navigation,
+}: TRootStackScreenProps<'FeederDetails'>) {
   const {
     feeder,
     handleToggleMaintenanceStatus,

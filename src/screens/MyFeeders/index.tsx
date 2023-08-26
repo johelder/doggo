@@ -15,11 +15,13 @@ import { FeederDetailsModal } from './components/FeederDetailsModal';
 import { useMyFeeders } from './useMyFeeders';
 
 import type { IFeeder } from '@src/types';
-import type { TMyFeedersProps } from './types';
+import type { TRootStackScreenProps } from '@src/routes/authenticated/types';
 
 import * as S from './styles';
 
-export function MyFeeders({ navigation }: TMyFeedersProps): JSX.Element {
+export function MyFeeders({
+  navigation,
+}: TRootStackScreenProps<'MyFeeders'>): JSX.Element {
   const {
     feeders,
     pageStatus,
@@ -40,7 +42,7 @@ export function MyFeeders({ navigation }: TMyFeedersProps): JSX.Element {
       headerLeft: props => (
         <HeaderBackButton
           {...props}
-          onPress={() => navigation.navigate('Profile')}
+          onPress={() => navigation.navigate('HomeTabs', { screen: 'Profile' })}
         />
       ),
     });

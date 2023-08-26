@@ -8,14 +8,11 @@ import {
 import Geolocation from '@react-native-community/geolocation';
 
 import { useMap } from '@src/hooks';
-import { errorHandler, showToast } from '@src/utils';
+import { delay, errorHandler, showToast } from '@src/utils';
 
-import type {
-  TNavigationProps,
-  TRouteProps,
-} from '@src/routes/authenticated/types';
 import { FeedersRepository } from '@src/services/database/repositories/FeedersRepository';
 import { TCoordinates } from '@src/types';
+import { TRootStackScreenProps } from '@src/routes/authenticated/types';
 
 export function useSelectLocation() {
   const [isLoadingAddress, setIsLoadingAddress] = useState(false);
@@ -33,8 +30,8 @@ export function useSelectLocation() {
   } = useMap();
   const isScreenFocused = useIsFocused();
 
-  const navigation = useNavigation<TNavigationProps<'SelectLocation'>>();
-  const route = useRoute<TRouteProps<'SelectLocation'>>();
+  const navigation = useNavigation();
+  const route = useRoute<TRootStackScreenProps<'SelectLocation'>['route']>();
   const isEditingFeederAddress = route.params?.feederId;
 
   function handleNavigateToCreateFeeder() {
@@ -80,6 +77,8 @@ export function useSelectLocation() {
   }
 
   async function onRegionChangeComplete(currentRegion: Region) {
+    await delay(1000);
+
     const { latitude, longitude } = currentRegion;
 
     const fetchedUserAddress = await getAddressByCoordinate(

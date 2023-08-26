@@ -7,7 +7,6 @@ import { errorHandler, showToast } from '@src/utils';
 import { FeedersRepository } from '@src/services/database/repositories/FeedersRepository';
 
 import type { TPageStatus, IFeeder } from '@src/types';
-import type { TNavigationProps } from '@src/routes/authenticated/types';
 
 export function useMyFeeders() {
   const [feeders, setFeeders] = useState<IFeeder[]>([]);
@@ -20,7 +19,7 @@ export function useMyFeeders() {
 
   const isScreenFocused = useIsFocused();
 
-  const navigation = useNavigation<TNavigationProps<'MyFeeders'>>();
+  const navigation = useNavigation();
 
   function handleRedirectToSelectLocation() {
     navigation.navigate('SelectLocation');
