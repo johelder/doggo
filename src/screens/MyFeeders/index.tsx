@@ -37,14 +37,14 @@ export function MyFeeders({ navigation }: TMyFeedersProps): JSX.Element {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerLeft: () => (
+      headerLeft: props => (
         <HeaderBackButton
+          {...props}
           onPress={() => navigation.navigate('Profile')}
-          tintColor={theme.colors.primary[500]}
         />
       ),
     });
-  }, [navigation, theme.colors.primary]);
+  }, [navigation]);
 
   const renderFeeder = useCallback(
     ({ item: feeder }: ListRenderItemInfo<IFeeder>) => {
