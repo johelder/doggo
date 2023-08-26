@@ -26,7 +26,8 @@ const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
 function AuthContextProvider({ children }: IAuthContextProps): JSX.Element {
   const [user, setUser] = useState<IUser | null>(null);
-  const [isLoadingAuth, setIsLoadingAuth] = useState(false);
+  const [isLoadingSignIn, setIsLoadingSignIn] = useState(false);
+  const [isLoadingAuthState, setIsLoadingAuthState] = useState(true);
 
   async function onAuthStateChanged(userState: FirebaseAuthTypes.User | null) {
     if (!userState) {
@@ -42,7 +43,7 @@ function AuthContextProvider({ children }: IAuthContextProps): JSX.Element {
 
   const handleSignInWithGoogle = useCallback(async () => {
     try {
-      setIsLoadingAuth(true);
+      setIsLoadingSignIn(true);
 
       await GoogleSignin.hasPlayServices({
         showPlayServicesUpdateDialog: true,
@@ -89,7 +90,7 @@ function AuthContextProvider({ children }: IAuthContextProps): JSX.Element {
 
       errorHandler.reportError(error, handleSignInWithGoogle.name);
     } finally {
-      setIsLoadingAuth(false);
+      setIsLoadingSignIn(false);
     }
   }, []);
 
@@ -125,7 +126,9 @@ function AuthContextProvider({ children }: IAuthContextProps): JSX.Element {
         handleSignInWithGoogle,
         handleSignOut,
         isUserLogged,
-        isLoadingAuth,
+        isLoadingSignIn,
+        isLoadingAuthState,
+        setIsLoadingAuthState,
       }}>
       {children}
     </AuthContext.Provider>

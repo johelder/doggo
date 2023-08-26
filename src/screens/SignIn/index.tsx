@@ -9,7 +9,7 @@ import GoogleLogo from '@src/assets/images/google-logo.svg';
 import * as S from './styles';
 
 export function SignIn(): JSX.Element {
-  const { handleSignInWithGoogle, isLoadingAuth } = useAuth();
+  const { handleSignInWithGoogle, isLoadingSignIn } = useAuth();
 
   return (
     <S.Container>
@@ -23,8 +23,10 @@ export function SignIn(): JSX.Element {
         </S.GreetingsSubtitle>
       </S.GreetingsContainer>
 
-      <S.GoogleButton onPress={handleSignInWithGoogle} disabled={isLoadingAuth}>
-        {isLoadingAuth ? (
+      <S.GoogleButton
+        onPress={handleSignInWithGoogle}
+        disabled={isLoadingSignIn}>
+        {isLoadingSignIn ? (
           <Loader.Component />
         ) : (
           <>

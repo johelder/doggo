@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { Dispatch, ReactNode, SetStateAction } from 'react';
 import type { IUser } from '@src/types';
 
 export interface IAuthContext {
@@ -6,7 +6,9 @@ export interface IAuthContext {
   handleSignInWithGoogle: () => Promise<void>;
   handleSignOut: () => Promise<void>;
   isUserLogged: boolean;
-  isLoadingAuth: boolean;
+  isLoadingSignIn: boolean;
+  isLoadingAuthState: boolean;
+  setIsLoadingAuthState: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface IAuthContextProps {
