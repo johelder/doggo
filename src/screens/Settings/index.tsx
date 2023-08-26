@@ -5,12 +5,14 @@ import SignOut from 'phosphor-react-native/src/icons/SignOut';
 
 import { version } from '../../../package.json';
 
-import { Button } from '@src/components';
+import { Button, NavigationButton } from '@src/components';
 import { useAuth } from '@src/hooks';
+
+import type { ISettingsProps } from './types';
 
 import * as S from './styles';
 
-export function Settings() {
+export function Settings({ navigation }: ISettingsProps) {
   const { handleSignOut } = useAuth();
 
   const theme = useTheme();
@@ -18,7 +20,17 @@ export function Settings() {
   return (
     <S.Container>
       <S.Content>
-        <S.MainContent />
+        <S.MainContent>
+          <NavigationButton
+            title="Política de Privacidade"
+            onPress={() => navigation.navigate('PrivacyPolicy')}
+          />
+
+          <NavigationButton
+            title="Excluir minha conta"
+            onPress={() => navigation.navigate('DeleteAccount')}
+          />
+        </S.MainContent>
 
         <S.Footer>
           <S.Label>Versão - {version}</S.Label>
