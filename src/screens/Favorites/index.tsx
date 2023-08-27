@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { ListRenderItemInfo } from 'react-native';
-import { useTheme } from 'styled-components';
+import { useTheme } from 'styled-components/native';
 
 import Warning from 'phosphor-react-native/src/icons/Warning';
 import ArrowClockwise from 'phosphor-react-native/src/icons/ArrowClockwise';
@@ -8,12 +8,12 @@ import HeartBreak from 'phosphor-react-native/src/icons/HeartBreak';
 import MapTrifold from 'phosphor-react-native/src/icons/MapTrifold';
 import Heart from 'phosphor-react-native/src/icons/Heart';
 
-import { handleOpenSupport } from '@src/utils';
-import { useFavorite } from '@src/hooks';
-import { Button, FeederCard, Loader, PageAlert } from '@src/components';
+import { handleOpenSupport } from '@utils';
+import { useFavorite } from '@hooks';
+import { Button, FeederCard, Loader, PageAlert } from '@components';
 import { useFavorites } from './useFavorites';
 
-import type { IFeeder } from '@src/types';
+import type { IFeeder } from '@types';
 
 import * as S from './styles';
 

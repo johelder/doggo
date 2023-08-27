@@ -1,8 +1,8 @@
 import React from 'react';
-
-import { useTheme } from 'styled-components';
+import { useTheme } from 'styled-components/native';
 
 import { useToast } from './useToast';
+
 import type { IToastProps } from './types';
 
 import * as S from './styles';

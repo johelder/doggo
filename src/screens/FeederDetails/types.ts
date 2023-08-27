@@ -1,9 +1,5 @@
 import type { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
-import type { TDefaultScreensProps } from '@src/routes/authenticated/types';
-import type { TMaintenanceStatus, TPageStatus, IFeeder } from '@src/types';
-
-export interface IFeederDetailsProps
-  extends TDefaultScreensProps<'FeederDetails'> {}
+import type { TMaintenanceStatus, TPageStatus, IFeeder } from '@types';
 
 export type TMaintenanceProps = {
   updatedAt: FirebaseFirestoreTypes.FieldValue;

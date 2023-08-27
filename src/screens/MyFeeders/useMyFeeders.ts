@@ -2,11 +2,11 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { Modalize } from 'react-native-modalize';
 
-import { useAuth } from '@src/hooks';
-import { errorHandler, showToast } from '@src/utils';
-import { FeedersRepository } from '@src/services/database/repositories/FeedersRepository';
+import { useAuth } from '@hooks';
+import { errorHandler, showToast } from '@utils';
+import { FeedersRepository } from '@services';
 
-import type { TPageStatus, IFeeder } from '@src/types';
+import type { TPageStatus, IFeeder } from '@types';
 
 export function useMyFeeders() {
   const [feeders, setFeeders] = useState<IFeeder[]>([]);

@@ -2,12 +2,11 @@ import React from 'react';
 import { ScrollView } from 'react-native';
 import { useHeaderHeight } from '@react-navigation/elements';
 
-import { FeederForm } from '@src/components';
-import { CustomHeader } from '@src/components/CustomHeader';
-import { MiniMap } from '@src/components/Map/components/MiniMap';
+import { FeederForm, CustomHeader } from '@components';
+import { MiniMap } from '@app/src/components/Map/components/MiniMap';
 import { useEditFeeder } from './useEditFeeder';
 
-import { TRootStackScreenProps } from '@src/routes/authenticated/types';
+import type { TRootStackScreenProps } from '@types';
 
 import * as S from './styles';
 

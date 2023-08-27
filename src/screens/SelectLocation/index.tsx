@@ -1,16 +1,18 @@
 import React, { useCallback, useLayoutEffect } from 'react';
-
-import { useTheme } from 'styled-components';
+import { useTheme } from 'styled-components/native';
 
 import { useSelectLocation } from './useSelectLocation';
 
-import { Button, Loader, Map, CustomHeader } from '@src/components';
-import { CustomHeaderTitle } from '@src/components/CustomHeader/components/CustomHeaderTitle';
+import { Button, Loader, Map, CustomHeader } from '@components';
+import { CustomHeaderTitle } from '@app/src/components/CustomHeader/components/CustomHeaderTitle';
 import { Marker } from './components/Marker';
-import { grayScale } from '@src/components/Map/customStyles';
-import { LATITUDE_DELTA, LONGITUDE_DELTA } from '@src/components/Map/constants';
+import { grayScale } from '@app/src/components/Map/customStyles';
+import {
+  LATITUDE_DELTA,
+  LONGITUDE_DELTA,
+} from '@app/src/components/Map/constants';
 
-import type { TRootStackScreenProps } from '@src/routes/authenticated/types';
+import type { TRootStackScreenProps } from '@types';
 
 import * as S from './styles';
 

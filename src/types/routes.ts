@@ -2,11 +2,9 @@ import type {
   CompositeScreenProps,
   NavigatorScreenParams,
 } from '@react-navigation/native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-
-import type { TRootTabParamList } from '@src/routes/authenticated/BottomTabs/types';
-import type { TCoordinates, TAddress } from '@src/types';
+import type { TCoordinates, TAddress } from '@types';
 
 export type TRootStackParamList = {
   HomeTabs: NavigatorScreenParams<TRootTabParamList>;
@@ -32,6 +30,11 @@ export type TRootStackParamList = {
   DeleteAccount: undefined;
 };
 
+export type TRootTabParamList = {
+  Map: undefined;
+  Profile: undefined;
+};
+
 export type TRootStackScreenProps<T extends keyof TRootStackParamList> =
   NativeStackScreenProps<TRootStackParamList, T>;
 
@@ -40,3 +43,9 @@ export type THomeTabScreenProps<T extends keyof TRootTabParamList> =
     BottomTabScreenProps<TRootTabParamList, T>,
     TRootStackScreenProps<keyof TRootStackParamList>
   >;
+
+declare global {
+  namespace ReactNavigation {
+    interface RootParamList extends TRootStackParamList, TRootTabParamList {}
+  }
+}

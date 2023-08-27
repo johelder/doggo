@@ -1,4 +1,4 @@
-import { TCoordinates } from '@src/types';
+import { TCoordinates } from '@types';
 
 export interface IMiniMapProps {
   coords: TCoordinates;

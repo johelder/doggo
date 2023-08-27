@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTheme } from 'styled-components/native';
 
-import { Button } from '@src/components';
+import { Button } from '@components';
 import { useDeleteAccount } from './useDeleteAccount';
 
 import * as S from './styles';

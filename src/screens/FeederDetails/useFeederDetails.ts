@@ -2,24 +2,20 @@ import { useCallback, useEffect, useMemo, useReducer } from 'react';
 import { Linking, Platform } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
-import { useAuth, useMap } from '@src/hooks';
+import { useAuth, useMap } from '@hooks';
 import {
   errorHandler,
   formatRelativeDate,
   getDaysDifference,
   getFormattedDistanceBetweenTwoPoints,
   showToast,
-} from '@src/utils';
+} from '@utils';
 import { LAST_FIFTEEN_DAYS, YESTERDAY } from './constants';
 
-import type {
-  TNavigationProps,
-  TRouteProps,
-} from '@src/routes/authenticated/types';
-import { FeedersRepository } from '@src/services/database/repositories/FeedersRepository';
+import { FeedersRepository } from '@services';
 
 import type { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
-import type { TMaintenanceStatus } from '@src/types';
+import type { TMaintenanceStatus, TRootStackScreenProps } from '@types';
 import type { IInitialState, TActions, TMaintenanceProps } from './types';
 
 const initialState: IInitialState = {
@@ -81,8 +77,8 @@ export function useFeederDetails() {
   const { user } = useAuth();
   const { currentUserLocation } = useMap();
 
-  const route = useRoute<TRouteProps<'FeederDetails'>>();
-  const navigation = useNavigation<TNavigationProps<'FeederDetails'>>();
+  const route = useRoute<TRootStackScreenProps<'FeederDetails'>['route']>();
+  const navigation = useNavigation();
 
   function handleToggleMaintenanceStatus(status: TMaintenanceStatus) {
     dispatch({ type: 'update_maintenance_input_state', payload: status });

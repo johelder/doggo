@@ -1,6 +1,4 @@
 import { useEffect } from 'react';
-
-import { useTheme } from 'styled-components';
 import {
   interpolateColor,
   useAnimatedStyle,
@@ -9,6 +7,7 @@ import {
   withRepeat,
   withTiming,
 } from 'react-native-reanimated';
+import { useTheme } from 'styled-components/native';
 
 import {
   ANIMATION_DURATION,

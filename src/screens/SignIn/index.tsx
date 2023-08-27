@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { useAuth } from '@src/hooks';
-import { Loader } from '@src/components/Loader';
+import { useAuth } from '@hooks';
+import { Loader } from '@components';
 
-import DogLandscapeIllustration from '@src/assets/images/dog-landscape-illustration.svg';
-import GoogleLogo from '@src/assets/images/google-logo.svg';
+import DogLandscapeIllustration from '@assets/images/dog-landscape-illustration.svg';
+import GoogleLogo from '@assets/images/google-logo.svg';
 
 import * as S from './styles';
 

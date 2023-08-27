@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTheme } from 'styled-components';
+import { useTheme } from 'styled-components/native';
 
 import CookingPot from 'phosphor-react-native/src/icons/CookingPot';
 import Signpost from 'phosphor-react-native/src/icons/Signpost';
@@ -7,9 +7,10 @@ import User from 'phosphor-react-native/src/icons/User';
 import Info from 'phosphor-react-native/src/icons/Info';
 import CheckCircle from 'phosphor-react-native/src/icons/CheckCircle';
 
-import { Button } from '@src/components';
-import { getFoodsLabel } from '@src/utils/getFoodsLabel';
+import { Button } from '../Button';
+import { getFoodsLabel } from '@utils';
 import { useFeederCard } from './useFeederCard';
+
 import type { IFeedCardProps } from './types';
 
 import * as S from './styles';

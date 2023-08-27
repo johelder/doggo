@@ -2,11 +2,11 @@ import React from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Host } from 'react-native-portalize';
 
-import { AuthContextProvider, MapProvider, FavoriteProvider } from '@src/hooks';
-import { ToastProvider } from '@src/components';
+import { AuthContextProvider, MapProvider, FavoriteProvider } from '@hooks';
+import { ToastProvider } from '@components';
 
 import { ThemeProvider } from 'styled-components/native';
-import { theme } from '@src/styles/theme';
+import { theme } from '@theme';
 
 import type { IAppProviderProps } from './types';
 

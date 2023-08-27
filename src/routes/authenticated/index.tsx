@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useTheme } from 'styled-components';
+import { useTheme } from 'styled-components/native';
 
 import {
   SelectLocation,
@@ -15,12 +15,12 @@ import {
   LocationPermission,
   PrivacyPolicy,
   DeleteAccount,
-} from '@src/screens';
+} from '@screens';
 import { HomeTabs } from './BottomTabs';
-import { useStorage } from '@src/hooks';
-import { IS_FIRST_ACCESS_KEY } from '@src/hooks/useStorage/constants';
+import { useStorage } from '@hooks';
+import { IS_FIRST_ACCESS_KEY } from '@app/src/hooks/useStorage/constants';
 
-import type { TRootStackParamList } from './types';
+import type { TRootStackParamList } from '@types';
 
 const Stack = createNativeStackNavigator<TRootStackParamList>();
 

@@ -1,11 +1,10 @@
 import React from 'react';
-
-import { useTheme } from 'styled-components';
+import { useTheme } from 'styled-components/native';
 
 import MapPin from 'phosphor-react-native/src/icons/MapPin';
 import DotsThreeVertical from 'phosphor-react-native/src/icons/DotsThreeVertical';
 
-import { getFoodsLabel } from '@src/utils/getFoodsLabel';
+import { getFoodsLabel } from '@utils';
 
 import type { IFeederAddressProps } from './types';
 

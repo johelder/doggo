@@ -1,7 +1,7 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
-import { useTheme } from 'styled-components';
 import { useHeaderHeight } from '@react-navigation/elements';
+import { useTheme } from 'styled-components/native';
 import Svg, { Defs, LinearGradient, Rect, Stop } from 'react-native-svg';
 
 import * as S from './styles';

@@ -1,6 +1,6 @@
 import { getDayGreetings } from './getDayGreetings';
 import { errorHandler } from './errorHandler';
-import { showToast } from './showToast';
+import { showToast, toastEventManager } from './showToast';
 import {
   calculateDistanceBetweenTwoPoints,
   getFormattedDistanceBetweenTwoPoints,
@@ -22,4 +22,5 @@ export {
   getDaysDifference,
   getFoodsLabel,
   delay,
+  toastEventManager,
 };

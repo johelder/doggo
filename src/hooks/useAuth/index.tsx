@@ -6,7 +6,6 @@ import React, {
   useState,
   useMemo,
 } from 'react';
-
 import {
   GoogleSignin,
   statusCodes,
@@ -14,12 +13,12 @@ import {
 } from '@react-native-google-signin/google-signin';
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 
-import { errorHandler, showToast } from '@src/utils';
-import { UsersRepository } from '@src/services/database/repositories/UsersRepository';
+import { UsersRepository } from '@services';
+import { errorHandler, showToast } from '@utils';
 
 import { WEB_CLIENT_ID } from '@env';
 
-import type { IUser } from '@src/types';
+import type { IUser } from '@types';
 import type { IAuthContext, IAuthContextProps } from './types';
 
 const AuthContext = createContext<IAuthContext>({} as IAuthContext);

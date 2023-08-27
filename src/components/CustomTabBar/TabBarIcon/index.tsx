@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useTheme } from 'styled-components';
+import { useTheme } from 'styled-components/native';
 
 import { useTabBarIcon } from './useTabBarIcon';
 import type { ITabBarIconProps } from './types';

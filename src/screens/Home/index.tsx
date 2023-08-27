@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { ListRenderItemInfo, StatusBar } from 'react-native';
 import { Marker } from 'react-native-maps';
-import { useTheme } from 'styled-components';
+import { useTheme } from 'styled-components/native';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 
 import X from 'phosphor-react-native/src/icons/X';
@@ -15,11 +15,11 @@ import {
   FeederCard,
   RequestLocationPermissionModal,
   RequestLocationPermissionBanner,
-} from '@src/components';
-import { grayScale } from '@src/components/Map/customStyles';
+} from '@components';
+import { grayScale } from '@app/src/components/Map/customStyles';
 import { CustomMarker } from './components/CustomMarker';
 
-import type { IFeeder } from '@src/types';
+import type { IFeeder } from '@types';
 
 import * as S from './styles';
 

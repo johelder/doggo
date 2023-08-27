@@ -12,12 +12,12 @@ import Signpost from 'phosphor-react-native/src/icons/Signpost';
 import MapPin from 'phosphor-react-native/src/icons/MapPin';
 import Heart from 'phosphor-react-native/src/icons/Heart';
 
-import { Button, Checkbox, Loader } from '@src/components';
-import { useFavorite } from '@src/hooks';
-import { getFoodsLabel } from '@src/utils';
+import { Button, Checkbox, Loader } from '@components';
+import { useFavorite } from '@hooks';
+import { getFoodsLabel } from '@utils';
 import { useFeederDetails } from './useFeederDetails';
 
-import type { TRootStackScreenProps } from '@src/routes/authenticated/types';
+import type { TRootStackScreenProps } from '@types';
 
 import * as S from './styles';
 

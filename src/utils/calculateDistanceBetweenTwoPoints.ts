@@ -1,4 +1,4 @@
-import { TCoordinates } from '@src/types';
+import { TCoordinates } from '@types';
 
 const EARTH_RADIUS_IN_METERS = 6371e3;
 const ONE_KILOMETER_IN_METERS = 1000;

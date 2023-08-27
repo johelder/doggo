@@ -1,11 +1,12 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { Home, Profile } from '@src/screens';
-import { CustomTabBar } from '@src/components';
+import { Home, Profile } from '@screens';
+import { CustomTabBar } from '@components';
 
 import { tabBarOptions } from './options';
-import type { TRootTabParamList } from './types';
+
+import type { TRootTabParamList } from '@types';
 
 const Tab = createBottomTabNavigator<TRootTabParamList>();
 

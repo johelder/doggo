@@ -1,6 +1,6 @@
 import React from 'react';
 
-import LocationIllustration from '@src/assets/images/location-illustration.svg';
+import LocationIllustration from '@assets/images/location-illustration.svg';
 
 import * as S from './styles';
 

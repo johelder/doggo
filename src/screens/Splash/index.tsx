@@ -1,10 +1,10 @@
 import React from 'react';
 
 import Animated from 'react-native-reanimated';
-import { useAuth } from '@src/hooks';
+import { useAuth } from '@hooks';
 import { useSplash } from './useSplash';
 
-import Logo from '@src/assets/images/logo.svg';
+import Logo from '@assets/images/logo.svg';
 
 import * as S from './styles';
 

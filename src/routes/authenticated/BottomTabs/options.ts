@@ -1,6 +1,6 @@
 import { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
 
-import { theme } from '@src/styles/theme';
+import { theme } from '@theme';
 
 import {
   TAB_BAR_BORDER_RADIUS,

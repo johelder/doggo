@@ -5,6 +5,12 @@ import type { TMaintenanceStatus } from './maintenanceStatus';
 import type { TAddress } from './address';
 import type { IFeeder } from './feeder';
 import type { IUser } from './user';
+import type {
+  TRootStackParamList,
+  TRootTabParamList,
+  TRootStackScreenProps,
+  THomeTabScreenProps,
+} from './routes';
 
 export type {
   TCoordinates,
@@ -15,4 +21,8 @@ export type {
   TAddress,
   IFeeder,
   IUser,
+  THomeTabScreenProps,
+  TRootStackParamList,
+  TRootStackScreenProps,
+  TRootTabParamList,
 };

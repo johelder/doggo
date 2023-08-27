@@ -1,14 +1,14 @@
 import React from 'react';
-import { useTheme } from 'styled-components';
+import { useTheme } from 'styled-components/native';
 
 import MapPinLine from 'phosphor-react-native/src/icons/MapPinLine';
 import CirclesThreePlus from 'phosphor-react-native/src/icons/CirclesThreePlus';
 
-import { useAuth } from '@src/hooks';
-import { getDayGreetings } from '@src/utils';
+import { useAuth } from '@hooks';
+import { getDayGreetings } from '@utils';
 import { NavigationButton } from './components/NavigationButton';
 
-import type { TRootStackScreenProps } from '@src/routes/authenticated/types';
+import type { TRootStackScreenProps } from '@types';
 
 import * as S from './styles';
 

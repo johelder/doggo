@@ -1,7 +1,8 @@
 import React from 'react';
 
-import { theme } from '@src/styles/theme';
-import { Loader } from '@src/components/Loader';
+import { theme } from '@theme';
+import { Loader } from '../Loader';
+
 import type {
   IButtonIconProps,
   IButtonRootProps,

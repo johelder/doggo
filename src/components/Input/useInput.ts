@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import type { LayoutChangeEvent } from 'react-native';
 import { useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
+
+import type { LayoutChangeEvent } from 'react-native';
 
 export function useInput(value?: string) {
   const [isInputFocused, setIsInputFocused] = useState(false);

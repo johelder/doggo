@@ -5,10 +5,10 @@ import SignOut from 'phosphor-react-native/src/icons/SignOut';
 
 import { version } from '../../../package.json';
 
-import { Button, NavigationButton } from '@src/components';
-import { useAuth } from '@src/hooks';
+import { Button, NavigationButton } from '@components';
+import { useAuth } from '@hooks';
 
-import type { TRootStackScreenProps } from '@src/routes/authenticated/types';
+import type { TRootStackScreenProps } from '@types';
 
 import * as S from './styles';
 

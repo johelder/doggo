@@ -1,11 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
+import { useTheme } from 'styled-components/native';
 
-import { useTheme } from 'styled-components';
 import Trash from 'phosphor-react-native/src/icons/Trash';
 import PencilSimpleLine from 'phosphor-react-native/src/icons/PencilSimpleLine';
 
-import { Button, Modal } from '@src/components';
+import { Button, Modal } from '@components';
 
 import type { IFeederDetailsModal } from './types';
 

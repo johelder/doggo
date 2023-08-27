@@ -7,12 +7,11 @@ import {
 } from '@react-navigation/native';
 import Geolocation from '@react-native-community/geolocation';
 
-import { useMap } from '@src/hooks';
-import { delay, errorHandler, showToast } from '@src/utils';
+import { useMap } from '@hooks';
+import { delay, errorHandler, showToast } from '@utils';
 
-import { FeedersRepository } from '@src/services/database/repositories/FeedersRepository';
-import { TCoordinates } from '@src/types';
-import { TRootStackScreenProps } from '@src/routes/authenticated/types';
+import { FeedersRepository } from '@services';
+import { TCoordinates, TRootStackScreenProps } from '@types';
 
 export function useSelectLocation() {
   const [isLoadingAddress, setIsLoadingAddress] = useState(false);

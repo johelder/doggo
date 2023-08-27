@@ -1,13 +1,14 @@
 import React, { forwardRef, useImperativeHandle } from 'react';
+import { useTheme } from 'styled-components/native';
 
-import { useTheme } from 'styled-components';
 import Dog from 'phosphor-react-native/src/icons/Dog';
 import Cat from 'phosphor-react-native/src/icons/Cat';
 import DotsThreeCircle from 'phosphor-react-native/src/icons/DotsThreeCircle';
 import ArchiveBox from 'phosphor-react-native/src/icons/ArchiveBox';
 
-import { Input, ChipButton, Button } from '@src/components';
+import { Input, ChipButton, Button } from '..';
 import { useFeederForm } from './useFeederForm';
+
 import type { IFeederFormProps, IFeederFormRef } from './types';
 
 import * as S from './styles';

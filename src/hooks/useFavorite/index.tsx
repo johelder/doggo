@@ -6,11 +6,11 @@ import React, {
   useContext,
 } from 'react';
 
+import { UsersRepository } from '@services';
+import { errorHandler, showToast } from '@utils';
 import { useAuth } from '../useAuth';
-import { UsersRepository } from '@src/services/database/repositories/UsersRepository';
-import { errorHandler, showToast } from '@src/utils';
 
-import type { IFeeder } from '@src/types';
+import type { IFeeder } from '@types';
 import type { IFavoriteContextProps, IFavoriteProviderProps } from './types';
 
 const FavoriteContext = createContext<IFavoriteContextProps>(

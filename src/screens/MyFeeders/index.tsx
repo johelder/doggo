@@ -2,20 +2,20 @@ import React, { useCallback, useLayoutEffect } from 'react';
 import { ListRenderItemInfo } from 'react-native';
 import { HeaderBackButton } from '@react-navigation/elements';
 
-import { useTheme } from 'styled-components';
+import { useTheme } from 'styled-components/native';
 
 import CirclesThreePlus from 'phosphor-react-native/src/icons/CirclesThreePlus';
 import FolderOpen from 'phosphor-react-native/src/icons/FolderOpen';
 import Warning from 'phosphor-react-native/src/icons/Warning';
 import ArrowClockwise from 'phosphor-react-native/src/icons/ArrowClockwise';
 
-import { handleOpenSupport } from '@src/utils';
-import { Button, FeederAddress, Loader, PageAlert } from '@src/components';
+import { handleOpenSupport } from '@utils';
+import { Button, FeederAddress, Loader, PageAlert } from '@components';
 import { FeederDetailsModal } from './components/FeederDetailsModal';
 import { useMyFeeders } from './useMyFeeders';
 
-import type { IFeeder } from '@src/types';
-import type { TRootStackScreenProps } from '@src/routes/authenticated/types';
+import type { IFeeder } from '@types';
+import type { TRootStackScreenProps } from '@types';
 
 import * as S from './styles';
 

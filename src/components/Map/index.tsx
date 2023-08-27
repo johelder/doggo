@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { useMap } from '@src/hooks';
-
+import { useMap } from '@hooks';
 import { useMapComponent } from './useMapComponent';
 import { LATITUDE_DELTA, LONGITUDE_DELTA } from './constants';
+
 import type { IMapProps } from './types';
 
 export function Map({ isClustering = false, children, ...rest }: IMapProps) {
