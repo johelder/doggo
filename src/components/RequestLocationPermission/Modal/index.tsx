@@ -1,5 +1,6 @@
 import React from 'react';
 import { Portal } from 'react-native-portalize';
+import { useTheme } from 'styled-components/native';
 
 import { Modal } from '../../Modal';
 import { Button } from '../../Button';
@@ -13,6 +14,7 @@ export function RequestLocationPermissionModal({
   modalRef,
 }: IRequestLocationPermissionModalProps) {
   const { handleOpenAppLocationSettings } = useRequestLocationPermissionModal();
+  const theme = useTheme();
 
   return (
     <Portal>
@@ -20,8 +22,7 @@ export function RequestLocationPermissionModal({
         modalRef={modalRef}
         adjustToContentHeight
         handlePosition="inside"
-        // eslint-disable-next-line react-native/no-inline-styles
-        modalStyle={{ padding: 16 }}>
+        modalStyle={{ padding: theme.spacings.md }}>
         <S.Container>
           <S.Title>Não conseguimos acesso à sua localização.</S.Title>
           <S.Description>

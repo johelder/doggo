@@ -36,7 +36,7 @@ export function AuthenticatedRoutes() {
     <SafeAreaView style={wrapperOptions}>
       <Stack.Navigator
         screenOptions={{
-          headerTintColor: theme.colors.primary[500],
+          headerTintColor: theme.colors.orange[500],
           headerTitleAlign: 'center',
           headerShadowVisible: false,
         }}

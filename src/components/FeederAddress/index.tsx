@@ -16,7 +16,7 @@ export function FeederAddress({ feeder, onOpenDetails }: IFeederAddressProps) {
 
   return (
     <S.Container onPress={onOpenDetails}>
-      <MapPin weight="fill" color={theme.colors.primary[500]} />
+      <MapPin weight="fill" color={theme.colors.orange[500]} />
 
       <S.LabelsContainer>
         <S.Title>

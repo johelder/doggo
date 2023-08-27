@@ -69,25 +69,20 @@ export function MyFeeders({
         actionButton={
           <Button.Root
             type="filled"
-            color={theme.colors.primary[500]}
+            color={theme.colors.orange[500]}
             onPress={handleRedirectToSelectLocation}>
             <Button.Icon>
-              <CirclesThreePlus size={24} color={theme.colors.utils.white} />
+              <CirclesThreePlus size={24} color={theme.colors.gray[0]} />
             </Button.Icon>
 
-            <Button.Text color={theme.colors.utils.white}>
+            <Button.Text color={theme.colors.gray[0]}>
               Cadastrar novo comedouro
             </Button.Text>
           </Button.Root>
         }
       />
     );
-  }, [
-    handleRedirectToSelectLocation,
-    theme.colors.gray,
-    theme.colors.primary,
-    theme.colors.utils.white,
-  ]);
+  }, [handleRedirectToSelectLocation, theme.colors.gray, theme.colors.orange]);
 
   if (pageStatus === 'loading') {
     return <Loader.Page />;
@@ -98,19 +93,19 @@ export function MyFeeders({
       <PageAlert
         title="Nós tivemos um pequeno problema"
         description="Ocorreu um erro ao se conectar com o servidor."
-        icon={<Warning color={theme.colors.utils.white} size={24} />}
-        color={theme.colors.attention[400]}
+        icon={<Warning color={theme.colors.gray[0]} size={24} />}
+        color={theme.colors.red[400]}
         actionButton={
           <>
             <Button.Root
               type="filled"
-              color={theme.colors.attention[500]}
+              color={theme.colors.red[500]}
               onPress={handleTryAgain}>
               <Button.Icon>
-                <ArrowClockwise color={theme.colors.utils.white} size={24} />
+                <ArrowClockwise color={theme.colors.gray[0]} size={24} />
               </Button.Icon>
 
-              <Button.Text color={theme.colors.utils.white}>
+              <Button.Text color={theme.colors.gray[0]}>
                 Tentar novamente
               </Button.Text>
             </Button.Root>

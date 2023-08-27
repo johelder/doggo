@@ -82,7 +82,7 @@ export const FeederForm = forwardRef<IFeederFormRef, IFeederFormProps>(
                 <Dog
                   color={
                     feederFoods.dog
-                      ? theme.colors.primary[500]
+                      ? theme.colors.orange[500]
                       : theme.colors.gray[500]
                   }
                 />
@@ -99,7 +99,7 @@ export const FeederForm = forwardRef<IFeederFormRef, IFeederFormProps>(
                 <Cat
                   color={
                     feederFoods.cat
-                      ? theme.colors.primary[500]
+                      ? theme.colors.orange[500]
                       : theme.colors.gray[500]
                   }
                 />
@@ -116,7 +116,7 @@ export const FeederForm = forwardRef<IFeederFormRef, IFeederFormProps>(
             <DotsThreeCircle
               color={
                 feederFoods.others
-                  ? theme.colors.primary[500]
+                  ? theme.colors.orange[500]
                   : theme.colors.gray[500]
               }
             />
@@ -128,15 +128,15 @@ export const FeederForm = forwardRef<IFeederFormRef, IFeederFormProps>(
 
         <Button.Root
           type="filled"
-          color={theme.colors.primary[500]}
+          color={theme.colors.orange[500]}
           onPress={handleSubmit}
           disabled={isLoading}
           isLoading={isLoading}>
           <Button.Icon>
-            <ArchiveBox color={theme.colors.utils.white} />
+            <ArchiveBox color={theme.colors.gray[0]} />
           </Button.Icon>
 
-          <Button.Text color={theme.colors.utils.white}>
+          <Button.Text color={theme.colors.gray[0]}>
             Salvar comedouro
           </Button.Text>
         </Button.Root>

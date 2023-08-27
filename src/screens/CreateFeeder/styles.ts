@@ -5,7 +5,7 @@ import MapView from 'react-native-maps';
 export const Container = styled.SafeAreaView`
   flex: 1;
 
-  background-color: ${({ theme }) => theme.colors.utils.white};
+  background-color: ${({ theme }) => theme.colors.gray[0]};
 `;
 
 export const MapPreview = styled(MapView)`
@@ -14,37 +14,39 @@ export const MapPreview = styled(MapView)`
 `;
 
 export const FormContainer = styled.View`
-  padding: 24px 15px 15px;
+  padding: ${({ theme }) => theme.spacings.lg}px
+    ${({ theme }) => theme.spacings.md}px ${({ theme }) => theme.spacings.md}px;
 
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
+  border-top-right-radius: ${({ theme }) => theme.sizes.xsm}px;
+  border-top-left-radius: ${({ theme }) => theme.sizes.xsm}px;
 
-  background-color: ${({ theme }) => theme.colors.utils.white};
+  background-color: ${({ theme }) => theme.colors.gray[0]};
 `;
 
 export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.semiBold};
-  font-size: 14px;
+  font-size: ${({ theme }) => theme.sizes.md}px;
 
   color: ${({ theme }) => theme.colors.gray[700]};
 `;
 
 export const Subtitle = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.medium};
-  font-size: 14px;
+  font-size: ${({ theme }) => theme.sizes.md}px;
 
   color: ${({ theme }) => theme.colors.gray[500]};
 `;
 
 export const FormContent = styled.View`
-  margin: 26px 0 26px;
+  margin: ${({ theme }) => theme.spacings.lg}px 0px
+    ${({ theme }) => theme.spacings.lg}px;
 `;
 
 export const InputsWrapper = styled.View`
   flex-direction: row;
 
-  gap: 16px;
-  margin-top: 26px;
+  gap: ${({ theme }) => theme.spacings.md}px;
+  margin-top: ${({ theme }) => theme.spacings.lg}px;
 `;
 
 export const InputContainer = styled.View<{ flex: number }>`
@@ -54,7 +56,7 @@ export const InputContainer = styled.View<{ flex: number }>`
 export const ChipsWrapper = styled.View`
   flex-direction: row;
 
-  gap: 16px;
+  gap: ${({ theme }) => theme.spacings.md}px;
 `;
 
 export const ChipButtonContainer = styled.View`
@@ -63,22 +65,22 @@ export const ChipButtonContainer = styled.View`
 
 export const FieldDescription = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.semiBold};
-  font-size: 12px;
+  font-size: ${({ theme }) => theme.sizes.sm}px;
 
   color: ${({ theme }) => theme.colors.gray[500]};
 
-  margin-top: 10px;
+  margin-top: ${({ theme }) => theme.sizes.sm}px;
 `;
 
 export const Label = styled.Text<{ isSelected?: boolean }>`
   font-family: ${({ theme }) => theme.fonts.primary.semiBold};
-  font-size: 14px;
+  font-size: ${({ theme }) => theme.sizes.md}px;
 
   color: ${({ theme, isSelected = true }) =>
     isSelected ? theme.colors.gray[500] : theme.colors.gray[300]};
 `;
 
 export const FormFooter = styled.View`
-  margin-top: 16px;
-  gap: 16px;
+  margin-top: ${({ theme }) => theme.spacings.md}px;
+  gap: ${({ theme }) => theme.spacings.md}px;
 `;

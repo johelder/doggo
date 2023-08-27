@@ -12,7 +12,7 @@ export function Checkbox({ isSelected = false, color }: ICheckboxProps) {
 
   return (
     <S.Container isSelected={isSelected} color={color}>
-      {isSelected && <Check size={16} color={theme.colors.utils.white} />}
+      {isSelected && <Check size={16} color={theme.colors.gray[0]} />}
     </S.Container>
   );
 }

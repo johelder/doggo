@@ -35,15 +35,13 @@ export function Welcome({
           <NavigationButton
             title="Comedouros perto de você"
             description="Você pode ajudar reabastecendo ou limpando comedouros próximos a você."
-            icon={<MapPinLine size={32} color={theme.colors.secondary[600]} />}
+            icon={<MapPinLine size={32} color={theme.colors.cyan[600]} />}
             onPress={() => navigation.navigate('HomeTabs', { screen: 'Map' })}
           />
           <NavigationButton
             title="Cadastre o seu comedouro"
             description="Você pode ajudar cadastrando seu comedouro, dessa forma, pessoas próximas de você podem limpá-lo ou reabastecê-lo."
-            icon={
-              <CirclesThreePlus size={32} color={theme.colors.secondary[600]} />
-            }
+            icon={<CirclesThreePlus size={32} color={theme.colors.cyan[600]} />}
             onPress={() => navigation.navigate('SelectLocation')}
           />
         </S.ButtonsContainer>

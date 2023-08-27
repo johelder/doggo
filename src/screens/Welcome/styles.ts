@@ -2,39 +2,41 @@ import styled from 'styled-components/native';
 
 export const Container = styled.SafeAreaView`
   flex: 1;
-  background-color: ${({ theme }) => theme.colors.utils.white};
+  background-color: ${({ theme }) => theme.colors.gray[0]};
 `;
 
 export const Content = styled.View`
-  padding: 40px 16px 16px;
+  padding: ${({ theme }) => theme.spacings.xxlg}px
+    ${({ theme }) => theme.spacings.md}px ${({ theme }) => theme.spacings.md}px;
 `;
 
 export const Header = styled.View``;
 
 export const TextsContainer = styled.View`
-  gap: 4px;
+  gap: ${({ theme }) => theme.spacings.xxsm}px;
 `;
 
 export const HeaderTitle = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.semiBold};
-  font-size: 18px;
+  font-size: ${({ theme }) => theme.sizes.lg}px;
   color: ${({ theme }) => theme.colors.gray[700]};
 `;
 
 export const Description = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.medium};
-  font-size: 14px;
+  font-size: ${({ theme }) => theme.sizes.md}px;
   color: ${({ theme }) => theme.colors.gray[500]};
 `;
 
 export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.semiBold};
-  font-size: 14px;
+  font-size: ${({ theme }) => theme.sizes.md}px;
   color: ${({ theme }) => theme.colors.gray[700]};
 
-  margin: 40px 0 16px;
+  margin: ${({ theme }) => theme.spacings.xxlg}px 0px
+    ${({ theme }) => theme.spacings.md}px;
 `;
 
 export const ButtonsContainer = styled.View`
-  gap: 16px;
+  gap: ${({ theme }) => theme.spacings.md}px;
 `;

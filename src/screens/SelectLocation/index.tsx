@@ -80,9 +80,9 @@ export function SelectLocation({
         <Button.Root
           disabled={isLoadingAddress}
           type="filled"
-          color={theme.colors.primary[500]}
+          color={theme.colors.orange[500]}
           onPress={handleNavigateToCreateFeeder}>
-          <Button.Text color={theme.colors.utils.white}>Continuar</Button.Text>
+          <Button.Text color={theme.colors.gray[0]}>Continuar</Button.Text>
         </Button.Root>
       </S.ButtonContainer>
     </S.Container>

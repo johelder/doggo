@@ -24,7 +24,7 @@ export function DeleteAccount(): JSX.Element {
 
         <Button.Root
           type="filled"
-          color={theme.colors.attention[500]}
+          color={theme.colors.red[500]}
           onPress={handleConfirmDelete}>
           <Button.Text>Excluir</Button.Text>
         </Button.Root>

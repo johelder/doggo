@@ -8,7 +8,7 @@ export const Container = styled.SafeAreaView`
   align-items: center;
   justify-content: center;
 
-  background-color: ${({ theme }) => theme.colors.utils.white};
+  background-color: ${({ theme }) => theme.colors.gray[0]};
 `;
 
 export const Content = styled.View`
@@ -29,11 +29,12 @@ export const NearFeedersContainer = styled.View<{ tabBarHeight: number }>`
   position: absolute;
   bottom: 0;
 
-  padding: 16px 0 ${({ tabBarHeight }) => tabBarHeight + 16}px;
-  background-color: ${({ theme }) => theme.colors.utils.white};
+  padding: ${({ theme }) => theme.spacings.md}px 0px
+    ${({ tabBarHeight, theme }) => tabBarHeight + theme.spacings.md}px;
+  background-color: ${({ theme }) => theme.colors.gray[0]};
 
-  border-top-right-radius: 16px;
-  border-top-left-radius: 16px;
+  border-top-right-radius: ${({ theme }) => theme.sizes.xmd}px;
+  border-top-left-radius: ${({ theme }) => theme.sizes.xmd}px;
 `;
 
 export const HeaderContainer = styled.TouchableOpacity`
@@ -41,12 +42,14 @@ export const HeaderContainer = styled.TouchableOpacity`
   align-items: center;
   justify-content: space-between;
 
-  padding: 0 16px 16px;
+  padding: 0px ${({ theme }) => theme.spacings.md}px
+    ${({ theme }) => theme.spacings.md}px;
 `;
 
 export const NearFeederContainer = styled.TouchableOpacity`
   max-width: 350px;
-  border-radius: 4px;
+
+  border-radius: ${({ theme }) => theme.sizes.xxxsm}px;
   border-width: 1px;
   border-color: ${({ theme }) => theme.colors.gray[200]};
 `;
@@ -61,12 +64,12 @@ export const Overlay = styled.View`
   align-items: center;
   justify-content: center;
 
-  background-color: ${({ theme }) => theme.colors.utils.overlay};
+  background-color: ${({ theme }) => theme.colors.gray[900]};
 `;
 
 export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.semiBold};
-  font-size: 14px;
+  font-size: ${({ theme }) => theme.sizes.md}px;
 
   color: ${({ theme }) => theme.colors.gray[700]};
 `;
@@ -75,8 +78,8 @@ export const CustomCalloutContainer = styled.View`
   width: 90%;
 
   position: absolute;
-  background-color: ${({ theme }) => theme.colors.utils.white};
-  border-radius: 4px;
+  background-color: ${({ theme }) => theme.colors.gray[0]};
+  border-radius: ${({ theme }) => theme.sizes.xxxsm}px;
 `;
 
 export const LoaderContainer = styled.View`
@@ -88,20 +91,20 @@ export const LoaderContainer = styled.View`
 
 export const NearFeeders = styled(
   FlatList as new (props: FlatListProps<IFeeder>) => FlatList<IFeeder>,
-).attrs({
+).attrs(({ theme }) => ({
   horizontal: true,
   contentContainerStyle: {
-    gap: 10,
-    paddingHorizontal: 16,
+    gap: theme.spacings.sm,
+    paddingHorizontal: theme.spacings.md,
   },
-})``;
+}))``;
 
 export const CloseButton = styled.TouchableOpacity`
-  width: 30px;
-  height: 30px;
+  width: ${({ theme }) => theme.spacings.xlg}px;
+  height: ${({ theme }) => theme.spacings.xlg}px;
   background-color: ${({ theme }) => theme.colors.gray[100]};
 
-  border-radius: 15px;
+  border-radius: ${({ theme }) => theme.sizes.xmd}px;
 
   align-items: center;
   justify-content: center;
@@ -111,6 +114,6 @@ export const CloseButton = styled.TouchableOpacity`
 
 export const LocationNotAvailableContainer = styled.View`
   flex: 1;
-  background-color: ${({ theme }) => theme.colors.utils.white};
-  padding: 16px;
+  background-color: ${({ theme }) => theme.colors.gray[0]};
+  padding: ${({ theme }) => theme.spacings.md}px;
 `;

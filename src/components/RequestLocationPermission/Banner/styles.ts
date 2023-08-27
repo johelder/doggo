@@ -1,16 +1,16 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
-  gap: 16px;
+  gap: ${({ theme }) => theme.spacings.md}px;
 `;
 
 export const TextsContainer = styled.View`
-  gap: 8px;
+  gap: ${({ theme }) => theme.spacings.sm}px;
 `;
 
 export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.semiBold};
-  font-size: 20px;
+  font-size: ${({ theme }) => theme.sizes.lg}px;
   text-align: center;
 
   color: ${({ theme }) => theme.colors.gray[700]};
@@ -18,9 +18,9 @@ export const Title = styled.Text`
 
 export const Description = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.medium};
-  font-size: 16px;
+  font-size: ${({ theme }) => theme.sizes.xmd}px;
   text-align: center;
-  line-height: 24px;
+  line-height: ${({ theme }) => theme.spacings.lg}px;
 
   color: ${({ theme }) => theme.colors.gray[500]};
 `;

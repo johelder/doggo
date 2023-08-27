@@ -25,12 +25,12 @@ export function CustomHeader() {
           <LinearGradient id="grad" x1="1" y1="1" x2="1" y2="0">
             <Stop
               offset="10"
-              stopColor={theme.colors.utils.white}
+              stopColor={theme.colors.gray[0]}
               stopOpacity="1"
             />
             <Stop
               offset="0"
-              stopColor={theme.colors.utils.transparent}
+              stopColor={theme.colors.gray['-1']}
               stopOpacity="0"
             />
           </LinearGradient>

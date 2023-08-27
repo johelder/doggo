@@ -8,19 +8,20 @@ import Gear from 'phosphor-react-native/src/icons/Gear';
 
 function iconsDefaultStyles(theme: DefaultTheme) {
   return {
-    size: 24,
+    size: theme.sizes.xxlg,
     color: theme.colors.gray[700],
   };
 }
 
 export const Container = styled.SafeAreaView`
   flex: 1;
-  background-color: ${({ theme }) => theme.colors.utils.white};
+  background-color: ${({ theme }) => theme.colors.gray[0]};
 `;
 
 export const Content = styled.View<{ tabBarHeight: number }>`
   height: 100%;
-  padding: ${({ tabBarHeight }) => `0 15px ${tabBarHeight}`}px;
+  padding: ${({ tabBarHeight, theme }) =>
+    `0px ${theme.spacings.md}px ${tabBarHeight}px`};
 
   justify-content: space-between;
 `;
@@ -28,9 +29,9 @@ export const Content = styled.View<{ tabBarHeight: number }>`
 export const HeaderContainer = styled.View`
   flex-direction: row;
   align-items: center;
-  gap: 15px;
+  gap: ${({ theme }) => theme.spacings.md}px;
 
-  margin: 20px 0;
+  margin: ${({ theme }) => theme.spacings.xmd}px 0px;
 `;
 
 export const InfoContainer = styled.View`
@@ -50,13 +51,13 @@ export const ProfilePhoto = styled.Image`
 
 export const ProfileName = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.semiBold};
-  font-size: 16px;
+  font-size: ${({ theme }) => theme.sizes.xmd}px;
   color: ${({ theme }) => theme.colors.gray[700]};
 `;
 
 export const ProfileEmail = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.medium};
-  font-size: 14px;
+  font-size: ${({ theme }) => theme.sizes.md}px;
   color: ${({ theme }) => theme.colors.gray[500]};
 `;
 

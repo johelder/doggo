@@ -13,7 +13,7 @@ import * as S from './styles';
 
 function ButtonRoot({
   type = 'filled',
-  color = theme.colors.primary[500],
+  color = theme.colors.orange[500],
   isLoading = false,
   height,
   children,
@@ -31,7 +31,7 @@ function ButtonIcon({ children }: IButtonIconProps) {
 }
 
 function ButtonText({
-  color = theme.colors.utils.white,
+  color = theme.colors.gray[0],
   children,
   ...rest
 }: IButtonTextProps) {

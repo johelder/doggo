@@ -4,13 +4,13 @@ import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { useAuth } from '@hooks';
 import { NavigationButton } from '@components';
 
-import type { TRootStackScreenProps } from '@types';
+import type { THomeTabScreenProps } from '@types';
 
 import * as S from './styles';
 
 export function Profile({
   navigation,
-}: TRootStackScreenProps<'HomeTabs'>): JSX.Element {
+}: THomeTabScreenProps<'Profile'>): JSX.Element {
   const { user } = useAuth();
   const tabBarHeight = useBottomTabBarHeight();
 

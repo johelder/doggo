@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { useTheme } from 'styled-components/native';
 
@@ -25,7 +24,7 @@ export function FeederDetailsModal({
     <Modal
       modalRef={detailsModalRef}
       modalStyle={{
-        padding: 16,
+        padding: theme.spacings.md,
       }}
       handleStyle={{
         backgroundColor: theme.colors.gray[300],
@@ -85,7 +84,7 @@ export function FeederDetailsModal({
         <Button.Root type="unfilled" onPress={onCancel}>
           <Button.Text
             style={{ fontFamily: theme.fonts.primary.medium }}
-            color={theme.colors.attention[500]}>
+            color={theme.colors.red[500]}>
             Cancelar
           </Button.Text>
         </Button.Root>

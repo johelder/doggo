@@ -3,28 +3,29 @@ import styled from 'styled-components/native';
 export const Container = styled.SafeAreaView``;
 
 export const CalloutContainer = styled.View`
-  margin-bottom: 14px;
+  margin-bottom: ${({ theme }) => theme.spacings.md}px;
 `;
 
 export const CalloutContent = styled.View`
-  background-color: ${({ theme }) => theme.colors.utils.white};
+  background-color: ${({ theme }) => theme.colors.gray[0]};
   align-items: center;
-  padding: 16px 22px;
+  padding: ${({ theme }) => theme.spacings.md}px
+    ${({ theme }) => theme.spacings.xmd}px;
 
-  border-radius: 8px;
+  border-radius: ${({ theme }) => theme.sizes.xxsm}px;
 `;
 
 export const CalloutTitle = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.medium};
-  font-size: 12px;
+  font-size: ${({ theme }) => theme.sizes.sm}px;
 
   color: ${({ theme }) => theme.colors.gray[700]};
 `;
 
 export const CalloutDescription = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.regular};
-  font-size: 12px;
-  line-height: 16px;
+  font-size: ${({ theme }) => theme.sizes.sm}px;
+  line-height: ${({ theme }) => theme.spacings.md}px;
   text-align: center;
 
   color: ${({ theme }) => theme.colors.gray[500]};
@@ -33,22 +34,22 @@ export const CalloutDescription = styled.Text`
 export const ToolTipTriangle = styled.View`
   width: 0;
   height: 0;
-  border-left-width: 10px;
-  border-right-width: 10px;
-  border-top-width: 14px;
+  border-left-width: ${({ theme }) => theme.sizes.xsm}px;
+  border-right-width: ${({ theme }) => theme.sizes.xsm}px;
+  border-top-width: ${({ theme }) => theme.sizes.md}px;
   border-style: solid;
   background-color: transparent;
   border-left-color: transparent;
   border-right-color: transparent;
-  border-top-color: ${({ theme }) => theme.colors.utils.white};
+  border-top-color: ${({ theme }) => theme.colors.gray[0]};
   align-self: center;
 `;
 
 export const ButtonContainer = styled.View`
   position: absolute;
-  bottom: 16px;
+  bottom: ${({ theme }) => theme.spacings.md}px;
   left: 0;
   right: 0;
 
-  margin: 0 16px;
+  margin: 0px ${({ theme }) => theme.spacings.md}px;
 `;

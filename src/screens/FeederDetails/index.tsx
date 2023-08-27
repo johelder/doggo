@@ -70,9 +70,9 @@ export function FeederDetails({
         <S.Header>
           <S.HighlightedWarningContainer>
             {isNeedMaintenance ? (
-              <Info color={theme.colors.attention[500]} />
+              <Info color={theme.colors.red[500]} />
             ) : (
-              <CheckCircle color={theme.colors.success[500]} />
+              <CheckCircle color={theme.colors.green[500]} />
             )}
             <S.HighlightedWarning isNeedMaintenance={isNeedMaintenance}>
               {isNeedMaintenance
@@ -124,7 +124,7 @@ export function FeederDetails({
             <S.LabelContainer>
               <Checkbox
                 isSelected={isStatusAdded('supply')}
-                color={theme.colors.secondary[600]}
+                color={theme.colors.cyan[600]}
               />
 
               <S.Title appearance={isStatusAdded('supply') ? 'dark' : 'light'}>
@@ -137,7 +137,7 @@ export function FeederDetails({
             <S.LabelContainer>
               <Checkbox
                 isSelected={isStatusAdded('cleaning')}
-                color={theme.colors.secondary[600]}
+                color={theme.colors.cyan[600]}
               />
 
               <S.Title
@@ -150,14 +150,12 @@ export function FeederDetails({
           <Button.Root
             type="filled"
             onPress={handleUpdateFeederMaintenance}
-            color={theme.colors.secondary[600]}>
+            color={theme.colors.cyan[600]}>
             <Button.Icon>
-              <Gear color={theme.colors.utils.white} />
+              <Gear color={theme.colors.gray[0]} />
             </Button.Icon>
 
-            <Button.Text color={theme.colors.utils.white}>
-              Atualizar
-            </Button.Text>
+            <Button.Text color={theme.colors.gray[0]}>Atualizar</Button.Text>
           </Button.Root>
         </S.Header>
 
@@ -194,22 +192,20 @@ export function FeederDetails({
 
           <Button.Root
             type="filled"
-            color={theme.colors.primary[500]}
+            color={theme.colors.orange[500]}
             onPress={handleOpenDirections}>
             <Button.Icon>
-              <Signpost color={theme.colors.utils.white} />
+              <Signpost color={theme.colors.gray[0]} />
             </Button.Icon>
 
-            <Button.Text color={theme.colors.utils.white}>
-              Ver rotas
-            </Button.Text>
+            <Button.Text color={theme.colors.gray[0]}>Ver rotas</Button.Text>
           </Button.Root>
 
           <Button.Root
             type="outline"
             color={
               isFavorite(feeder?.id)
-                ? theme.colors.secondary[600]
+                ? theme.colors.cyan[600]
                 : theme.colors.gray[700]
             }
             onPress={() => handleToggleFavoriteFeeder(feeder)}>
@@ -217,7 +213,7 @@ export function FeederDetails({
               <Heart
                 color={
                   isFavorite(feeder?.id)
-                    ? theme.colors.secondary[600]
+                    ? theme.colors.cyan[600]
                     : theme.colors.gray[700]
                 }
                 weight={isFavorite(feeder?.id) ? 'fill' : 'regular'}
@@ -227,7 +223,7 @@ export function FeederDetails({
             <Button.Text
               color={
                 isFavorite(feeder?.id)
-                  ? theme.colors.secondary[600]
+                  ? theme.colors.cyan[600]
                   : theme.colors.gray[700]
               }>
               {isFavorite(feeder?.id) ? 'Favorito' : 'Favoritar'}
