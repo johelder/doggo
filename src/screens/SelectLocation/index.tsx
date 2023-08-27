@@ -20,7 +20,7 @@ export function SelectLocation({
   navigation,
 }: TRootStackScreenProps<'SelectLocation'>): JSX.Element {
   const {
-    onPanDrag,
+    onTouchStart,
     onRegionChangeComplete,
     onMapReady,
     isLoadingAddress,
@@ -63,7 +63,7 @@ export function SelectLocation({
           onMapReady={onMapReady}
           showsUserLocation
           onRegionChangeComplete={onRegionChangeComplete}
-          onPanDrag={onPanDrag}
+          onTouchStart={onTouchStart}
           region={{
             latitude: initialRegion.latitude,
             longitude: initialRegion.longitude,

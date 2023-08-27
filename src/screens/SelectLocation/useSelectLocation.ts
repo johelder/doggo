@@ -70,7 +70,7 @@ export function useSelectLocation() {
     navigation.navigate('CreateFeeder', params);
   }
 
-  function onPanDrag() {
+  function onTouchStart() {
     setIsLoadingAddress(true);
     setIsShowingTooltip(false);
   }
@@ -84,6 +84,12 @@ export function useSelectLocation() {
       latitude,
       longitude,
     );
+
+    if (!fetchFeederAddressToEdit) {
+      setIsLoadingAddress(false);
+
+      return;
+    }
 
     setTemporaryUserLocation({ latitude, longitude });
     setAddress(fetchedUserAddress);
@@ -109,6 +115,13 @@ export function useSelectLocation() {
         return currentAddress;
       } catch (error) {
         errorHandler.reportError(error, getAddressByCoordinate.name);
+
+        showToast({
+          type: 'warning',
+          message:
+            'Não conseguimos obter o endereço, por favor, tente novamente.',
+          duration: 3000,
+        });
       }
     },
     [mapRef],
@@ -183,17 +196,22 @@ export function useSelectLocation() {
   ]);
 
   useEffect(() => {
-    if (isScreenFocused) {
+    if (isScreenFocused && !isEditingFeederAddress) {
       getUserCurrentPosition();
     }
 
     const watchId = watchUserPosition();
 
     return () => Geolocation.clearWatch(watchId);
-  }, [getUserCurrentPosition, isScreenFocused, watchUserPosition]);
+  }, [
+    getUserCurrentPosition,
+    isEditingFeederAddress,
+    isScreenFocused,
+    watchUserPosition,
+  ]);
 
   return {
-    onPanDrag,
+    onTouchStart,
     onRegionChangeComplete,
     onMapReady,
     isLoadingAddress,
