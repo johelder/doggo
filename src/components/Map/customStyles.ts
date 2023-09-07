@@ -1,14 +1,5 @@
 export const minimalLandMarkers = [
   {
-    featureType: 'poi',
-    elementType: 'labels.text',
-    stylers: [
-      {
-        visibility: 'off',
-      },
-    ],
-  },
-  {
     featureType: 'poi.business',
     stylers: [
       {
@@ -17,16 +8,8 @@ export const minimalLandMarkers = [
     ],
   },
   {
-    featureType: 'road',
-    elementType: 'labels.icon',
-    stylers: [
-      {
-        visibility: 'off',
-      },
-    ],
-  },
-  {
-    featureType: 'transit',
+    featureType: 'poi.park',
+    elementType: 'labels.text',
     stylers: [
       {
         visibility: 'off',
@@ -36,6 +19,23 @@ export const minimalLandMarkers = [
 ];
 
 export const grayScale = [
+  {
+    featureType: 'poi.business',
+    stylers: [
+      {
+        visibility: 'on',
+      },
+    ],
+  },
+  {
+    featureType: 'poi.park',
+    elementType: 'labels.text',
+    stylers: [
+      {
+        visibility: 'on',
+      },
+    ],
+  },
   {
     elementType: 'geometry',
     stylers: [
@@ -48,7 +48,8 @@ export const grayScale = [
     elementType: 'labels.icon',
     stylers: [
       {
-        visibility: 'off',
+        visibility: 'on',
+        color: '#bdbdbd',
       },
     ],
   },
