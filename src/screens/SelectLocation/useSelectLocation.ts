@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Address, Region } from 'react-native-maps';
 import {
   useIsFocused,
@@ -8,7 +8,7 @@ import {
 import Geolocation from '@react-native-community/geolocation';
 
 import { useMap } from '@hooks';
-import { delay, errorHandler, showToast } from '@utils';
+import { errorHandler, showToast } from '@utils';
 
 import { FeedersRepository } from '@services';
 import { TCoordinates, TRootStackScreenProps } from '@types';
@@ -20,6 +20,8 @@ export function useSelectLocation() {
   const [initialRegion, setInitialRegion] = useState<TCoordinates | null>(null);
   const [temporaryUserLocation, setTemporaryUserLocation] =
     useState<TCoordinates | null>(null);
+  const selectLocationCallBackTimeoutId = useRef(0);
+
   const {
     mapRef,
     currentUserLocation,
@@ -71,29 +73,31 @@ export function useSelectLocation() {
   }
 
   function onTouchStart() {
+    clearTimeout(selectLocationCallBackTimeoutId.current);
+
     setIsLoadingAddress(true);
     setIsShowingTooltip(false);
   }
 
   async function onRegionChangeComplete(currentRegion: Region) {
-    await delay(1000);
+    selectLocationCallBackTimeoutId.current = setTimeout(async () => {
+      const { latitude, longitude } = currentRegion;
 
-    const { latitude, longitude } = currentRegion;
+      const fetchedUserAddress = await getAddressByCoordinate(
+        latitude,
+        longitude,
+      );
 
-    const fetchedUserAddress = await getAddressByCoordinate(
-      latitude,
-      longitude,
-    );
+      if (!fetchFeederAddressToEdit) {
+        setIsLoadingAddress(false);
 
-    if (!fetchFeederAddressToEdit) {
+        return;
+      }
+
+      setTemporaryUserLocation({ latitude, longitude });
+      setAddress(fetchedUserAddress);
       setIsLoadingAddress(false);
-
-      return;
-    }
-
-    setTemporaryUserLocation({ latitude, longitude });
-    setAddress(fetchedUserAddress);
-    setIsLoadingAddress(false);
+    }, 2000);
   }
 
   function onMapReady() {
