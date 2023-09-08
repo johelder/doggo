@@ -1,11 +1,12 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
-  gap: ${({ theme }) => theme.spacings.md}px;
+  gap: ${({ theme }) => theme.spacings.xxlg}px;
 `;
 
 export const TextsContainer = styled.View`
   gap: ${({ theme }) => theme.spacings.sm}px;
+  margin-top: ${({ theme }) => theme.spacings.md}px;
 `;
 
 export const Title = styled.Text`
