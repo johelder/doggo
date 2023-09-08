@@ -22,12 +22,17 @@ export function Settings({ navigation }: TRootStackScreenProps<'Settings'>) {
       <S.Content>
         <S.MainContent>
           <NavigationButton
+            title="Termos de Uso"
+            onPress={() => navigation.navigate('TermsOfUse')}
+          />
+
+          <NavigationButton
             title="Política de Privacidade"
             onPress={() => navigation.navigate('PrivacyPolicy')}
           />
 
           <NavigationButton
-            title="Excluir minha conta"
+            title="Excluir Minha Conta"
             onPress={() => navigation.navigate('DeleteAccount')}
           />
         </S.MainContent>
