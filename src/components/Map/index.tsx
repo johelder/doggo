@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
+import { useTheme } from 'styled-components/native';
 
 import { useMap } from '@hooks';
 import { useMapComponent } from './useMapComponent';
@@ -10,6 +11,7 @@ import type { IMapProps } from './types';
 export function Map({ isClustering = false, children, ...rest }: IMapProps) {
   const { currentUserLocation, mapRef } = useMap();
   const { MapComponent } = useMapComponent(isClustering);
+  const theme = useTheme();
 
   if (!currentUserLocation) {
     return null;
@@ -27,6 +29,7 @@ export function Map({ isClustering = false, children, ...rest }: IMapProps) {
         }}
         showsMyLocationButton={false}
         style={mapStyles.container}
+        clusterColor={theme.colors.orange[500]}
         {...rest}>
         {children}
       </MapComponent>
