@@ -39,7 +39,7 @@ export function useDeleteAccount() {
   function handleConfirmDelete() {
     Alert.alert(
       'Confirmar exclusão',
-      'Por favor, confirme a exclusão de sua conta.',
+      'Você tem certeza que deseja excluir sua conta?',
       [
         { text: 'Cancelar', style: 'cancel' },
         { text: 'Excluir', onPress: handleDeleteAccount },
