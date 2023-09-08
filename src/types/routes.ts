@@ -27,6 +27,7 @@ export type TRootStackParamList = {
   Settings: undefined;
   LocationPermission: undefined;
   PrivacyPolicy: undefined;
+  TermsOfUse: undefined;
   DeleteAccount: undefined;
 };
 

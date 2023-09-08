@@ -15,6 +15,7 @@ import {
   LocationPermission,
   PrivacyPolicy,
   DeleteAccount,
+  TermsOfUse,
 } from '@screens';
 import { HomeTabs } from './BottomTabs';
 import { useStorage } from '@hooks';
@@ -101,6 +102,13 @@ export function AuthenticatedRoutes() {
             component={PrivacyPolicy}
             options={{
               headerTitle: 'POLÍTICA DE PRIVACIDADE',
+            }}
+          />
+          <Stack.Screen
+            name="TermsOfUse"
+            component={TermsOfUse}
+            options={{
+              headerTitle: 'TERMOS DE USO',
             }}
           />
           <Stack.Screen

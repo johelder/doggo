@@ -13,3 +13,4 @@ export * from './LocationPermission';
 export * from './Splash';
 export * from './PrivacyPolicy';
 export * from './DeleteAccount';
+export * from './TermsOfUse';
