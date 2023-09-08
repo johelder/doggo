@@ -7,6 +7,7 @@ import CirclesThreePlus from 'phosphor-react-native/src/icons/CirclesThreePlus';
 import { useAuth } from '@hooks';
 import { getDayGreetings } from '@utils';
 import { NavigationButton } from './components/NavigationButton';
+import Logo from '@assets/images/logo-horizontal.svg';
 
 import type { TRootStackScreenProps } from '@types';
 
@@ -21,13 +22,19 @@ export function Welcome({
   return (
     <S.Container>
       <S.Content>
-        <S.TextsContainer>
-          <S.HeaderTitle>{`${getDayGreetings(new Date().getHours())}, ${
-            user?.name
-          }`}</S.HeaderTitle>
+        <S.Header>
+          <Logo />
 
-          <S.Description>Falta pouco para ajudar animais de rua.</S.Description>
-        </S.TextsContainer>
+          <S.TextsContainer>
+            <S.HeaderTitle>{`${getDayGreetings(new Date().getHours())}, ${
+              user?.name
+            }`}</S.HeaderTitle>
+
+            <S.Description>
+              Falta pouco para ajudar animais de rua.
+            </S.Description>
+          </S.TextsContainer>
+        </S.Header>
 
         <S.Title>Escolha uma opção:</S.Title>
 

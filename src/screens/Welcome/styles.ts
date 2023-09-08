@@ -10,10 +10,14 @@ export const Content = styled.View`
     ${({ theme }) => theme.spacings.md}px ${({ theme }) => theme.spacings.md}px;
 `;
 
-export const Header = styled.View``;
+export const Header = styled.View`
+  align-items: center;
+  gap: ${({ theme }) => theme.spacings.lg}px;
+`;
 
 export const TextsContainer = styled.View`
   gap: ${({ theme }) => theme.spacings.xxsm}px;
+  align-self: flex-start;
 `;
 
 export const HeaderTitle = styled.Text`
