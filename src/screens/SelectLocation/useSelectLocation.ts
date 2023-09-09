@@ -68,10 +68,10 @@ export function useSelectLocation() {
   }
 
   function onTouchStart() {
-    clearTimeout(selectLocationCallBackTimeoutId.current);
-
     setIsLoadingAddress(true);
     setIsShowingTooltip(false);
+
+    clearTimeout(selectLocationCallBackTimeoutId.current);
   }
 
   async function onRegionChangeComplete(currentRegion: Region) {
@@ -145,6 +145,8 @@ export function useSelectLocation() {
         return formattedAddress;
       } catch (error) {
         errorHandler.reportError(error, getAddressByCoordinate.name);
+        clearTimeout(selectLocationCallBackTimeoutId.current);
+        setIsLoadingAddress(true);
 
         showToast({
           type: 'warning',

@@ -32,12 +32,12 @@ export function SelectLocation({
   const theme = useTheme();
 
   const renderCustomHeaderTitle = useCallback(() => {
-    if (!address) {
-      return '';
-    }
-
     if (isLoadingAddress) {
       return <Loader.Component />;
+    }
+
+    if (!address) {
+      return '';
     }
 
     return (
@@ -78,7 +78,7 @@ export function SelectLocation({
 
       <S.ButtonContainer>
         <Button.Root
-          disabled={isLoadingAddress}
+          disabled={isLoadingAddress || !address}
           type="filled"
           color={theme.colors.orange[500]}
           onPress={handleNavigateToCreateFeeder}>
