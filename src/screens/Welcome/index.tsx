@@ -7,6 +7,7 @@ import CirclesThreePlus from 'phosphor-react-native/src/icons/CirclesThreePlus';
 import { useAuth } from '@hooks';
 import { getDayGreetings } from '@utils';
 import { NavigationButton } from './components/NavigationButton';
+import { useWelcome } from './useWelcome';
 import Logo from '@assets/images/logo-horizontal.svg';
 
 import type { TRootStackScreenProps } from '@types';
@@ -16,6 +17,7 @@ import * as S from './styles';
 export function Welcome({
   navigation,
 }: TRootStackScreenProps<'Welcome'>): JSX.Element {
+  const { handleRedirectToSelectLocation } = useWelcome();
   const { user } = useAuth();
   const theme = useTheme();
 
@@ -49,7 +51,7 @@ export function Welcome({
             title="Cadastre o seu comedouro"
             description="Você pode ajudar cadastrando seu comedouro, dessa forma, pessoas próximas de você podem limpá-lo ou reabastecê-lo."
             icon={<CirclesThreePlus size={32} color={theme.colors.cyan[600]} />}
-            onPress={() => navigation.navigate('SelectLocation')}
+            onPress={handleRedirectToSelectLocation}
           />
         </S.ButtonsContainer>
       </S.Content>
