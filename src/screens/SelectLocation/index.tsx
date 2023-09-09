@@ -42,8 +42,8 @@ export function SelectLocation({
 
     return (
       <CustomHeaderTitle
-        title={`${address.thoroughfare}, ${address.name}`}
-        subTitle={`${address.subLocality} - ${address.subAdministrativeArea}`}
+        title={`${address.street}, ${address.houseNumber}`}
+        subTitle={`${address.neighborhood} - ${address.city}`}
       />
     );
   }, [isLoadingAddress, address]);
