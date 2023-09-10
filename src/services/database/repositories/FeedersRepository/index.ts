@@ -2,7 +2,7 @@ import firestore from '@react-native-firebase/firestore';
 
 import { DATABASE_FEEDERS_COLLECTION } from '../constants';
 
-import type { IFeeder, TMaintenanceStatus, IUser } from '@src/types';
+import type { IFeeder, TMaintenanceStatus, IUser } from '@types';
 
 export const FeedersRepository = {
   async create(feeder: IFeeder) {
@@ -46,6 +46,7 @@ export const FeedersRepository = {
     return snapshot.docs.map(documentSnapshot => ({
       ...documentSnapshot.data(),
       id: documentSnapshot.id,
+      ref: documentSnapshot.ref,
     }));
   },
 
@@ -98,6 +99,18 @@ export const FeedersRepository = {
 
   async delete(id: string) {
     firestore().collection(DATABASE_FEEDERS_COLLECTION).doc(id).delete();
+  },
+
+  async deleteAllFeedersByUserId(id: string) {
+    const allFeeders = await this.findAllById(id);
+
+    const batch = firestore().batch();
+
+    allFeeders.forEach(document => {
+      batch.delete(document.ref);
+    });
+
+    batch.commit();
   },
 
   watchFeeders(onChange: (feeders: IFeeder[]) => void) {

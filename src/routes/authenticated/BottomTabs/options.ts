@@ -1,6 +1,6 @@
 import { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
 
-import { theme } from '@src/styles/theme';
+import { theme } from '@theme';
 
 import {
   TAB_BAR_BORDER_RADIUS,
@@ -18,8 +18,8 @@ export const containerStyles = {
 export const tabBarOptions: BottomTabNavigationOptions = {
   headerShown: false,
   tabBarInactiveTintColor: theme.colors.gray[500],
-  tabBarActiveTintColor: theme.colors.primary[200],
-  tabBarActiveBackgroundColor: theme.colors.primary[300],
+  tabBarActiveTintColor: theme.colors.orange[200],
+  tabBarActiveBackgroundColor: theme.colors.orange[300],
   tabBarLabelStyle: {
     fontFamily: theme.fonts.primary.semiBold,
   },

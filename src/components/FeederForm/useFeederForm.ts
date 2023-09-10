@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import type { TFood, IFeeder } from '@src/types';
+
+import type { TFood, IFeeder } from '@types';
 import type { IUseFeederFormProps } from './types';
 
 export function useFeederForm({ onSubmit }: IUseFeederFormProps) {

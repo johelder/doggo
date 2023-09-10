@@ -1,14 +1,15 @@
 import styled from 'styled-components/native';
 
 export const FormContent = styled.View`
-  margin: 26px 0 26px;
+  margin: ${({ theme }) => theme.spacings.lg}px 0px
+    ${({ theme }) => theme.spacings.lg}px;
 `;
 
 export const InputsWrapper = styled.View`
   flex-direction: row;
 
-  gap: 16px;
-  margin-top: 26px;
+  gap: ${({ theme }) => theme.spacings.md}px;
+  margin-top: ${({ theme }) => theme.spacings.lg}px;
 `;
 
 export const InputContainer = styled.View<{ flex: number }>`
@@ -18,7 +19,7 @@ export const InputContainer = styled.View<{ flex: number }>`
 export const ChipsWrapper = styled.View`
   flex-direction: row;
 
-  gap: 16px;
+  gap: ${({ theme }) => theme.spacings.md}px;
 `;
 
 export const ChipButtonContainer = styled.View`
@@ -27,19 +28,19 @@ export const ChipButtonContainer = styled.View`
 
 export const FieldDescription = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.semiBold};
-  font-size: 12px;
+  font-size: ${({ theme }) => theme.sizes.sm}px;
 
   color: ${({ theme }) => theme.colors.gray[500]};
 
-  margin-top: 10px;
+  margin-top: ${({ theme }) => theme.spacings.sm}px;
 `;
 
 export const ChipButtonLabel = styled.Text<{ isSelected?: boolean }>`
   font-family: ${({ theme }) => theme.fonts.primary.semiBold};
-  font-size: 14px;
+  font-size: ${({ theme }) => theme.sizes.md}px;
 
   color: ${({ theme, isSelected = true }) =>
-    isSelected ? theme.colors.primary[500] : theme.colors.gray[500]};
+    isSelected ? theme.colors.orange[500] : theme.colors.gray[500]};
 `;
 
 export const Label = styled(ChipButtonLabel)`
@@ -47,6 +48,6 @@ export const Label = styled(ChipButtonLabel)`
 `;
 
 export const FormFooter = styled.View`
-  margin: 16px 0;
-  gap: 16px;
+  margin: ${({ theme }) => theme.spacings.md}px 0px;
+  gap: ${({ theme }) => theme.spacings.md}px;
 `;

@@ -1,5 +1,4 @@
 import styled from 'styled-components/native';
-
 import Animated from 'react-native-reanimated';
 
 export const Container = styled.View<{ isInputFocused: boolean }>`
@@ -16,21 +15,21 @@ export const Input = styled.TextInput`
   padding: 0;
 
   font-family: ${({ theme }) => theme.fonts.primary.semiBold};
-  font-size: 14px;
+  font-size: ${({ theme }) => theme.sizes.md}px;
 
   color: ${({ theme }) => theme.colors.gray[700]};
 `;
 
 export const Placeholder = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.semiBold};
-  font-size: 14px;
+  font-size: ${({ theme }) => theme.sizes.md}px;
 
   color: ${({ theme }) => theme.colors.gray[500]};
 `;
 
 export const OptionalLabel = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.semiBold};
-  font-size: 10px;
+  font-size: ${({ theme }) => theme.sizes.xsm}px;
 
   color: ${({ theme }) => theme.colors.gray[500]};
 `;
@@ -41,5 +40,5 @@ export const AnimatedPlaceholderContainer = styled(Animated.View)`
   flex-direction: row;
   align-items: center;
 
-  gap: 6px;
+  gap: ${({ theme }) => theme.spacings.xsm}px;
 `;

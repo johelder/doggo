@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useState } from 'react';
-import type { Address, Region } from 'react-native-maps';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import type { Region } from 'react-native-maps';
 import {
   useIsFocused,
   useNavigation,
@@ -7,23 +7,21 @@ import {
 } from '@react-navigation/native';
 import Geolocation from '@react-native-community/geolocation';
 
-import { useMap } from '@src/hooks';
-import { errorHandler, showToast } from '@src/utils';
+import { useMap } from '@hooks';
+import { errorHandler, showToast } from '@utils';
 
-import type {
-  TNavigationProps,
-  TRouteProps,
-} from '@src/routes/authenticated/types';
-import { FeedersRepository } from '@src/services/database/repositories/FeedersRepository';
-import { TCoordinates } from '@src/types';
+import { FeedersRepository } from '@services';
+import type { TAddress, TCoordinates, TRootStackScreenProps } from '@types';
 
 export function useSelectLocation() {
   const [isLoadingAddress, setIsLoadingAddress] = useState(false);
-  const [address, setAddress] = useState<Address | undefined>(undefined);
+  const [address, setAddress] = useState<TAddress | undefined>(undefined);
   const [isShowingTooltip, setIsShowingTooltip] = useState(true);
   const [initialRegion, setInitialRegion] = useState<TCoordinates | null>(null);
   const [temporaryUserLocation, setTemporaryUserLocation] =
     useState<TCoordinates | null>(null);
+  const selectLocationCallBackTimeoutId = useRef(0);
+
   const {
     mapRef,
     currentUserLocation,
@@ -33,8 +31,8 @@ export function useSelectLocation() {
   } = useMap();
   const isScreenFocused = useIsFocused();
 
-  const navigation = useNavigation<TNavigationProps<'SelectLocation'>>();
-  const route = useRoute<TRouteProps<'SelectLocation'>>();
+  const navigation = useNavigation();
+  const route = useRoute<TRootStackScreenProps<'SelectLocation'>['route']>();
   const isEditingFeederAddress = route.params?.feederId;
 
   function handleNavigateToCreateFeeder() {
@@ -50,12 +48,7 @@ export function useSelectLocation() {
     });
 
     const params = {
-      address: {
-        street: address.thoroughfare,
-        houseNumber: address.name,
-        neighborhood: address.subLocality,
-        city: address.subAdministrativeArea,
-      },
+      address,
       coordinate: {
         latitude: temporaryUserLocation.latitude,
         longitude: temporaryUserLocation.longitude,
@@ -74,22 +67,32 @@ export function useSelectLocation() {
     navigation.navigate('CreateFeeder', params);
   }
 
-  function onPanDrag() {
+  function onTouchStart() {
     setIsLoadingAddress(true);
     setIsShowingTooltip(false);
+
+    clearTimeout(selectLocationCallBackTimeoutId.current);
   }
 
   async function onRegionChangeComplete(currentRegion: Region) {
-    const { latitude, longitude } = currentRegion;
+    selectLocationCallBackTimeoutId.current = setTimeout(async () => {
+      const { latitude, longitude } = currentRegion;
 
-    const fetchedUserAddress = await getAddressByCoordinate(
-      latitude,
-      longitude,
-    );
+      const fetchedUserAddress = await getAddressByCoordinate(
+        latitude,
+        longitude,
+      );
 
-    setTemporaryUserLocation({ latitude, longitude });
-    setAddress(fetchedUserAddress);
-    setIsLoadingAddress(false);
+      if (!fetchFeederAddressToEdit) {
+        setIsLoadingAddress(false);
+
+        return;
+      }
+
+      setTemporaryUserLocation({ latitude, longitude });
+      setAddress(fetchedUserAddress);
+      setIsLoadingAddress(false);
+    }, 1000);
   }
 
   function onMapReady() {
@@ -100,6 +103,24 @@ export function useSelectLocation() {
     fetchInitialUserAddress();
   }
 
+  function formatAddressLabel(
+    type: 'houseNumber' | 'street' | 'neighborhood' | 'city',
+    label?: string,
+  ) {
+    const labelSwitch = {
+      houseNumber: 'Sem número',
+      street: 'Rua sem nome',
+      neighborhood: 'Bairro desconhecido',
+      city: 'Cidade desconhecida',
+    };
+
+    if (!label || label === 'Unnamed Road') {
+      return labelSwitch[type];
+    }
+
+    return label;
+  }
+
   const getAddressByCoordinate = useCallback(
     async (latitude: number, longitude: number) => {
       try {
@@ -108,9 +129,31 @@ export function useSelectLocation() {
           longitude,
         });
 
-        return currentAddress;
+        const formattedAddress: TAddress = {
+          street: formatAddressLabel('street', currentAddress?.thoroughfare),
+          houseNumber: formatAddressLabel('houseNumber', currentAddress?.name),
+          neighborhood: formatAddressLabel(
+            'neighborhood',
+            currentAddress?.subLocality,
+          ),
+          city: formatAddressLabel(
+            'city',
+            currentAddress?.subAdministrativeArea,
+          ),
+        };
+
+        return formattedAddress;
       } catch (error) {
         errorHandler.reportError(error, getAddressByCoordinate.name);
+        clearTimeout(selectLocationCallBackTimeoutId.current);
+        setIsLoadingAddress(true);
+
+        showToast({
+          type: 'warning',
+          message:
+            'Não conseguimos obter o endereço, por favor, tente novamente.',
+          duration: 3000,
+        });
       }
     },
     [mapRef],
@@ -185,17 +228,22 @@ export function useSelectLocation() {
   ]);
 
   useEffect(() => {
-    if (isScreenFocused) {
+    if (isScreenFocused && !isEditingFeederAddress) {
       getUserCurrentPosition();
     }
 
     const watchId = watchUserPosition();
 
     return () => Geolocation.clearWatch(watchId);
-  }, [getUserCurrentPosition, isScreenFocused, watchUserPosition]);
+  }, [
+    getUserCurrentPosition,
+    isEditingFeederAddress,
+    isScreenFocused,
+    watchUserPosition,
+  ]);
 
   return {
-    onPanDrag,
+    onTouchStart,
     onRegionChangeComplete,
     onMapReady,
     isLoadingAddress,

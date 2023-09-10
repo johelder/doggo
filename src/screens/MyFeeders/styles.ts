@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
 import { FlatList, FlatListProps } from 'react-native';
-import type { IFeeder } from '@src/types';
+
+import type { IFeeder } from '@types';
 
 export const Container = styled.SafeAreaView`
   flex: 1;
@@ -8,7 +9,7 @@ export const Container = styled.SafeAreaView`
 
 export const Content = styled.View`
   flex: 1;
-  background-color: ${({ theme }) => theme.colors.utils.white};
+  background-color: ${({ theme }) => theme.colors.gray[0]};
 `;
 
 export const Label = styled.Text`
@@ -22,16 +23,16 @@ export const Label = styled.Text`
 
 export const Feeders = styled(
   FlatList as new (props: FlatListProps<IFeeder>) => FlatList<IFeeder>,
-).attrs({
+).attrs(({ theme }) => ({
   showsVerticalScrollIndicator: false,
   contentContainerStyle: {
-    padding: 16,
-    gap: 16,
     flexGrow: 1,
+    padding: theme.spacings.md,
+    gap: theme.spacings.md,
   },
-})``;
+}))``;
 
 export const Highlighted = styled(Label)`
   font-family: ${({ theme }) => theme.fonts.primary.medium};
-  color: ${({ theme }) => theme.colors.secondary[600]};
+  color: ${({ theme }) => theme.colors.cyan[600]};
 `;

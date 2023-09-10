@@ -1,7 +1,8 @@
 import React from 'react';
 
-import { theme } from '@src/styles/theme';
-import { Loader } from '@src/components/Loader';
+import { theme } from '@theme';
+import { Loader } from '../Loader';
+
 import type {
   IButtonIconProps,
   IButtonRootProps,
@@ -12,7 +13,7 @@ import * as S from './styles';
 
 function ButtonRoot({
   type = 'filled',
-  color = theme.colors.primary[500],
+  color = theme.colors.orange[500],
   isLoading = false,
   height,
   children,
@@ -30,7 +31,7 @@ function ButtonIcon({ children }: IButtonIconProps) {
 }
 
 function ButtonText({
-  color = theme.colors.utils.white,
+  color = theme.colors.gray[0],
   children,
   ...rest
 }: IButtonTextProps) {

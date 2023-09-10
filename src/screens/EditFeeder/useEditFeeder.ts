@@ -1,16 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
-import { FeedersRepository } from '@src/services/database/repositories/FeedersRepository';
-import { useMap } from '@src/hooks';
-import { errorHandler, showToast } from '@src/utils';
+import { FeedersRepository } from '@services';
+import { useMap } from '@hooks';
+import { errorHandler, showToast } from '@utils';
 
-import type {
-  TNavigationProps,
-  TRouteProps,
-} from '@src/routes/authenticated/types';
-import type { IFeeder } from '@src/types';
-import type { IFeederFormRef } from '@src/components/FeederForm/types';
+import type { IFeeder, TRootStackScreenProps } from '@types';
+import type { IFeederFormRef } from '@app/src/components/FeederForm/types';
 import type { IFeederAddress } from './types';
 
 export function useEditFeeder() {
@@ -20,8 +16,8 @@ export function useEditFeeder() {
   const { currentUserLocation } = useMap();
   const feederFormRef = useRef<IFeederFormRef>(null);
 
-  const route = useRoute<TRouteProps<'EditFeeder'>>();
-  const navigation = useNavigation<TNavigationProps<'EditFeeder'>>();
+  const route = useRoute<TRootStackScreenProps<'EditFeeder'>['route']>();
+  const navigation = useNavigation();
   const feederId = route.params.feederId;
 
   function hasSomeMandatoryFieldNotFilled() {

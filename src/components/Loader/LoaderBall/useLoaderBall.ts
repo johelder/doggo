@@ -1,6 +1,4 @@
 import { useEffect } from 'react';
-
-import { useTheme } from 'styled-components';
 import {
   interpolateColor,
   useAnimatedStyle,
@@ -9,6 +7,7 @@ import {
   withRepeat,
   withTiming,
 } from 'react-native-reanimated';
+import { useTheme } from 'styled-components/native';
 
 import {
   ANIMATION_DURATION,
@@ -29,7 +28,7 @@ export function useLoaderBall(initialDelay: number) {
       backgroundColor: interpolateColor(
         ball.value,
         [INPUT_RANGE, OUTPUT_RANGE],
-        [theme.colors.primary[200], theme.colors.primary[500]],
+        [theme.colors.orange[200], theme.colors.orange[500]],
       ),
     };
   });

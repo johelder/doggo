@@ -1,6 +1,6 @@
 import type { TEvent, TListener } from './types';
 
-export default class EventManager {
+export class EventManager {
   listeners: Map<TEvent, any>;
 
   constructor() {

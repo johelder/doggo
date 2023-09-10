@@ -1,11 +1,10 @@
 import React from 'react';
-
-import { useTheme } from 'styled-components';
+import { useTheme } from 'styled-components/native';
 
 import MapPin from 'phosphor-react-native/src/icons/MapPin';
 import DotsThreeVertical from 'phosphor-react-native/src/icons/DotsThreeVertical';
 
-import { getFoodsLabel } from '@src/utils/getFoodsLabel';
+import { getFoodsLabel } from '@utils';
 
 import type { IFeederAddressProps } from './types';
 
@@ -17,7 +16,7 @@ export function FeederAddress({ feeder, onOpenDetails }: IFeederAddressProps) {
 
   return (
     <S.Container onPress={onOpenDetails}>
-      <MapPin weight="fill" color={theme.colors.primary[500]} />
+      <MapPin weight="fill" color={theme.colors.orange[500]} />
 
       <S.LabelsContainer>
         <S.Title>

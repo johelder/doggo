@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { toastEventManager } from '@src/utils/showToast';
+import { toastEventManager } from '@utils';
 
 import type { IToast } from './types';
 

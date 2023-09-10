@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useTheme } from 'styled-components';
+import { useTheme } from 'styled-components/native';
 
 import {
   SelectLocation,
@@ -13,12 +13,15 @@ import {
   Welcome,
   Settings,
   LocationPermission,
-} from '@src/screens';
+  PrivacyPolicy,
+  DeleteAccount,
+  TermsOfUse,
+} from '@screens';
 import { HomeTabs } from './BottomTabs';
-import { useStorage } from '@src/hooks';
-import { IS_FIRST_ACCESS_KEY } from '@src/hooks/useStorage/constants';
+import { useStorage } from '@hooks';
+import { IS_FIRST_ACCESS_KEY } from '@app/src/hooks/useStorage/constants';
 
-import type { TRootStackParamList } from './types';
+import type { TRootStackParamList } from '@types';
 
 const Stack = createNativeStackNavigator<TRootStackParamList>();
 
@@ -34,7 +37,7 @@ export function AuthenticatedRoutes() {
     <SafeAreaView style={wrapperOptions}>
       <Stack.Navigator
         screenOptions={{
-          headerTintColor: theme.colors.primary[500],
+          headerTintColor: theme.colors.orange[500],
           headerTitleAlign: 'center',
           headerShadowVisible: false,
         }}
@@ -92,6 +95,27 @@ export function AuthenticatedRoutes() {
             component={Settings}
             options={{
               headerTitle: 'CONFIGURAÇÕES',
+            }}
+          />
+          <Stack.Screen
+            name="PrivacyPolicy"
+            component={PrivacyPolicy}
+            options={{
+              headerTitle: 'POLÍTICA DE PRIVACIDADE',
+            }}
+          />
+          <Stack.Screen
+            name="TermsOfUse"
+            component={TermsOfUse}
+            options={{
+              headerTitle: 'TERMOS DE USO',
+            }}
+          />
+          <Stack.Screen
+            name="DeleteAccount"
+            component={DeleteAccount}
+            options={{
+              headerTitle: 'EXCLUIR MINHA CONTA',
             }}
           />
         </Stack.Group>

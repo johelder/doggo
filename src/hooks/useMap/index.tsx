@@ -11,7 +11,7 @@ import Geolocation, {
 import MapView from 'react-native-maps';
 import { useModalize } from 'react-native-modalize';
 
-import { errorHandler } from '@src/utils';
+import { errorHandler } from '@utils';
 
 import { LOCATION_PERMISSION_DENIED, IS_LOCATION_TURN_OFF } from './constants';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTheme } from 'styled-components';
+import { useTheme } from 'styled-components/native';
 
 import CookingPot from 'phosphor-react-native/src/icons/CookingPot';
 import Signpost from 'phosphor-react-native/src/icons/Signpost';
@@ -7,9 +7,10 @@ import User from 'phosphor-react-native/src/icons/User';
 import Info from 'phosphor-react-native/src/icons/Info';
 import CheckCircle from 'phosphor-react-native/src/icons/CheckCircle';
 
-import { Button } from '@src/components';
-import { getFoodsLabel } from '@src/utils/getFoodsLabel';
+import { Button } from '../Button';
+import { getFoodsLabel } from '@utils';
 import { useFeederCard } from './useFeederCard';
+
 import type { IFeedCardProps } from './types';
 
 import * as S from './styles';
@@ -28,9 +29,9 @@ export function FeederCard({ feeder, sideButton, onClose }: IFeedCardProps) {
       <S.Header>
         <S.HighlightedWarningContainer hasActionButton={!!sideButton}>
           {isNeedMaintenance() ? (
-            <Info color={theme.colors.attention[500]} />
+            <Info color={theme.colors.red[500]} />
           ) : (
-            <CheckCircle color={theme.colors.success[500]} />
+            <CheckCircle color={theme.colors.green[500]} />
           )}
           <S.HighlightedWarning isNeedMaintenance={isNeedMaintenance()}>
             {isNeedMaintenance()
@@ -68,7 +69,7 @@ export function FeederCard({ feeder, sideButton, onClose }: IFeedCardProps) {
           type="unfilled"
           height={25}
           onPress={handleNavigateToFeederDetails}>
-          <Button.Text color={theme.colors.primary[500]}>
+          <Button.Text color={theme.colors.orange[500]}>
             Ver detalhes
           </Button.Text>
         </Button.Root>

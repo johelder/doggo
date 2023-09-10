@@ -4,18 +4,16 @@ import Geolocation, {
 import { useNavigation } from '@react-navigation/native';
 import { useModalize } from 'react-native-modalize';
 
-import { errorHandler } from '@src/utils';
-import { useStorage } from '@src/hooks';
-import { IS_FIRST_ACCESS_KEY } from '@src/hooks/useStorage/constants';
+import { errorHandler } from '@utils';
+import { useStorage } from '@hooks';
+import { IS_FIRST_ACCESS_KEY } from '@app/src/hooks/useStorage/constants';
 import {
   LOCATION_PERMISSION_DENIED,
   IS_LOCATION_TURN_OFF,
-} from '@src/hooks/useMap/constants';
-
-import type { TNavigationProps } from '@src/routes/authenticated/types';
+} from '@app/src/hooks/useMap/constants';
 
 export function useLocationPermission() {
-  const navigation = useNavigation<TNavigationProps<'LocationPermission'>>();
+  const navigation = useNavigation();
   const { ref: requestPermissionModalRef, open: openRequestPermissionModal } =
     useModalize();
   const { setValueInStorage } = useStorage(IS_FIRST_ACCESS_KEY, true);

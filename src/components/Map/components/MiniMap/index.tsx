@@ -8,6 +8,7 @@ import {
   MAX_ZOOM_LEVEL,
   MIN_ZOOM_LEVEL,
 } from '../../constants';
+
 import type { IMiniMapProps } from './types';
 
 import * as S from './styles';

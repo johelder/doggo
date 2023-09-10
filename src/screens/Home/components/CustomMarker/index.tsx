@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import Bone from '@src/assets/icons/bone.svg';
+import Bone from '@assets/icons/bone.svg';
 
 export function CustomMarker() {
   return (

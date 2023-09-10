@@ -13,12 +13,12 @@ export function NavigationButton({
   return (
     <S.Container {...rest}>
       <S.Content>
-        <IconComponent />
+        {IconComponent && <IconComponent />}
 
         <S.TitlesContainer>
           <S.Title>{title}</S.Title>
 
-          <S.Description>{description}</S.Description>
+          {description && <S.Description>{description}</S.Description>}
         </S.TitlesContainer>
       </S.Content>
 

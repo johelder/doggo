@@ -5,7 +5,7 @@ import {
   DATABASE_USERS_COLLECTION,
 } from '../constants';
 
-import type { IFeeder, IUser } from '@src/types';
+import type { IFeeder, IUser } from '@types';
 
 export const UsersRepository = {
   async create(user: IUser) {
@@ -72,5 +72,9 @@ export const UsersRepository = {
       ...documentSnapshot.data(),
       id: documentSnapshot.id,
     }));
+  },
+
+  async delete(id: string) {
+    firestore().collection(DATABASE_USERS_COLLECTION).doc(id).delete();
   },
 };

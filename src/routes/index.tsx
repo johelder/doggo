@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
-import { useAuth } from '@src/hooks';
-import { Splash } from '@src/screens';
+import { useAuth } from '@hooks';
+import { Splash } from '@screens';
 
 import { UnauthenticatedRoutes } from './unauthenticated';
 import { AuthenticatedRoutes } from './authenticated';

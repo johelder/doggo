@@ -1,5 +1,5 @@
 import type { Dispatch, ReactNode, SetStateAction } from 'react';
-import type { IUser } from '@src/types';
+import type { IUser } from '@types';
 
 export interface IAuthContext {
   user: IUser | null;

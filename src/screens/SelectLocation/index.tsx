@@ -1,24 +1,26 @@
 import React, { useCallback, useLayoutEffect } from 'react';
-
-import { useTheme } from 'styled-components';
+import { useTheme } from 'styled-components/native';
 
 import { useSelectLocation } from './useSelectLocation';
 
-import { Button, Loader, Map, CustomHeader } from '@src/components';
-import { CustomHeaderTitle } from '@src/components/CustomHeader/components/CustomHeaderTitle';
+import { Button, Loader, Map, CustomHeader } from '@components';
+import { CustomHeaderTitle } from '@app/src/components/CustomHeader/components/CustomHeaderTitle';
 import { Marker } from './components/Marker';
-import { grayScale } from '@src/components/Map/customStyles';
-import { LATITUDE_DELTA, LONGITUDE_DELTA } from '@src/components/Map/constants';
+import { grayScale } from '@app/src/components/Map/customStyles';
+import {
+  LATITUDE_DELTA,
+  LONGITUDE_DELTA,
+} from '@app/src/components/Map/constants';
 
-import type { TSelectLocationProps } from './types';
+import type { TRootStackScreenProps } from '@types';
 
 import * as S from './styles';
 
 export function SelectLocation({
   navigation,
-}: TSelectLocationProps): JSX.Element {
+}: TRootStackScreenProps<'SelectLocation'>): JSX.Element {
   const {
-    onPanDrag,
+    onTouchStart,
     onRegionChangeComplete,
     onMapReady,
     isLoadingAddress,
@@ -30,18 +32,18 @@ export function SelectLocation({
   const theme = useTheme();
 
   const renderCustomHeaderTitle = useCallback(() => {
-    if (!address) {
-      return '';
-    }
-
     if (isLoadingAddress) {
       return <Loader.Component />;
     }
 
+    if (!address) {
+      return '';
+    }
+
     return (
       <CustomHeaderTitle
-        title={`${address.thoroughfare}, ${address.name}`}
-        subTitle={`${address.subLocality} - ${address.subAdministrativeArea}`}
+        title={`${address.street}, ${address.houseNumber}`}
+        subTitle={`${address.neighborhood} - ${address.city}`}
       />
     );
   }, [isLoadingAddress, address]);
@@ -61,7 +63,7 @@ export function SelectLocation({
           onMapReady={onMapReady}
           showsUserLocation
           onRegionChangeComplete={onRegionChangeComplete}
-          onPanDrag={onPanDrag}
+          onTouchStart={onTouchStart}
           region={{
             latitude: initialRegion.latitude,
             longitude: initialRegion.longitude,
@@ -76,11 +78,11 @@ export function SelectLocation({
 
       <S.ButtonContainer>
         <Button.Root
-          disabled={isLoadingAddress}
+          disabled={isLoadingAddress || !address}
           type="filled"
-          color={theme.colors.primary[500]}
+          color={theme.colors.orange[500]}
           onPress={handleNavigateToCreateFeeder}>
-          <Button.Text color={theme.colors.utils.white}>Continuar</Button.Text>
+          <Button.Text color={theme.colors.gray[0]}>Continuar</Button.Text>
         </Button.Root>
       </S.ButtonContainer>
     </S.Container>

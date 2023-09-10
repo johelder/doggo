@@ -13,15 +13,16 @@ export const Content = styled.View`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: ${({ theme }) => theme.spacings.sm}px;
 
-  background-color: ${({ theme }) => theme.colors.utils.white};
+  background-color: ${({ theme }) => theme.colors.gray[0]};
   border-radius: 99px;
 
-  margin-bottom: ${Platform.OS === 'ios' ? 38 : 24}px;
+  margin-bottom: ${({ theme }) =>
+    Platform.OS === 'ios' ? theme.spacings.xlg : theme.spacings.lg}px;
 
   elevation: 10;
-  shadow-color: ${({ theme }) => theme.colors.utils.shadow};
+  shadow-color: ${({ theme }) => theme.colors.gray[950]};
   shadow-offset: 0 2px;
   shadow-opacity: 0.2;
   shadow-radius: 3.8px;
@@ -36,10 +37,11 @@ export const ButtonTabContent = styled.View<{ isFocused: boolean }>`
   align-items: center;
 
   background-color: ${({ theme, isFocused }) =>
-    isFocused ? theme.colors.primary[500] : theme.colors.utils.white};
+    isFocused ? theme.colors.orange[500] : theme.colors.gray[0]};
 
   border-radius: 99px;
-  padding: 6px 16px;
+  padding: ${({ theme }) => theme.spacings.xsm}px
+    ${({ theme }) => theme.spacings.md}px;
 `;
 
 export const ButtonTabIconContainer = styled.View``;
@@ -50,5 +52,5 @@ export const ButtonTabBarLabel = styled.Text<{ isFocused: boolean }>`
   font-size: 12px;
 
   color: ${({ theme, isFocused }) =>
-    isFocused ? theme.colors.primary[200] : theme.colors.gray[500]};
+    isFocused ? theme.colors.orange[200] : theme.colors.gray[500]};
 `;

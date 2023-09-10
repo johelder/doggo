@@ -4,7 +4,7 @@ import {
   Button,
   RequestLocationPermissionModal,
   RequestLocationPermissionBanner,
-} from '@src/components';
+} from '@components';
 import { useLocationPermission } from './useLocationPermission';
 
 import * as S from './styles';

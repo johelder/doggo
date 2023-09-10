@@ -1,10 +1,9 @@
 import React from 'react';
-
-import { AppProvider } from '@src/providers';
-import { Routes } from '@src/routes';
-
-import { enableLatestRenderer } from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
+import { enableLatestRenderer } from 'react-native-maps';
+
+import { AppProvider } from '@providers';
+import { Routes } from '@routes';
 
 enableLatestRenderer();
 Geolocation.setRNConfiguration({

@@ -10,5 +10,5 @@ export const Container = styled.View`
 `;
 
 export const Header = styled.View`
-  background-color: ${({ theme }) => theme.colors.utils.white};
+  background-color: ${({ theme }) => theme.colors.gray[0]};
 `;

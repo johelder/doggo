@@ -1,20 +1,18 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 
-import { useAuth } from '@src/hooks';
-import { UsersRepository } from '@src/services/database/repositories/UsersRepository';
+import { useAuth } from '@hooks';
+import { UsersRepository } from '@services';
+import { errorHandler } from '@utils';
 
-import { errorHandler } from '@src/utils';
-
-import type { TNavigationProps } from '@src/routes/authenticated/types';
-import type { TPageStatus, IFeeder } from '@src/types';
+import type { TPageStatus, IFeeder } from '@types';
 
 export function useFavorites() {
   const [feeders, setFeeders] = useState<IFeeder[]>([]);
   const [pageStatus, setPageStatus] = useState<TPageStatus>('idle');
   const { user } = useAuth();
   const isScreenFocused = useIsFocused();
-  const navigation = useNavigation<TNavigationProps<'Favorites'>>();
+  const navigation = useNavigation();
 
   function handleRedirectToMap() {
     navigation.navigate('Map');

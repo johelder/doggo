@@ -2,24 +2,26 @@ import React, { useCallback, useLayoutEffect } from 'react';
 import { ListRenderItemInfo } from 'react-native';
 import { HeaderBackButton } from '@react-navigation/elements';
 
-import { useTheme } from 'styled-components';
+import { useTheme } from 'styled-components/native';
 
 import CirclesThreePlus from 'phosphor-react-native/src/icons/CirclesThreePlus';
 import FolderOpen from 'phosphor-react-native/src/icons/FolderOpen';
 import Warning from 'phosphor-react-native/src/icons/Warning';
 import ArrowClockwise from 'phosphor-react-native/src/icons/ArrowClockwise';
 
-import { handleOpenSupport } from '@src/utils';
-import { Button, FeederAddress, Loader, PageAlert } from '@src/components';
+import { handleOpenSupport } from '@utils';
+import { Button, FeederAddress, Loader, PageAlert } from '@components';
 import { FeederDetailsModal } from './components/FeederDetailsModal';
 import { useMyFeeders } from './useMyFeeders';
 
-import type { IFeeder } from '@src/types';
-import type { TMyFeedersProps } from './types';
+import type { IFeeder } from '@types';
+import type { TRootStackScreenProps } from '@types';
 
 import * as S from './styles';
 
-export function MyFeeders({ navigation }: TMyFeedersProps): JSX.Element {
+export function MyFeeders({
+  navigation,
+}: TRootStackScreenProps<'MyFeeders'>): JSX.Element {
   const {
     feeders,
     pageStatus,
@@ -37,14 +39,14 @@ export function MyFeeders({ navigation }: TMyFeedersProps): JSX.Element {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerLeft: () => (
+      headerLeft: props => (
         <HeaderBackButton
-          onPress={() => navigation.navigate('Profile')}
-          tintColor={theme.colors.primary[500]}
+          {...props}
+          onPress={() => navigation.navigate('HomeTabs', { screen: 'Profile' })}
         />
       ),
     });
-  }, [navigation, theme.colors.primary]);
+  }, [navigation]);
 
   const renderFeeder = useCallback(
     ({ item: feeder }: ListRenderItemInfo<IFeeder>) => {
@@ -67,25 +69,20 @@ export function MyFeeders({ navigation }: TMyFeedersProps): JSX.Element {
         actionButton={
           <Button.Root
             type="filled"
-            color={theme.colors.primary[500]}
+            color={theme.colors.orange[500]}
             onPress={handleRedirectToSelectLocation}>
             <Button.Icon>
-              <CirclesThreePlus size={24} color={theme.colors.utils.white} />
+              <CirclesThreePlus size={24} color={theme.colors.gray[0]} />
             </Button.Icon>
 
-            <Button.Text color={theme.colors.utils.white}>
+            <Button.Text color={theme.colors.gray[0]}>
               Cadastrar novo comedouro
             </Button.Text>
           </Button.Root>
         }
       />
     );
-  }, [
-    handleRedirectToSelectLocation,
-    theme.colors.gray,
-    theme.colors.primary,
-    theme.colors.utils.white,
-  ]);
+  }, [handleRedirectToSelectLocation, theme.colors.gray, theme.colors.orange]);
 
   if (pageStatus === 'loading') {
     return <Loader.Page />;
@@ -96,19 +93,19 @@ export function MyFeeders({ navigation }: TMyFeedersProps): JSX.Element {
       <PageAlert
         title="Nós tivemos um pequeno problema"
         description="Ocorreu um erro ao se conectar com o servidor."
-        icon={<Warning color={theme.colors.utils.white} size={24} />}
-        color={theme.colors.attention[400]}
+        icon={<Warning color={theme.colors.gray[0]} size={24} />}
+        color={theme.colors.red[400]}
         actionButton={
           <>
             <Button.Root
               type="filled"
-              color={theme.colors.attention[500]}
+              color={theme.colors.red[500]}
               onPress={handleTryAgain}>
               <Button.Icon>
-                <ArrowClockwise color={theme.colors.utils.white} size={24} />
+                <ArrowClockwise color={theme.colors.gray[0]} size={24} />
               </Button.Icon>
 
-              <Button.Text color={theme.colors.utils.white}>
+              <Button.Text color={theme.colors.gray[0]}>
                 Tentar novamente
               </Button.Text>
             </Button.Root>

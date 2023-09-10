@@ -1,18 +1,8 @@
-import type { TCoordinates } from './coordinates';
-import type { TFood, TFoods } from './foods';
-import type { TPageStatus } from './pageStatus';
-import type { TMaintenanceStatus } from './maintenanceStatus';
-import type { TAddress } from './address';
-import type { IFeeder } from './feeder';
-import type { IUser } from './user';
-
-export type {
-  TCoordinates,
-  TFood,
-  TFoods,
-  TPageStatus,
-  TMaintenanceStatus,
-  TAddress,
-  IFeeder,
-  IUser,
-};
+export type * from './coordinates';
+export type * from './foods';
+export type * from './pageStatus';
+export type * from './maintenanceStatus';
+export type * from './address';
+export type * from './feeder';
+export type * from './user';
+export type * from './routes';

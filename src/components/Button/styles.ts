@@ -3,16 +3,16 @@ import { IButtonRootProps, IButtonTextProps } from './types';
 
 export const ButtonRootContainer = styled.TouchableOpacity<IButtonRootProps>`
   width: 100%;
-  height: ${({ height }) => height ?? 48}px;
+  height: ${({ height, theme }) => height ?? theme.spacings.xxlg}px;
 
-  border-radius: 4px;
+  border-radius: ${({ theme }) => theme.sizes.xxxsm}px;
   border-width: 1px;
 
   flex-shrink: 1;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: ${({ theme }) => theme.spacings.xsm}px;
 
   background-color: transparent;
   border-color: transparent;
@@ -43,7 +43,7 @@ export const ButtonIconContainer = styled.View``;
 
 export const ButtonTextContainer = styled.Text<IButtonTextProps>`
   font-family: ${({ theme }) => theme.fonts.primary.semiBold};
-  font-size: 14px;
+  font-size: ${({ theme }) => theme.sizes.md}px;
 
   color: ${({ color }) => color};
 `;

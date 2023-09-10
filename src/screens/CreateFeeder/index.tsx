@@ -2,16 +2,17 @@ import React from 'react';
 import { ScrollView } from 'react-native';
 import { useHeaderHeight } from '@react-navigation/elements';
 
-import { FeederForm } from '@src/components';
-import { CustomHeader } from '@src/components/CustomHeader';
-import { MiniMap } from '@src/components/Map/components/MiniMap';
+import { FeederForm, CustomHeader } from '@components';
+import { MiniMap } from '@app/src/components/Map/components/MiniMap';
 import { useCreateFeeder } from './useCreateFeeder';
 
-import type { TCreateFeederProps } from './types';
+import type { TRootStackScreenProps } from '@types';
 
 import * as S from './styles';
 
-export function CreateFeeder({ route }: TCreateFeederProps): JSX.Element {
+export function CreateFeeder({
+  route,
+}: TRootStackScreenProps<'CreateFeeder'>): JSX.Element {
   const headerHeight = useHeaderHeight();
   const { feederFormRef, handleCreateFeeder } = useCreateFeeder();
 
