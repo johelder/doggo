@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>797929752112-c6a6sla6s6l2glsgul9grrmqdoeejunr.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.797929752112-c6a6sla6s6l2glsgul9grrmqdoeejunr</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>797929752112-tlcem09i18iijhul09uln0bkqheo9jna.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDb9U19wFGDvdm3FOmrfsjR-5RlSjDwlis</string>
+	<key>GCM_SENDER_ID</key>
+	<string>797929752112</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>doggo</string>
+	<key>PROJECT_ID</key>
+	<string>app-doggo</string>
+	<key>STORAGE_BUCKET</key>
+	<string>app-doggo.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:797929752112:ios:d6f49b9393b6f3b7cc8ff5</string>
+</dict>
+</plist>

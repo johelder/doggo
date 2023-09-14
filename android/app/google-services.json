@@ -1,0 +1,71 @@
+{
+  "project_info": {
+    "project_number": "797929752112",
+    "firebase_url": "https://app-doggo-default-rtdb.firebaseio.com",
+    "project_id": "app-doggo",
+    "storage_bucket": "app-doggo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:797929752112:android:480b4d612c700b14cc8ff5",
+        "android_client_info": {
+          "package_name": "com.doggo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "797929752112-2ji8d9b5bu36j6910cei0a7skpmof032.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.doggo",
+            "certificate_hash": "09e0df601f7cf772c30cb39059503ff4b0fe29f3"
+          }
+        },
+        {
+          "client_id": "797929752112-32nm3c3367nf768v053clsjhnrp39l3j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.doggo",
+            "certificate_hash": "211f6949e5cecdbd7635a4cd997c278f80cf9dec"
+          }
+        },
+        {
+          "client_id": "797929752112-tlcem09i18iijhul09uln0bkqheo9jna.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.doggo",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "797929752112-o3orp1eembau9dd3gjscacvp62po470p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqtRSYQWXXeh1emR2hBE6QwYuEmeKDoAk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "797929752112-o3orp1eembau9dd3gjscacvp62po470p.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "797929752112-c6a6sla6s6l2glsgul9grrmqdoeejunr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "doggo"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
