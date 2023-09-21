@@ -3,8 +3,8 @@ import styled, { DefaultTheme } from 'styled-components/native';
 import CookingPot from 'phosphor-react-native/src/icons/CookingPot';
 import Heart from 'phosphor-react-native/src/icons/Heart';
 import SignOut from 'phosphor-react-native/src/icons/SignOut';
-import CirclesThreePlus from 'phosphor-react-native/src/icons/CirclesThreePlus';
 import Gear from 'phosphor-react-native/src/icons/Gear';
+import { PlusIcon } from '@app/src/assets/icons/PlusIcon';
 
 function iconsDefaultStyles(theme: DefaultTheme) {
   return {
@@ -75,7 +75,7 @@ export const SignOutIcon = styled(SignOut).attrs(({ theme }) =>
   iconsDefaultStyles(theme),
 )``;
 
-export const SelectLocation = styled(CirclesThreePlus).attrs(({ theme }) =>
+export const SelectLocation = styled(PlusIcon).attrs(({ theme }) =>
   iconsDefaultStyles(theme),
 )``;
 
