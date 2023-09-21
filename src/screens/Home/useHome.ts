@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useIsFocused } from '@react-navigation/native';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 import Geolocation from '@react-native-community/geolocation';
 
 import { FeedersRepository } from '@services';
@@ -28,6 +28,12 @@ export function useHome() {
     isLocationAvailable,
   } = useMap();
   const isScreenFocused = useIsFocused();
+
+  const navigation = useNavigation();
+
+  function handleRedirectToSelectLocation() {
+    navigation.navigate('SelectLocation');
+  }
 
   function handleToggleNearFeederList() {
     setIsNearFeederListExpanded(prevState => !prevState);
@@ -152,5 +158,6 @@ export function useHome() {
     handleToggleNearFeederList,
     requestLocationPermissionModalRef,
     isLocationAvailable,
+    handleRedirectToSelectLocation,
   };
 }
