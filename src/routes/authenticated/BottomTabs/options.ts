@@ -17,9 +17,10 @@ export const containerStyles = {
 
 export const tabBarOptions: BottomTabNavigationOptions = {
   headerShown: false,
+  headerTitleAlign: 'center',
   tabBarInactiveTintColor: theme.colors.gray[500],
-  tabBarActiveTintColor: theme.colors.orange[200],
-  tabBarActiveBackgroundColor: theme.colors.orange[300],
+  tabBarActiveTintColor: theme.colors.orange[500],
+  headerTintColor: theme.colors.orange[500],
   tabBarLabelStyle: {
     fontFamily: theme.fonts.primary.semiBold,
   },
@@ -30,6 +31,7 @@ export const tabBarOptions: BottomTabNavigationOptions = {
     right: TAB_BAR_RIGHT_SPACING,
     borderRadius: TAB_BAR_BORDER_RADIUS,
     backgroundColor: theme.colors.gray[100],
+    borderTopWidth: 0,
   },
   tabBarItemStyle: {
     borderRadius: TAB_BAR_ITEM_BORDER_RADIUS,
