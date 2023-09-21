@@ -19,7 +19,7 @@ export function LocationPermission() {
         <RequestLocationPermissionBanner />
 
         <Button.Root type="filled" onPress={handlerRequestUserLocation}>
-          <Button.Text>Continuar</Button.Text>
+          <Button.Text>Permitir Localização</Button.Text>
         </Button.Root>
       </S.Content>
 

@@ -8,6 +8,7 @@ import {
   MAX_ZOOM_LEVEL,
   MIN_ZOOM_LEVEL,
 } from '../../constants';
+import { grayScale } from '../../customStyles';
 
 import type { IMiniMapProps } from './types';
 
@@ -28,7 +29,8 @@ export function MiniMap({ coords, headerHeight }: IMiniMapProps) {
       zoomControlEnabled={false}
       scrollEnabled={false}
       minZoomLevel={MIN_ZOOM_LEVEL}
-      maxZoomLevel={MAX_ZOOM_LEVEL}>
+      maxZoomLevel={MAX_ZOOM_LEVEL}
+      customMapStyle={grayScale}>
       <Marker
         coordinate={{
           latitude: coords.latitude,

@@ -30,7 +30,7 @@ export const NearFeedersContainer = styled.View<{ tabBarHeight: number }>`
   bottom: 0;
 
   padding: ${({ theme }) => theme.spacings.md}px 0px
-    ${({ tabBarHeight, theme }) => tabBarHeight + theme.spacings.md}px;
+    ${({ tabBarHeight }) => tabBarHeight + 60}px;
   background-color: ${({ theme }) => theme.colors.gray[0]};
 
   border-top-right-radius: ${({ theme }) => theme.sizes.xmd}px;
@@ -116,4 +116,23 @@ export const LocationNotAvailableContainer = styled.View`
   flex: 1;
   background-color: ${({ theme }) => theme.colors.gray[0]};
   padding: ${({ theme }) => theme.spacings.md}px;
+`;
+
+export const ListEmptyContainer = styled.View`
+  width: 100%;
+
+  padding: 0px ${({ theme }) => theme.spacings.md}px;
+
+  gap: ${({ theme }) => theme.spacings.sm}px;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const Description = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.primary.regular};
+  font-size: ${({ theme }) => theme.sizes.sm}px;
+  line-height: ${({ theme }) => theme.spacings.md}px;
+  text-align: center;
+
+  color: ${({ theme }) => theme.colors.gray[500]};
 `;

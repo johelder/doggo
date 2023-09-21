@@ -1,6 +1,5 @@
 export * from './Button';
 export * from './Map';
-export * from './CustomTabBar/TabBarIcon';
 export * from './NavigationButton';
 export * from './Loader';
 export * from './Input';
@@ -12,6 +11,5 @@ export * from './Modal';
 export * from './CustomHeader';
 export * from './PageAlert';
 export * from './FeederCard';
-export * from './CustomTabBar';
 export * from './Checkbox';
 export * from './RequestLocationPermission';
