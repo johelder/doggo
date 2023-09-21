@@ -1,7 +1,7 @@
 import Geolocation, {
   GeolocationError,
 } from '@react-native-community/geolocation';
-import { useNavigation } from '@react-navigation/native';
+import { CommonActions, useNavigation } from '@react-navigation/native';
 import { useModalize } from 'react-native-modalize';
 
 import { errorHandler } from '@utils';
@@ -18,9 +18,15 @@ export function useLocationPermission() {
     useModalize();
   const { setValueInStorage } = useStorage(IS_FIRST_ACCESS_KEY, true);
 
-  function redirectUserToWelcome() {
+  function redirectUserToHome() {
     setValueInStorage(false);
-    navigation.navigate('Welcome');
+
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [{ name: 'HomeTabs' }],
+      }),
+    );
   }
 
   function handleRequestAuthorizationError(error: GeolocationError) {
@@ -38,7 +44,7 @@ export function useLocationPermission() {
 
   function handlerRequestUserLocation() {
     Geolocation.requestAuthorization(
-      redirectUserToWelcome,
+      redirectUserToHome,
       handleRequestAuthorizationError,
     );
   }
