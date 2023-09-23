@@ -15,7 +15,9 @@ import {
   FeederCard,
   RequestLocationPermissionModal,
   RequestLocationPermissionBanner,
+  Button,
 } from '@components';
+import { PlusIcon } from '@app/src/assets/icons/PlusIcon';
 import { grayScale } from '@app/src/components/Map/customStyles';
 import { CustomMarker } from './components/CustomMarker';
 
@@ -26,7 +28,6 @@ import * as S from './styles';
 export function Home(): JSX.Element {
   const {
     isLoadingMap,
-    onMapLoaded,
     feeders,
     nearFeeders,
     isTooltipVisible,
@@ -38,6 +39,7 @@ export function Home(): JSX.Element {
     handleToggleNearFeederList,
     requestLocationPermissionModalRef,
     isLocationAvailable,
+    handleRedirectToSelectLocation,
   } = useHome();
   const theme = useTheme();
   const tabBarHeight = useBottomTabBarHeight();
@@ -53,6 +55,50 @@ export function Home(): JSX.Element {
     },
     [handleClickOnNearFeeder],
   );
+
+  const NearFeederList = useCallback(() => {
+    if (nearFeeders.length <= 0) {
+      return (
+        <S.ListEmptyContainer>
+          <S.Title>Nenhum comedouro próximo.</S.Title>
+          <S.Description>
+            Que tal cadastrar seu comedouro e ajudar animais próximos a você?
+          </S.Description>
+
+          <Button.Root type="filled" onPress={handleRedirectToSelectLocation}>
+            <Button.Icon>
+              <PlusIcon size={24} color={theme.colors.gray[0]} />
+            </Button.Icon>
+
+            <Button.Text>Novo comedouro</Button.Text>
+          </Button.Root>
+        </S.ListEmptyContainer>
+      );
+    }
+
+    if (!isNearFeederListExpanded) {
+      return null;
+    }
+
+    return (
+      <S.NearFeeders
+        data={nearFeeders}
+        keyExtractor={nearFeeder => String(nearFeeder.id)}
+        renderItem={renderNearFeeder}
+        showsHorizontalScrollIndicator={false}
+      />
+    );
+  }, [
+    handleRedirectToSelectLocation,
+    isNearFeederListExpanded,
+    nearFeeders,
+    renderNearFeeder,
+    theme.colors.gray,
+  ]);
+
+  if (isLoadingMap) {
+    return <Loader.Page />;
+  }
 
   if (!isLocationAvailable) {
     return (
@@ -71,8 +117,6 @@ export function Home(): JSX.Element {
       <StatusBar barStyle="dark-content" backgroundColor="transparent" />
 
       <S.Container>
-        {isLoadingMap && <Loader.Page />}
-
         <S.Content>
           <S.MapContainer
             hasNearFeeders={nearFeeders.length > 0}
@@ -80,7 +124,6 @@ export function Home(): JSX.Element {
             <Map
               isClustering
               showsUserLocation
-              onMapReady={onMapLoaded}
               onPress={() => setIsTooltipVisible(false)}
               customMapStyle={grayScale}>
               {feeders.map((feeder, index) => (
@@ -100,8 +143,8 @@ export function Home(): JSX.Element {
           </S.MapContainer>
         </S.Content>
 
-        {nearFeeders.length > 0 && isLocationAvailable && (
-          <S.NearFeedersContainer tabBarHeight={tabBarHeight}>
+        <S.NearFeedersContainer tabBarHeight={tabBarHeight}>
+          {nearFeeders.length > 0 && (
             <S.HeaderContainer onPress={handleToggleNearFeederList}>
               <S.Title>Comedouros perto de você</S.Title>
               {isNearFeederListExpanded ? (
@@ -110,17 +153,10 @@ export function Home(): JSX.Element {
                 <CaretUp weight="bold" color={theme.colors.gray[700]} />
               )}
             </S.HeaderContainer>
+          )}
 
-            {isNearFeederListExpanded && (
-              <S.NearFeeders
-                data={nearFeeders}
-                keyExtractor={nearFeeder => String(nearFeeder.id)}
-                renderItem={renderNearFeeder}
-                showsHorizontalScrollIndicator={false}
-              />
-            )}
-          </S.NearFeedersContainer>
-        )}
+          <NearFeederList />
+        </S.NearFeedersContainer>
 
         {isTooltipVisible && (
           <>

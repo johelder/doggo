@@ -33,6 +33,7 @@ export type TRootStackParamList = {
 
 export type TRootTabParamList = {
   Map: undefined;
+  SelectLocationStack: undefined;
   Profile: undefined;
 };
 

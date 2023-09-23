@@ -4,18 +4,17 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useTheme } from 'styled-components/native';
 
 import {
-  SelectLocation,
   CreateFeeder,
   MyFeeders,
   EditFeeder,
   Favorites,
   FeederDetails,
-  Welcome,
   Settings,
   LocationPermission,
   PrivacyPolicy,
   DeleteAccount,
   TermsOfUse,
+  SelectLocation,
 } from '@screens';
 import { HomeTabs } from './BottomTabs';
 import { useStorage } from '@hooks';
@@ -50,7 +49,6 @@ export function AuthenticatedRoutes() {
             name="LocationPermission"
             component={LocationPermission}
           />
-          <Stack.Screen name="Welcome" component={Welcome} />
           <Stack.Screen name="HomeTabs" component={HomeTabs} />
         </Stack.Group>
         <Stack.Group screenOptions={{ headerTransparent: true }}>

@@ -7,7 +7,6 @@ export * from './EditFeeder';
 export * from './MyFeeders';
 export * from './Favorites';
 export * from './FeederDetails';
-export * from './Welcome';
 export * from './Settings';
 export * from './LocationPermission';
 export * from './Splash';

@@ -14,7 +14,7 @@ export function RequestLocationPermissionBanner() {
         </S.Description>
       </S.TextsContainer>
 
-      <LocationIllustration />
+      <LocationIllustration width="100%" height="50%" />
     </S.Container>
   );
 }
