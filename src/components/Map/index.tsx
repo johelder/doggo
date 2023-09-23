@@ -30,6 +30,7 @@ export function Map({ isClustering = false, children, ...rest }: IMapProps) {
         showsMyLocationButton={false}
         style={mapStyles.container}
         clusterColor={theme.colors.orange[500]}
+        toolbarEnabled={false}
         {...rest}>
         {children}
       </MapComponent>

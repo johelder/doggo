@@ -7,6 +7,7 @@ import {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
+import { Gesture } from 'react-native-gesture-handler';
 
 import CheckCircle from 'phosphor-react-native/src/icons/CheckCircle';
 import WarningCircle from 'phosphor-react-native/src/icons/WarningCircle';
@@ -51,6 +52,10 @@ export function useToast({ isVisible, toast, onRemove }: IToastProps) {
     );
   }, [onRemove, positionY]);
 
+  const swipeUpGesture = Gesture.Pan().onTouchesUp(() =>
+    runOnJS(handleRemove)(),
+  );
+
   useEffect(() => {
     const toastTimeout = setTimeout(
       handleRemove,
@@ -68,5 +73,5 @@ export function useToast({ isVisible, toast, onRemove }: IToastProps) {
     return toastIconMapper[type];
   }
 
-  return { getToastIcon, animatedStyle, handleRemove };
+  return { getToastIcon, animatedStyle, handleRemove, swipeUpGesture };
 }

@@ -28,7 +28,6 @@ import * as S from './styles';
 export function Home(): JSX.Element {
   const {
     isLoadingMap,
-    onMapLoaded,
     feeders,
     nearFeeders,
     isTooltipVisible,
@@ -97,6 +96,10 @@ export function Home(): JSX.Element {
     theme.colors.gray,
   ]);
 
+  if (isLoadingMap) {
+    return <Loader.Page />;
+  }
+
   if (!isLocationAvailable) {
     return (
       <S.LocationNotAvailableContainer>
@@ -114,8 +117,6 @@ export function Home(): JSX.Element {
       <StatusBar barStyle="dark-content" backgroundColor="transparent" />
 
       <S.Container>
-        {isLoadingMap && <Loader.Page />}
-
         <S.Content>
           <S.MapContainer
             hasNearFeeders={nearFeeders.length > 0}
@@ -123,7 +124,6 @@ export function Home(): JSX.Element {
             <Map
               isClustering
               showsUserLocation
-              onMapReady={onMapLoaded}
               onPress={() => setIsTooltipVisible(false)}
               customMapStyle={grayScale}>
               {feeders.map((feeder, index) => (
