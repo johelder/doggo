@@ -4,7 +4,7 @@ import Geolocation from '@react-native-community/geolocation';
 
 import { FeedersRepository } from '@services';
 import { useMap } from '@hooks';
-import { calculateDistanceBetweenTwoPoints } from '@utils';
+import { calculateDistanceBetweenTwoPoints, delay } from '@utils';
 
 import { THREE_KILOMETER_IN_METERS } from './constants';
 
@@ -37,10 +37,6 @@ export function useHome() {
 
   function handleToggleNearFeederList() {
     setIsNearFeederListExpanded(prevState => !prevState);
-  }
-
-  function onMapLoaded() {
-    setIsLoadingMap(false);
   }
 
   function handleOpenTooltip(feeder: IFeeder) {
@@ -139,14 +135,23 @@ export function useHome() {
 
     const watchId = watchUserPosition();
 
-    setIsLoadingMap(false);
-
     return () => Geolocation.clearWatch(watchId);
   }, [getUserCurrentPosition, isScreenFocused, watchUserPosition]);
 
+  const initialDelay = useCallback(async () => {
+    setIsLoadingMap(true);
+
+    await delay(1000);
+
+    setIsLoadingMap(false);
+  }, []);
+
+  useEffect(() => {
+    initialDelay();
+  }, [initialDelay]);
+
   return {
     isLoadingMap,
-    onMapLoaded,
     feeders,
     nearFeeders,
     isTooltipVisible,
