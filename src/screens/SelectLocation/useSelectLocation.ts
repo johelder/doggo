@@ -43,15 +43,15 @@ export function useSelectLocation() {
     setCurrentUserLocation({
       coords: {
         latitude: temporaryUserLocation?.latitude,
-        longitude: temporaryUserLocation.longitude,
+        longitude: temporaryUserLocation?.longitude,
       },
     });
 
     const params = {
       address,
       coordinate: {
-        latitude: temporaryUserLocation.latitude,
-        longitude: temporaryUserLocation.longitude,
+        latitude: temporaryUserLocation?.latitude,
+        longitude: temporaryUserLocation?.longitude,
       },
     };
 
@@ -83,7 +83,7 @@ export function useSelectLocation() {
         longitude,
       );
 
-      if (!fetchFeederAddressToEdit) {
+      if (!fetchedUserAddress) {
         setIsLoadingAddress(false);
 
         return;
