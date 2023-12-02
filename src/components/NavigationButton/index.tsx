@@ -21,7 +21,7 @@ export function NavigationButton({
         </S.TitlesContainer>
       </S.Content>
 
-      <S.ArrowRight />
+      <S.ArrowRight weight="bold" />
     </S.Container>
   );
 }

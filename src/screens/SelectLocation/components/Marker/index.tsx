@@ -20,7 +20,7 @@ export function Marker({ isTooltipVisible = false }: IMarkerProps) {
           </S.TooltipContainer>
         )}
 
-        <S.Marker />
+        <S.Marker weight="fill" />
       </S.Content>
     </S.Container>
   );

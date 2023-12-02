@@ -122,7 +122,7 @@ export function Favorites(): JSX.Element {
       <S.Content>
         <S.Feeders
           data={feeders}
-          keyExtractor={feeder => String(feeder.id)}
+          keyExtractor={(feeder: IFeeder) => String(feeder.id)}
           renderItem={renderFeeder}
           ListEmptyComponent={renderListEmptyComponent}
         />

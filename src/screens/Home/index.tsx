@@ -82,7 +82,7 @@ export function Home(): JSX.Element {
     return (
       <S.NearFeeders
         data={nearFeeders}
-        keyExtractor={nearFeeder => String(nearFeeder.id)}
+        keyExtractor={(nearFeeder: IFeeder) => String(nearFeeder.id)}
         renderItem={renderNearFeeder}
         showsHorizontalScrollIndicator={false}
       />

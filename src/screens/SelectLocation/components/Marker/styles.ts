@@ -69,7 +69,6 @@ export const TooltipTriangle = styled.View`
 `;
 
 export const Marker = styled(MapPin).attrs(({ theme }) => ({
-  weight: 'fill',
   size: 42,
   color: theme.colors.orange[500],
 }))`
