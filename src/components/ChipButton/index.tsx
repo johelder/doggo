@@ -1,8 +1,7 @@
 import React from 'react';
 
-import type { IChipButtonProps } from './types';
-
 import * as S from './styles';
+import { IChipButtonProps } from './types';
 
 export function ChipButton({
   isSelected = false,

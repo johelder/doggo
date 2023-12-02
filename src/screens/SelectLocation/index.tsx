@@ -1,20 +1,19 @@
 import React, { useCallback, useLayoutEffect } from 'react';
-import { useTheme } from 'styled-components/native';
 
-import { useSelectLocation } from './useSelectLocation';
-
-import { Button, Loader, Map, CustomHeader } from '@components';
 import { CustomHeaderTitle } from '@app/src/components/CustomHeader/components/CustomHeaderTitle';
-import { Marker } from './components/Marker';
-import { grayScale } from '@app/src/components/Map/customStyles';
 import {
   LATITUDE_DELTA,
   LONGITUDE_DELTA,
 } from '@app/src/components/Map/constants';
+import { grayScale } from '@app/src/components/Map/customStyles';
+import { useTheme } from 'styled-components/native';
 
-import type { TRootStackScreenProps } from '@types';
+import { Button, Loader, Map, CustomHeader } from '@components';
+import { TRootStackScreenProps } from '@types';
 
+import { Marker } from './components/Marker';
 import * as S from './styles';
+import { useSelectLocation } from './useSelectLocation';
 
 export function SelectLocation({
   navigation,

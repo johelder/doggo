@@ -1,8 +1,12 @@
 import { useCallback, useEffect, useMemo, useReducer } from 'react';
 import { Linking, Platform } from 'react-native';
+
+import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 import { useAuth, useMap } from '@hooks';
+import { FeedersRepository } from '@services';
+import { TMaintenanceStatus, TRootStackScreenProps } from '@types';
 import {
   errorHandler,
   formatRelativeDate,
@@ -10,13 +14,9 @@ import {
   getFormattedDistanceBetweenTwoPoints,
   showToast,
 } from '@utils';
+
 import { LAST_FIFTEEN_DAYS, YESTERDAY } from './constants';
-
-import { FeedersRepository } from '@services';
-
-import type { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
-import type { TMaintenanceStatus, TRootStackScreenProps } from '@types';
-import type { IInitialState, TActions, TMaintenanceProps } from './types';
+import { IInitialState, TActions, TMaintenanceProps } from './types';
 
 const initialState: IInitialState = {
   maintenanceStatus: [],

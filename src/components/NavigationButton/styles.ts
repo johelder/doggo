@@ -1,7 +1,7 @@
-import styled from 'styled-components/native';
 import { StyleSheet } from 'react-native';
 
 import CaretRight from 'phosphor-react-native/src/icons/CaretRight';
+import styled from 'styled-components/native';
 
 export const Container = styled.TouchableOpacity.attrs({
   activeOpacity: 0.6,

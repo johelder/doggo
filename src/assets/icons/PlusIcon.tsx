@@ -1,7 +1,8 @@
 import React from 'react';
+
 import { Path, Svg } from 'react-native-svg';
 
-import type { IconProps } from './types';
+import { IconProps } from './types';
 
 export function PlusIcon({ size, color }: IconProps) {
   return (

@@ -1,14 +1,14 @@
 import { useCallback, useMemo } from 'react';
+
+import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import { useNavigation } from '@react-navigation/native';
 
+import { useMap } from '@hooks';
+import { IFeeder } from '@types';
 import {
   getDaysDifference,
   getFormattedDistanceBetweenTwoPoints,
 } from '@utils';
-import { useMap } from '@hooks';
-
-import type { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
-import type { IFeeder } from '@types';
 
 export function useFeederCard(feeder: IFeeder | null, onClose?: () => void) {
   const { currentUserLocation } = useMap();

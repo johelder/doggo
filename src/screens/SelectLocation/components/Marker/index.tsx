@@ -1,8 +1,7 @@
 import React from 'react';
 
-import type { IMarkerProps } from './types';
-
 import * as S from './styles';
+import { IMarkerProps } from './types';
 
 export function Marker({ isTooltipVisible = false }: IMarkerProps) {
   return (

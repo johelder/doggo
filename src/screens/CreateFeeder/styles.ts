@@ -1,6 +1,7 @@
-import styled from 'styled-components/native';
 import { Dimensions } from 'react-native';
+
 import MapView from 'react-native-maps';
+import styled from 'styled-components/native';
 
 export const Container = styled.SafeAreaView`
   flex: 1;

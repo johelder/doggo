@@ -1,5 +1,9 @@
 import { useCallback, useEffect } from 'react';
 
+import CheckCircle from 'phosphor-react-native/src/icons/CheckCircle';
+import Info from 'phosphor-react-native/src/icons/Info';
+import WarningCircle from 'phosphor-react-native/src/icons/WarningCircle';
+import { Gesture } from 'react-native-gesture-handler';
 import {
   runOnJS,
   useAnimatedStyle,
@@ -7,11 +11,8 @@ import {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import { Gesture } from 'react-native-gesture-handler';
 
-import CheckCircle from 'phosphor-react-native/src/icons/CheckCircle';
-import WarningCircle from 'phosphor-react-native/src/icons/WarningCircle';
-import Info from 'phosphor-react-native/src/icons/Info';
+import { TToastType } from '../../types';
 
 import {
   DEFAULT_TOAST_DURATION,
@@ -19,9 +20,7 @@ import {
   UNMOUNT_ANIMATION_DURATION,
   VISIBLE_TOAST_VALUE,
 } from './constants';
-
-import type { TToastType } from '../../types';
-import type { IToastProps } from './types';
+import { IToastProps } from './types';
 
 const toastIconMapper = {
   success: CheckCircle,

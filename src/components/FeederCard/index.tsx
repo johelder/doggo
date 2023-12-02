@@ -1,19 +1,19 @@
 import React from 'react';
-import { useTheme } from 'styled-components/native';
 
+import CheckCircle from 'phosphor-react-native/src/icons/CheckCircle';
 import CookingPot from 'phosphor-react-native/src/icons/CookingPot';
+import Info from 'phosphor-react-native/src/icons/Info';
 import Signpost from 'phosphor-react-native/src/icons/Signpost';
 import User from 'phosphor-react-native/src/icons/User';
-import Info from 'phosphor-react-native/src/icons/Info';
-import CheckCircle from 'phosphor-react-native/src/icons/CheckCircle';
+import { useTheme } from 'styled-components/native';
+
+import { getFoodsLabel } from '@utils';
 
 import { Button } from '../Button';
-import { getFoodsLabel } from '@utils';
-import { useFeederCard } from './useFeederCard';
-
-import type { IFeedCardProps } from './types';
 
 import * as S from './styles';
+import { IFeedCardProps } from './types';
+import { useFeederCard } from './useFeederCard';
 
 export function FeederCard({ feeder, sideButton, onClose }: IFeedCardProps) {
   const {

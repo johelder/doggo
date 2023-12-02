@@ -1,7 +1,8 @@
 import React from 'react';
+
 import { Modalize } from 'react-native-modalize';
 
-import type { IModalProps } from './types';
+import { IModalProps } from './types';
 
 export function Modal({ modalRef, children, ...rest }: IModalProps) {
   return (

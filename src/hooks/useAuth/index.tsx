@@ -6,20 +6,20 @@ import React, {
   useState,
   useMemo,
 } from 'react';
+
+import { WEB_CLIENT_ID } from '@env';
+import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import {
   GoogleSignin,
   statusCodes,
   NativeModuleError,
 } from '@react-native-google-signin/google-signin';
-import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 
 import { UsersRepository } from '@services';
+import { IUser } from '@types';
 import { errorHandler, showToast } from '@utils';
 
-import { WEB_CLIENT_ID } from '@env';
-
-import type { IUser } from '@types';
-import type { IAuthContext, IAuthContextProps } from './types';
+import { IAuthContext, IAuthContextProps } from './types';
 
 const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 

@@ -1,15 +1,15 @@
 import React from 'react';
+
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MapPinLine from 'phosphor-react-native/src/icons/MapPinLine';
 import ProfileIcon from 'phosphor-react-native/src/icons/User';
 
-import { Home, Profile } from '@screens';
+import { Home, NewFeederButton, Profile } from '@screens';
+import { TRootTabParamList } from '@types';
+
 import { SelectLocationStack } from '../SelectLocationStack';
-import { NewFeederButton } from '@app/src/screens/SelectLocation/components/NewFeederButton';
 
 import { tabBarOptions } from './options';
-
-import type { TRootTabParamList } from '@types';
 
 const Tab = createBottomTabNavigator<TRootTabParamList>();
 

@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react';
-import type { TextProps, TouchableOpacityProps } from 'react-native';
+import { ReactNode } from 'react';
+import { TextProps, TouchableOpacityProps } from 'react-native';
 
 export interface IButtonRootProps extends TouchableOpacityProps {
   children: ReactNode;

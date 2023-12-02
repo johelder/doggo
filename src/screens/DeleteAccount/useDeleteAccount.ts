@@ -1,9 +1,9 @@
 import { Alert } from 'react-native';
+
 import auth from '@react-native-firebase/auth';
 
 import { useAuth } from '@hooks';
 import { FeedersRepository, UsersRepository } from '@services';
-
 import { errorHandler, showToast } from '@utils';
 
 export function useDeleteAccount() {

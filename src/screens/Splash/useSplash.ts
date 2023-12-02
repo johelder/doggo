@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction, useCallback, useEffect } from 'react';
+
 import {
   interpolate,
   runOnJS,
@@ -6,6 +7,7 @@ import {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+
 import {
   SPLASH_ANIMATION_FINAL_VALUE,
   TIME_TO_LOAD_AUTH_STATE,

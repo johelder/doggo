@@ -1,7 +1,8 @@
-import styled from 'styled-components/native';
 import { FlatList, FlatListProps } from 'react-native';
 
-import type { IFeeder } from '@types';
+import styled from 'styled-components/native';
+
+import { IFeeder } from '@types';
 
 export const Container = styled.SafeAreaView`
   flex: 1;

@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
+
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 
 import { useAuth } from '@hooks';
 import { UsersRepository } from '@services';
+import { TPageStatus, IFeeder } from '@types';
 import { errorHandler } from '@utils';
-
-import type { TPageStatus, IFeeder } from '@types';
 
 export function useFavorites() {
   const [feeders, setFeeders] = useState<IFeeder[]>([]);

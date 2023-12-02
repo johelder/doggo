@@ -1,8 +1,8 @@
 import firestore from '@react-native-firebase/firestore';
 
-import { DATABASE_FEEDERS_COLLECTION } from '../constants';
+import { IFeeder, TMaintenanceStatus, IUser } from '@types';
 
-import type { IFeeder, TMaintenanceStatus, IUser } from '@types';
+import { DATABASE_FEEDERS_COLLECTION } from '../constants';
 
 export const FeedersRepository = {
   async create(feeder: IFeeder) {

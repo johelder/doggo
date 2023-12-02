@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components/native';
+
 import { IButtonRootProps, IButtonTextProps } from './types';
 
 export const ButtonRootContainer = styled.TouchableOpacity<IButtonRootProps>`

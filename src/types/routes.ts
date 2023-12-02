@@ -1,10 +1,11 @@
-import type {
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import {
   CompositeScreenProps,
   NavigatorScreenParams,
 } from '@react-navigation/native';
-import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import type { TCoordinates, TAddress } from '@types';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+
+import { TCoordinates, TAddress } from '@types';
 
 export type TRootStackParamList = {
   HomeTabs: NavigatorScreenParams<TRootTabParamList>;

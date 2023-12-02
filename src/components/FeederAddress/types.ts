@@ -1,4 +1,4 @@
-import type { IFeeder } from '@src/types';
+import { IFeeder } from '@types';
 
 export interface IFeederAddressProps {
   feeder: IFeeder;

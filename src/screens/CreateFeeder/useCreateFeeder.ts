@@ -1,14 +1,13 @@
 import { useRef } from 'react';
-import { useNavigation, useRoute } from '@react-navigation/native';
+
+import { IFeederFormRef } from '@app/src/components/FeederForm/types';
 import firestore from '@react-native-firebase/firestore';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
-import { FeedersRepository } from '@services';
 import { useAuth } from '@hooks';
+import { FeedersRepository } from '@services';
+import { IFeeder, IFeederAddress, TRootStackScreenProps } from '@types';
 import { errorHandler, showToast } from '@utils';
-
-import type { IFeeder, TRootStackScreenProps } from '@types';
-import type { IFeederFormRef } from '@app/src/components/FeederForm/types';
-import type { IFeederAddress } from './types';
 
 export function useCreateFeeder() {
   const { user } = useAuth();

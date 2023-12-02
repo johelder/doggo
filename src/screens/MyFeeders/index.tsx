@@ -1,23 +1,21 @@
 import React, { useCallback, useLayoutEffect } from 'react';
 import { ListRenderItemInfo } from 'react-native';
+
 import { HeaderBackButton } from '@react-navigation/elements';
-
-import { useTheme } from 'styled-components/native';
-
+import ArrowClockwise from 'phosphor-react-native/src/icons/ArrowClockwise';
 import CirclesThreePlus from 'phosphor-react-native/src/icons/CirclesThreePlus';
 import FolderOpen from 'phosphor-react-native/src/icons/FolderOpen';
 import Warning from 'phosphor-react-native/src/icons/Warning';
-import ArrowClockwise from 'phosphor-react-native/src/icons/ArrowClockwise';
+import { useTheme } from 'styled-components/native';
 
-import { handleOpenSupport } from '@utils';
 import { Button, FeederAddress, Loader, PageAlert } from '@components';
+import { TRootStackScreenProps } from '@types';
+import { IFeeder } from '@types';
+import { handleOpenSupport } from '@utils';
+
 import { FeederDetailsModal } from './components/FeederDetailsModal';
-import { useMyFeeders } from './useMyFeeders';
-
-import type { IFeeder } from '@types';
-import type { TRootStackScreenProps } from '@types';
-
 import * as S from './styles';
+import { useMyFeeders } from './useMyFeeders';
 
 export function MyFeeders({
   navigation,

@@ -1,14 +1,14 @@
 import React from 'react';
+
 import { Portal } from 'react-native-portalize';
 import { useTheme } from 'styled-components/native';
 
-import { Modal } from '../../Modal';
 import { Button } from '../../Button';
-import { useRequestLocationPermissionModal } from './useRequestLocationPermissionModal';
-
-import type { IRequestLocationPermissionModalProps } from './types';
+import { Modal } from '../../Modal';
 
 import * as S from './styles';
+import { IRequestLocationPermissionModalProps } from './types';
+import { useRequestLocationPermissionModal } from './useRequestLocationPermissionModal';
 
 export function RequestLocationPermissionModal({
   modalRef,

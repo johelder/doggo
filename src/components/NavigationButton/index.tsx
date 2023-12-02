@@ -1,8 +1,7 @@
 import React from 'react';
 
-import type { INavigationButtonProps } from './types';
-
 import * as S from './styles';
+import { INavigationButtonProps } from './types';
 
 export function NavigationButton({
   title,

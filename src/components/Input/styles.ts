@@ -1,5 +1,5 @@
-import styled from 'styled-components/native';
 import Animated from 'react-native-reanimated';
+import styled from 'styled-components/native';
 
 export const Container = styled.View<{ isInputFocused: boolean }>`
   width: 100%;

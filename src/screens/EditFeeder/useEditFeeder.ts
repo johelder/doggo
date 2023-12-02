@@ -1,13 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+
+import { IFeederFormRef } from '@app/src/components/FeederForm/types';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
-import { FeedersRepository } from '@services';
 import { useMap } from '@hooks';
+import { FeedersRepository } from '@services';
+import { IFeeder, TRootStackScreenProps } from '@types';
 import { errorHandler, showToast } from '@utils';
 
-import type { IFeeder, TRootStackScreenProps } from '@types';
-import type { IFeederFormRef } from '@app/src/components/FeederForm/types';
-import type { IFeederAddress } from './types';
+import { IFeederAddress } from './types';
 
 export function useEditFeeder() {
   const [currentFeederToEdit, setCurrentFeederToEdit] = useState<IFeeder>(

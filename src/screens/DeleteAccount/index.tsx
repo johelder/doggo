@@ -1,13 +1,13 @@
 import React from 'react';
+
+import DeleteAccountIllustration from '@assets/images/delete-account-illustration.svg';
+import TrashSimple from 'phosphor-react-native/src/icons/TrashSimple';
 import { useTheme } from 'styled-components/native';
 
-import TrashSimple from 'phosphor-react-native/src/icons/TrashSimple';
-
 import { Button } from '@components';
-import DeleteAccountIllustration from '@assets/images/delete-account-illustration.svg';
-import { useDeleteAccount } from './useDeleteAccount';
 
 import * as S from './styles';
+import { useDeleteAccount } from './useDeleteAccount';
 
 export function DeleteAccount(): JSX.Element {
   const { handleConfirmDelete } = useDeleteAccount();

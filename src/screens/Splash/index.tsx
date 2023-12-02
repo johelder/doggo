@@ -1,12 +1,12 @@
 import React from 'react';
 
-import Animated from 'react-native-reanimated';
-import { useAuth } from '@hooks';
-import { useSplash } from './useSplash';
-
 import Logo from '@assets/images/logo.svg';
+import Animated from 'react-native-reanimated';
+
+import { useAuth } from '@hooks';
 
 import * as S from './styles';
+import { useSplash } from './useSplash';
 
 export function Splash(): JSX.Element {
   const { setIsLoadingAuthState } = useAuth();

@@ -1,8 +1,10 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
+
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useTheme } from 'styled-components/native';
 
+import { IS_FIRST_ACCESS_KEY, useStorage } from '@hooks';
 import {
   CreateFeeder,
   MyFeeders,
@@ -16,11 +18,9 @@ import {
   TermsOfUse,
   SelectLocation,
 } from '@screens';
-import { HomeTabs } from './BottomTabs';
-import { useStorage } from '@hooks';
-import { IS_FIRST_ACCESS_KEY } from '@app/src/hooks/useStorage/constants';
+import { TRootStackParamList } from '@types';
 
-import type { TRootStackParamList } from '@types';
+import { HomeTabs } from './BottomTabs';
 
 const Stack = createNativeStackNavigator<TRootStackParamList>();
 

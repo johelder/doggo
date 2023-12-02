@@ -1,10 +1,10 @@
 import React from 'react';
+
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 
-import { useAuth } from '@hooks';
 import { NavigationButton } from '@components';
-
-import type { THomeTabScreenProps } from '@types';
+import { useAuth } from '@hooks';
+import { THomeTabScreenProps } from '@types';
 
 import * as S from './styles';
 

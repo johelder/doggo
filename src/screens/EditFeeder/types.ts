@@ -1,4 +1,4 @@
-import type { TFoods } from '@types';
+import { TFoods } from '@types';
 
 export interface IFeederAddress {
   addressNumber: string;
