@@ -1,12 +1,13 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
+
 import { useTheme } from 'styled-components/native';
 
 import { useMap } from '@hooks';
-import { useMapComponent } from './useMapComponent';
-import { LATITUDE_DELTA, LONGITUDE_DELTA } from './constants';
 
-import type { IMapProps } from './types';
+import { LATITUDE_DELTA, LONGITUDE_DELTA } from './constants';
+import { IMapProps } from './types';
+import { useMapComponent } from './useMapComponent';
 
 export function Map({ isClustering = false, children, ...rest }: IMapProps) {
   const { currentUserLocation, mapRef } = useMap();

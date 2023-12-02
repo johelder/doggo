@@ -1,14 +1,14 @@
 import React from 'react';
+
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Host } from 'react-native-portalize';
-
-import { AuthContextProvider, MapProvider, FavoriteProvider } from '@hooks';
-import { ToastProvider } from '@components';
-
 import { ThemeProvider } from 'styled-components/native';
+
+import { ToastProvider } from '@components';
+import { AuthContextProvider, MapProvider, FavoriteProvider } from '@hooks';
 import { theme } from '@theme';
 
-import type { IAppProviderProps } from './types';
+import { IAppProviderProps } from './types';
 
 export function AppProvider({ children }: IAppProviderProps) {
   return (

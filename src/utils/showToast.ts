@@ -1,5 +1,6 @@
+import { IToast } from '@app/src/components/ToastProvider/types';
+
 import { EventManager } from '@lib';
-import type { IToast } from '@app/src/components/ToastProvider/types';
 
 export const toastEventManager = new EventManager();
 

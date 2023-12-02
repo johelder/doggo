@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
-import type { TFood, IFeeder } from '@types';
-import type { IUseFeederFormProps } from './types';
+import { TFood, IFeeder } from '@types';
+
+import { IUseFeederFormProps } from './types';
 
 export function useFeederForm({ onSubmit }: IUseFeederFormProps) {
   const [addressNumber, setAddressNumber] = useState('');

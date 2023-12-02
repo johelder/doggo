@@ -1,8 +1,10 @@
-import type { Dispatch, ReactNode, RefObject, SetStateAction } from 'react';
-import type MapView from 'react-native-maps';
-import type { Modalize } from 'react-native-modalize';
-import type { GeolocationResponse } from '@react-native-community/geolocation';
-import type { TCoordinates } from '@types';
+import { Dispatch, ReactNode, RefObject, SetStateAction } from 'react';
+
+import { GeolocationResponse } from '@react-native-community/geolocation';
+import MapView from 'react-native-maps';
+import { Modalize } from 'react-native-modalize';
+
+import { TCoordinates } from '@types';
 
 export interface IMapContextProps {
   mapRef: RefObject<MapView>;

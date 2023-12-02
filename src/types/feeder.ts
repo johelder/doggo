@@ -1,5 +1,6 @@
-import type { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
-import type { TCoordinates, TFoods, TMaintenanceStatus, TAddress } from '.';
+import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
+
+import { TCoordinates, TFoods, TMaintenanceStatus, TAddress } from '.';
 
 export interface IFeeder {
   id?: string;
@@ -19,4 +20,11 @@ export interface IFeeder {
       };
     };
   };
+}
+
+export interface IFeederAddress {
+  addressNumber: string;
+  addressComplement: string;
+  addressReference: string;
+  feederFoods: TFoods;
 }

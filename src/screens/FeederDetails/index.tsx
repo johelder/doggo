@@ -1,25 +1,24 @@
 import React, { useCallback, useLayoutEffect } from 'react';
-import { useTheme } from 'styled-components/native';
 
-import Repeat from 'phosphor-react-native/src/icons/Repeat';
-import ToiletPaper from 'phosphor-react-native/src/icons/ToiletPaper';
-import Gear from 'phosphor-react-native/src/icons/Gear';
 import CheckCircle from 'phosphor-react-native/src/icons/CheckCircle';
-import Info from 'phosphor-react-native/src/icons/Info';
-import Users from 'phosphor-react-native/src/icons/Users';
 import CookingPot from 'phosphor-react-native/src/icons/CookingPot';
-import Signpost from 'phosphor-react-native/src/icons/Signpost';
-import MapPin from 'phosphor-react-native/src/icons/MapPin';
+import Gear from 'phosphor-react-native/src/icons/Gear';
 import Heart from 'phosphor-react-native/src/icons/Heart';
+import Info from 'phosphor-react-native/src/icons/Info';
+import MapPin from 'phosphor-react-native/src/icons/MapPin';
+import Repeat from 'phosphor-react-native/src/icons/Repeat';
+import Signpost from 'phosphor-react-native/src/icons/Signpost';
+import ToiletPaper from 'phosphor-react-native/src/icons/ToiletPaper';
+import Users from 'phosphor-react-native/src/icons/Users';
+import { useTheme } from 'styled-components/native';
 
 import { Button, Checkbox, Loader } from '@components';
 import { useFavorite } from '@hooks';
+import { TRootStackScreenProps } from '@types';
 import { getFoodsLabel } from '@utils';
-import { useFeederDetails } from './useFeederDetails';
-
-import type { TRootStackScreenProps } from '@types';
 
 import * as S from './styles';
+import { useFeederDetails } from './useFeederDetails';
 
 export function FeederDetails({
   navigation,

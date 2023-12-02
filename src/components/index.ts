@@ -1,5 +1,6 @@
 export * from './Button';
 export * from './Map';
+export * from './Map/components/MiniMap';
 export * from './NavigationButton';
 export * from './Loader';
 export * from './Input';

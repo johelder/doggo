@@ -1,17 +1,16 @@
 import React, { forwardRef, useImperativeHandle } from 'react';
+
+import ArchiveBox from 'phosphor-react-native/src/icons/ArchiveBox';
+import Cat from 'phosphor-react-native/src/icons/Cat';
+import Dog from 'phosphor-react-native/src/icons/Dog';
+import DotsThreeCircle from 'phosphor-react-native/src/icons/DotsThreeCircle';
 import { useTheme } from 'styled-components/native';
 
-import Dog from 'phosphor-react-native/src/icons/Dog';
-import Cat from 'phosphor-react-native/src/icons/Cat';
-import DotsThreeCircle from 'phosphor-react-native/src/icons/DotsThreeCircle';
-import ArchiveBox from 'phosphor-react-native/src/icons/ArchiveBox';
-
 import { Input, ChipButton, Button } from '..';
-import { useFeederForm } from './useFeederForm';
-
-import type { IFeederFormProps, IFeederFormRef } from './types';
 
 import * as S from './styles';
+import { IFeederFormProps, IFeederFormRef } from './types';
+import { useFeederForm } from './useFeederForm';
 
 export const FeederForm = forwardRef<IFeederFormRef, IFeederFormProps>(
   ({ onSubmit }, ref) => {

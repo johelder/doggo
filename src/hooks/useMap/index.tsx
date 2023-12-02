@@ -5,6 +5,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
+
 import Geolocation, {
   GeolocationError,
 } from '@react-native-community/geolocation';
@@ -14,8 +15,7 @@ import { useModalize } from 'react-native-modalize';
 import { errorHandler } from '@utils';
 
 import { LOCATION_PERMISSION_DENIED, IS_LOCATION_TURN_OFF } from './constants';
-
-import type {
+import {
   IMapContextProps,
   IMapProviderProps,
   TCurrentUSerLocation,

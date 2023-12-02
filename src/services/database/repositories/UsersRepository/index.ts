@@ -1,11 +1,11 @@
 import firestore from '@react-native-firebase/firestore';
 
+import { IFeeder, IUser } from '@types';
+
 import {
   DATABASE_FEEDERS_COLLECTION,
   DATABASE_USERS_COLLECTION,
 } from '../constants';
-
-import type { IFeeder, IUser } from '@types';
 
 export const UsersRepository = {
   async create(user: IUser) {

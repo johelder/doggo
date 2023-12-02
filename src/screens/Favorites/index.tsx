@@ -1,21 +1,20 @@
 import React, { useCallback } from 'react';
 import { ListRenderItemInfo } from 'react-native';
-import { useTheme } from 'styled-components/native';
 
-import Warning from 'phosphor-react-native/src/icons/Warning';
 import ArrowClockwise from 'phosphor-react-native/src/icons/ArrowClockwise';
+import Heart from 'phosphor-react-native/src/icons/Heart';
 import HeartBreak from 'phosphor-react-native/src/icons/HeartBreak';
 import MapTrifold from 'phosphor-react-native/src/icons/MapTrifold';
-import Heart from 'phosphor-react-native/src/icons/Heart';
+import Warning from 'phosphor-react-native/src/icons/Warning';
+import { useTheme } from 'styled-components/native';
 
-import { handleOpenSupport } from '@utils';
-import { useFavorite } from '@hooks';
 import { Button, FeederCard, Loader, PageAlert } from '@components';
-import { useFavorites } from './useFavorites';
-
-import type { IFeeder } from '@types';
+import { useFavorite } from '@hooks';
+import { IFeeder } from '@types';
+import { handleOpenSupport } from '@utils';
 
 import * as S from './styles';
+import { useFavorites } from './useFavorites';
 
 export function Favorites(): JSX.Element {
   const { feeders, pageStatus, handleTryAgain, handleRedirectToMap } =

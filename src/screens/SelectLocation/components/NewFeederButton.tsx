@@ -2,9 +2,9 @@ import React from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 
 import { PlusIcon } from '@app/src/assets/icons/PlusIcon';
-import { theme } from '@theme';
+import { BottomTabBarButtonProps } from '@react-navigation/bottom-tabs';
 
-import type { BottomTabBarButtonProps } from '@react-navigation/bottom-tabs';
+import { theme } from '@theme';
 
 export function NewFeederButton(props: BottomTabBarButtonProps) {
   return (

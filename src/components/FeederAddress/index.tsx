@@ -1,14 +1,13 @@
 import React from 'react';
-import { useTheme } from 'styled-components/native';
 
-import MapPin from 'phosphor-react-native/src/icons/MapPin';
 import DotsThreeVertical from 'phosphor-react-native/src/icons/DotsThreeVertical';
+import MapPin from 'phosphor-react-native/src/icons/MapPin';
+import { useTheme } from 'styled-components/native';
 
 import { getFoodsLabel } from '@utils';
 
-import type { IFeederAddressProps } from './types';
-
 import * as S from './styles';
+import { IFeederAddressProps } from './types';
 
 export function FeederAddress({ feeder, onOpenDetails }: IFeederAddressProps) {
   const { street, houseNumber, neighborhood, city } = feeder.address;

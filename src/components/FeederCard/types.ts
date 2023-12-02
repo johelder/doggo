@@ -1,5 +1,6 @@
-import type { ReactElement } from 'react';
-import type { IFeeder } from '@types';
+import { ReactElement } from 'react';
+
+import { IFeeder } from '@types';
 
 export interface IFeedCardProps {
   feeder: IFeeder | null;

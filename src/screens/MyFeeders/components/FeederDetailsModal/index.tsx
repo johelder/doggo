@@ -1,14 +1,13 @@
 import React from 'react';
-import { useTheme } from 'styled-components/native';
 
-import Trash from 'phosphor-react-native/src/icons/Trash';
 import PencilSimpleLine from 'phosphor-react-native/src/icons/PencilSimpleLine';
+import Trash from 'phosphor-react-native/src/icons/Trash';
+import { useTheme } from 'styled-components/native';
 
 import { Button, Modal } from '@components';
 
-import type { IFeederDetailsModal } from './types';
-
 import * as S from './styles';
+import { IFeederDetailsModal } from './types';
 
 export function FeederDetailsModal({
   detailsModalRef,

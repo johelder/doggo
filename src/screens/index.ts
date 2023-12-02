@@ -2,6 +2,7 @@ export * from './SignIn';
 export * from './Home';
 export * from './Profile';
 export * from './SelectLocation';
+export * from './SelectLocation/components/NewFeederButton';
 export * from './CreateFeeder';
 export * from './EditFeeder';
 export * from './MyFeeders';

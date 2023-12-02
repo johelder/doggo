@@ -5,9 +5,9 @@ import {
   RequestLocationPermissionModal,
   RequestLocationPermissionBanner,
 } from '@components';
-import { useLocationPermission } from './useLocationPermission';
 
 import * as S from './styles';
+import { useLocationPermission } from './useLocationPermission';
 
 export function LocationPermission() {
   const { handlerRequestUserLocation, requestPermissionModalRef } =

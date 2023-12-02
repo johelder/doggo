@@ -1,14 +1,15 @@
 import React, { useCallback } from 'react';
 import { ListRenderItemInfo, StatusBar } from 'react-native';
-import { Marker } from 'react-native-maps';
-import { useTheme } from 'styled-components/native';
-import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 
-import X from 'phosphor-react-native/src/icons/X';
+import { PlusIcon } from '@app/src/assets/icons/PlusIcon';
+import { grayScale } from '@app/src/components/Map/customStyles';
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import CaretDown from 'phosphor-react-native/src/icons/CaretDown';
 import CaretUp from 'phosphor-react-native/src/icons/CaretUp';
+import X from 'phosphor-react-native/src/icons/X';
+import { Marker } from 'react-native-maps';
+import { useTheme } from 'styled-components/native';
 
-import { useHome } from './useHome';
 import {
   Loader,
   Map,
@@ -17,13 +18,11 @@ import {
   RequestLocationPermissionBanner,
   Button,
 } from '@components';
-import { PlusIcon } from '@app/src/assets/icons/PlusIcon';
-import { grayScale } from '@app/src/components/Map/customStyles';
+import { IFeeder } from '@types';
+
 import { CustomMarker } from './components/CustomMarker';
-
-import type { IFeeder } from '@types';
-
 import * as S from './styles';
+import { useHome } from './useHome';
 
 export function Home(): JSX.Element {
   const {

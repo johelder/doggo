@@ -1,15 +1,11 @@
 import React from 'react';
 
 import { theme } from '@theme';
+
 import { Loader } from '../Loader';
 
-import type {
-  IButtonIconProps,
-  IButtonRootProps,
-  IButtonTextProps,
-} from './types';
-
 import * as S from './styles';
+import { IButtonIconProps, IButtonRootProps, IButtonTextProps } from './types';
 
 function ButtonRoot({
   type = 'filled',

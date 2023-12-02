@@ -1,5 +1,4 @@
-import type { IFeederAddress } from '@app/src/screens/CreateFeeder/types';
-import type { TFoods, IFeeder } from '@types';
+import { TFoods, IFeeder, IFeederAddress } from '@types';
 
 export interface IFeederFormProps {
   onSubmit: (feederAddress: IFeederAddress) => Promise<void>;

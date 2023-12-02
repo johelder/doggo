@@ -1,10 +1,8 @@
 import React from 'react';
 
-import { useInput } from './useInput';
-
-import type { IInputProps } from './types';
-
 import * as S from './styles';
+import { IInputProps } from './types';
+import { useInput } from './useInput';
 
 export function Input({
   placeholder,

@@ -1,5 +1,5 @@
-import styled from 'styled-components/native';
 import MapPin from 'phosphor-react-native/src/icons/MapPin';
+import styled from 'styled-components/native';
 
 export const Container = styled.View`
   position: absolute;

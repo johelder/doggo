@@ -7,11 +7,12 @@ import React, {
 } from 'react';
 
 import { UsersRepository } from '@services';
+import { IFeeder } from '@types';
 import { errorHandler, showToast } from '@utils';
+
 import { useAuth } from '../useAuth';
 
-import type { IFeeder } from '@types';
-import type { IFavoriteContextProps, IFavoriteProviderProps } from './types';
+import { IFavoriteContextProps, IFavoriteProviderProps } from './types';
 
 const FavoriteContext = createContext<IFavoriteContextProps>(
   {} as IFavoriteContextProps,

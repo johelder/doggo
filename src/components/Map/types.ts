@@ -1,5 +1,6 @@
-import type { ReactNode } from 'react';
-import type { MapViewProps } from 'react-native-maps';
+import { ReactNode } from 'react';
+
+import { MapViewProps } from 'react-native-maps';
 
 export interface IMapProps extends MapViewProps {
   isClustering?: boolean;

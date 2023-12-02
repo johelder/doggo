@@ -1,6 +1,8 @@
-import type { RefObject } from 'react';
-import type { Modalize } from 'react-native-modalize';
-import type { IFeeder } from '@types';
+import { RefObject } from 'react';
+
+import { Modalize } from 'react-native-modalize';
+
+import { IFeeder } from '@types';
 
 export interface IFeederDetailsModal {
   detailsModalRef: RefObject<Modalize>;

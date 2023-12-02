@@ -1,17 +1,17 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import type { Region } from 'react-native-maps';
+
+import Geolocation from '@react-native-community/geolocation';
 import {
   useIsFocused,
   useNavigation,
   useRoute,
 } from '@react-navigation/native';
-import Geolocation from '@react-native-community/geolocation';
+import { Region } from 'react-native-maps';
 
 import { useMap } from '@hooks';
-import { errorHandler, showToast } from '@utils';
-
 import { FeedersRepository } from '@services';
-import type { TAddress, TCoordinates, TRootStackScreenProps } from '@types';
+import { TAddress, TCoordinates, TRootStackScreenProps } from '@types';
+import { errorHandler, showToast } from '@utils';
 
 export function useSelectLocation() {
   const [isLoadingAddress, setIsLoadingAddress] = useState(false);

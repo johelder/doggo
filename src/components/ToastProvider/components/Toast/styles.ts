@@ -1,8 +1,8 @@
-import styled, { css } from 'styled-components/native';
-import Animated from 'react-native-reanimated';
 import X from 'phosphor-react-native/src/icons/X';
+import Animated from 'react-native-reanimated';
+import styled, { css } from 'styled-components/native';
 
-import type { TToastType } from '../../types';
+import { TToastType } from '../../types';
 
 export const Container = styled(Animated.View)`
   min-height: 64px;

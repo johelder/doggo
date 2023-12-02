@@ -1,5 +1,6 @@
-import type { ReactNode } from 'react';
-import type { IFeeder } from '@types';
+import { ReactNode } from 'react';
+
+import { IFeeder } from '@types';
 
 export interface IFavoriteContextProps {
   isFavorite: (feederId: string | undefined) => boolean;

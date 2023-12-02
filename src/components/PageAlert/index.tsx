@@ -1,9 +1,8 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import type { IPageAlertProps } from './types';
-
 import * as S from './styles';
+import { IPageAlertProps } from './types';
 
 export function PageAlert({
   title,

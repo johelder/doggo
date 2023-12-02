@@ -1,5 +1,6 @@
-import type { TouchableOpacityProps } from 'react-native';
-import type { IconProps } from 'phosphor-react-native/src/lib';
+import { TouchableOpacityProps } from 'react-native';
+
+import { IconProps } from 'phosphor-react-native/src/lib';
 
 export interface INavigationButtonProps extends TouchableOpacityProps {
   title: string;

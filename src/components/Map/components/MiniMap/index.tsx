@@ -10,9 +10,8 @@ import {
 } from '../../constants';
 import { grayScale } from '../../customStyles';
 
-import type { IMiniMapProps } from './types';
-
 import * as S from './styles';
+import { IMiniMapProps } from './types';
 
 export function MiniMap({ coords, headerHeight }: IMiniMapProps) {
   return (

@@ -1,14 +1,13 @@
 import React from 'react';
-import { useTheme } from 'styled-components/native';
 
 import SignOut from 'phosphor-react-native/src/icons/SignOut';
-
-import { version } from '../../../package.json';
+import { useTheme } from 'styled-components/native';
 
 import { Button, NavigationButton } from '@components';
 import { useAuth } from '@hooks';
+import { TRootStackScreenProps } from '@types';
 
-import type { TRootStackScreenProps } from '@types';
+import { version } from '../../../package.json';
 
 import * as S from './styles';
 

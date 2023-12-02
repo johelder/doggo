@@ -1,5 +1,6 @@
-import type { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
-import type { TMaintenanceStatus, TPageStatus, IFeeder } from '@types';
+import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
+
+import { TMaintenanceStatus, TPageStatus, IFeeder } from '@types';
 
 export type TMaintenanceProps = {
   updatedAt: FirebaseFirestoreTypes.FieldValue;

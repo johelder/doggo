@@ -1,12 +1,11 @@
 import React from 'react';
-import { useTheme } from 'styled-components/native';
+
 import { GestureDetector } from 'react-native-gesture-handler';
-
-import { useToast } from './useToast';
-
-import type { IToastProps } from './types';
+import { useTheme } from 'styled-components/native';
 
 import * as S from './styles';
+import { IToastProps } from './types';
+import { useToast } from './useToast';
 
 export function Toast({ isVisible, toast, onRemove }: IToastProps) {
   const { getToastIcon, animatedStyle, handleRemove, swipeUpGesture } =
