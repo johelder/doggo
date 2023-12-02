@@ -44,5 +44,4 @@ export const Description = styled.Text`
 export const ArrowRight = styled(CaretRight).attrs(({ theme }) => ({
   size: theme.sizes.xlg,
   color: theme.colors.gray[500],
-  weight: 'bold',
 }))``;

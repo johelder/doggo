@@ -9,8 +9,7 @@ import Warning from 'phosphor-react-native/src/icons/Warning';
 import { useTheme } from 'styled-components/native';
 
 import { Button, FeederAddress, Loader, PageAlert } from '@components';
-import { TRootStackScreenProps } from '@types';
-import { IFeeder } from '@types';
+import { IFeeder, TRootStackScreenProps } from '@types';
 import { handleOpenSupport } from '@utils';
 
 import { FeederDetailsModal } from './components/FeederDetailsModal';
@@ -126,7 +125,7 @@ export function MyFeeders({
       <S.Content>
         <S.Feeders
           data={feeders}
-          keyExtractor={feeder => String(feeder.id)}
+          keyExtractor={(feeder: IFeeder) => String(feeder.id)}
           renderItem={renderFeeder}
           ListEmptyComponent={renderListEmptyComponent}
         />

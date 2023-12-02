@@ -20,7 +20,7 @@ export function useSelectLocation() {
   const [initialRegion, setInitialRegion] = useState<TCoordinates | null>(null);
   const [temporaryUserLocation, setTemporaryUserLocation] =
     useState<TCoordinates | null>(null);
-  const selectLocationCallBackTimeoutId = useRef(0);
+  const selectLocationCallBackTimeoutId = useRef<NodeJS.Timeout>();
 
   const {
     mapRef,

@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  extends: ['@react-native-community', 'plugin:react-hooks/recommended'],
+  extends: ['@react-native', 'plugin:react-hooks/recommended'],
   plugins: ['import', 'react-hooks'],
   rules: {
     'react-hooks/rules-of-hooks': 'error',
