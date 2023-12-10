@@ -6,3 +6,4 @@ export * from './address';
 export * from './feeder';
 export * from './user';
 export * from './routes';
+export * from './Optional';
