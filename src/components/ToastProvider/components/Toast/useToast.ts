@@ -58,7 +58,7 @@ export function useToast({ isVisible, toast, onRemove }: IToastProps) {
   useEffect(() => {
     const toastTimeout = setTimeout(
       handleRemove,
-      toast?.duration ?? DEFAULT_TOAST_DURATION,
+      toast?.duration || DEFAULT_TOAST_DURATION,
     );
 
     return () => clearTimeout(toastTimeout);
