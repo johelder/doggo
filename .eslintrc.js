@@ -23,7 +23,7 @@ module.exports = {
               },
               {
                 pattern:
-                  '@+(routes|screens|components|hooks|lib|providers|services|styles|utils|theme|assets|types)',
+                  '@+(assets|components|data|domain|hooks|infrastructure|lib|providers|routes|screens|services|styles|types|utils|theme)',
                 group: 'internal',
                 position: 'before',
               },
