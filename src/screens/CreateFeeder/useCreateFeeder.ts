@@ -4,14 +4,32 @@ import { IFeederFormRef } from '@app/src/components/FeederForm/types';
 import firestore from '@react-native-firebase/firestore';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
+import { FeederDomain } from '@data';
+import { useFeederCreate } from '@domain';
 import { useAuth } from '@hooks';
-import { FeedersRepository } from '@services';
-import { IFeeder, IFeederAddress, TRootStackScreenProps } from '@types';
-import { errorHandler, showToast } from '@utils';
+import { IFeederAddress, TRootStackScreenProps } from '@types';
+import { showToast } from '@utils';
 
 export function useCreateFeeder() {
   const { user } = useAuth();
   const feederFormRef = useRef<IFeederFormRef>(null);
+
+  const { createFeeder, isLoading, isError } = useFeederCreate({
+    onSuccess: () => {
+      showToast({ type: 'success', message: 'Comedouro criado com sucesso.' });
+      feederFormRef.current?.clearFields();
+      navigation.navigate('MyFeeders');
+    },
+    onError: () => {
+      showToast({
+        type: 'error',
+        message:
+          'Ocorreu um erro ao criar seu comedouro, por favor, tente novamente mais tarde.',
+      });
+    },
+  });
+
+  console.log({ isLoading, isError });
 
   const route = useRoute<TRootStackScreenProps<'CreateFeeder'>['route']>();
   const navigation = useNavigation();
@@ -30,76 +48,49 @@ export function useCreateFeeder() {
     addressReference,
     feederFoods,
   }: IFeederAddress) {
-    try {
-      if (hasSomeMandatoryFieldNotFilled()) {
-        showToast({
-          type: 'warning',
-          message: 'Preencha todos os campos obrigatórios para continuar.',
-          duration: 4000,
-        });
-
-        return;
-      }
-
-      if (!user?.name) {
-        return;
-      }
-
-      const feeder: IFeeder = {
-        user: {
-          id: user.id,
-          name: user.name,
-        },
-        coordinates: {
-          latitude: route.params.coordinate.latitude,
-          longitude: route.params.coordinate.longitude,
-        },
-        address: {
-          ...route.params.address,
-          houseNumber: addressNumber,
-          complement: addressComplement,
-          reference: addressReference,
-        },
-        foods: feederFoods,
-        maintenanceStatus: {
-          supply: {
-            updatedAt: firestore.FieldValue.serverTimestamp(),
-            updatedBy: {
-              userId: user.id,
-              userName: user.name,
-            },
-          },
-          cleaning: {
-            updatedAt: firestore.FieldValue.serverTimestamp(),
-            updatedBy: {
-              userId: user.id,
-              userName: user.name,
-            },
-          },
-        },
-      };
-
-      await FeedersRepository.create(feeder);
-
+    if (hasSomeMandatoryFieldNotFilled()) {
       showToast({
-        type: 'success',
-        message: 'Comedouro criado com sucesso.',
+        type: 'warning',
+        message: 'Preencha todos os campos obrigatórios para continuar.',
         duration: 4000,
       });
 
-      feederFormRef.current?.clearFields();
-
-      navigation.navigate('MyFeeders');
-    } catch (error) {
-      showToast({
-        type: 'error',
-        message:
-          'Ocorreu um erro ao criar seu comedouro, por favor, tente novamente mais tarde.',
-        duration: 4000,
-      });
-
-      errorHandler.reportError(error, 'handleCreateFeeder');
+      return;
     }
+
+    if (!user) {
+      return;
+    }
+
+    const address = {
+      ...route.params.address,
+      houseNumber: addressNumber,
+      complement: addressComplement,
+      reference: addressReference,
+    };
+    const maintenance = {
+      updatedAt: firestore.FieldValue.serverTimestamp(),
+      updatedBy: {
+        userId: user.id,
+        userName: user.name,
+      },
+    };
+
+    const feeder: Omit<FeederDomain, 'id'> = {
+      user: {
+        id: user.id,
+        name: user.name,
+      },
+      coordinate: route.params.coordinate,
+      address,
+      foods: feederFoods,
+      maintenanceStatus: {
+        supply: maintenance,
+        cleaning: maintenance,
+      },
+    };
+
+    createFeeder(feeder);
   }
 
   return {
