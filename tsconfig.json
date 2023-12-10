@@ -14,7 +14,10 @@
       "@services": ["src/services"],
       "@theme": ["src/styles/theme"],
       "@types": ["src/types"],
-      "@utils": ["src/utils"]
+      "@utils": ["src/utils"],
+      "@data": ["src/data"],
+      "@infrastructure": ["src/infrastructure"],
+      "@domain": ["src/domain"]
     }
   }
 }
