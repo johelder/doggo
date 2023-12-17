@@ -1,9 +1,9 @@
 import { ReactElement } from 'react';
 
-import { IFeeder } from '@types';
+import { FeederDomain } from '@data';
 
 export interface IFeedCardProps {
-  feeder: IFeeder | null;
+  feeder: FeederDomain | null;
   sideButton?: ReactElement;
   onClose?: () => void;
 }

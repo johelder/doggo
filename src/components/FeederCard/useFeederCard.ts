@@ -3,14 +3,17 @@ import { useCallback, useMemo } from 'react';
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import { useNavigation } from '@react-navigation/native';
 
+import { FeederDomain } from '@data';
 import { useMap } from '@hooks';
-import { IFeeder } from '@types';
 import {
   getDaysDifference,
   getFormattedDistanceBetweenTwoPoints,
 } from '@utils';
 
-export function useFeederCard(feeder: IFeeder | null, onClose?: () => void) {
+export function useFeederCard(
+  feeder: FeederDomain | null,
+  onClose?: () => void,
+) {
   const { currentUserLocation } = useMap();
 
   const navigation = useNavigation();
