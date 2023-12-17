@@ -18,8 +18,13 @@ function findAll(onChange: (feeders: FeederDomain[]) => void) {
   });
 }
 
+async function remove(id: string): Promise<void> {
+  await FeederDataSource.remove(id);
+}
+
 export const FeederRepository = {
   create,
   findAllByUserId,
   findAll,
+  remove,
 };
