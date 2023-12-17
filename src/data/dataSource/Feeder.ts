@@ -8,6 +8,39 @@ async function create(feeder: Omit<FeederPersistance, 'id'>): Promise<void> {
   await firestore().collection(FIRESTORE_FEEDERS_COLLECTION).add(feeder);
 }
 
+async function findAllByUserId(id: string): Promise<FeederPersistance[]> {
+  const userId = new firestore.FieldPath('user', 'id');
+
+  const snapshot = await firestore()
+    .collection<FeederPersistance>(FIRESTORE_FEEDERS_COLLECTION)
+    .where(userId, '==', id)
+    .get();
+
+  if (snapshot.empty) {
+    return [];
+  }
+
+  return snapshot.docs.map(documentSnapshot => ({
+    ...documentSnapshot.data(),
+    id: documentSnapshot.id,
+  }));
+}
+
+function findAll(onChange: (feeders: FeederPersistance[]) => void): () => void {
+  return firestore()
+    .collection<FeederPersistance>(FIRESTORE_FEEDERS_COLLECTION)
+    .onSnapshot(collectionSnapshot =>
+      onChange(
+        collectionSnapshot.docs.map(document => ({
+          ...document.data(),
+          id: document.id,
+        })),
+      ),
+    );
+}
+
 export const FeederDataSource = {
   create,
+  findAllByUserId,
+  findAll,
 };
