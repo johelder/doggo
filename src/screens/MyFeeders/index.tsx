@@ -1,4 +1,4 @@
-import React, { useCallback, useLayoutEffect } from 'react';
+import React, { useLayoutEffect } from 'react';
 import { ListRenderItemInfo } from 'react-native';
 
 import { HeaderBackButton } from '@react-navigation/elements';
@@ -9,7 +9,8 @@ import Warning from 'phosphor-react-native/src/icons/Warning';
 import { useTheme } from 'styled-components/native';
 
 import { Button, FeederAddress, Loader, PageAlert } from '@components';
-import { IFeeder, TRootStackScreenProps } from '@types';
+import { FeederDomain } from '@data';
+import { TRootStackScreenProps } from '@types';
 import { handleOpenSupport } from '@utils';
 
 import { FeederDetailsModal } from './components/FeederDetailsModal';
@@ -20,8 +21,9 @@ export function MyFeeders({
   navigation,
 }: TRootStackScreenProps<'MyFeeders'>): JSX.Element {
   const {
-    feeders,
-    pageStatus,
+    feederList,
+    isError,
+    isFetching,
     handleTryAgain,
     detailsModalRef,
     handleRedirectToSelectLocation,
@@ -45,19 +47,16 @@ export function MyFeeders({
     });
   }, [navigation]);
 
-  const renderFeeder = useCallback(
-    ({ item: feeder }: ListRenderItemInfo<IFeeder>) => {
-      return (
-        <FeederAddress
-          feeder={feeder}
-          onOpenDetails={() => handleOpenDetailsModal(feeder)}
-        />
-      );
-    },
-    [handleOpenDetailsModal],
-  );
+  const renderFeeder = ({ item: feeder }: ListRenderItemInfo<FeederDomain>) => {
+    return (
+      <FeederAddress
+        feeder={feeder}
+        onOpenDetails={() => handleOpenDetailsModal(feeder)}
+      />
+    );
+  };
 
-  const renderListEmptyComponent = useCallback(() => {
+  const renderListEmptyComponent = () => {
     return (
       <PageAlert
         title="Sem comedouros"
@@ -79,13 +78,13 @@ export function MyFeeders({
         }
       />
     );
-  }, [handleRedirectToSelectLocation, theme.colors.gray, theme.colors.orange]);
+  };
 
-  if (pageStatus === 'loading') {
+  if (isFetching) {
     return <Loader.Page />;
   }
 
-  if (pageStatus === 'error') {
+  if (isError) {
     return (
       <PageAlert
         title="Nós tivemos um pequeno problema"
@@ -124,8 +123,8 @@ export function MyFeeders({
     <S.Container>
       <S.Content>
         <S.Feeders
-          data={feeders}
-          keyExtractor={(feeder: IFeeder) => String(feeder.id)}
+          data={feederList}
+          keyExtractor={(feeder: FeederDomain) => feeder.id}
           renderItem={renderFeeder}
           ListEmptyComponent={renderListEmptyComponent}
         />

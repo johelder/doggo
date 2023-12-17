@@ -1,23 +1,22 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
-import { useIsFocused, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { Modalize } from 'react-native-modalize';
 
+import { FeederDomain } from '@data';
+import { useFeederList } from '@domain';
 import { useAuth } from '@hooks';
 import { FeedersRepository } from '@services';
-import { TPageStatus, IFeeder } from '@types';
 import { errorHandler, showToast } from '@utils';
 
 export function useMyFeeders() {
-  const [feeders, setFeeders] = useState<IFeeder[]>([]);
-  const [pageStatus, setPageStatus] = useState<TPageStatus>('idle');
   const [isLoadingDelete, setIsLoadingDelete] = useState(false);
   const [currentFeederToEdit, setCurrentFeederToEdit] =
-    useState<IFeeder | null>(null);
+    useState<FeederDomain | null>(null);
   const detailsModalRef = useRef<Modalize>(null);
   const { user } = useAuth();
 
-  const isScreenFocused = useIsFocused();
+  const { feederList, isError, isFetching } = useFeederList(user?.id!);
 
   const navigation = useNavigation();
 
@@ -25,11 +24,17 @@ export function useMyFeeders() {
     navigation.navigate('SelectLocation');
   }
 
-  function handleTryAgain() {
-    getFeeders();
+  function handleNavigateToSelectLocation() {
+    navigation.navigate('SelectLocation', {
+      feederId: currentFeederToEdit?.id,
+    });
   }
 
-  function handleOpenDetailsModal(feeder: IFeeder) {
+  function handleTryAgain() {
+    // getFeeders();
+  }
+
+  function handleOpenDetailsModal(feeder: FeederDomain) {
     setCurrentFeederToEdit(feeder);
     detailsModalRef.current?.open();
   }
@@ -52,7 +57,6 @@ export function useMyFeeders() {
       });
 
       handleCloseDetailsModal();
-      getFeeders();
     } catch (error) {
       errorHandler.reportError(error, handleDeleteFeeder.name);
 
@@ -67,39 +71,10 @@ export function useMyFeeders() {
     }
   }
 
-  function handleNavigateToSelectLocation() {
-    navigation.navigate('SelectLocation', {
-      feederId: currentFeederToEdit?.id,
-    });
-  }
-
-  const getFeeders = useCallback(async () => {
-    try {
-      if (!user?.id) {
-        return;
-      }
-
-      setPageStatus('loading');
-
-      const response = await FeedersRepository.findAllById(user.id);
-
-      setFeeders(response);
-      setPageStatus('success');
-    } catch (error) {
-      setPageStatus('error');
-      errorHandler.reportError(error, getFeeders.name);
-    }
-  }, [user?.id]);
-
-  useEffect(() => {
-    if (isScreenFocused) {
-      getFeeders();
-    }
-  }, [getFeeders, isScreenFocused]);
-
   return {
-    feeders,
-    pageStatus,
+    feederList,
+    isError,
+    isFetching,
     handleTryAgain,
     handleRedirectToSelectLocation,
     detailsModalRef,
