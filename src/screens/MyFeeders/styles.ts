@@ -1,4 +1,4 @@
-import { FlatList, FlatListProps } from 'react-native';
+import { FlatList } from 'react-native';
 
 import styled from 'styled-components/native';
 
@@ -13,20 +13,7 @@ export const Content = styled.View`
   background-color: ${({ theme }) => theme.colors.gray[0]};
 `;
 
-export const Label = styled.Text`
-  font-family: ${({ theme }) => theme.fonts.primary.regular};
-  font-size: 14px;
-  line-height: 22px;
-  text-align: center;
-
-  color: ${({ theme }) => theme.colors.gray[500]};
-`;
-
-export const Feeders = styled(
-  FlatList as new (
-    props: FlatListProps<FeederDomain>,
-  ) => FlatList<FeederDomain>,
-).attrs(({ theme }) => ({
+export const Feeders = styled(FlatList<FeederDomain>).attrs(({ theme }) => ({
   showsVerticalScrollIndicator: false,
   contentContainerStyle: {
     flexGrow: 1,
@@ -34,8 +21,3 @@ export const Feeders = styled(
     gap: theme.spacings.md,
   },
 }))``;
-
-export const Highlighted = styled(Label)`
-  font-family: ${({ theme }) => theme.fonts.primary.medium};
-  color: ${({ theme }) => theme.colors.cyan[600]};
-`;

@@ -8,7 +8,7 @@ export interface IFeederDetailsModal {
   detailsModalRef: RefObject<Modalize>;
   feeder: FeederDomain | null;
   onCancel: () => void;
-  onDelete: (feederId: string) => Promise<void>;
+  onDelete: (id: string) => void;
   onEdit: () => void;
   isLoadingDelete: boolean;
 }
