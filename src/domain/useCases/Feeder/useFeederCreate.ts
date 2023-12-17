@@ -1,21 +1,23 @@
+import { useMutation } from '@tanstack/react-query';
+
 import { FeederDomain, FeederRepository } from '@data';
-import { MutationOptions, useMutation } from '@infrastructure';
+import { MutationOptions } from '@infrastructure';
 
 export function useFeederCreate(
   options?: MutationOptions<Omit<FeederDomain, 'id'>>,
 ) {
-  const { mutate, isLoading, isError } = useMutation<
-    Omit<FeederDomain, 'id'>,
-    void
+  const { mutate, isError, isPending } = useMutation<
+    void,
+    unknown,
+    Omit<FeederDomain, 'id'>
   >({
     mutationFn: feeder => FeederRepository.create(feeder),
     onSuccess: () => options?.onSuccess?.(),
-    onError: () => options?.onError?.(),
   });
 
   function createFeeder(feeder: Omit<FeederDomain, 'id'>) {
     mutate(feeder);
   }
 
-  return { createFeeder, isLoading, isError };
+  return { createFeeder, isPending, isError };
 }
