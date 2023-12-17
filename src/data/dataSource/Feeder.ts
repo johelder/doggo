@@ -5,7 +5,9 @@ import { FeederPersistance } from '../models/persistence';
 import { FIRESTORE_FEEDERS_COLLECTION } from './constants';
 
 async function create(feeder: Omit<FeederPersistance, 'id'>): Promise<void> {
-  await firestore().collection(FIRESTORE_FEEDERS_COLLECTION).add(feeder);
+  await firestore()
+    .collection<Omit<FeederPersistance, 'id'>>(FIRESTORE_FEEDERS_COLLECTION)
+    .add(feeder);
 }
 
 async function findAllByUserId(id: string): Promise<FeederPersistance[]> {
@@ -39,8 +41,16 @@ function findAll(onChange: (feeders: FeederPersistance[]) => void): () => void {
     );
 }
 
+async function remove(id: string): Promise<void> {
+  await firestore()
+    .collection<FeederPersistance>(FIRESTORE_FEEDERS_COLLECTION)
+    .doc(id)
+    .delete();
+}
+
 export const FeederDataSource = {
   create,
   findAllByUserId,
   findAll,
+  remove,
 };
