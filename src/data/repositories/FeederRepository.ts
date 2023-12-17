@@ -6,6 +6,20 @@ async function create(feeder: Omit<FeederDomain, 'id'>): Promise<void> {
   await FeederDataSource.create(FeederMapper.toPersistance(feeder));
 }
 
+async function findAllByUserId(id: string): Promise<FeederDomain[]> {
+  const response = await FeederDataSource.findAllByUserId(id);
+  return response.map(FeederMapper.toDomain);
+}
+
+function findAll(onChange: (feeders: FeederDomain[]) => void) {
+  return FeederDataSource.findAll(feeders => {
+    const formatted = feeders.map(FeederMapper.toDomain);
+    onChange(formatted);
+  });
+}
+
 export const FeederRepository = {
   create,
+  findAllByUserId,
+  findAll,
 };
