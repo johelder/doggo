@@ -1,6 +1,7 @@
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 
-import { TMaintenanceStatus, TPageStatus, IFeeder } from '@types';
+import { FeederDomain } from '@data';
+import { TMaintenanceStatus, TPageStatus } from '@types';
 
 export type TMaintenanceProps = {
   updatedAt: FirebaseFirestoreTypes.FieldValue;
@@ -18,7 +19,7 @@ export type TUpdateProps = {
 
 export interface IInitialState {
   maintenanceStatus: TMaintenanceStatus[];
-  feeder: IFeeder | null;
+  feeder: FeederDomain | null;
   isNeedMaintenance: boolean;
   lastUpdated: TUpdateProps | null;
   pageStatus: TPageStatus;
@@ -37,7 +38,7 @@ export type TActions =
 type TUpdateInitialState = {
   type: 'update_feeder_state';
   payload: {
-    feeder: IFeeder | null;
+    feeder: FeederDomain | null;
   };
 };
 

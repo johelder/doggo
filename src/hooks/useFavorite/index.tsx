@@ -6,8 +6,8 @@ import React, {
   useContext,
 } from 'react';
 
+import { FeederDomain } from '@data';
 import { UsersRepository } from '@services';
-import { IFeeder } from '@types';
 import { errorHandler, showToast } from '@utils';
 
 import { useAuth } from '../useAuth';
@@ -36,7 +36,7 @@ function FavoriteProvider({ children }: IFavoriteProviderProps) {
   );
 
   const addFavorite = useCallback(
-    async (feeder: IFeeder) => {
+    async (feeder: FeederDomain) => {
       if (!user?.id || !feeder.id) {
         return;
       }
@@ -55,7 +55,7 @@ function FavoriteProvider({ children }: IFavoriteProviderProps) {
   );
 
   const removeFavorite = useCallback(
-    async (feeder: IFeeder) => {
+    async (feeder: FeederDomain) => {
       if (!user?.id || !feeder.id) {
         return;
       }
@@ -70,7 +70,7 @@ function FavoriteProvider({ children }: IFavoriteProviderProps) {
   );
 
   const handleToggleFavoriteFeeder = useCallback(
-    async (feeder: IFeeder | null) => {
+    async (feeder: FeederDomain | null) => {
       try {
         if (!feeder) {
           return;

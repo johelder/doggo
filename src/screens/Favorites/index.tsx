@@ -9,8 +9,8 @@ import Warning from 'phosphor-react-native/src/icons/Warning';
 import { useTheme } from 'styled-components/native';
 
 import { Button, FeederCard, Loader, PageAlert } from '@components';
+import { FeederDomain } from '@data';
 import { useFavorite } from '@hooks';
-import { IFeeder } from '@types';
 import { handleOpenSupport } from '@utils';
 
 import * as S from './styles';
@@ -23,7 +23,7 @@ export function Favorites(): JSX.Element {
   const theme = useTheme();
 
   const renderFeeder = useCallback(
-    ({ item: feeder }: ListRenderItemInfo<IFeeder>) => {
+    ({ item: feeder }: ListRenderItemInfo<FeederDomain>) => {
       return (
         <S.FeederCardContainer>
           <FeederCard
@@ -122,7 +122,7 @@ export function Favorites(): JSX.Element {
       <S.Content>
         <S.Feeders
           data={feeders}
-          keyExtractor={(feeder: IFeeder) => String(feeder.id)}
+          keyExtractor={(feeder: FeederDomain) => feeder.id}
           renderItem={renderFeeder}
           ListEmptyComponent={renderListEmptyComponent}
         />

@@ -234,7 +234,7 @@ export function useFeederDetails() {
     isStatusAdded,
     handleUpdateFeederMaintenance,
     pageStatus: state.pageStatus,
-    formattedUserName: state.feeder?.user.name.split(' ')[0].toUpperCase(),
+    formattedUserName: state.feeder?.user.name?.split(' ')[0].toUpperCase(),
     isNeedMaintenance: state.isNeedMaintenance,
     lastUpdated: state.lastUpdated,
     isTooltipVisible: state.isTooltipVisible,

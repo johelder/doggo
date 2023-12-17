@@ -1,10 +1,10 @@
 import { ReactNode } from 'react';
 
-import { IFeeder } from '@types';
+import { FeederDomain } from '@data';
 
 export interface IFavoriteContextProps {
   isFavorite: (feederId: string | undefined) => boolean;
-  handleToggleFavoriteFeeder: (feeder: IFeeder | null) => void;
+  handleToggleFavoriteFeeder: (feeder: FeederDomain | null) => void;
 }
 
 export interface IFavoriteProviderProps {

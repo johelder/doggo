@@ -2,13 +2,14 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 
+import { FeederDomain } from '@data';
 import { useAuth } from '@hooks';
 import { UsersRepository } from '@services';
-import { TPageStatus, IFeeder } from '@types';
+import { TPageStatus } from '@types';
 import { errorHandler } from '@utils';
 
 export function useFavorites() {
-  const [feeders, setFeeders] = useState<IFeeder[]>([]);
+  const [feeders, setFeeders] = useState<FeederDomain[]>([]);
   const [pageStatus, setPageStatus] = useState<TPageStatus>('idle');
   const { user } = useAuth();
   const isScreenFocused = useIsFocused();
