@@ -18,7 +18,7 @@ export function useCreateFeeder() {
     onSuccess: () => {
       showToast({ type: 'success', message: 'Comedouro criado com sucesso.' });
       feederFormRef.current?.clearFields();
-      navigation.navigate('MyFeeders');
+      navigateToMyFeedersAndResetPreviousPages();
     },
     onError: () => {
       showToast({
@@ -31,6 +31,16 @@ export function useCreateFeeder() {
 
   const route = useRoute<TRootStackScreenProps<'CreateFeeder'>['route']>();
   const navigation = useNavigation();
+
+  function navigateToMyFeedersAndResetPreviousPages() {
+    navigation.reset({
+      index: 1,
+      routes: [
+        { name: 'HomeTabs', state: { routes: [{ name: 'Profile' }] } },
+        { name: 'MyFeeders' },
+      ],
+    });
+  }
 
   function hasSomeMandatoryFieldNotFilled() {
     return (
