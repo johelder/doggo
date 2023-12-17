@@ -14,7 +14,7 @@ export function useCreateFeeder() {
   const { user } = useAuth();
   const feederFormRef = useRef<IFeederFormRef>(null);
 
-  const { createFeeder, isLoading, isError } = useFeederCreate({
+  const { createFeeder, isPending } = useFeederCreate({
     onSuccess: () => {
       showToast({ type: 'success', message: 'Comedouro criado com sucesso.' });
       feederFormRef.current?.clearFields();
@@ -28,8 +28,6 @@ export function useCreateFeeder() {
       });
     },
   });
-
-  console.log({ isLoading, isError });
 
   const route = useRoute<TRootStackScreenProps<'CreateFeeder'>['route']>();
   const navigation = useNavigation();
@@ -81,7 +79,7 @@ export function useCreateFeeder() {
         id: user.id,
         name: user.name,
       },
-      coordinate: route.params.coordinate,
+      coordinates: route.params.coordinate,
       address,
       foods: feederFoods,
       maintenanceStatus: {
@@ -96,5 +94,6 @@ export function useCreateFeeder() {
   return {
     handleCreateFeeder,
     feederFormRef,
+    isPending,
   };
 }

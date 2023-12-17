@@ -13,7 +13,7 @@ export function CreateFeeder({
   route,
 }: TRootStackScreenProps<'CreateFeeder'>): JSX.Element {
   const headerHeight = useHeaderHeight();
-  const { feederFormRef, handleCreateFeeder } = useCreateFeeder();
+  const { feederFormRef, handleCreateFeeder, isPending } = useCreateFeeder();
 
   const { latitude, longitude } = route.params.coordinate;
   const { street, neighborhood, city } = route.params.address;
@@ -32,7 +32,11 @@ export function CreateFeeder({
             {neighborhood}, {city}
           </S.Subtitle>
 
-          <FeederForm ref={feederFormRef} onSubmit={handleCreateFeeder} />
+          <FeederForm
+            ref={feederFormRef}
+            onSubmit={handleCreateFeeder}
+            isLoading={isPending}
+          />
         </S.FormContainer>
       </ScrollView>
     </S.Container>
