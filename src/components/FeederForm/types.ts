@@ -2,6 +2,7 @@ import { TFoods, IFeeder, IFeederAddress } from '@types';
 
 export interface IFeederFormProps {
   onSubmit: (feederAddress: IFeederAddress) => Promise<void>;
+  isLoading?: boolean;
 }
 
 export interface IUseFeederFormProps {

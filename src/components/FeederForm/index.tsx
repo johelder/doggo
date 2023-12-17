@@ -13,7 +13,7 @@ import { IFeederFormProps, IFeederFormRef } from './types';
 import { useFeederForm } from './useFeederForm';
 
 export const FeederForm = forwardRef<IFeederFormRef, IFeederFormProps>(
-  ({ onSubmit }, ref) => {
+  ({ onSubmit, isLoading = false }, ref) => {
     const theme = useTheme();
 
     const {
@@ -25,7 +25,6 @@ export const FeederForm = forwardRef<IFeederFormRef, IFeederFormProps>(
       setAddressReference,
       feederFoods,
       handleToggleFeedFoods,
-      isLoading,
       handleSubmit,
       clearFields,
       populateFields,

@@ -13,7 +13,6 @@ export function useFeederForm({ onSubmit }: IUseFeederFormProps) {
     cat: false,
     others: false,
   });
-  const [isLoading, setIsLoading] = useState(false);
 
   function handleToggleFeedFoods(food: TFood) {
     setFeederFoods(prevFoods => ({
@@ -41,16 +40,12 @@ export function useFeederForm({ onSubmit }: IUseFeederFormProps) {
   }
 
   async function handleSubmit() {
-    setIsLoading(true);
-
     await onSubmit({
       addressNumber,
       addressComplement,
       addressReference,
       feederFoods,
     });
-
-    setIsLoading(false);
   }
 
   return {
@@ -62,8 +57,6 @@ export function useFeederForm({ onSubmit }: IUseFeederFormProps) {
     setAddressReference,
     feederFoods,
     handleToggleFeedFoods,
-    isLoading,
-    setIsLoading,
     handleSubmit,
     clearFields,
     populateFields,
