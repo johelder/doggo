@@ -14,7 +14,7 @@ function toDomain(feeder: FeederPersistance): FeederDomain {
       complement: feeder.address.complement,
       reference: feeder.address.reference,
     },
-    coordinate: feeder.coordinate,
+    coordinates: feeder.coordinates,
     foods: feeder.foods,
     maintenanceStatus: {
       supply: {
@@ -48,7 +48,7 @@ function toPersistance(
       complement: feeder.address.complement,
       reference: feeder.address.reference,
     },
-    coordinate: feeder.coordinate,
+    coordinates: feeder.coordinates,
     foods: feeder.foods,
     maintenance_status: {
       supply: {
