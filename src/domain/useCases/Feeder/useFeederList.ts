@@ -6,9 +6,10 @@ import { QueryKeys } from '@infrastructure';
 export function useFeederList(userId: string) {
   const queryClient = useQueryClient();
 
-  const { data, isFetching, isError } = useQuery({
+  const { data, isError, isLoading } = useQuery({
     queryKey: [QueryKeys.FeederList, userId],
     queryFn: async () => FeederRepository.findAllByUserId(userId),
+    retry: false,
   });
 
   function refresh() {
@@ -17,7 +18,7 @@ export function useFeederList(userId: string) {
 
   return {
     feederList: data,
-    isFetching,
+    isLoading,
     isError,
     refresh,
   };
