@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import Geolocation from '@react-native-community/geolocation';
 import {
   useIsFocused,
   useNavigation,
@@ -8,8 +7,8 @@ import {
 } from '@react-navigation/native';
 import { Region } from 'react-native-maps';
 
+import { useFeederFindOne } from '@domain';
 import { useMap } from '@hooks';
-import { FeedersRepository } from '@services';
 import { TAddress, TCoordinates, TRootStackScreenProps } from '@types';
 import { errorHandler, showToast } from '@utils';
 
@@ -27,13 +26,17 @@ export function useSelectLocation() {
     currentUserLocation,
     setCurrentUserLocation,
     getUserCurrentPosition,
-    watchUserPosition,
   } = useMap();
   const isScreenFocused = useIsFocused();
 
   const navigation = useNavigation();
   const route = useRoute<TRootStackScreenProps<'SelectLocation'>['route']>();
   const isEditingFeederAddress = route.params?.feederId;
+
+  const { feeder, isSuccess } = useFeederFindOne({
+    id: route.params?.feederId!,
+    enabled: !!route.params?.feederId,
+  });
 
   function handleNavigateToCreateFeeder() {
     if (!address || !temporaryUserLocation) {
@@ -160,29 +163,18 @@ export function useSelectLocation() {
   );
 
   const fetchFeederAddressToEdit = useCallback(
-    async (id: string) => {
+    async (latitude: number, longitude: number) => {
       try {
         setIsLoadingAddress(true);
 
-        const response = await FeedersRepository.findById(id);
-
-        if (!response) {
-          showToast({
-            type: 'warning',
-            message: 'Endereço não encontrado, tente novamente mais tarde.',
-            duration: 4000,
-          });
-
-          return;
-        }
-
         const fetchedAddress = await getAddressByCoordinate(
-          response.coordinates.latitude,
-          response.coordinates.longitude,
+          latitude,
+          longitude,
         );
 
         setAddress(fetchedAddress);
-        setInitialRegion(response.coordinates);
+        setInitialRegion({ latitude, longitude });
+        setTemporaryUserLocation({ latitude, longitude });
         setIsLoadingAddress(false);
       } catch (error) {
         errorHandler.reportError(error, fetchFeederAddressToEdit.name);
@@ -211,36 +203,35 @@ export function useSelectLocation() {
     );
 
     setAddress(fetchedUserAddress);
+    setTemporaryUserLocation({
+      latitude: currentUserLocation.coords.latitude,
+      longitude: currentUserLocation.coords.longitude,
+    });
     setIsLoadingAddress(false);
   }, [currentUserLocation, getAddressByCoordinate]);
 
   useEffect(() => {
-    if (isEditingFeederAddress) {
-      fetchFeederAddressToEdit(route.params.feederId);
+    if (isEditingFeederAddress && isSuccess && feeder) {
+      fetchFeederAddressToEdit(
+        feeder.coordinates.latitude,
+        feeder.coordinates.longitude,
+      );
     }
 
     return () => getUserCurrentPosition();
   }, [
+    feeder,
+    isSuccess,
     fetchFeederAddressToEdit,
     getUserCurrentPosition,
     isEditingFeederAddress,
-    route.params?.feederId,
   ]);
 
   useEffect(() => {
     if (isScreenFocused && !isEditingFeederAddress) {
       getUserCurrentPosition();
     }
-
-    const watchId = watchUserPosition();
-
-    return () => Geolocation.clearWatch(watchId);
-  }, [
-    getUserCurrentPosition,
-    isEditingFeederAddress,
-    isScreenFocused,
-    watchUserPosition,
-  ]);
+  }, [feeder, getUserCurrentPosition, isEditingFeederAddress, isScreenFocused]);
 
   return {
     onTouchStart,
