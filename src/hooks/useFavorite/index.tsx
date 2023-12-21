@@ -70,7 +70,7 @@ function FavoriteProvider({ children }: IFavoriteProviderProps) {
   );
 
   const handleToggleFavoriteFeeder = useCallback(
-    async (feeder: FeederDomain | null) => {
+    async (feeder?: FeederDomain | null) => {
       try {
         if (!feeder) {
           return;
