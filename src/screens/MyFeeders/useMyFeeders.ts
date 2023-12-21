@@ -21,7 +21,6 @@ export function useMyFeeders() {
       showToast({
         type: 'success',
         message: 'Comedouro deletado com sucesso.',
-        duration: 3000,
       });
 
       handleCloseDetailsModal();
@@ -31,7 +30,6 @@ export function useMyFeeders() {
         type: 'error',
         message:
           'Ocorreu um erro ao deletar, por favor, tente novamente mais tarde.',
-        duration: 3000,
       });
     },
   });
