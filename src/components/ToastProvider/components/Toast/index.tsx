@@ -18,21 +18,23 @@ export function Toast({ isVisible, toast, onRemove }: IToastProps) {
 
   const Icon = getToastIcon(toast?.type);
 
+  if (!toast) {
+    return null;
+  }
+
   return (
     <GestureDetector gesture={swipeUpGesture}>
-      <S.Container style={[animatedStyle]}>
-        <S.Content type={toast?.type}>
-          <S.IconContainer>
-            {Icon && <Icon color={theme.colors.gray[0]} />}
-          </S.IconContainer>
+      <S.Content type={toast.type} style={[animatedStyle]}>
+        <S.IconContainer>
+          {Icon && <Icon color={theme.colors.gray[0]} />}
+        </S.IconContainer>
 
-          <S.Message>{toast?.message}</S.Message>
+        <S.Message>{toast.message}</S.Message>
 
-          <S.CloseButton onPress={handleRemove}>
-            <S.CloseIcon color={theme.colors.gray[0]} />
-          </S.CloseButton>
-        </S.Content>
-      </S.Container>
+        <S.CloseButton onPress={handleRemove}>
+          <S.CloseIcon color={theme.colors.gray[0]} />
+        </S.CloseButton>
+      </S.Content>
     </GestureDetector>
   );
 }
