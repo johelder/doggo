@@ -5,9 +5,9 @@ import {
   LATITUDE_DELTA,
   LONGITUDE_DELTA,
 } from '@app/src/components/Map/constants';
-import { grayScale } from '@app/src/components/Map/customStyles';
 import { useTheme } from 'styled-components/native';
 
+import { grayScale } from '@components';
 import { Button, Loader, Map, CustomHeader } from '@components';
 import { TRootStackScreenProps } from '@types';
 
