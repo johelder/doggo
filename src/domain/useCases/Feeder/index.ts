@@ -3,3 +3,7 @@ export * from './useFeederList';
 export * from './useFeederFindAll';
 export * from './useFeederFindNearest';
 export * from './useFeederRemove';
+export * from './useFeederUpdate';
+export * from './useFeederFindOne';
+export * from './useFeederUpdateMaintenance';
+export * from './useFeederDeleteAll';
