@@ -13,6 +13,7 @@ export function useFeederCreate(
   >({
     mutationFn: feeder => FeederRepository.create(feeder),
     onSuccess: () => options?.onSuccess?.(),
+    onError: () => options?.onError?.(),
   });
 
   function createFeeder(feeder: Omit<FeederDomain, 'id'>) {
