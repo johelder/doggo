@@ -1,1 +1,2 @@
-export * from './Feeder';
+export * from './FeederDataSource';
+export * from './UserDataSource';
