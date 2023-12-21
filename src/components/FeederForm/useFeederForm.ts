@@ -1,50 +1,39 @@
 import { useState } from 'react';
 
-import { TFood, IFeeder } from '@types';
+import { FeederDomain, FoodDomain } from '@data';
 
-import { IUseFeederFormProps } from './types';
+import { FeederFormProps } from './types';
 
-export function useFeederForm({ onSubmit }: IUseFeederFormProps) {
+export function useFeederForm({ onSubmit }: Pick<FeederFormProps, 'onSubmit'>) {
   const [addressNumber, setAddressNumber] = useState('');
   const [addressComplement, setAddressComplement] = useState('');
   const [addressReference, setAddressReference] = useState('');
-  const [feederFoods, setFeederFoods] = useState({
+  const [feederFoods, setFeederFoods] = useState<FoodDomain>({
     dog: false,
     cat: false,
     others: false,
   });
 
-  function handleToggleFeedFoods(food: TFood) {
+  function handleToggleFeedFoods(food: keyof FoodDomain) {
     setFeederFoods(prevFoods => ({
       ...prevFoods,
       [food]: !prevFoods[food],
     }));
   }
 
-  function populateFields(feeder: IFeeder) {
+  function populateFields(feeder: FeederDomain) {
     setAddressNumber(feeder.address.houseNumber);
     setAddressComplement(feeder.address.complement ?? '');
     setAddressReference(feeder.address.reference ?? '');
     setFeederFoods(feeder.foods);
   }
 
-  function clearFields() {
-    setAddressNumber('');
-    setAddressComplement('');
-    setAddressReference('');
-    setFeederFoods({
-      dog: false,
-      cat: false,
-      others: false,
-    });
-  }
-
   async function handleSubmit() {
     await onSubmit({
-      addressNumber,
-      addressComplement,
-      addressReference,
-      feederFoods,
+      houseNumber: addressNumber,
+      complement: addressComplement,
+      reference: addressReference,
+      foods: feederFoods,
     });
   }
 
@@ -58,7 +47,6 @@ export function useFeederForm({ onSubmit }: IUseFeederFormProps) {
     feederFoods,
     handleToggleFeedFoods,
     handleSubmit,
-    clearFields,
     populateFields,
   };
 }

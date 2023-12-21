@@ -9,10 +9,10 @@ import { useTheme } from 'styled-components/native';
 import { Input, ChipButton, Button } from '..';
 
 import * as S from './styles';
-import { IFeederFormProps, IFeederFormRef } from './types';
+import { FeederFormProps, FeederFormRefProps } from './types';
 import { useFeederForm } from './useFeederForm';
 
-export const FeederForm = forwardRef<IFeederFormRef, IFeederFormProps>(
+export const FeederForm = forwardRef<FeederFormRefProps, FeederFormProps>(
   ({ onSubmit, isLoading = false }, ref) => {
     const theme = useTheme();
 
@@ -26,14 +26,12 @@ export const FeederForm = forwardRef<IFeederFormRef, IFeederFormProps>(
       feederFoods,
       handleToggleFeedFoods,
       handleSubmit,
-      clearFields,
       populateFields,
     } = useFeederForm({ onSubmit });
 
     useImperativeHandle(ref, () => ({
       feederFoods,
       addressNumber,
-      clearFields,
       populateFields,
     }));
 
