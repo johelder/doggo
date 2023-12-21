@@ -8,7 +8,7 @@ export function useFeederList(userId: string) {
 
   const { data, isError, isLoading } = useQuery({
     queryKey: [QueryKeys.FeederList, userId],
-    queryFn: async () => FeederRepository.findAllByUserId(userId),
+    queryFn: () => FeederRepository.findAllByUserId(userId),
     retry: false,
   });
 
