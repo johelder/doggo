@@ -1,1 +1,2 @@
-export * from './Feeder';
+export * from './FeederMapper';
+export * from './UserMapper';

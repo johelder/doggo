@@ -1,5 +1,5 @@
 import { UserDataSource } from '../dataSource';
-import { UserMapper } from '../mappers/User';
+import { UserMapper } from '../mappers';
 import { UserDomain } from '../models/domain';
 
 async function create(user: UserDomain) {
