@@ -14,7 +14,7 @@ export type TMaintenanceProps = {
 export type TUpdateProps = {
   supply: string;
   cleaning: string;
-  users: string | undefined;
+  users: string | undefined | null;
 };
 
 export interface IInitialState {

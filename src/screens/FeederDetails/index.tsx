@@ -36,6 +36,7 @@ export function FeederDetails({
     handleToggleTooltip,
     estimatedDistanceUntilTheFeeder,
     handleOpenDirections,
+    isLoading,
   } = useFeederDetails();
   const { isFavorite, handleToggleFavoriteFeeder } = useFavorite();
 
@@ -59,7 +60,7 @@ export function FeederDetails({
     });
   }, [navigation, renderCustomHeaderTitle]);
 
-  if (pageStatus === 'loading') {
+  if (isLoading) {
     return <Loader.Page />;
   }
 
