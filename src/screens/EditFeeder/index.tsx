@@ -13,7 +13,7 @@ export function EditFeeder({
   route,
 }: TRootStackScreenProps<'EditFeeder'>): JSX.Element {
   const headerHeight = useHeaderHeight();
-  const { feederFormRef, handleUpdateFeeder } = useEditFeeder();
+  const { feederFormRef, handleUpdateFeeder, isPending } = useEditFeeder();
 
   const { latitude, longitude } = route.params.coordinate;
   const { street, neighborhood, city } = route.params.address;
@@ -32,7 +32,11 @@ export function EditFeeder({
             {neighborhood}, {city}
           </S.Subtitle>
 
-          <FeederForm ref={feederFormRef} onSubmit={handleUpdateFeeder} />
+          <FeederForm
+            ref={feederFormRef}
+            onSubmit={handleUpdateFeeder}
+            isLoading={isPending}
+          />
         </S.FormContainer>
       </ScrollView>
     </S.Container>

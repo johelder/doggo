@@ -1,23 +1,22 @@
 import { useRef } from 'react';
 
-import { IFeederFormRef } from '@app/src/components/FeederForm/types';
 import firestore from '@react-native-firebase/firestore';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
+import { FeederFormRefProps } from '@components';
 import { FeederDomain } from '@data';
-import { useFeederCreate } from '@domain';
+import { FeederFormFields, useFeederCreate } from '@domain';
 import { useAuth } from '@hooks';
-import { IFeederAddress, TRootStackScreenProps } from '@types';
+import { TRootStackScreenProps } from '@types';
 import { showToast } from '@utils';
 
 export function useCreateFeeder() {
   const { user } = useAuth();
-  const feederFormRef = useRef<IFeederFormRef>(null);
+  const feederFormRef = useRef<FeederFormRefProps>(null);
 
   const { createFeeder, isPending } = useFeederCreate({
     onSuccess: () => {
       showToast({ type: 'success', message: 'Comedouro criado com sucesso.' });
-      feederFormRef.current?.clearFields();
       navigateToMyFeedersAndResetPreviousPages();
     },
     onError: () => {
@@ -51,11 +50,11 @@ export function useCreateFeeder() {
   }
 
   async function handleCreateFeeder({
-    addressNumber,
-    addressComplement,
-    addressReference,
-    feederFoods,
-  }: IFeederAddress) {
+    houseNumber,
+    complement,
+    reference,
+    foods,
+  }: FeederFormFields) {
     if (hasSomeMandatoryFieldNotFilled()) {
       showToast({
         type: 'warning',
@@ -70,12 +69,6 @@ export function useCreateFeeder() {
       return;
     }
 
-    const address = {
-      ...route.params.address,
-      houseNumber: addressNumber,
-      complement: addressComplement,
-      reference: addressReference,
-    };
     const maintenance = {
       updatedAt: firestore.FieldValue.serverTimestamp(),
       updatedBy: {
@@ -90,8 +83,13 @@ export function useCreateFeeder() {
         name: user.name,
       },
       coordinates: route.params.coordinate,
-      address,
-      foods: feederFoods,
+      address: {
+        ...route.params.address,
+        houseNumber,
+        complement,
+        reference,
+      },
+      foods,
       maintenanceStatus: {
         supply: maintenance,
         cleaning: maintenance,
