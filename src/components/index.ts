@@ -9,6 +9,7 @@ export * from './ChipButton';
 export * from './ToastProvider';
 export * from './FeederAddress';
 export * from './FeederForm';
+export * from './FeederForm/types';
 export * from './Modal';
 export * from './CustomHeader';
 export * from './PageAlert';
