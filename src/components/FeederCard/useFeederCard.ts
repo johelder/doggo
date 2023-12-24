@@ -34,15 +34,15 @@ export function useFeederCard(
   }
 
   const estimatedDistanceUntilTheFeeder = useMemo(() => {
-    if (!currentUserLocation?.coords || !feeder?.coordinates) {
+    if (!currentUserLocation || !feeder?.coordinates) {
       return 0;
     }
 
     return getFormattedDistanceBetweenTwoPoints(
-      currentUserLocation.coords,
+      currentUserLocation,
       feeder.coordinates,
     );
-  }, [currentUserLocation?.coords, feeder?.coordinates]);
+  }, [currentUserLocation, feeder?.coordinates]);
 
   const isNeedMaintenance = useCallback(() => {
     const supplyUpdate = getDaysDifference(lastSupplyDate?.toDate());

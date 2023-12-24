@@ -44,10 +44,8 @@ export function useSelectLocation() {
     }
 
     setCurrentUserLocation({
-      coords: {
-        latitude: temporaryUserLocation?.latitude,
-        longitude: temporaryUserLocation?.longitude,
-      },
+      latitude: temporaryUserLocation?.latitude,
+      longitude: temporaryUserLocation?.longitude,
     });
 
     const params = {
@@ -198,14 +196,14 @@ export function useSelectLocation() {
     }
 
     const fetchedUserAddress = await getAddressByCoordinate(
-      currentUserLocation.coords.latitude,
-      currentUserLocation.coords.longitude,
+      currentUserLocation.latitude,
+      currentUserLocation.longitude,
     );
 
     setAddress(fetchedUserAddress);
     setTemporaryUserLocation({
-      latitude: currentUserLocation.coords.latitude,
-      longitude: currentUserLocation.coords.longitude,
+      latitude: currentUserLocation.latitude,
+      longitude: currentUserLocation.longitude,
     });
     setIsLoadingAddress(false);
   }, [currentUserLocation, getAddressByCoordinate]);
@@ -241,6 +239,6 @@ export function useSelectLocation() {
     address,
     handleNavigateToCreateFeeder,
     isShowingTooltip,
-    initialRegion: initialRegion ?? currentUserLocation?.coords,
+    initialRegion: initialRegion ?? currentUserLocation,
   };
 }

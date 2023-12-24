@@ -12,20 +12,19 @@ import Geolocation, {
 import MapView from 'react-native-maps';
 import { useModalize } from 'react-native-modalize';
 
+import { UserLocation } from '@types';
 import { errorHandler } from '@utils';
 
 import { LOCATION_PERMISSION_DENIED, IS_LOCATION_TURN_OFF } from './constants';
-import {
-  IMapContextProps,
-  IMapProviderProps,
-  TCurrentUSerLocation,
-} from './types';
+import { MapContextProps } from './types';
 
-const MapContext = createContext<IMapContextProps>({} as IMapContextProps);
+const MapContext = createContext<MapContextProps>({} as MapContextProps);
 
-function MapProvider({ children }: IMapProviderProps) {
-  const [currentUserLocation, setCurrentUserLocation] =
-    useState<TCurrentUSerLocation>(null);
+function MapProvider({ children }: React.PropsWithChildren) {
+  const [currentUserLocation, setCurrentUserLocation] = useState<UserLocation>({
+    latitude: 0,
+    longitude: 0,
+  });
   const [isLocationAvailable, setIsLocationAvailable] = useState(true);
   const mapRef = useRef<MapView>(null);
   const {
@@ -52,9 +51,9 @@ function MapProvider({ children }: IMapProviderProps) {
 
   const getUserCurrentPosition = useCallback(() => {
     Geolocation.getCurrentPosition(
-      location => {
+      ({ coords: { latitude, longitude } }) => {
         setIsLocationAvailable(true);
-        setCurrentUserLocation(location);
+        setCurrentUserLocation({ latitude, longitude });
       },
       handleLocationError,
       {
@@ -65,11 +64,14 @@ function MapProvider({ children }: IMapProviderProps) {
 
   const watchUserPosition = useCallback(() => {
     const watchId = Geolocation.watchPosition(
-      location => {
-        setCurrentUserLocation(location);
+      ({ coords: { latitude, longitude } }) => {
+        setCurrentUserLocation({ latitude, longitude });
 
         mapRef.current?.animateCamera({
-          center: location.coords,
+          center: {
+            latitude,
+            longitude,
+          },
         });
       },
       handleLocationError,

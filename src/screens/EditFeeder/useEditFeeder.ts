@@ -76,7 +76,7 @@ export function useEditFeeder() {
 
     const payload: FeederDomain = {
       ...feeder,
-      coordinates: currentUserLocation.coords,
+      coordinates: currentUserLocation,
       address: {
         ...route.params.address,
         houseNumber,

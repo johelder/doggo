@@ -23,8 +23,8 @@ export function Map({ isClustering = false, children, ...rest }: IMapProps) {
       <MapComponent
         ref={mapRef}
         initialRegion={{
-          latitude: currentUserLocation?.coords.latitude,
-          longitude: currentUserLocation?.coords.longitude,
+          latitude: currentUserLocation.latitude,
+          longitude: currentUserLocation.longitude,
           latitudeDelta: LATITUDE_DELTA,
           longitudeDelta: LONGITUDE_DELTA,
         }}

@@ -7,3 +7,5 @@ export * from './feeder';
 export * from './user';
 export * from './routes';
 export * from './Optional';
+
+export * from './UserLocation';

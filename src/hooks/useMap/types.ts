@@ -1,27 +1,16 @@
-import { Dispatch, ReactNode, RefObject, SetStateAction } from 'react';
+import { Dispatch, RefObject, SetStateAction } from 'react';
 
-import { GeolocationResponse } from '@react-native-community/geolocation';
 import MapView from 'react-native-maps';
 import { Modalize } from 'react-native-modalize';
 
-import { TCoordinates } from '@types';
+import { UserLocation } from '@types';
 
-export interface IMapContextProps {
+export interface MapContextProps {
   mapRef: RefObject<MapView>;
-  currentUserLocation: TCurrentUSerLocation;
+  currentUserLocation: UserLocation;
   getUserCurrentPosition: () => void;
   watchUserPosition: () => number;
-  setCurrentUserLocation: Dispatch<SetStateAction<TCurrentUSerLocation>>;
+  setCurrentUserLocation: Dispatch<SetStateAction<UserLocation>>;
   requestLocationPermissionModalRef: RefObject<Modalize>;
   isLocationAvailable: boolean;
 }
-
-export interface IMapProviderProps {
-  children: ReactNode;
-}
-
-export interface IUserLocation {
-  coords: TCoordinates;
-}
-
-export type TCurrentUSerLocation = GeolocationResponse | IUserLocation | null;
