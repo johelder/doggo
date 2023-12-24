@@ -24,7 +24,7 @@ export function DeleteAccount(): React.JSX.Element {
             conta e seus comedouros do aplicativo doggo.
           </S.Description>
 
-          <DeleteAccountIllustration width="100%" />
+          <DeleteAccountIllustration width="100%" height="60%" />
         </S.Header>
 
         <Button.Root
