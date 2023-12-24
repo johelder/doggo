@@ -6,7 +6,10 @@ import {
   UserPersistance,
 } from '../models/persistence';
 
-import { FIRESTORE_FEEDERS_COLLECTION } from './constants';
+import {
+  FIRESTORE_FEEDERS_COLLECTION,
+  FIRESTORE_USERS_COLLECTION,
+} from './constants';
 
 async function create(feeder: Omit<FeederPersistance, 'id'>): Promise<void> {
   await firestore()
@@ -131,6 +134,31 @@ async function deleteAllByUserId(id: string): Promise<void> {
   batch.commit();
 }
 
+async function findAllFavoritesByUserId(
+  id: string,
+): Promise<FeederPersistance[]> {
+  const user = await firestore()
+    .collection<UserPersistance>(FIRESTORE_USERS_COLLECTION)
+    .doc(id)
+    .get();
+
+  const userFavorites = user.data()?.favorites;
+
+  if (!userFavorites?.length) {
+    return [];
+  }
+
+  const snapshot = await firestore()
+    .collection<FeederPersistance>(FIRESTORE_FEEDERS_COLLECTION)
+    .where(firestore.FieldPath.documentId(), 'in', userFavorites)
+    .get();
+
+  return snapshot.docs.map(documentSnapshot => ({
+    ...documentSnapshot.data(),
+    id: documentSnapshot.id,
+  }));
+}
+
 export const FeederDataSource = {
   create,
   findById,
@@ -140,4 +168,5 @@ export const FeederDataSource = {
   update,
   updateMaintenance,
   deleteAllByUserId,
+  findAllFavoritesByUserId,
 };
