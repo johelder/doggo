@@ -7,3 +7,4 @@ export * from './useFeederUpdate';
 export * from './useFeederFindOne';
 export * from './useFeederUpdateMaintenance';
 export * from './useFeederDeleteAll';
+export * from './useFeederFindAllFavorites';
