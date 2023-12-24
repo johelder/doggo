@@ -15,8 +15,8 @@ import {
   NativeModuleError,
 } from '@react-native-google-signin/google-signin';
 
-import { UsersRepository } from '@services';
-import { IUser } from '@types';
+import { UserDomain, UserRepository } from '@data';
+import { useUserCreate } from '@domain';
 import { errorHandler, showToast } from '@utils';
 
 import { IAuthContext, IAuthContextProps } from './types';
@@ -24,9 +24,11 @@ import { IAuthContext, IAuthContextProps } from './types';
 const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
 function AuthContextProvider({ children }: IAuthContextProps): JSX.Element {
-  const [user, setUser] = useState<IUser | null>(null);
+  const [user, setUser] = useState<UserDomain | null>(null);
   const [isLoadingSignIn, setIsLoadingSignIn] = useState(false);
   const [isLoadingAuthState, setIsLoadingAuthState] = useState(true);
+
+  const { createUser } = useUserCreate();
 
   async function onAuthStateChanged(userState: FirebaseAuthTypes.User | null) {
     if (!userState) {
@@ -35,7 +37,7 @@ function AuthContextProvider({ children }: IAuthContextProps): JSX.Element {
       return;
     }
 
-    const storedUser = await UsersRepository.findById(userState.uid);
+    const storedUser = await UserRepository.findById(userState.uid);
 
     setUser(storedUser);
   }
@@ -55,7 +57,7 @@ function AuthContextProvider({ children }: IAuthContextProps): JSX.Element {
       const response = await auth().signInWithCredential(googleCredential);
 
       if (response.additionalUserInfo?.isNewUser) {
-        const newUser = {
+        const newUser: UserDomain = {
           id: response.user.uid,
           name: response.user.displayName,
           email: response.user.email,
@@ -63,14 +65,13 @@ function AuthContextProvider({ children }: IAuthContextProps): JSX.Element {
           favorites: [],
         };
 
-        await UsersRepository.create(newUser);
-
+        createUser(newUser);
         setUser(newUser);
 
         return;
       }
 
-      const storedUser = await UsersRepository.findById(response.user.uid);
+      const storedUser = await UserRepository.findById(response.user.uid);
 
       setUser(storedUser);
     } catch (error) {
@@ -91,7 +92,7 @@ function AuthContextProvider({ children }: IAuthContextProps): JSX.Element {
     } finally {
       setIsLoadingSignIn(false);
     }
-  }, []);
+  }, [createUser]);
 
   const handleSignOut = useCallback(async () => {
     try {

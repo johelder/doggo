@@ -1,9 +1,9 @@
 import { Dispatch, ReactNode, SetStateAction } from 'react';
 
-import { IUser } from '@types';
+import { UserDomain } from '@data';
 
 export interface IAuthContext {
-  user: IUser | null;
+  user: UserDomain | null;
   handleSignInWithGoogle: () => Promise<void>;
   handleSignOut: () => Promise<void>;
   isUserLogged: boolean;
