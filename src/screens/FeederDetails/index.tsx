@@ -13,9 +13,9 @@ import Users from 'phosphor-react-native/src/icons/Users';
 import { useTheme } from 'styled-components/native';
 
 import { Button, Checkbox, Loader } from '@components';
-import { useFavorite } from '@hooks';
+import { useUserIsFeederFavorite, useUserToggleFavoriteFeeder } from '@domain';
 import { TRootStackScreenProps } from '@types';
-import { getFoodsLabel } from '@utils';
+import { getFoodsLabel, showToast } from '@utils';
 
 import * as S from './styles';
 import { useFeederDetails } from './useFeederDetails';
@@ -38,7 +38,22 @@ export function FeederDetails({
     handleOpenDirections,
     isLoading,
   } = useFeederDetails();
-  const { isFavorite, handleToggleFavoriteFeeder } = useFavorite();
+
+  const feederId = feeder?.id!;
+
+  const { isFavorite, isLoading: isLoadingFavorite } = useUserIsFeederFavorite({
+    feederId,
+    enabled: !!feederId,
+  });
+
+  const { toggleFavoriteFeeder } = useUserToggleFavoriteFeeder(feederId!, {
+    onError: () => {
+      showToast({
+        type: 'error',
+        message: 'Ocorreu um erro ao favoritar, tente novamente mais tarde.',
+      });
+    },
+  });
 
   const theme = useTheme();
 
@@ -59,6 +74,10 @@ export function FeederDetails({
       headerTitle: renderCustomHeaderTitle,
     });
   }, [navigation, renderCustomHeaderTitle]);
+
+  if (!feeder) {
+    return null;
+  }
 
   if (isLoading) {
     return <Loader.Page />;
@@ -167,15 +186,15 @@ export function FeederDetails({
           <S.LabelContainer>
             <CookingPot color={theme.colors.gray[500]} />
 
-            <S.Label>{getFoodsLabel(feeder?.foods)}</S.Label>
+            <S.Label>{getFoodsLabel(feeder.foods)}</S.Label>
           </S.LabelContainer>
 
           <S.LabelContainer>
             <Signpost color={theme.colors.gray[500]} />
 
             <S.Label>
-              {feeder?.address.street}, {feeder?.address.houseNumber},{' '}
-              {feeder?.address.neighborhood}, {feeder?.address.city} (≈
+              {feeder.address.street}, {feeder.address.houseNumber},{' '}
+              {feeder.address.neighborhood}, {feeder.address.city} (≈
               {estimatedDistanceUntilTheFeeder})
             </S.Label>
           </S.LabelContainer>
@@ -203,30 +222,23 @@ export function FeederDetails({
 
           <Button.Root
             type="outline"
-            color={
-              isFavorite(feeder?.id)
-                ? theme.colors.cyan[600]
-                : theme.colors.gray[700]
-            }
-            onPress={() => handleToggleFavoriteFeeder(feeder)}>
+            color={isFavorite ? theme.colors.cyan[600] : theme.colors.gray[700]}
+            isLoading={isLoadingFavorite}
+            onPress={() => toggleFavoriteFeeder(feeder.id)}>
             <Button.Icon>
               <Heart
                 color={
-                  isFavorite(feeder?.id)
-                    ? theme.colors.cyan[600]
-                    : theme.colors.gray[700]
+                  isFavorite ? theme.colors.cyan[600] : theme.colors.gray[700]
                 }
-                weight={isFavorite(feeder?.id) ? 'fill' : 'regular'}
+                weight={isFavorite ? 'fill' : 'regular'}
               />
             </Button.Icon>
 
             <Button.Text
               color={
-                isFavorite(feeder?.id)
-                  ? theme.colors.cyan[600]
-                  : theme.colors.gray[700]
+                isFavorite ? theme.colors.cyan[600] : theme.colors.gray[700]
               }>
-              {isFavorite(feeder?.id) ? 'Favorito' : 'Favoritar'}
+              {isFavorite ? 'Favorito' : 'Favoritar'}
             </Button.Text>
           </Button.Root>
         </S.Main>
