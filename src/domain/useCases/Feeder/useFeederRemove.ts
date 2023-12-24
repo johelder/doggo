@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { FeederRepository } from '@data';
 import { MutationOptions, QueryKeys } from '@infrastructure';
+import { errorHandler } from '@utils';
 
 export function useFeederRemove(options?: MutationOptions<string>) {
   const queryClient = useQueryClient();
@@ -12,7 +13,10 @@ export function useFeederRemove(options?: MutationOptions<string>) {
       options?.onSuccess?.();
       queryClient.invalidateQueries({ queryKey: [QueryKeys.FeederList] });
     },
-    onError: () => options?.onError?.(),
+    onError: error => {
+      options?.onError?.();
+      errorHandler.reportError(error, useFeederRemove.name);
+    },
   });
 
   function removeFeeder(id: string) {

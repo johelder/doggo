@@ -1,8 +1,11 @@
-import { UserRepository } from '@app/src/data';
-import { useAuth } from '@app/src/hooks';
+import { useEffect } from 'react';
+
 import { useQuery } from '@tanstack/react-query';
 
+import { UserRepository } from '@data';
+import { useAuth } from '@hooks';
 import { QueryKeys } from '@infrastructure';
+import { errorHandler } from '@utils';
 
 type Params = {
   feederId: string;
@@ -12,11 +15,17 @@ type Params = {
 export function useUserIsFeederFavorite({ feederId, enabled = true }: Params) {
   const { user } = useAuth();
 
-  const { data, isLoading, refetch } = useQuery({
+  const { data, isLoading, refetch, isError, error } = useQuery({
     queryKey: [QueryKeys.FindFavoriteFeeder, feederId, user?.id],
     queryFn: () => UserRepository.findFavoriteFeederById(user?.id, feederId),
     enabled,
   });
+
+  useEffect(() => {
+    if (isError) {
+      errorHandler.reportError(error, useUserIsFeederFavorite.name);
+    }
+  }, [error, isError]);
 
   return {
     isFavorite: data,

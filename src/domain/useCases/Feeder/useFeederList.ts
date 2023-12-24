@@ -1,25 +1,28 @@
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useEffect } from 'react';
+
+import { useQuery } from '@tanstack/react-query';
 
 import { FeederRepository } from '@data';
 import { QueryKeys } from '@infrastructure';
+import { errorHandler } from '@utils';
 
 export function useFeederList(userId: string) {
-  const queryClient = useQueryClient();
-
-  const { data, isError, isLoading } = useQuery({
+  const { data, isLoading, refetch, isError, error } = useQuery({
     queryKey: [QueryKeys.FeederList, userId],
     queryFn: () => FeederRepository.findAllByUserId(userId),
     retry: false,
   });
 
-  function refresh() {
-    queryClient.invalidateQueries({ queryKey: [QueryKeys.FeederList] });
-  }
+  useEffect(() => {
+    if (isError) {
+      errorHandler.reportError(error, useFeederList.name);
+    }
+  }, [error, isError]);
 
   return {
     feederList: data,
     isLoading,
     isError,
-    refresh,
+    refetch,
   };
 }

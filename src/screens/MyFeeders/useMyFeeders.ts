@@ -15,7 +15,7 @@ export function useMyFeeders() {
   const detailsModalRef = useRef<Modalize>(null);
   const { user } = useAuth();
 
-  const { feederList, isError, isLoading, refresh } = useFeederList(user?.id!);
+  const { feederList, isError, isLoading, refetch } = useFeederList(user?.id!);
   const { removeFeeder, isPending: isLoadingRemoveFeeder } = useFeederRemove({
     onSuccess: () => {
       showToast({
@@ -56,7 +56,7 @@ export function useMyFeeders() {
     feederList,
     isError,
     isLoading,
-    handleTryAgain: refresh,
+    handleTryAgain: refetch,
     detailsModalRef,
     handleOpenDetailsModal,
     handleCloseDetailsModal,

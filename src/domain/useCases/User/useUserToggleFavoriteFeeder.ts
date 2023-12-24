@@ -1,8 +1,9 @@
-import { UserRepository } from '@app/src/data';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
+import { UserRepository } from '@data';
 import { useAuth } from '@hooks';
 import { MutationOptions, QueryKeys } from '@infrastructure';
+import { errorHandler } from '@utils';
 
 import { useUserIsFeederFavorite } from './useUserIsFeederFavorite';
 
@@ -24,7 +25,10 @@ export function useUserToggleFavoriteFeeder(
         feederId,
       );
     },
-    onError: () => options?.onError?.(),
+    onError: error => {
+      options?.onError?.();
+      errorHandler.reportError(error, addFavoriteFeeder.name);
+    },
   });
 
   const { mutate: removeFavoriteFeeder } = useMutation<void, unknown, string>({
@@ -36,7 +40,10 @@ export function useUserToggleFavoriteFeeder(
         '',
       );
     },
-    onError: () => options?.onError?.(),
+    onError: error => {
+      options?.onError?.();
+      errorHandler.reportError(error, removeFavoriteFeeder.name);
+    },
   });
 
   function toggleFavoriteFeeder(id: string) {

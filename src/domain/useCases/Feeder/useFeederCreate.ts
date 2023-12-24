@@ -2,6 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 
 import { FeederDomain, FeederRepository } from '@data';
 import { MutationOptions } from '@infrastructure';
+import { errorHandler } from '@utils';
 
 export function useFeederCreate(
   options?: MutationOptions<Omit<FeederDomain, 'id'>>,
@@ -13,7 +14,10 @@ export function useFeederCreate(
   >({
     mutationFn: feeder => FeederRepository.create(feeder),
     onSuccess: () => options?.onSuccess?.(),
-    onError: () => options?.onError?.(),
+    onError: error => {
+      options?.onError?.();
+      errorHandler.reportError(error, useFeederCreate.name);
+    },
   });
 
   function createFeeder(feeder: Omit<FeederDomain, 'id'>) {

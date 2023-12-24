@@ -2,6 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 
 import { FeederRepository, MaintenanceStatusDomain, UserDomain } from '@data';
 import { MutationOptions } from '@infrastructure';
+import { errorHandler } from '@utils';
 
 type Params = {
   status: Array<keyof MaintenanceStatusDomain>;
@@ -14,7 +15,10 @@ export function useFeederUpdateMaintenance(options?: MutationOptions<Params>) {
     mutationFn: ({ status, feederId, user }) =>
       FeederRepository.updateMaintenance(status, feederId, user),
     onSuccess: () => options?.onSuccess?.(),
-    onError: () => options?.onError?.(),
+    onError: error => {
+      options?.onError?.();
+      errorHandler.reportError(error, useFeederUpdateMaintenance.name);
+    },
   });
 
   function updateMaintenance(params: Params) {
