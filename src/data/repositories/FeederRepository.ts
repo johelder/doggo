@@ -55,6 +55,18 @@ async function deleteAllByUserId(id: string): Promise<void> {
   await FeederDataSource.deleteAllByUserId(id);
 }
 
+async function findAllFavoritesByUserId(
+  id: string | undefined,
+): Promise<FeederDomain[]> {
+  if (!id) {
+    throw new Error('id property is mandatory');
+  }
+
+  const response = await FeederDataSource.findAllFavoritesByUserId(id);
+
+  return response.map(FeederMapper.toDomain);
+}
+
 export const FeederRepository = {
   create,
   findById,
@@ -64,4 +76,5 @@ export const FeederRepository = {
   update,
   updateMaintenance,
   deleteAllByUserId,
+  findAllFavoritesByUserId,
 };
