@@ -21,26 +21,3 @@ export const Feeders = styled(FlatList<FeederDomain>).attrs(({ theme }) => ({
     gap: theme.spacings.md,
   },
 }))``;
-
-export const FeederCardContainer = styled.View`
-  border-width: 1px;
-  border-color: ${({ theme }) => theme.colors.gray[200]};
-`;
-
-export const FavoriteButton = styled.TouchableOpacity`
-  margin-left: auto;
-`;
-
-export const Label = styled.Text`
-  font-family: ${({ theme }) => theme.fonts.primary.regular};
-  font-size: ${({ theme }) => theme.sizes.md}px;
-  line-height: ${({ theme }) => theme.sizes.xlg}px;
-  text-align: center;
-
-  color: ${({ theme }) => theme.colors.gray[500]};
-`;
-
-export const Highlighted = styled(Label)`
-  font-family: ${({ theme }) => theme.fonts.primary.medium};
-  color: ${({ theme }) => theme.colors.cyan[600]};
-`;
