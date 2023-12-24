@@ -6,4 +6,7 @@ export interface MutationOptions<Data> {
 export enum QueryKeys {
   FeederList = 'FeederList',
   FeederFindOne = 'FeederFindOne',
+  UserFindOne = 'UserFindOne',
+  FindFavoriteFeeder = 'FindFavoriteFeeder',
+  FindAllFavorites = 'FindAllFavorites',
 }
