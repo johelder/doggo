@@ -1,7 +1,7 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { FeederRepository, MaintenanceStatusDomain, UserDomain } from '@data';
-import { MutationOptions } from '@infrastructure';
+import { MutationOptions, QueryKeys } from '@infrastructure';
 import { errorHandler } from '@utils';
 
 type Params = {
@@ -11,10 +11,15 @@ type Params = {
 };
 
 export function useFeederUpdateMaintenance(options?: MutationOptions<Params>) {
+  const queryClient = useQueryClient();
+
   const { mutate, isPending, isError } = useMutation<void, unknown, Params>({
     mutationFn: ({ status, feederId, user }) =>
       FeederRepository.updateMaintenance(status, feederId, user),
-    onSuccess: () => options?.onSuccess?.(),
+    onSuccess: () => {
+      options?.onSuccess?.();
+      queryClient.invalidateQueries({ queryKey: [QueryKeys.FeederFindOne] });
+    },
     onError: error => {
       options?.onError?.();
       errorHandler.reportError(error, useFeederUpdateMaintenance.name);
