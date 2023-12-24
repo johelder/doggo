@@ -8,7 +8,7 @@ import { Button } from '@components';
 
 import * as S from './styles';
 
-export function EmptyList(): JSX.Element {
+export function EmptyList(): React.JSX.Element {
   const theme = useTheme();
   const navigation = useNavigation();
 

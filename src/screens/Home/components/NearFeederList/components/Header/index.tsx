@@ -11,7 +11,7 @@ export function Header({
   isVisible,
   isNearFeederListExpanded,
   handleToggleNearFeederList,
-}: HeaderProps): JSX.Element | null {
+}: HeaderProps): React.JSX.Element | null {
   const theme = useTheme();
 
   if (!isVisible) {

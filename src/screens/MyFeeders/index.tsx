@@ -10,7 +10,7 @@ import { FeederDetailsModal } from './components/FeederDetailsModal';
 import * as S from './styles';
 import { useMyFeeders } from './useMyFeeders';
 
-export function MyFeeders(): JSX.Element {
+export function MyFeeders(): React.JSX.Element {
   const {
     feederList,
     isError,

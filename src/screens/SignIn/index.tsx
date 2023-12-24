@@ -8,7 +8,7 @@ import { useAuth } from '@hooks';
 
 import * as S from './styles';
 
-export function SignIn(): JSX.Element {
+export function SignIn(): React.JSX.Element {
   const { handleSignInWithGoogle, isLoadingSignIn } = useAuth();
 
   return (

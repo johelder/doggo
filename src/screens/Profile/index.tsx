@@ -10,7 +10,7 @@ import * as S from './styles';
 
 export function Profile({
   navigation,
-}: THomeTabScreenProps<'Profile'>): JSX.Element {
+}: THomeTabScreenProps<'Profile'>): React.JSX.Element {
   const { user } = useAuth();
   const tabBarHeight = useBottomTabBarHeight();
 

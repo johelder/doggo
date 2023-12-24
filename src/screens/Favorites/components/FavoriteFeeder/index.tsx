@@ -10,7 +10,9 @@ import { showToast } from '@utils';
 import * as S from './styles';
 import { FavoriteFeederProps } from './types';
 
-export function FavoriteFeeder({ feeder }: FavoriteFeederProps): JSX.Element {
+export function FavoriteFeeder({
+  feeder,
+}: FavoriteFeederProps): React.JSX.Element {
   const theme = useTheme();
   const { isFavorite } = useUserIsFeederFavorite({ feederId: feeder.id });
   const { toggleFavoriteFeeder } = useUserToggleFavoriteFeeder(feeder.id, {

@@ -10,7 +10,7 @@ export function NearFeederList({
   feeders,
   isNearFeederListExpanded,
   handleToggleNearFeederList,
-}: NearFeederListProps): JSX.Element {
+}: NearFeederListProps): React.JSX.Element {
   const tabBarHeight = useBottomTabBarHeight();
 
   return (

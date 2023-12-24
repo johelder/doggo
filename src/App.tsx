@@ -11,7 +11,7 @@ Geolocation.setRNConfiguration({
   skipPermissionRequests: true,
 });
 
-export function App(): JSX.Element {
+export function App(): React.JSX.Element {
   return (
     <AppProvider>
       <Routes />

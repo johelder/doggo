@@ -17,7 +17,7 @@ import { useSelectLocation } from './useSelectLocation';
 
 export function SelectLocation({
   navigation,
-}: TRootStackScreenProps<'SelectLocation'>): JSX.Element {
+}: TRootStackScreenProps<'SelectLocation'>): React.JSX.Element {
   const {
     onTouchStart,
     onRegionChangeComplete,

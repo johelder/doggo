@@ -8,7 +8,7 @@ import { useFeederFindAllFavorites } from '@domain';
 import { EmptyList, ErrorFallback, FavoriteFeeder } from './components';
 import * as S from './styles';
 
-export function Favorites(): JSX.Element {
+export function Favorites(): React.JSX.Element {
   const { feeders, isLoading, isError, refetch } = useFeederFindAllFavorites();
 
   const renderFeeder = ({ item: feeder }: ListRenderItemInfo<FeederDomain>) => {

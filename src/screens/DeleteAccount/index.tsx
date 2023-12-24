@@ -9,7 +9,7 @@ import { Button } from '@components';
 import * as S from './styles';
 import { useDeleteAccount } from './useDeleteAccount';
 
-export function DeleteAccount(): JSX.Element {
+export function DeleteAccount(): React.JSX.Element {
   const { handleConfirmDelete } = useDeleteAccount();
   const theme = useTheme();
 

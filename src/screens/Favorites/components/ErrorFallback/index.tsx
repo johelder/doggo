@@ -10,7 +10,9 @@ import { handleOpenSupport } from '@utils';
 import * as S from './styles';
 import { ErrorFallbackProps } from './types';
 
-export function ErrorFallback({ onTryAgain }: ErrorFallbackProps): JSX.Element {
+export function ErrorFallback({
+  onTryAgain,
+}: ErrorFallbackProps): React.JSX.Element {
   const theme = useTheme();
 
   return (

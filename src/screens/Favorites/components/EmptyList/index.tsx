@@ -7,7 +7,7 @@ import { useTheme } from 'styled-components/native';
 
 import { PageAlert, Button } from '@components';
 
-export function EmptyList(): JSX.Element {
+export function EmptyList(): React.JSX.Element {
   const theme = useTheme();
   const navigation = useNavigation();
 

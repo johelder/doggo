@@ -8,7 +8,7 @@ import { useMap } from '@hooks';
 
 import * as S from './styles';
 
-export function UnavailableLocation(): JSX.Element {
+export function UnavailableLocation(): React.JSX.Element {
   const { requestLocationPermissionModalRef } = useMap();
 
   return (

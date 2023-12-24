@@ -11,7 +11,7 @@ import { useCreateFeeder } from './useCreateFeeder';
 
 export function CreateFeeder({
   route,
-}: TRootStackScreenProps<'CreateFeeder'>): JSX.Element {
+}: TRootStackScreenProps<'CreateFeeder'>): React.JSX.Element {
   const headerHeight = useHeaderHeight();
   const { feederFormRef, handleCreateFeeder, isPending } = useCreateFeeder();
 

@@ -13,7 +13,7 @@ import { useList } from './useList';
 export function List({
   isNearFeederListExpanded,
   feeders,
-}: ListProps): JSX.Element | null {
+}: ListProps): React.JSX.Element | null {
   const { handleClickOnNearFeeder } = useList();
 
   if (feeders.length === 0) {

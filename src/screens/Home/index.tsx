@@ -14,7 +14,7 @@ import {
 import * as S from './styles';
 import { useHome } from './useHome';
 
-export function Home(): JSX.Element {
+export function Home(): React.JSX.Element {
   const {
     isLoadingMap,
     isTooltipVisible,

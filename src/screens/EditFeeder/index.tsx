@@ -11,7 +11,7 @@ import { useEditFeeder } from './useEditFeeder';
 
 export function EditFeeder({
   route,
-}: TRootStackScreenProps<'EditFeeder'>): JSX.Element {
+}: TRootStackScreenProps<'EditFeeder'>): React.JSX.Element {
   const headerHeight = useHeaderHeight();
   const { feederFormRef, handleUpdateFeeder, isPending } = useEditFeeder();
 

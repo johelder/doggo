@@ -15,7 +15,7 @@ export function Map({
   isNearFeederListExpanded,
   setIsTooltipVisible,
   handleOpenTooltip,
-}: MapProps): JSX.Element {
+}: MapProps): React.JSX.Element {
   return (
     <S.MapContainer
       hasNearFeeders={nearFeeders.length > 0}

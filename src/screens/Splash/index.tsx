@@ -8,7 +8,7 @@ import { useAuth } from '@hooks';
 import * as S from './styles';
 import { useSplash } from './useSplash';
 
-export function Splash(): JSX.Element {
+export function Splash(): React.JSX.Element {
   const { setIsLoadingAuthState } = useAuth();
   const { animatedStyles } = useSplash(setIsLoadingAuthState);
 

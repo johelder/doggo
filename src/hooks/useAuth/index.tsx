@@ -23,7 +23,9 @@ import { IAuthContext, IAuthContextProps } from './types';
 
 const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
-function AuthContextProvider({ children }: IAuthContextProps): JSX.Element {
+function AuthContextProvider({
+  children,
+}: IAuthContextProps): React.JSX.Element {
   const [user, setUser] = useState<UserDomain | null>(null);
   const [isLoadingSignIn, setIsLoadingSignIn] = useState(false);
   const [isLoadingAuthState, setIsLoadingAuthState] = useState(true);
