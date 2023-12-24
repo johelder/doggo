@@ -15,8 +15,9 @@ export function useMyFeeders() {
   const detailsModalRef = useRef<Modalize>(null);
   const { user } = useAuth();
 
-  const { feederList, isError, isLoading, refetch } = useFeederList(user?.id!);
-  const { removeFeeder, isPending: isLoadingRemoveFeeder } = useFeederRemove({
+  const { feederList, isError, isLoading, isRefetching, refetch } =
+    useFeederList(user?.id!);
+  const { removeFeeder } = useFeederRemove({
     onSuccess: () => {
       showToast({
         type: 'success',
@@ -56,13 +57,13 @@ export function useMyFeeders() {
     feederList,
     isError,
     isLoading,
+    isRefetching,
     handleTryAgain: refetch,
     detailsModalRef,
     handleOpenDetailsModal,
     handleCloseDetailsModal,
     currentFeederToEdit,
     removeFeeder,
-    isLoadingRemoveFeeder,
     handleNavigateToSelectLocation,
   };
 }

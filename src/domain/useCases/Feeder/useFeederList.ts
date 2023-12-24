@@ -7,7 +7,7 @@ import { QueryKeys } from '@infrastructure';
 import { errorHandler } from '@utils';
 
 export function useFeederList(userId: string) {
-  const { data, isLoading, refetch, isError, error } = useQuery({
+  const { data, isLoading, isRefetching, refetch, isError, error } = useQuery({
     queryKey: [QueryKeys.FeederList, userId],
     queryFn: () => FeederRepository.findAllByUserId(userId),
     retry: false,
@@ -22,6 +22,7 @@ export function useFeederList(userId: string) {
   return {
     feederList: data,
     isLoading,
+    isRefetching,
     isError,
     refetch,
   };

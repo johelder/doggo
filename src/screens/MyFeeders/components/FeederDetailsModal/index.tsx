@@ -7,7 +7,7 @@ import { useTheme } from 'styled-components/native';
 import { Button, Modal } from '@components';
 
 import * as S from './styles';
-import { IFeederDetailsModal } from './types';
+import { FeederDetailsModalProps } from './types';
 
 export function FeederDetailsModal({
   detailsModalRef,
@@ -15,8 +15,7 @@ export function FeederDetailsModal({
   onCancel,
   onDelete,
   onEdit,
-  isLoadingDelete,
-}: IFeederDetailsModal) {
+}: FeederDetailsModalProps) {
   const theme = useTheme();
 
   return (
@@ -51,8 +50,7 @@ export function FeederDetailsModal({
           <Button.Root
             type="outline"
             color={theme.colors.gray[200]}
-            onPress={() => onDelete(feeder?.id ?? '')}
-            isLoading={isLoadingDelete}>
+            onPress={() => onDelete(feeder?.id ?? '')}>
             <Button.Icon>
               <Trash color={theme.colors.gray[700]} weight="light" />
             </Button.Icon>

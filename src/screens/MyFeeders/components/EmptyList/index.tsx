@@ -1,15 +1,13 @@
 import React from 'react';
 
+import { useNavigation } from '@react-navigation/native';
 import { FolderOpen, CirclesThreePlus } from 'phosphor-react-native';
 import { useTheme } from 'styled-components/native';
 
 import { PageAlert, Button } from '@components';
 
-import { useMyFeeders } from '../../useMyFeeders';
-
 export function EmptyList(): JSX.Element {
-  const { handleNavigateToSelectLocation } = useMyFeeders();
-
+  const navigation = useNavigation();
   const theme = useTheme();
 
   return (
@@ -21,7 +19,7 @@ export function EmptyList(): JSX.Element {
         <Button.Root
           type="filled"
           color={theme.colors.orange[500]}
-          onPress={handleNavigateToSelectLocation}>
+          onPress={() => navigation.navigate('SelectLocation')}>
           <Button.Icon>
             <CirclesThreePlus size={24} color={theme.colors.gray[0]} />
           </Button.Icon>

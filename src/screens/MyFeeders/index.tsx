@@ -15,12 +15,12 @@ export function MyFeeders(): JSX.Element {
     feederList,
     isError,
     isLoading,
+    isRefetching,
     handleTryAgain,
     detailsModalRef,
     handleOpenDetailsModal,
     handleCloseDetailsModal,
     currentFeederToEdit,
-    isLoadingRemoveFeeder,
     removeFeeder,
     handleNavigateToSelectLocation,
   } = useMyFeeders();
@@ -34,7 +34,7 @@ export function MyFeeders(): JSX.Element {
     );
   }
 
-  if (isLoading || isLoadingRemoveFeeder) {
+  if (isLoading || isRefetching) {
     return <Loader.Page />;
   }
 
@@ -59,7 +59,6 @@ export function MyFeeders(): JSX.Element {
         onCancel={handleCloseDetailsModal}
         onDelete={removeFeeder}
         onEdit={handleNavigateToSelectLocation}
-        isLoadingDelete={isLoadingRemoveFeeder}
       />
     </S.Container>
   );
