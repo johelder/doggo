@@ -1,9 +1,10 @@
-import { PlusIcon } from '@app/src/assets/icons/PlusIcon';
 import CookingPot from 'phosphor-react-native/src/icons/CookingPot';
 import Gear from 'phosphor-react-native/src/icons/Gear';
 import Heart from 'phosphor-react-native/src/icons/Heart';
 import SignOut from 'phosphor-react-native/src/icons/SignOut';
 import styled, { DefaultTheme } from 'styled-components/native';
+
+import { PlusIcon } from '@assets';
 
 function iconsDefaultStyles(theme: DefaultTheme) {
   return {

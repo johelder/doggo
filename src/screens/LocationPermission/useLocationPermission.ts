@@ -1,14 +1,15 @@
-import {
-  LOCATION_PERMISSION_DENIED,
-  IS_LOCATION_TURN_OFF,
-} from '@app/src/hooks/useMap/constants';
 import Geolocation, {
   GeolocationError,
 } from '@react-native-community/geolocation';
 import { CommonActions, useNavigation } from '@react-navigation/native';
 import { useModalize } from 'react-native-modalize';
 
-import { IS_FIRST_ACCESS_KEY, useStorage } from '@hooks';
+import {
+  IS_FIRST_ACCESS_KEY,
+  useStorage,
+  LOCATION_PERMISSION_DENIED,
+  IS_LOCATION_TURN_OFF,
+} from '@hooks';
 import { errorHandler } from '@utils';
 
 export function useLocationPermission() {

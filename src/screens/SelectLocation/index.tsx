@@ -1,13 +1,13 @@
 import React, { useCallback, useLayoutEffect } from 'react';
 
-import { CustomHeaderTitle } from '@app/src/components/CustomHeader/components/CustomHeaderTitle';
-import {
-  LATITUDE_DELTA,
-  LONGITUDE_DELTA,
-} from '@app/src/components/Map/constants';
 import { useTheme } from 'styled-components/native';
 
-import { grayScale } from '@components';
+import {
+  grayScale,
+  CustomHeaderTitle,
+  LATITUDE_DELTA,
+  LONGITUDE_DELTA,
+} from '@components';
 import { Button, Loader, Map, CustomHeader } from '@components';
 import { TRootStackScreenProps } from '@types';
 
