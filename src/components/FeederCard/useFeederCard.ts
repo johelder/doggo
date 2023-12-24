@@ -18,9 +18,9 @@ export function useFeederCard(
 
   const navigation = useNavigation();
 
-  const lastSupplyDate = feeder?.maintenanceStatus.supply
+  const lastSupplyDate = feeder?.maintenanceStatus?.supply
     .updatedAt as FirebaseFirestoreTypes.Timestamp;
-  const lastCleaningDate = feeder?.maintenanceStatus.cleaning
+  const lastCleaningDate = feeder?.maintenanceStatus?.cleaning
     .updatedAt as FirebaseFirestoreTypes.Timestamp;
 
   function handleNavigateToFeederDetails() {
@@ -28,9 +28,7 @@ export function useFeederCard(
       return;
     }
 
-    if (onClose) {
-      onClose();
-    }
+    onClose?.();
 
     navigation.navigate('FeederDetails', { feederId: feeder.id });
   }
