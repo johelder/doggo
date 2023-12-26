@@ -1,12 +1,8 @@
 import React, { forwardRef, useImperativeHandle } from 'react';
 
-import ArchiveBox from 'phosphor-react-native/src/icons/ArchiveBox';
-import Cat from 'phosphor-react-native/src/icons/Cat';
-import Dog from 'phosphor-react-native/src/icons/Dog';
-import DotsThreeCircle from 'phosphor-react-native/src/icons/DotsThreeCircle';
 import { useTheme } from 'styled-components/native';
 
-import { Input, ChipButton, Button } from '..';
+import { Input, ChipButton, Button, Icon } from '..';
 
 import * as S from './styles';
 import { FeederFormProps, FeederFormRefProps } from './types';
@@ -75,7 +71,8 @@ export const FeederForm = forwardRef<FeederFormRefProps, FeederFormProps>(
               <ChipButton
                 isSelected={feederFoods.dog}
                 onPress={() => handleToggleFeedFoods('dog')}>
-                <Dog
+                <Icon
+                  name="dog"
                   color={
                     feederFoods.dog
                       ? theme.colors.orange[500]
@@ -92,7 +89,8 @@ export const FeederForm = forwardRef<FeederFormRefProps, FeederFormProps>(
               <ChipButton
                 isSelected={feederFoods.cat}
                 onPress={() => handleToggleFeedFoods('cat')}>
-                <Cat
+                <Icon
+                  name="cat"
                   color={
                     feederFoods.cat
                       ? theme.colors.orange[500]
@@ -109,7 +107,8 @@ export const FeederForm = forwardRef<FeederFormRefProps, FeederFormProps>(
           <ChipButton
             isSelected={feederFoods.others}
             onPress={() => handleToggleFeedFoods('others')}>
-            <DotsThreeCircle
+            <Icon
+              name="dotsThreeCircle"
               color={
                 feederFoods.others
                   ? theme.colors.orange[500]
@@ -129,7 +128,7 @@ export const FeederForm = forwardRef<FeederFormRefProps, FeederFormProps>(
           disabled={isLoading}
           isLoading={isLoading}>
           <Button.Icon>
-            <ArchiveBox color={theme.colors.gray[0]} />
+            <Icon name="archiveBox" color={theme.colors.gray[0]} />
           </Button.Icon>
 
           <Button.Text color={theme.colors.gray[0]}>

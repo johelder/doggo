@@ -2,12 +2,12 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { toastEventManager } from '@utils';
 
-import type { IToast } from './types';
+import type { Toast } from './types';
 
 export function useToastProvider() {
-  const [toasts, setToasts] = useState<IToast[]>([]);
+  const [toasts, setToasts] = useState<Toast[]>([]);
 
-  const handleAddToast = useCallback(({ type, message, duration }: IToast) => {
+  const handleAddToast = useCallback(({ type, message, duration }: Toast) => {
     setToasts([
       {
         id: Math.random(),

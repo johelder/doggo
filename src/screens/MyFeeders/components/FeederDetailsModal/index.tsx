@@ -1,10 +1,8 @@
 import React from 'react';
 
-import PencilSimpleLine from 'phosphor-react-native/src/icons/PencilSimpleLine';
-import Trash from 'phosphor-react-native/src/icons/Trash';
 import { useTheme } from 'styled-components/native';
 
-import { Button, Modal } from '@components';
+import { Button, Icon, Modal } from '@components';
 
 import * as S from './styles';
 import { FeederDetailsModalProps } from './types';
@@ -52,7 +50,7 @@ export function FeederDetailsModal({
             color={theme.colors.gray[200]}
             onPress={() => onDelete(feeder?.id ?? '')}>
             <Button.Icon>
-              <Trash color={theme.colors.gray[700]} weight="light" />
+              <Icon name="trashSimple" color={theme.colors.gray[700]} />
             </Button.Icon>
 
             <Button.Text
@@ -67,7 +65,7 @@ export function FeederDetailsModal({
             color={theme.colors.gray[200]}
             onPress={onEdit}>
             <Button.Icon>
-              <PencilSimpleLine color={theme.colors.gray[700]} weight="light" />
+              <Icon name="pencilSimpleLine" color={theme.colors.gray[700]} />
             </Button.Icon>
 
             <Button.Text

@@ -1,10 +1,9 @@
 import React from 'react';
 
 import { useNavigation } from '@react-navigation/native';
-import { FolderOpen, CirclesThreePlus } from 'phosphor-react-native';
 import { useTheme } from 'styled-components/native';
 
-import { PageAlert, Button } from '@components';
+import { PageAlert, Button, Icon } from '@components';
 
 export function EmptyList(): React.JSX.Element {
   const navigation = useNavigation();
@@ -14,14 +13,14 @@ export function EmptyList(): React.JSX.Element {
     <PageAlert
       title="Sem comedouros"
       description="Cadastre um novo comedouro para ajudar animais de rua próximos a você."
-      icon={<FolderOpen color={theme.colors.gray[700]} size={24} />}
+      icon={<Icon name="folderOpen" color={theme.colors.gray[700]} />}
       actionButton={
         <Button.Root
           type="filled"
           color={theme.colors.orange[500]}
           onPress={() => navigation.navigate('SelectLocation')}>
           <Button.Icon>
-            <CirclesThreePlus size={24} color={theme.colors.gray[0]} />
+            <Icon name="plusFeeder" color={theme.colors.gray[0]} />
           </Button.Icon>
 
           <Button.Text color={theme.colors.gray[0]}>

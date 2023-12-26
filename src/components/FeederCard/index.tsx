@@ -1,15 +1,11 @@
 import React from 'react';
 
-import CheckCircle from 'phosphor-react-native/src/icons/CheckCircle';
-import CookingPot from 'phosphor-react-native/src/icons/CookingPot';
-import Info from 'phosphor-react-native/src/icons/Info';
-import Signpost from 'phosphor-react-native/src/icons/Signpost';
-import User from 'phosphor-react-native/src/icons/User';
 import { useTheme } from 'styled-components/native';
 
 import { getFoodsLabel } from '@utils';
 
 import { Button } from '../Button';
+import { Icon } from '../Icon';
 
 import * as S from './styles';
 import { IFeedCardProps } from './types';
@@ -28,11 +24,11 @@ export function FeederCard({ feeder, sideButton, onClose }: IFeedCardProps) {
     <S.Container>
       <S.Header>
         <S.HighlightedWarningContainer hasActionButton={!!sideButton}>
-          {isNeedMaintenance() ? (
-            <Info color={theme.colors.red[500]} />
-          ) : (
-            <CheckCircle color={theme.colors.green[500]} />
-          )}
+          <Icon
+            name={isNeedMaintenance() ? 'info' : 'checkCircle'}
+            color={theme.colors[isNeedMaintenance() ? 'red' : 'green'][500]}
+          />
+
           <S.HighlightedWarning isNeedMaintenance={isNeedMaintenance()}>
             {isNeedMaintenance()
               ? 'Precisando de manutenção'
@@ -44,8 +40,7 @@ export function FeederCard({ feeder, sideButton, onClose }: IFeedCardProps) {
       </S.Header>
 
       <S.Session>
-        <Signpost color={theme.colors.gray[700]} />
-
+        <Icon name="signpost" color={theme.colors.gray[700]} />
         <S.Title>
           {feeder?.address.street}, {feeder?.address.houseNumber},{' '}
           {feeder?.address.neighborhood}, {feeder?.address.city} (≈
@@ -54,13 +49,12 @@ export function FeederCard({ feeder, sideButton, onClose }: IFeedCardProps) {
       </S.Session>
 
       <S.Session>
-        <CookingPot color={theme.colors.gray[500]} />
+        <Icon name="cookingPot" color={theme.colors.gray[500]} />
         <S.SubTitle>{getFoodsLabel(feeder?.foods)}</S.SubTitle>
       </S.Session>
 
       <S.Session>
-        <User color={theme.colors.gray[500]} />
-
+        <Icon name="user" color={theme.colors.gray[500]} />
         <S.SubTitle>Comedouro de {feeder?.user.name}</S.SubTitle>
       </S.Session>
 

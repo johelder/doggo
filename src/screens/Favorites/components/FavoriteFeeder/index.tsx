@@ -1,9 +1,8 @@
 import React from 'react';
 
-import Heart from 'phosphor-react-native/src/icons/Heart';
 import { useTheme } from 'styled-components/native';
 
-import { FeederCard } from '@components';
+import { FeederCard, Icon } from '@components';
 import { useUserIsFeederFavorite, useUserToggleFavoriteFeeder } from '@domain';
 import { showToast } from '@utils';
 
@@ -29,9 +28,9 @@ export function FavoriteFeeder({
         feeder={feeder}
         sideButton={
           <S.FavoriteButton onPress={() => toggleFavoriteFeeder(feeder.id)}>
-            <Heart
+            <Icon
+              name={isFavorite ? 'heartFilled' : 'heart'}
               size={28}
-              weight={isFavorite ? 'fill' : 'regular'}
               color={
                 isFavorite ? theme.colors.red[500] : theme.colors.gray[700]
               }

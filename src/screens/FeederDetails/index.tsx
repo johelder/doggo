@@ -1,18 +1,8 @@
 import React, { useCallback, useLayoutEffect } from 'react';
 
-import CheckCircle from 'phosphor-react-native/src/icons/CheckCircle';
-import CookingPot from 'phosphor-react-native/src/icons/CookingPot';
-import Gear from 'phosphor-react-native/src/icons/Gear';
-import Heart from 'phosphor-react-native/src/icons/Heart';
-import Info from 'phosphor-react-native/src/icons/Info';
-import MapPin from 'phosphor-react-native/src/icons/MapPin';
-import Repeat from 'phosphor-react-native/src/icons/Repeat';
-import Signpost from 'phosphor-react-native/src/icons/Signpost';
-import ToiletPaper from 'phosphor-react-native/src/icons/ToiletPaper';
-import Users from 'phosphor-react-native/src/icons/Users';
 import { useTheme } from 'styled-components/native';
 
-import { Button, Checkbox, Loader } from '@components';
+import { Button, Checkbox, Icon, Loader } from '@components';
 import { useUserIsFeederFavorite, useUserToggleFavoriteFeeder } from '@domain';
 import { TRootStackScreenProps } from '@types';
 import { getFoodsLabel, showToast } from '@utils';
@@ -88,11 +78,10 @@ export function FeederDetails({
       <S.Content>
         <S.Header>
           <S.HighlightedWarningContainer>
-            {isNeedMaintenance ? (
-              <Info color={theme.colors.red[500]} />
-            ) : (
-              <CheckCircle color={theme.colors.green[500]} />
-            )}
+            <Icon
+              name={isNeedMaintenance ? 'info' : 'checkCircle'}
+              color={theme.colors[isNeedMaintenance ? 'red' : 'green'][500]}
+            />
             <S.HighlightedWarning isNeedMaintenance={isNeedMaintenance}>
               {isNeedMaintenance
                 ? 'Precisando de manutenção'
@@ -101,22 +90,19 @@ export function FeederDetails({
           </S.HighlightedWarningContainer>
 
           <S.LabelContainer>
-            <Repeat color={theme.colors.gray[500]} />
-
+            <Icon name="clockCounterClockwise" color={theme.colors.gray[500]} />
             <S.Label>
               Último reabastecimento feito {lastUpdated?.supply}
             </S.Label>
           </S.LabelContainer>
 
           <S.LabelContainer>
-            <ToiletPaper color={theme.colors.gray[500]} />
-
+            <Icon name="toiletPaper" color={theme.colors.gray[500]} />
             <S.Label>Última limpeza feita {lastUpdated?.cleaning}</S.Label>
           </S.LabelContainer>
 
           <S.LabelContainer>
-            <Users color={theme.colors.gray[500]} />
-
+            <Icon name="users" color={theme.colors.gray[500]} />
             <S.Label>Última manutenção feita por {lastUpdated?.users}</S.Label>
           </S.LabelContainer>
 
@@ -171,7 +157,7 @@ export function FeederDetails({
             onPress={handleUpdateFeederMaintenance}
             color={theme.colors.cyan[600]}>
             <Button.Icon>
-              <Gear color={theme.colors.gray[0]} />
+              <Icon name="gear" color={theme.colors.gray[0]} />
             </Button.Icon>
 
             <Button.Text color={theme.colors.gray[0]}>Atualizar</Button.Text>
@@ -184,14 +170,12 @@ export function FeederDetails({
           <S.Title appearance="dark">Localização</S.Title>
 
           <S.LabelContainer>
-            <CookingPot color={theme.colors.gray[500]} />
-
+            <Icon name="cookingPot" color={theme.colors.gray[500]} />
             <S.Label>{getFoodsLabel(feeder.foods)}</S.Label>
           </S.LabelContainer>
 
           <S.LabelContainer>
-            <Signpost color={theme.colors.gray[500]} />
-
+            <Icon name="signpost" color={theme.colors.gray[500]} />
             <S.Label>
               {feeder.address.street}, {feeder.address.houseNumber},{' '}
               {feeder.address.neighborhood}, {feeder.address.city} (≈
@@ -201,8 +185,7 @@ export function FeederDetails({
 
           {feeder?.address.complement && feeder.address.reference && (
             <S.LabelContainer>
-              <MapPin color={theme.colors.gray[500]} />
-
+              <Icon name="mapPin" color={theme.colors.gray[500]} />
               <S.Label>
                 {feeder.address.reference} - {feeder.address.complement}
               </S.Label>
@@ -214,7 +197,7 @@ export function FeederDetails({
             color={theme.colors.orange[500]}
             onPress={handleOpenDirections}>
             <Button.Icon>
-              <Signpost color={theme.colors.gray[0]} />
+              <Icon name="signpost" color={theme.colors.gray[0]} />
             </Button.Icon>
 
             <Button.Text color={theme.colors.gray[0]}>Ver rotas</Button.Text>
@@ -226,11 +209,11 @@ export function FeederDetails({
             isLoading={isLoadingFavorite}
             onPress={() => toggleFavoriteFeeder(feeder.id)}>
             <Button.Icon>
-              <Heart
+              <Icon
+                name={isFavorite ? 'heartFilled' : 'heart'}
                 color={
                   isFavorite ? theme.colors.cyan[600] : theme.colors.gray[700]
                 }
-                weight={isFavorite ? 'fill' : 'regular'}
               />
             </Button.Icon>
 

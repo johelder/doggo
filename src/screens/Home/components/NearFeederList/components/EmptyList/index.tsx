@@ -3,8 +3,7 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useTheme } from 'styled-components/native';
 
-import { PlusIcon } from '@assets';
-import { Button } from '@components';
+import { Button, Icon } from '@components';
 
 import * as S from './styles';
 
@@ -25,7 +24,7 @@ export function EmptyList(): React.JSX.Element {
 
       <Button.Root type="filled" onPress={handleRedirectToSelectLocation}>
         <Button.Icon>
-          <PlusIcon size={24} color={theme.colors.gray[0]} />
+          <Icon name="plusFeeder" color={theme.colors.gray[0]} />
         </Button.Icon>
 
         <Button.Text>Novo comedouro</Button.Text>

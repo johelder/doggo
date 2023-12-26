@@ -1,8 +1,5 @@
 import { useCallback, useEffect } from 'react';
 
-import CheckCircle from 'phosphor-react-native/src/icons/CheckCircle';
-import Info from 'phosphor-react-native/src/icons/Info';
-import WarningCircle from 'phosphor-react-native/src/icons/WarningCircle';
 import { Gesture } from 'react-native-gesture-handler';
 import {
   runOnJS,
@@ -12,7 +9,9 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 
-import { TToastType } from '../../types';
+import { IconProps } from '@components';
+
+import { Toast } from '../../types';
 
 import {
   DEFAULT_TOAST_DURATION,
@@ -20,15 +19,15 @@ import {
   UNMOUNT_ANIMATION_DURATION,
   VISIBLE_TOAST_VALUE,
 } from './constants';
-import { IToastProps } from './types';
+import { ToastProps } from './types';
 
-const toastIconMapper = {
-  success: CheckCircle,
-  error: WarningCircle,
-  warning: Info,
+export const toastIconMapper: Record<Toast['type'], IconProps['name']> = {
+  success: 'checkCircle',
+  error: 'warningCircle',
+  warning: 'info',
 };
 
-export function useToast({ isVisible, toast, onRemove }: IToastProps) {
+export function useToast({ isVisible, toast, onRemove }: ToastProps) {
   const positionY = useSharedValue(INITIAL_HIDDEN_TOAST_VALUE);
 
   const animatedStyle = useAnimatedStyle(() => {
@@ -64,13 +63,5 @@ export function useToast({ isVisible, toast, onRemove }: IToastProps) {
     return () => clearTimeout(toastTimeout);
   }, [handleRemove, toast?.duration]);
 
-  function getToastIcon(type: TToastType) {
-    if (!type) {
-      return null;
-    }
-
-    return toastIconMapper[type];
-  }
-
-  return { getToastIcon, animatedStyle, handleRemove, swipeUpGesture };
+  return { animatedStyle, handleRemove, swipeUpGesture };
 }

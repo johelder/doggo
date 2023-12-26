@@ -1,10 +1,9 @@
-import X from 'phosphor-react-native/src/icons/X';
 import Animated from 'react-native-reanimated';
 import styled, { css } from 'styled-components/native';
 
-import { TToastType } from '../../types';
+import { ToastType } from '../../types';
 
-export const Content = styled(Animated.View)<{ type: TToastType }>`
+export const Content = styled(Animated.View)<{ type: ToastType }>`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -32,8 +31,6 @@ export const Content = styled(Animated.View)<{ type: TToastType }>`
     `}
 `;
 
-export const IconContainer = styled.View``;
-
 export const Message = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.medium};
   font-size: ${({ theme }) => theme.sizes.md}px;
@@ -43,7 +40,3 @@ export const Message = styled.Text`
 
   color: ${({ theme }) => theme.colors.gray[0]};
 `;
-
-export const CloseButton = styled.TouchableOpacity``;
-
-export const CloseIcon = styled(X)``;

@@ -21,7 +21,6 @@
     "@react-navigation/native": "^6.1.2",
     "@react-navigation/native-stack": "^6.9.8",
     "@tanstack/react-query": "^5.13.4",
-    "phosphor-react-native": "^1.1.2",
     "react": "18.2.0",
     "react-native": "0.73.1",
     "react-native-gesture-handler": "^2.14.0",

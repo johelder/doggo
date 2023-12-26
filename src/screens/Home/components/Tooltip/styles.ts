@@ -21,7 +21,7 @@ export const CustomCalloutContainer = styled.View`
   border-radius: ${({ theme }) => theme.sizes.xxxsm}px;
 `;
 
-export const CloseButton = styled.TouchableOpacity`
+export const CloseButton = styled.View`
   width: ${({ theme }) => theme.spacings.xlg}px;
   height: ${({ theme }) => theme.spacings.xlg}px;
   background-color: ${({ theme }) => theme.colors.gray[100]};

@@ -3,20 +3,19 @@ import React from 'react';
 import { GestureDetector } from 'react-native-gesture-handler';
 import { useTheme } from 'styled-components/native';
 
+import { Icon } from '@components';
+
 import * as S from './styles';
-import { IToastProps } from './types';
-import { useToast } from './useToast';
+import { ToastProps } from './types';
+import { toastIconMapper, useToast } from './useToast';
 
-export function Toast({ isVisible, toast, onRemove }: IToastProps) {
-  const { getToastIcon, animatedStyle, handleRemove, swipeUpGesture } =
-    useToast({
-      isVisible,
-      toast,
-      onRemove,
-    });
+export function Toast({ isVisible, toast, onRemove }: ToastProps) {
+  const { animatedStyle, handleRemove, swipeUpGesture } = useToast({
+    isVisible,
+    toast,
+    onRemove,
+  });
   const theme = useTheme();
-
-  const Icon = getToastIcon(toast?.type);
 
   if (!toast) {
     return null;
@@ -25,15 +24,11 @@ export function Toast({ isVisible, toast, onRemove }: IToastProps) {
   return (
     <GestureDetector gesture={swipeUpGesture}>
       <S.Content type={toast.type} style={[animatedStyle]}>
-        <S.IconContainer>
-          {Icon && <Icon color={theme.colors.gray[0]} />}
-        </S.IconContainer>
+        <Icon name={toastIconMapper[toast.type]} color={theme.colors.gray[0]} />
 
         <S.Message>{toast.message}</S.Message>
 
-        <S.CloseButton onPress={handleRemove}>
-          <S.CloseIcon color={theme.colors.gray[0]} />
-        </S.CloseButton>
+        <Icon name="x" color={theme.colors.gray[0]} onPress={handleRemove} />
       </S.Content>
     </GestureDetector>
   );

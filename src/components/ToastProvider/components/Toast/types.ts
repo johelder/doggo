@@ -1,7 +1,7 @@
-import { IToast } from '../../types';
+import { Toast } from '../../types';
 
-export interface IToastProps {
+export interface ToastProps {
   isVisible: boolean;
-  toast: IToast | null;
+  toast: Toast | null;
   onRemove: () => void;
 }

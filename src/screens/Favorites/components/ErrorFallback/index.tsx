@@ -1,10 +1,8 @@
 import React from 'react';
 
-import ArrowClockwise from 'phosphor-react-native/src/icons/ArrowClockwise';
-import Warning from 'phosphor-react-native/src/icons/Warning';
 import { useTheme } from 'styled-components/native';
 
-import { PageAlert, Button } from '@components';
+import { PageAlert, Button, Icon } from '@components';
 import { handleOpenSupport } from '@utils';
 
 import * as S from './styles';
@@ -19,7 +17,7 @@ export function ErrorFallback({
     <PageAlert
       title="Nós tivemos um pequeno problema"
       description="Ocorreu um erro ao se conectar com o servidor."
-      icon={<Warning color={theme.colors.gray[0]} size={24} />}
+      icon={<Icon name="warning" color={theme.colors.gray[0]} />}
       color={theme.colors.red[400]}
       actionButton={
         <>
@@ -28,7 +26,7 @@ export function ErrorFallback({
             color={theme.colors.red[500]}
             onPress={onTryAgain}>
             <Button.Icon>
-              <ArrowClockwise color={theme.colors.gray[0]} size={24} />
+              <Icon name="arrowClockwise" color={theme.colors.gray[0]} />
             </Button.Icon>
 
             <Button.Text color={theme.colors.gray[0]}>

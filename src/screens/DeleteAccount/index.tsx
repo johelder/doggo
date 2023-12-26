@@ -1,10 +1,9 @@
 import React from 'react';
 
 import DeleteAccountIllustration from '@assets/images/delete-account-illustration.svg';
-import TrashSimple from 'phosphor-react-native/src/icons/TrashSimple';
 import { useTheme } from 'styled-components/native';
 
-import { Button } from '@components';
+import { Button, Icon } from '@components';
 
 import * as S from './styles';
 import { useDeleteAccount } from './useDeleteAccount';
@@ -32,7 +31,7 @@ export function DeleteAccount(): React.JSX.Element {
           color={theme.colors.red[500]}
           onPress={handleConfirmDelete}>
           <Button.Icon>
-            <TrashSimple color={theme.colors.gray[0]} />
+            <Icon name="trashSimple" color={theme.colors.gray[0]} />
           </Button.Icon>
           <Button.Text>Excluir</Button.Text>
         </Button.Root>

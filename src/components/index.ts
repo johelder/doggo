@@ -19,3 +19,5 @@ export * from './PageAlert';
 export * from './FeederCard';
 export * from './Checkbox';
 export * from './RequestLocationPermission';
+export * from './Icon';
+export * from './Icon/types';

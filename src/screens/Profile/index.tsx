@@ -1,8 +1,9 @@
 import React from 'react';
 
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import { useTheme } from 'styled-components/native';
 
-import { NavigationButton } from '@components';
+import { Icon, NavigationButton } from '@components';
 import { useAuth } from '@hooks';
 import { THomeTabScreenProps } from '@types';
 
@@ -13,6 +14,7 @@ export function Profile({
 }: THomeTabScreenProps<'Profile'>): React.JSX.Element {
   const { user } = useAuth();
   const tabBarHeight = useBottomTabBarHeight();
+  const theme = useTheme();
 
   return (
     <S.Container>
@@ -32,28 +34,32 @@ export function Profile({
           <NavigationButton
             title="Novo comedouro"
             description="Cadastre um comedouro"
-            icon={() => <S.SelectLocation />}
+            icon={() => (
+              <Icon name="plusFeeder" color={theme.colors.gray[700]} />
+            )}
             onPress={() => navigation.navigate('SelectLocation')}
           />
 
           <NavigationButton
             title="Meus comedouros"
             description="Minha central de comedouros"
-            icon={() => <S.FeederIcon />}
+            icon={() => (
+              <Icon name="cookingPot" color={theme.colors.gray[700]} />
+            )}
             onPress={() => navigation.navigate('MyFeeders')}
           />
 
           <NavigationButton
             title="Favoritos"
             description="Meus comedouros favoritos"
-            icon={() => <S.FavoriteIcon />}
+            icon={() => <Icon name="heart" color={theme.colors.gray[700]} />}
             onPress={() => navigation.navigate('Favorites')}
           />
 
           <NavigationButton
             title="Configurações"
             description="Minhas configurações e informações sobre o app"
-            icon={() => <S.ConfigIcon />}
+            icon={() => <Icon name="gear" color={theme.colors.gray[700]} />}
             onPress={() => navigation.navigate('Settings')}
           />
         </S.MainContent>

@@ -3,14 +3,14 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native';
 
 import { BottomTabBarButtonProps } from '@react-navigation/bottom-tabs';
 
-import { PlusIcon } from '@assets';
+import { Icon } from '@components';
 import { theme } from '@theme';
 
 export function NewFeederButton(props: BottomTabBarButtonProps) {
   return (
     <View style={styles.container}>
       <TouchableOpacity {...props} style={styles.button}>
-        <PlusIcon size={42} color={theme.colors.gray[0]} />
+        <Icon name="plusFeeder" size={42} color={theme.colors.gray[0]} />
       </TouchableOpacity>
     </View>
   );

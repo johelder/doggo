@@ -1,9 +1,8 @@
 import React from 'react';
 
-import SignOut from 'phosphor-react-native/src/icons/SignOut';
 import { useTheme } from 'styled-components/native';
 
-import { Button, NavigationButton } from '@components';
+import { Button, Icon, NavigationButton } from '@components';
 import { useAuth } from '@hooks';
 import { TRootStackScreenProps } from '@types';
 
@@ -44,7 +43,7 @@ export function Settings({ navigation }: TRootStackScreenProps<'Settings'>) {
             color={theme.colors.gray[200]}
             onPress={handleSignOut}>
             <Button.Icon>
-              <SignOut size={24} color={theme.colors.gray[700]} />
+              <Icon name="signOut" color={theme.colors.gray[700]} />
             </Button.Icon>
 
             <Button.Text color={theme.colors.gray[700]}>
