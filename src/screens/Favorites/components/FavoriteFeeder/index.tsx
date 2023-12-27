@@ -6,7 +6,7 @@ import { FeederCard, Icon } from '@components';
 import { useUserIsFeederFavorite, useUserToggleFavoriteFeeder } from '@domain';
 import { showToast } from '@utils';
 
-import * as S from './styles';
+import * as Styled from './styles';
 import { FavoriteFeederProps } from './types';
 
 export function FavoriteFeeder({
@@ -23,11 +23,12 @@ export function FavoriteFeeder({
   });
 
   return (
-    <S.FeederCardContainer>
+    <Styled.FeederCardContainer>
       <FeederCard
         feeder={feeder}
         sideButton={
-          <S.FavoriteButton onPress={() => toggleFavoriteFeeder(feeder.id)}>
+          <Styled.FavoriteButton
+            onPress={() => toggleFavoriteFeeder(feeder.id)}>
             <Icon
               name={isFavorite ? 'heartFilled' : 'heart'}
               size={28}
@@ -35,9 +36,9 @@ export function FavoriteFeeder({
                 isFavorite ? theme.colors.red[500] : theme.colors.gray[700]
               }
             />
-          </S.FavoriteButton>
+          </Styled.FavoriteButton>
         }
       />
-    </S.FeederCardContainer>
+    </Styled.FeederCardContainer>
   );
 }

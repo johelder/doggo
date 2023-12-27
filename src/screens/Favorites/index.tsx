@@ -1,19 +1,13 @@
 import React from 'react';
-import { ListRenderItemInfo } from 'react-native';
 
 import { Loader } from '@components';
-import { FeederDomain } from '@data';
 import { useFeederFindAllFavorites } from '@domain';
 
-import { EmptyList, ErrorFallback, FavoriteFeeder } from './components';
-import * as S from './styles';
+import { ErrorFallback, List } from './components';
+import * as Styled from './styles';
 
 export function Favorites(): React.JSX.Element {
   const { feeders, isLoading, isError, refetch } = useFeederFindAllFavorites();
-
-  const renderFeeder = ({ item: feeder }: ListRenderItemInfo<FeederDomain>) => {
-    return <FavoriteFeeder feeder={feeder} />;
-  };
 
   if (isLoading) {
     return <Loader.Page />;
@@ -24,15 +18,10 @@ export function Favorites(): React.JSX.Element {
   }
 
   return (
-    <S.Container>
-      <S.Content>
-        <S.Feeders
-          data={feeders}
-          keyExtractor={(feeder: FeederDomain) => feeder.id}
-          renderItem={renderFeeder}
-          ListEmptyComponent={EmptyList}
-        />
-      </S.Content>
-    </S.Container>
+    <Styled.Container>
+      <Styled.Content>
+        <List feeders={feeders} />
+      </Styled.Content>
+    </Styled.Container>
   );
 }
