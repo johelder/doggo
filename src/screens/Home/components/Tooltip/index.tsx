@@ -14,7 +14,7 @@ export function Tooltip({
 }: TooltipProps): React.JSX.Element | null {
   const theme = useTheme();
 
-  if (!isTooltipVisible) {
+  if (!isTooltipVisible || !currentFeederOpened) {
     return null;
   }
 
