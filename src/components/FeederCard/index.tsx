@@ -2,61 +2,51 @@ import React from 'react';
 
 import { useTheme } from 'styled-components/native';
 
+import { useMaintenance } from '@domain';
 import { getFoodsLabel } from '@utils';
 
-import { Button } from '../Button';
-import { Icon } from '../Icon';
+import { Button, FeederStatus, InformationLabel } from '..';
 
 import * as S from './styles';
-import { IFeedCardProps } from './types';
+import { FeederCardProps } from './types';
 import { useFeederCard } from './useFeederCard';
 
-export function FeederCard({ feeder, sideButton, onClose }: IFeedCardProps) {
-  const {
-    estimatedDistanceUntilTheFeeder,
-    isNeedMaintenance,
-    handleNavigateToFeederDetails,
-  } = useFeederCard(feeder, onClose);
+export function FeederCard({ feeder, sideButton, onClose }: FeederCardProps) {
+  const { estimatedDistanceUntilTheFeeder, handleNavigateToFeederDetails } =
+    useFeederCard(feeder, onClose);
+
+  const { isNeedMaintenance } = useMaintenance(feeder.maintenanceStatus);
 
   const theme = useTheme();
+
+  const { street, houseNumber, neighborhood, city } = feeder.address;
 
   return (
     <S.Container>
       <S.Header>
-        <S.HighlightedWarningContainer hasActionButton={!!sideButton}>
-          <Icon
-            name={isNeedMaintenance() ? 'info' : 'checkCircle'}
-            color={theme.colors[isNeedMaintenance() ? 'red' : 'green'][500]}
-          />
-
-          <S.HighlightedWarning isNeedMaintenance={isNeedMaintenance()}>
-            {isNeedMaintenance()
-              ? 'Precisando de manutenção'
-              : 'Manutenção em dias'}
-          </S.HighlightedWarning>
-        </S.HighlightedWarningContainer>
+        <FeederStatus isNeedMaintenance={isNeedMaintenance()} size="sm" />
 
         {sideButton}
       </S.Header>
 
-      <S.Session>
-        <Icon name="signpost" color={theme.colors.gray[700]} />
-        <S.Title>
-          {feeder?.address.street}, {feeder?.address.houseNumber},{' '}
-          {feeder?.address.neighborhood}, {feeder?.address.city} (≈
-          {estimatedDistanceUntilTheFeeder})
-        </S.Title>
-      </S.Session>
+      <InformationLabel
+        label={`${street}, ${houseNumber}, ${neighborhood}, ${city} (≈ ${estimatedDistanceUntilTheFeeder})`}
+        iconName="signpost"
+        color={theme.colors.gray[700]}
+        size="sm"
+      />
 
-      <S.Session>
-        <Icon name="cookingPot" color={theme.colors.gray[500]} />
-        <S.SubTitle>{getFoodsLabel(feeder?.foods)}</S.SubTitle>
-      </S.Session>
+      <InformationLabel
+        label={getFoodsLabel(feeder.foods)}
+        iconName="cookingPot"
+        size="sm"
+      />
 
-      <S.Session>
-        <Icon name="user" color={theme.colors.gray[500]} />
-        <S.SubTitle>Comedouro de {feeder?.user.name}</S.SubTitle>
-      </S.Session>
+      <InformationLabel
+        label={`Comedouro de ${feeder.user.name}`}
+        iconName="user"
+        size="sm"
+      />
 
       <S.Actions>
         <Button.Root

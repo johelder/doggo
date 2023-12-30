@@ -1,30 +1,17 @@
-import { useCallback, useMemo } from 'react';
+import { useMemo } from 'react';
 
-import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import { useNavigation } from '@react-navigation/native';
 
 import { FeederDomain } from '@data';
 import { useMap } from '@hooks';
-import { date, getFormattedDistanceBetweenTwoPoints } from '@utils';
+import { getFormattedDistanceBetweenTwoPoints } from '@utils';
 
-export function useFeederCard(
-  feeder: FeederDomain | null,
-  onClose?: () => void,
-) {
+export function useFeederCard(feeder: FeederDomain, onClose?: () => void) {
   const { currentUserLocation } = useMap();
 
   const navigation = useNavigation();
 
-  const lastSupplyDate = feeder?.maintenanceStatus?.supply
-    .updatedAt as FirebaseFirestoreTypes.Timestamp;
-  const lastCleaningDate = feeder?.maintenanceStatus?.cleaning
-    .updatedAt as FirebaseFirestoreTypes.Timestamp;
-
   function handleNavigateToFeederDetails() {
-    if (!feeder?.id) {
-      return;
-    }
-
     onClose?.();
 
     navigation.navigate('FeederDetails', {
@@ -34,26 +21,14 @@ export function useFeederCard(
   }
 
   const estimatedDistanceUntilTheFeeder = useMemo(() => {
-    if (!currentUserLocation || !feeder?.coordinates) {
-      return 0;
-    }
-
     return getFormattedDistanceBetweenTwoPoints(
       currentUserLocation,
       feeder.coordinates,
     );
-  }, [currentUserLocation, feeder?.coordinates]);
-
-  const isNeedMaintenance = useCallback(() => {
-    const supplyUpdate = date.getDaysDifference(lastSupplyDate?.toDate());
-    const cleaningDate = date.getDaysDifference(lastCleaningDate?.toDate());
-
-    return supplyUpdate < -1 || cleaningDate < -15;
-  }, [lastCleaningDate, lastSupplyDate]);
+  }, [currentUserLocation, feeder.coordinates]);
 
   return {
     estimatedDistanceUntilTheFeeder,
-    isNeedMaintenance,
     handleNavigateToFeederDetails,
   };
 }
