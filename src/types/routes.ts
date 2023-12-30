@@ -23,6 +23,7 @@ export type TRootStackParamList = {
   Favorites: undefined;
   FeederDetails: {
     feederId: string;
+    feederOwner: string | null;
   };
   Welcome: undefined;
   Settings: undefined;
