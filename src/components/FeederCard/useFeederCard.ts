@@ -5,10 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import { FeederDomain } from '@data';
 import { useMap } from '@hooks';
-import {
-  getDaysDifference,
-  getFormattedDistanceBetweenTwoPoints,
-} from '@utils';
+import { date, getFormattedDistanceBetweenTwoPoints } from '@utils';
 
 export function useFeederCard(
   feeder: FeederDomain | null,
@@ -30,7 +27,10 @@ export function useFeederCard(
 
     onClose?.();
 
-    navigation.navigate('FeederDetails', { feederId: feeder.id });
+    navigation.navigate('FeederDetails', {
+      feederId: feeder.id,
+      feederOwner: feeder.user.name,
+    });
   }
 
   const estimatedDistanceUntilTheFeeder = useMemo(() => {
@@ -45,8 +45,8 @@ export function useFeederCard(
   }, [currentUserLocation, feeder?.coordinates]);
 
   const isNeedMaintenance = useCallback(() => {
-    const supplyUpdate = getDaysDifference(lastSupplyDate?.toDate());
-    const cleaningDate = getDaysDifference(lastCleaningDate?.toDate());
+    const supplyUpdate = date.getDaysDifference(lastSupplyDate?.toDate());
+    const cleaningDate = date.getDaysDifference(lastCleaningDate?.toDate());
 
     return supplyUpdate < -1 || cleaningDate < -15;
   }, [lastCleaningDate, lastSupplyDate]);
