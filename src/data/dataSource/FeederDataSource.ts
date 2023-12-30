@@ -108,14 +108,14 @@ async function updateMaintenance(
 
   if (status.includes('supply')) {
     firestore().collection(FIRESTORE_FEEDERS_COLLECTION).doc(feederId).update({
-      'maintenanceStatus.supply': payload,
+      'maintenance_status.supply': payload,
     });
 
     return;
   }
 
   firestore().collection(FIRESTORE_FEEDERS_COLLECTION).doc(feederId).update({
-    'maintenanceStatus.cleaning': payload,
+    'maintenance_status.cleaning': payload,
   });
 }
 

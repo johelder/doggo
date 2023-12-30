@@ -1,6 +1,8 @@
 import { useRef } from 'react';
 
-import firestore from '@react-native-firebase/firestore';
+import firestore, {
+  FirebaseFirestoreTypes,
+} from '@react-native-firebase/firestore';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 import { FeederFormRefProps } from '@components';
@@ -70,7 +72,8 @@ export function useCreateFeeder() {
     }
 
     const maintenance = {
-      updatedAt: firestore.FieldValue.serverTimestamp(),
+      updatedAt:
+        firestore.FieldValue.serverTimestamp() as FirebaseFirestoreTypes.Timestamp,
       updatedBy: {
         userId: user.id,
         userName: user.name,

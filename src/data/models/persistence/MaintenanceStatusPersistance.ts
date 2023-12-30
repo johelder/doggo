@@ -6,7 +6,7 @@ export interface MaintenanceStatusPersistance {
 }
 
 export interface MaintenancePersistance {
-  updated_at: FirebaseFirestoreTypes.FieldValue;
+  updated_at: FirebaseFirestoreTypes.Timestamp;
   updated_by: {
     user_id: string;
     user_name: string | null;

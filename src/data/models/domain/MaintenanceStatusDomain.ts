@@ -6,7 +6,7 @@ export interface MaintenanceStatusDomain {
 }
 
 export interface MaintenanceDomain {
-  updatedAt: FirebaseFirestoreTypes.FieldValue;
+  updatedAt: FirebaseFirestoreTypes.Timestamp;
   updatedBy: {
     userId: string;
     userName: string | null;
