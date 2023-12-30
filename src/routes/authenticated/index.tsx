@@ -87,7 +87,15 @@ export function AuthenticatedRoutes() {
               headerTitle: 'FAVORITOS',
             }}
           />
-          <Stack.Screen name="FeederDetails" component={FeederDetails} />
+          <Stack.Screen
+            name="FeederDetails"
+            component={FeederDetails}
+            options={({ route }) => ({
+              title: `COMEDOURO DE ${route.params.feederOwner
+                ?.split(' ')[0]
+                .toUpperCase()}`,
+            })}
+          />
           <Stack.Screen
             name="Settings"
             component={Settings}
