@@ -11,9 +11,9 @@ import {
 import { grayScale } from '../../customStyles';
 
 import * as S from './styles';
-import { IMiniMapProps } from './types';
+import { MiniMapProps } from './types';
 
-export function MiniMap({ coords, headerHeight }: IMiniMapProps) {
+export function MiniMap({ coords, headerHeight }: MiniMapProps) {
   return (
     <S.Container
       initialRegion={{

@@ -1,6 +1,6 @@
-import { TCoordinates } from '@types';
+import { Location } from '@domain';
 
-export interface IMiniMapProps {
-  coords: TCoordinates;
+export interface MiniMapProps {
+  coords: Location;
   headerHeight: number;
 }
