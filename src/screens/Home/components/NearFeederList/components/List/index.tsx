@@ -6,7 +6,7 @@ import { FeederDomain } from '@data';
 
 import { EmptyList } from '../EmptyList';
 
-import * as S from './styles';
+import * as Styled from './styles';
 import { ListProps } from './types';
 import { useList } from './useList';
 
@@ -28,15 +28,15 @@ export function List({
     item: feeder,
   }: ListRenderItemInfo<FeederDomain>) {
     return (
-      <S.NearFeederContainer
+      <Styled.NearFeederContainer
         onPress={() => handleClickOnNearFeeder(feeder.coordinates)}>
         <FeederCard feeder={feeder} />
-      </S.NearFeederContainer>
+      </Styled.NearFeederContainer>
     );
   }
 
   return (
-    <S.List
+    <Styled.List
       data={feeders}
       keyExtractor={(feeder: FeederDomain) => feeder.id}
       renderItem={renderNearFeeder}

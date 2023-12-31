@@ -1,6 +1,6 @@
 import { FeederDomain } from '@data';
 
-export interface IFeederAddressProps {
+export interface FeederAddressProps {
   feeder: FeederDomain;
   onOpenDetails: () => void;
 }

@@ -5,7 +5,7 @@ import { useTheme } from 'styled-components/native';
 import { Button, Icon, PageAlert } from '@components';
 import { handleOpenSupport } from '@utils';
 
-import * as S from './styles';
+import * as Styled from './styles';
 import { ErrorFallbackProps } from './types';
 
 export function ErrorFallback({
@@ -34,13 +34,13 @@ export function ErrorFallback({
             </Button.Text>
           </Button.Root>
 
-          <S.Label>
+          <Styled.Label>
             Se o problema persistir, por favor,{' '}
-            <S.Highlighted onPress={handleOpenSupport}>
+            <Styled.Highlighted onPress={handleOpenSupport}>
               contate-nos
-            </S.Highlighted>
+            </Styled.Highlighted>
             .
-          </S.Label>
+          </Styled.Label>
         </>
       }
     />

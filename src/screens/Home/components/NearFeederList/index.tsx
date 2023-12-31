@@ -3,7 +3,7 @@ import React from 'react';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 
 import { List, Header } from './components';
-import * as S from './styles';
+import * as Styled from './styles';
 import { NearFeederListProps } from './types';
 
 export function NearFeederList({
@@ -14,7 +14,7 @@ export function NearFeederList({
   const tabBarHeight = useBottomTabBarHeight();
 
   return (
-    <S.NearFeedersContainer tabBarHeight={tabBarHeight}>
+    <Styled.NearFeedersContainer tabBarHeight={tabBarHeight}>
       <Header
         isVisible={feeders.length > 0}
         isNearFeederListExpanded={isNearFeederListExpanded}
@@ -25,6 +25,6 @@ export function NearFeederList({
         feeders={feeders}
         isNearFeederListExpanded={isNearFeederListExpanded}
       />
-    </S.NearFeedersContainer>
+    </Styled.NearFeedersContainer>
   );
 }

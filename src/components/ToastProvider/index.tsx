@@ -4,7 +4,7 @@ import { Toast } from './components/Toast';
 import * as Styled from './styles';
 import { useToastProvider } from './useToastProvider';
 
-export function ToastProvider() {
+export function ToastProvider(): React.JSX.Element {
   const { toasts, handleRemoveToast } = useToastProvider();
 
   return (

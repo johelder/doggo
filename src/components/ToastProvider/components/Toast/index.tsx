@@ -5,11 +5,15 @@ import { useTheme } from 'styled-components/native';
 
 import { Icon } from '@components';
 
-import * as S from './styles';
+import * as Styled from './styles';
 import { ToastProps } from './types';
 import { toastIconMapper, useToast } from './useToast';
 
-export function Toast({ isVisible, toast, onRemove }: ToastProps) {
+export function Toast({
+  isVisible,
+  toast,
+  onRemove,
+}: ToastProps): React.JSX.Element | null {
   const { animatedStyle, handleRemove, swipeUpGesture } = useToast({
     isVisible,
     toast,
@@ -23,13 +27,13 @@ export function Toast({ isVisible, toast, onRemove }: ToastProps) {
 
   return (
     <GestureDetector gesture={swipeUpGesture}>
-      <S.Content type={toast.type} style={[animatedStyle]}>
+      <Styled.Content type={toast.type} style={[animatedStyle]}>
         <Icon name={toastIconMapper[toast.type]} color={theme.colors.gray[0]} />
 
-        <S.Message>{toast.message}</S.Message>
+        <Styled.Message>{toast.message}</Styled.Message>
 
         <Icon name="x" color={theme.colors.gray[0]} onPress={handleRemove} />
-      </S.Content>
+      </Styled.Content>
     </GestureDetector>
   );
 }

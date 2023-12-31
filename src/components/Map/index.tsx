@@ -9,7 +9,11 @@ import { LATITUDE_DELTA, LONGITUDE_DELTA } from './constants';
 import { MapProps } from './types';
 import { useMapComponent } from './useMapComponent';
 
-export function Map({ isClustering = false, children, ...rest }: MapProps) {
+export function Map({
+  isClustering = false,
+  children,
+  ...rest
+}: MapProps): JSX.Element {
   const { currentUserLocation, mapRef } = useMap();
   const { MapComponent } = useMapComponent(isClustering);
   const theme = useTheme();

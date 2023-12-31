@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { TouchableOpacityProps } from 'react-native';
 
-export interface IChipButtonProps extends TouchableOpacityProps {
+export interface ChipButtonProps extends TouchableOpacityProps {
   isSelected: boolean;
   children: ReactNode;
 }

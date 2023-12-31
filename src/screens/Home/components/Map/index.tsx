@@ -6,7 +6,7 @@ import { Map as MapComponent, grayScale } from '@components';
 
 import { CustomMarker } from '../CustomMarker';
 
-import * as S from './styles';
+import * as Styled from './styles';
 import { MapProps } from './types';
 
 export function Map({
@@ -17,7 +17,7 @@ export function Map({
   handleOpenTooltip,
 }: MapProps): React.JSX.Element {
   return (
-    <S.MapContainer
+    <Styled.MapContainer
       hasNearFeeders={nearFeeders.length > 0}
       isNearFeederListExpanded={isNearFeederListExpanded}>
       <MapComponent
@@ -39,6 +39,6 @@ export function Map({
           </Marker>
         ))}
       </MapComponent>
-    </S.MapContainer>
+    </Styled.MapContainer>
   );
 }

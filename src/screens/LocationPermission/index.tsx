@@ -6,24 +6,24 @@ import {
   RequestLocationPermissionBanner,
 } from '@components';
 
-import * as S from './styles';
+import * as Styled from './styles';
 import { useLocationPermission } from './useLocationPermission';
 
-export function LocationPermission() {
+export function LocationPermission(): React.JSX.Element {
   const { handlerRequestUserLocation, requestPermissionModalRef } =
     useLocationPermission();
 
   return (
-    <S.Container>
-      <S.Content>
+    <Styled.Container>
+      <Styled.Content>
         <RequestLocationPermissionBanner />
 
         <Button.Root type="filled" onPress={handlerRequestUserLocation}>
           <Button.Text>Permitir Localização</Button.Text>
         </Button.Root>
-      </S.Content>
+      </Styled.Content>
 
       <RequestLocationPermissionModal modalRef={requestPermissionModalRef} />
-    </S.Container>
+    </Styled.Container>
   );
 }

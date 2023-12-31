@@ -4,36 +4,38 @@ import { useTheme } from 'styled-components/native';
 
 import { Icon } from '@components';
 
-import * as S from './styles';
-import { IMarkerProps } from './types';
+import * as Styled from './styles';
+import { MarkerProps } from './types';
 
-export function Marker({ isTooltipVisible = false }: IMarkerProps) {
+export function Marker({
+  isTooltipVisible = false,
+}: MarkerProps): React.JSX.Element {
   const theme = useTheme();
 
   return (
-    <S.Container pointerEvents="none">
-      <S.Content>
+    <Styled.Container pointerEvents="none">
+      <Styled.Content>
         {isTooltipVisible && (
-          <S.TooltipContainer>
-            <S.TooltipContent>
-              <S.TooltipTitle>Seu comedouro é aqui?</S.TooltipTitle>
-              <S.TooltipDescription>
+          <Styled.TooltipContainer>
+            <Styled.TooltipContent>
+              <Styled.TooltipTitle>Seu comedouro é aqui?</Styled.TooltipTitle>
+              <Styled.TooltipDescription>
                 Arraste para ajustar{'\n'} a localização
-              </S.TooltipDescription>
-            </S.TooltipContent>
+              </Styled.TooltipDescription>
+            </Styled.TooltipContent>
 
-            <S.TooltipTriangle />
-          </S.TooltipContainer>
+            <Styled.TooltipTriangle />
+          </Styled.TooltipContainer>
         )}
 
-        <S.Marker>
+        <Styled.Marker>
           <Icon
             name="mapPinFilled"
             size={42}
             color={theme.colors.orange[500]}
           />
-        </S.Marker>
-      </S.Content>
-    </S.Container>
+        </Styled.Marker>
+      </Styled.Content>
+    </Styled.Container>
   );
 }

@@ -12,7 +12,7 @@ export function InformationLabel({
   label,
   size = 'md',
   color,
-}: InformationLabelProps): JSX.Element {
+}: InformationLabelProps): React.JSX.Element {
   const theme = useTheme();
 
   return (

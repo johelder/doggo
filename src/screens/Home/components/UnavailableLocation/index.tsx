@@ -6,18 +6,18 @@ import {
 } from '@components';
 import { useMap } from '@domain';
 
-import * as S from './styles';
+import * as Styled from './styles';
 
 export function UnavailableLocation(): React.JSX.Element {
   const { requestLocationPermissionModalRef } = useMap();
 
   return (
-    <S.LocationNotAvailableContainer>
+    <Styled.LocationNotAvailableContainer>
       <RequestLocationPermissionBanner />
 
       <RequestLocationPermissionModal
         modalRef={requestLocationPermissionModalRef}
       />
-    </S.LocationNotAvailableContainer>
+    </Styled.LocationNotAvailableContainer>
   );
 }

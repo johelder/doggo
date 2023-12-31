@@ -7,7 +7,7 @@ import { Icon, NavigationButton } from '@components';
 import { useAuth } from '@domain';
 import { THomeTabScreenProps } from '@types';
 
-import * as S from './styles';
+import * as Styled from './styles';
 
 export function Profile({
   navigation,
@@ -17,19 +17,19 @@ export function Profile({
   const theme = useTheme();
 
   return (
-    <S.Container>
-      <S.Content tabBarHeight={tabBarHeight}>
-        <S.MainContent>
-          <S.HeaderContainer>
-            <S.ProfilePhotoContainer>
-              <S.ProfilePhoto source={{ uri: user?.photo ?? '' }} />
-            </S.ProfilePhotoContainer>
+    <Styled.Container>
+      <Styled.Content tabBarHeight={tabBarHeight}>
+        <Styled.MainContent>
+          <Styled.HeaderContainer>
+            <Styled.ProfilePhotoContainer>
+              <Styled.ProfilePhoto source={{ uri: user?.photo ?? '' }} />
+            </Styled.ProfilePhotoContainer>
 
-            <S.InfoContainer>
-              <S.ProfileName>{user?.name}</S.ProfileName>
-              <S.ProfileEmail>{user?.email}</S.ProfileEmail>
-            </S.InfoContainer>
-          </S.HeaderContainer>
+            <Styled.InfoContainer>
+              <Styled.ProfileName>{user?.name}</Styled.ProfileName>
+              <Styled.ProfileEmail>{user?.email}</Styled.ProfileEmail>
+            </Styled.InfoContainer>
+          </Styled.HeaderContainer>
 
           <NavigationButton
             title="Novo comedouro"
@@ -62,8 +62,8 @@ export function Profile({
             icon={() => <Icon name="gear" color={theme.colors.gray[700]} />}
             onPress={() => navigation.navigate('Settings')}
           />
-        </S.MainContent>
-      </S.Content>
-    </S.Container>
+        </Styled.MainContent>
+      </Styled.Content>
+    </Styled.Container>
   );
 }

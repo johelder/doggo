@@ -7,11 +7,15 @@ import { getFoodsLabel } from '@utils';
 
 import { Button, FeederStatus, InformationLabel } from '..';
 
-import * as S from './styles';
+import * as Styled from './styles';
 import { FeederCardProps } from './types';
 import { useFeederCard } from './useFeederCard';
 
-export function FeederCard({ feeder, sideButton, onClose }: FeederCardProps) {
+export function FeederCard({
+  feeder,
+  sideButton,
+  onClose,
+}: FeederCardProps): React.JSX.Element {
   const { estimatedDistanceUntilTheFeeder, handleNavigateToFeederDetails } =
     useFeederCard(feeder, onClose);
 
@@ -22,15 +26,15 @@ export function FeederCard({ feeder, sideButton, onClose }: FeederCardProps) {
   const { street, houseNumber, neighborhood, city } = feeder.address;
 
   return (
-    <S.Container>
-      <S.Header>
+    <Styled.Container>
+      <Styled.Header>
         <FeederStatus
           align={sideButton ? 'center' : 'left'}
           isNeedMaintenance={isNeedMaintenance()}
           size="sm"
         />
         {sideButton}
-      </S.Header>
+      </Styled.Header>
 
       <InformationLabel
         label={`${street}, ${houseNumber}, ${neighborhood}, ${city} (≈ ${estimatedDistanceUntilTheFeeder})`}
@@ -51,7 +55,7 @@ export function FeederCard({ feeder, sideButton, onClose }: FeederCardProps) {
         size="sm"
       />
 
-      <S.Actions>
+      <Styled.Actions>
         <Button.Root
           type="unfilled"
           height={25}
@@ -60,7 +64,7 @@ export function FeederCard({ feeder, sideButton, onClose }: FeederCardProps) {
             Ver detalhes
           </Button.Text>
         </Button.Root>
-      </S.Actions>
-    </S.Container>
+      </Styled.Actions>
+    </Styled.Container>
   );
 }

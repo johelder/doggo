@@ -5,7 +5,7 @@ import { useTheme } from 'styled-components/native';
 
 import { Button, Icon } from '@components';
 
-import * as S from './styles';
+import * as Styled from './styles';
 
 export function EmptyList(): React.JSX.Element {
   const theme = useTheme();
@@ -16,11 +16,11 @@ export function EmptyList(): React.JSX.Element {
   }
 
   return (
-    <S.ListEmptyContainer>
-      <S.Title>Nenhum comedouro próximo.</S.Title>
-      <S.Description>
+    <Styled.ListEmptyContainer>
+      <Styled.Title>Nenhum comedouro próximo.</Styled.Title>
+      <Styled.Description>
         Que tal cadastrar seu comedouro e ajudar animais próximos a você?
-      </S.Description>
+      </Styled.Description>
 
       <Button.Root type="filled" onPress={handleRedirectToSelectLocation}>
         <Button.Icon>
@@ -29,6 +29,6 @@ export function EmptyList(): React.JSX.Element {
 
         <Button.Text>Novo comedouro</Button.Text>
       </Button.Root>
-    </S.ListEmptyContainer>
+    </Styled.ListEmptyContainer>
   );
 }

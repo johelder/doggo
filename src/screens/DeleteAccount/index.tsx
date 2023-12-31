@@ -5,7 +5,7 @@ import { useTheme } from 'styled-components/native';
 
 import { Button, Icon } from '@components';
 
-import * as S from './styles';
+import * as Styled from './styles';
 import { useDeleteAccount } from './useDeleteAccount';
 
 export function DeleteAccount(): React.JSX.Element {
@@ -13,18 +13,18 @@ export function DeleteAccount(): React.JSX.Element {
   const theme = useTheme();
 
   return (
-    <S.Container>
-      <S.Content>
-        <S.Header>
-          <S.Title>Exclusão de conta</S.Title>
+    <Styled.Container>
+      <Styled.Content>
+        <Styled.Header>
+          <Styled.Title>Exclusão de conta</Styled.Title>
 
-          <S.Description>
+          <Styled.Description>
             Essa ação não pode ser desfeita. Isso excluirá permanetemente a sua
             conta e seus comedouros do aplicativo doggo.
-          </S.Description>
+          </Styled.Description>
 
           <DeleteAccountIllustration width="100%" height="60%" />
-        </S.Header>
+        </Styled.Header>
 
         <Button.Root
           type="filled"
@@ -35,7 +35,7 @@ export function DeleteAccount(): React.JSX.Element {
           </Button.Icon>
           <Button.Text>Excluir</Button.Text>
         </Button.Root>
-      </S.Content>
-    </S.Container>
+      </Styled.Content>
+    </Styled.Container>
   );
 }

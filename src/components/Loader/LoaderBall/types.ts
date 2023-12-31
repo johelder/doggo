@@ -1,3 +1,3 @@
-export interface ILoaderBallProps {
+export interface LoaderBallProps {
   initialDelay: number;
 }

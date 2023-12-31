@@ -6,27 +6,30 @@ import { getFoodsLabel } from '@utils';
 
 import { Icon } from '../Icon';
 
-import * as S from './styles';
-import { IFeederAddressProps } from './types';
+import * as Styled from './styles';
+import { FeederAddressProps } from './types';
 
-export function FeederAddress({ feeder, onOpenDetails }: IFeederAddressProps) {
+export function FeederAddress({
+  feeder,
+  onOpenDetails,
+}: FeederAddressProps): React.JSX.Element {
   const { street, houseNumber, neighborhood, city } = feeder.address;
   const theme = useTheme();
 
   return (
-    <S.Container onPress={onOpenDetails}>
+    <Styled.Container onPress={onOpenDetails}>
       <Icon name="mapPinFilled" color={theme.colors.orange[500]} />
 
-      <S.LabelsContainer>
-        <S.Title>
+      <Styled.LabelsContainer>
+        <Styled.Title>
           {street}, {houseNumber}, {neighborhood} - {city}
-        </S.Title>
-        <S.Description>{getFoodsLabel(feeder.foods)}</S.Description>
-      </S.LabelsContainer>
+        </Styled.Title>
+        <Styled.Description>{getFoodsLabel(feeder.foods)}</Styled.Description>
+      </Styled.LabelsContainer>
 
-      <S.IconContainer>
+      <Styled.IconContainer>
         <Icon name="dotsThreeVertical" color={theme.colors.gray[700]} />
-      </S.IconContainer>
-    </S.Container>
+      </Styled.IconContainer>
+    </Styled.Container>
   );
 }

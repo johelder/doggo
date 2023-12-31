@@ -8,17 +8,19 @@ import { TRootStackScreenProps } from '@types';
 
 import { version } from '../../../package.json';
 
-import * as S from './styles';
+import * as Styled from './styles';
 
-export function Settings({ navigation }: TRootStackScreenProps<'Settings'>) {
+export function Settings({
+  navigation,
+}: TRootStackScreenProps<'Settings'>): React.JSX.Element {
   const { handleSignOut } = useAuth();
 
   const theme = useTheme();
 
   return (
-    <S.Container>
-      <S.Content>
-        <S.MainContent>
+    <Styled.Container>
+      <Styled.Content>
+        <Styled.MainContent>
           <NavigationButton
             title="Termos de Uso"
             onPress={() => navigation.navigate('TermsOfUse')}
@@ -33,10 +35,10 @@ export function Settings({ navigation }: TRootStackScreenProps<'Settings'>) {
             title="Excluir Minha Conta"
             onPress={() => navigation.navigate('DeleteAccount')}
           />
-        </S.MainContent>
+        </Styled.MainContent>
 
-        <S.Footer>
-          <S.Label>Versão - {version}</S.Label>
+        <Styled.Footer>
+          <Styled.Label>Versão - {version}</Styled.Label>
 
           <Button.Root
             type="outline"
@@ -50,8 +52,8 @@ export function Settings({ navigation }: TRootStackScreenProps<'Settings'>) {
               Sair do Aplicativo
             </Button.Text>
           </Button.Root>
-        </S.Footer>
-      </S.Content>
-    </S.Container>
+        </Styled.Footer>
+      </Styled.Content>
+    </Styled.Container>
   );
 }

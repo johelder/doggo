@@ -5,7 +5,7 @@ import Animated from 'react-native-reanimated';
 
 import { useAuth } from '@domain';
 
-import * as S from './styles';
+import * as Styled from './styles';
 import { useSplash } from './useSplash';
 
 export function Splash(): React.JSX.Element {
@@ -13,10 +13,10 @@ export function Splash(): React.JSX.Element {
   const { animatedStyles } = useSplash(setIsLoadingAuthState);
 
   return (
-    <S.Container>
+    <Styled.Container>
       <Animated.View style={animatedStyles}>
         <Logo />
       </Animated.View>
-    </S.Container>
+    </Styled.Container>
   );
 }

@@ -7,7 +7,7 @@ import { FeederDomain } from '@data';
 import { EmptyList } from './components/EmptyList';
 import { ErrorFallback } from './components/ErrorFallback';
 import { FeederDetailsModal } from './components/FeederDetailsModal';
-import * as S from './styles';
+import * as Styled from './styles';
 import { useMyFeeders } from './useMyFeeders';
 
 export function MyFeeders(): React.JSX.Element {
@@ -43,15 +43,15 @@ export function MyFeeders(): React.JSX.Element {
   }
 
   return (
-    <S.Container>
-      <S.Content>
-        <S.Feeders
+    <Styled.Container>
+      <Styled.Content>
+        <Styled.Feeders
           data={feederList}
           keyExtractor={(feeder: FeederDomain) => feeder.id}
           renderItem={renderFeeder}
           ListEmptyComponent={EmptyList}
         />
-      </S.Content>
+      </Styled.Content>
 
       <FeederDetailsModal
         detailsModalRef={detailsModalRef}
@@ -60,6 +60,6 @@ export function MyFeeders(): React.JSX.Element {
         onDelete={removeFeeder}
         onEdit={handleNavigateToSelectLocation}
       />
-    </S.Container>
+    </Styled.Container>
   );
 }

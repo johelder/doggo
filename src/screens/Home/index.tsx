@@ -2,8 +2,7 @@ import React from 'react';
 import { StatusBar } from 'react-native';
 
 import { Loader } from '@components';
-import { useFeederFindAll, useFeederFindNearest } from '@domain';
-import { useMap } from '@domain';
+import { useFeederFindAll, useFeederFindNearest, useMap } from '@domain';
 
 import {
   Map,
@@ -11,7 +10,7 @@ import {
   Tooltip,
   UnavailableLocation,
 } from './components';
-import * as S from './styles';
+import * as Styled from './styles';
 import { useHome } from './useHome';
 
 export function Home(): React.JSX.Element {
@@ -42,8 +41,8 @@ export function Home(): React.JSX.Element {
     <>
       <StatusBar barStyle="dark-content" backgroundColor="transparent" />
 
-      <S.Container>
-        <S.Content>
+      <Styled.Container>
+        <Styled.Content>
           <Map
             feeders={feeders}
             nearFeeders={nearFeeders}
@@ -51,7 +50,7 @@ export function Home(): React.JSX.Element {
             setIsTooltipVisible={setIsTooltipVisible}
             handleOpenTooltip={handleOpenTooltip}
           />
-        </S.Content>
+        </Styled.Content>
 
         <NearFeederList
           feeders={nearFeeders}
@@ -64,7 +63,7 @@ export function Home(): React.JSX.Element {
           setIsTooltipVisible={setIsTooltipVisible}
           currentFeederOpened={currentFeederOpened}
         />
-      </S.Container>
+      </Styled.Container>
     </>
   );
 }

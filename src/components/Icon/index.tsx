@@ -11,7 +11,7 @@ export function Icon({
   size = 24,
   color = theme.colors.gray[900],
   onPress,
-}: IconProps) {
+}: IconProps): React.JSX.Element {
   const IconComponent = iconMapper[name];
 
   if (onPress) {

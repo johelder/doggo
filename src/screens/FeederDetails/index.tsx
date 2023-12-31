@@ -5,11 +5,11 @@ import { useFeederFindOne } from '@domain';
 import { TRootStackScreenProps } from '@types';
 
 import { FeederLocationSection, FeederStatusSection } from './components';
-import * as S from './styles';
+import * as Styled from './styles';
 
 export function FeederDetails({
   route,
-}: TRootStackScreenProps<'FeederDetails'>) {
+}: TRootStackScreenProps<'FeederDetails'>): React.JSX.Element | null {
   const { feeder, isLoading } = useFeederFindOne({
     id: route.params.feederId,
   });
@@ -23,17 +23,17 @@ export function FeederDetails({
   }
 
   return (
-    <S.Container>
-      <S.Content>
+    <Styled.Container>
+      <Styled.Content>
         <FeederStatusSection
           feederId={feeder.id}
           maintenanceStatus={feeder.maintenanceStatus}
         />
 
-        <S.Separator />
+        <Styled.Separator />
 
         <FeederLocationSection feeder={feeder} />
-      </S.Content>
-    </S.Container>
+      </Styled.Content>
+    </Styled.Container>
   );
 }

@@ -4,7 +4,7 @@ import { useTheme } from 'styled-components/native';
 
 import { FeederCard, Icon } from '@components';
 
-import * as S from './styles';
+import * as Styled from './styles';
 import { TooltipProps } from './types';
 
 export function Tooltip({
@@ -20,23 +20,23 @@ export function Tooltip({
 
   return (
     <>
-      <S.Overlay onTouchStart={() => setIsTooltipVisible(false)} />
+      <Styled.Overlay onTouchStart={() => setIsTooltipVisible(false)} />
 
-      <S.CustomCalloutContainer>
+      <Styled.CustomCalloutContainer>
         <FeederCard
           feeder={currentFeederOpened}
           onClose={() => setIsTooltipVisible(false)}
           sideButton={
-            <S.CloseButton>
+            <Styled.CloseButton>
               <Icon
                 name="x"
                 color={theme.colors.gray[700]}
                 onPress={() => setIsTooltipVisible(false)}
               />
-            </S.CloseButton>
+            </Styled.CloseButton>
           }
         />
-      </S.CustomCalloutContainer>
+      </Styled.CustomCalloutContainer>
     </>
   );
 }

@@ -4,7 +4,7 @@ import { useTheme } from 'styled-components/native';
 
 import { Icon } from '@components';
 
-import * as S from './styles';
+import * as Styled from './styles';
 import { HeaderProps } from './types';
 
 export function Header({
@@ -19,13 +19,13 @@ export function Header({
   }
 
   return (
-    <S.HeaderContainer onPress={handleToggleNearFeederList}>
-      <S.Title>Comedouros perto de você</S.Title>
+    <Styled.HeaderContainer onPress={handleToggleNearFeederList}>
+      <Styled.Title>Comedouros perto de você</Styled.Title>
 
       <Icon
         name={isNearFeederListExpanded ? 'caretDown' : 'caretUp'}
         color={theme.colors.gray[700]}
       />
-    </S.HeaderContainer>
+    </Styled.HeaderContainer>
   );
 }

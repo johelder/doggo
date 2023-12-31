@@ -1,13 +1,16 @@
 import React from 'react';
 
-import * as S from './styles';
+import * as Styled from './styles';
 import { CustomHeaderTitleProps } from './types';
 
-export function CustomHeaderTitle({ title, subTitle }: CustomHeaderTitleProps) {
+export function CustomHeaderTitle({
+  title,
+  subTitle,
+}: CustomHeaderTitleProps): React.JSX.Element {
   return (
-    <S.Container>
-      <S.Title>{title}</S.Title>
-      <S.SubTitle>{subTitle}</S.SubTitle>
-    </S.Container>
+    <Styled.Container>
+      <Styled.Title>{title}</Styled.Title>
+      <Styled.SubTitle>{subTitle}</Styled.SubTitle>
+    </Styled.Container>
   );
 }

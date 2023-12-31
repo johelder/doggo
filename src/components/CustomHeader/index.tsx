@@ -9,14 +9,14 @@ import { useTheme } from 'styled-components/native';
 import { Loader } from '../Loader';
 
 import { CustomHeaderTitle } from './components/CustomHeaderTitle';
-import * as S from './styles';
+import * as Styled from './styles';
 import { CustomHeaderProps } from './types';
 
 export function CustomHeader({
   title,
   subTitle,
   isLoading,
-}: CustomHeaderProps) {
+}: CustomHeaderProps): React.JSX.Element {
   const screenWidth = Dimensions.get('window').width + 10;
   const headerHeight = useHeaderHeight();
   const theme = useTheme();
@@ -41,8 +41,8 @@ export function CustomHeader({
   }, [navigation, renderCustomHeaderTitle]);
 
   return (
-    <S.Container>
-      <S.Header
+    <Styled.Container>
+      <Styled.Header
         style={{
           height: headerHeight,
           width: screenWidth,
@@ -66,6 +66,6 @@ export function CustomHeader({
         </Defs>
         <Rect width={screenWidth} height={headerHeight} fill="url(#grad)" />
       </Svg>
-    </S.Container>
+    </Styled.Container>
   );
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import * as S from './styles';
-import { IInputProps } from './types';
+import * as Styled from './styles';
+import { InputProps } from './types';
 import { useInput } from './useInput';
 
 export function Input({
@@ -9,7 +9,7 @@ export function Input({
   value,
   isOptional = false,
   ...rest
-}: IInputProps) {
+}: InputProps): React.JSX.Element {
   const {
     onLayout,
     animatedPlaceholderPositionStyle,
@@ -19,21 +19,21 @@ export function Input({
   } = useInput(value);
 
   return (
-    <S.Container isInputFocused={isInputFocused}>
-      <S.AnimatedPlaceholderContainer
+    <Styled.Container isInputFocused={isInputFocused}>
+      <Styled.AnimatedPlaceholderContainer
         onLayout={onLayout}
         style={animatedPlaceholderPositionStyle}>
-        <S.Placeholder>{placeholder}</S.Placeholder>
+        <Styled.Placeholder>{placeholder}</Styled.Placeholder>
 
-        {isOptional && <S.OptionalLabel>(Opcional)</S.OptionalLabel>}
-      </S.AnimatedPlaceholderContainer>
+        {isOptional && <Styled.OptionalLabel>(Opcional)</Styled.OptionalLabel>}
+      </Styled.AnimatedPlaceholderContainer>
 
-      <S.Input
+      <Styled.Input
         value={value}
         onFocus={onFocus}
         onBlur={() => onBlur(value)}
         {...rest}
       />
-    </S.Container>
+    </Styled.Container>
   );
 }

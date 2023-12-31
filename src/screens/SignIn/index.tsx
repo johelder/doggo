@@ -6,40 +6,42 @@ import GoogleLogo from '@assets/images/google-logo.svg';
 import { Loader } from '@components';
 import { useAuth } from '@domain';
 
-import * as S from './styles';
+import * as Styled from './styles';
 
 export function SignIn(): React.JSX.Element {
   const { handleSignInWithGoogle, isLoadingSignIn } = useAuth();
 
   return (
-    <S.Container>
+    <Styled.Container>
       <DogLandscapeIllustration width="100%" />
 
-      <S.GreetingsContainer>
-        <S.GreetingsTitle>Bem vindo(a) ao Doggo</S.GreetingsTitle>
-        <S.GreetingsSubtitle>
+      <Styled.GreetingsContainer>
+        <Styled.GreetingsTitle>Bem vindo(a) ao Doggo</Styled.GreetingsTitle>
+        <Styled.GreetingsSubtitle>
           Cadastre o seu comedouro ou reabasteça comedouros próximos a você e
           faça parte de uma rede de compaixão animal.
-        </S.GreetingsSubtitle>
-      </S.GreetingsContainer>
+        </Styled.GreetingsSubtitle>
+      </Styled.GreetingsContainer>
 
-      <S.GoogleButton
+      <Styled.GoogleButton
         onPress={handleSignInWithGoogle}
         disabled={isLoadingSignIn}>
         {isLoadingSignIn ? (
           <Loader.Component />
         ) : (
           <>
-            <S.GoogleLogoContainer>
+            <Styled.GoogleLogoContainer>
               <GoogleLogo />
-            </S.GoogleLogoContainer>
+            </Styled.GoogleLogoContainer>
 
-            <S.GoogleButtonLabelContainer>
-              <S.GoogleButtonLabel>Continuar com o Google</S.GoogleButtonLabel>
-            </S.GoogleButtonLabelContainer>
+            <Styled.GoogleButtonLabelContainer>
+              <Styled.GoogleButtonLabel>
+                Continuar com o Google
+              </Styled.GoogleButtonLabel>
+            </Styled.GoogleButtonLabelContainer>
           </>
         )}
-      </S.GoogleButton>
-    </S.Container>
+      </Styled.GoogleButton>
+    </Styled.Container>
   );
 }

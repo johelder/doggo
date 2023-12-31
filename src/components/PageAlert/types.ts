@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 
-export interface IPageAlertProps {
+export interface PageAlertProps {
   title: string;
   description?: string;
   icon: ReactElement;
