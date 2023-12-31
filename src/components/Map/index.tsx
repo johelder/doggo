@@ -6,17 +6,13 @@ import { useTheme } from 'styled-components/native';
 import { useMap } from '@hooks';
 
 import { LATITUDE_DELTA, LONGITUDE_DELTA } from './constants';
-import { IMapProps } from './types';
+import { MapProps } from './types';
 import { useMapComponent } from './useMapComponent';
 
-export function Map({ isClustering = false, children, ...rest }: IMapProps) {
+export function Map({ isClustering = false, children, ...rest }: MapProps) {
   const { currentUserLocation, mapRef } = useMap();
   const { MapComponent } = useMapComponent(isClustering);
   const theme = useTheme();
-
-  if (!currentUserLocation) {
-    return null;
-  }
 
   return (
     <View>
