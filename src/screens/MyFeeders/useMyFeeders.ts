@@ -40,6 +40,7 @@ export function useMyFeeders() {
   function handleNavigateToSelectLocation() {
     navigation.navigate('SelectLocation', {
       feederId: currentFeederToEdit?.id ?? undefined,
+      location: currentFeederToEdit?.coordinates,
     });
   }
 

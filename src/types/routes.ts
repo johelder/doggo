@@ -5,19 +5,20 @@ import {
 } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-import { TCoordinates, TAddress } from '@types';
+import { AddressDomain } from '@data';
+import { Location } from '@domain';
 
 export type TRootStackParamList = {
   HomeTabs: NavigatorScreenParams<TRootTabParamList>;
-  SelectLocation: { feederId?: string } | undefined;
+  SelectLocation: { feederId?: string; location?: Location } | undefined;
   EditFeeder: {
     feederId: string;
-    address: TAddress;
-    coordinate: TCoordinates;
+    address: AddressDomain;
+    coordinate: Location;
   };
   CreateFeeder: {
-    address: TAddress;
-    coordinate: TCoordinates;
+    address: AddressDomain;
+    coordinate: Location;
   };
   MyFeeders: undefined;
   Favorites: undefined;
