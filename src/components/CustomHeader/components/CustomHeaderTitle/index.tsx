@@ -1,9 +1,9 @@
 import React from 'react';
 
 import * as S from './styles';
-import { ICustomHeaderTitle } from './types';
+import { CustomHeaderTitleProps } from './types';
 
-export function CustomHeaderTitle({ title, subTitle }: ICustomHeaderTitle) {
+export function CustomHeaderTitle({ title, subTitle }: CustomHeaderTitleProps) {
   return (
     <S.Container>
       <S.Title>{title}</S.Title>
