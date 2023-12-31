@@ -1,13 +1,11 @@
-import { TFood, TFoods } from '@types';
+import { FoodDomain } from '@data';
 
-export function getFoodsLabel(foods?: TFoods): string {
-  if (!foods) {
-    return '';
-  }
-
+export function getFoodsLabel(foods: {
+  [key in keyof FoodDomain]: boolean;
+}): string {
   const selectedFoods = Object.entries(foods)
     .filter(([_, isSelected]) => isSelected)
-    .map(([food]) => translateFoodName(food as TFood));
+    .map(([food]) => translateFoodName(food as keyof FoodDomain));
 
   if (selectedFoods.length === 1) {
     return `Comida para ${selectedFoods[0]}`;
@@ -27,7 +25,7 @@ export function getFoodsLabel(foods?: TFoods): string {
   return joinedFoods;
 }
 
-function translateFoodName(food: TFood) {
+function translateFoodName(food: keyof FoodDomain) {
   const translatedFoodName = {
     dog: 'cachorros',
     cat: 'gatos',
