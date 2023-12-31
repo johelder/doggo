@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 import { UserRepository } from '@data';
-import { useAuth } from '@hooks';
+import { useAuth } from '@domain';
 import { QueryKeys } from '@infrastructure';
 import { errorHandler } from '@utils';
 

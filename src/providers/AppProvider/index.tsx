@@ -6,7 +6,7 @@ import { Host } from 'react-native-portalize';
 import { ThemeProvider } from 'styled-components/native';
 
 import { ToastProvider } from '@components';
-import { AuthContextProvider, MapProvider } from '@hooks';
+import { AuthContextProvider, MapProvider } from '@domain';
 import { theme } from '@theme';
 
 import { IAppProviderProps } from './types';

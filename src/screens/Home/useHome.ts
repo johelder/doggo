@@ -4,7 +4,7 @@ import Geolocation from '@react-native-community/geolocation';
 import { useIsFocused } from '@react-navigation/native';
 
 import { FeederDomain } from '@data';
-import { useMap } from '@hooks';
+import { useMap } from '@domain';
 import { delay } from '@utils';
 
 export function useHome() {

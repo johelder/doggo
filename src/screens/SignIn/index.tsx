@@ -4,7 +4,7 @@ import DogLandscapeIllustration from '@assets/images/dog-landscape-illustration.
 import GoogleLogo from '@assets/images/google-logo.svg';
 
 import { Loader } from '@components';
-import { useAuth } from '@hooks';
+import { useAuth } from '@domain';
 
 import * as S from './styles';
 

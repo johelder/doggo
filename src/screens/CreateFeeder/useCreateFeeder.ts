@@ -7,8 +7,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 
 import { FeederFormRefProps } from '@components';
 import { FeederDomain } from '@data';
-import { FeederFormFields, useFeederCreate } from '@domain';
-import { useAuth } from '@hooks';
+import { FeederFormFields, useFeederCreate, useAuth } from '@domain';
 import { TRootStackScreenProps } from '@types';
 import { showToast } from '@utils';
 

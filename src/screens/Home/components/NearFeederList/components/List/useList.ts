@@ -1,5 +1,5 @@
 import { CoordinatesDomain } from '@data';
-import { useMap } from '@hooks';
+import { useMap } from '@domain';
 
 export function useList() {
   const { mapRef } = useMap();

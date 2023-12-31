@@ -4,7 +4,7 @@ import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { useTheme } from 'styled-components/native';
 
 import { Icon, NavigationButton } from '@components';
-import { useAuth } from '@hooks';
+import { useAuth } from '@domain';
 import { THomeTabScreenProps } from '@types';
 
 import * as S from './styles';

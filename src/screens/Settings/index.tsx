@@ -3,7 +3,7 @@ import React from 'react';
 import { useTheme } from 'styled-components/native';
 
 import { Button, Icon, NavigationButton } from '@components';
-import { useAuth } from '@hooks';
+import { useAuth } from '@domain';
 import { TRootStackScreenProps } from '@types';
 
 import { version } from '../../../package.json';

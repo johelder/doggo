@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { UserRepository } from '@data';
-import { useAuth } from '@hooks';
+import { useAuth } from '@domain';
 import { MutationOptions, QueryKeys } from '@infrastructure';
 import { errorHandler } from '@utils';
 

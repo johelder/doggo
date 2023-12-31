@@ -4,8 +4,12 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 
 import { FeederFormRefProps } from '@components';
 import { FeederDomain } from '@data';
-import { useFeederUpdate, useFeederFindOne, FeederFormFields } from '@domain';
-import { useMap } from '@hooks';
+import {
+  useFeederUpdate,
+  useFeederFindOne,
+  FeederFormFields,
+  useMap,
+} from '@domain';
 import { TRootStackScreenProps } from '@types';
 import { showToast } from '@utils';
 

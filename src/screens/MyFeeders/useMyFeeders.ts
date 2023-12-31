@@ -4,8 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Modalize } from 'react-native-modalize';
 
 import { FeederDomain } from '@data';
-import { useFeederList, useFeederRemove } from '@domain';
-import { useAuth } from '@hooks';
+import { useFeederList, useFeederRemove, useAuth } from '@domain';
 import { showToast } from '@utils';
 
 export function useMyFeeders() {

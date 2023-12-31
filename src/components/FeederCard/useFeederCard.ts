@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
 import { FeederDomain } from '@data';
-import { useMap } from '@hooks';
+import { useMap } from '@domain';
 import { getFormattedDistanceBetweenTwoPoints } from '@utils';
 
 export function useFeederCard(feeder: FeederDomain, onClose?: () => void) {

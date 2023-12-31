@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 
 import { useTheme } from 'styled-components/native';
 
-import { useMap } from '@hooks';
+import { useMap } from '@domain';
 
 import { LATITUDE_DELTA, LONGITUDE_DELTA } from './constants';
 import { MapProps } from './types';

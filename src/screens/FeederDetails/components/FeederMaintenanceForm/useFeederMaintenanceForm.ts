@@ -3,8 +3,7 @@ import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
 import { MaintenanceStatusDomain } from '@data';
-import { useFeederUpdateMaintenance } from '@domain';
-import { useAuth } from '@hooks';
+import { useFeederUpdateMaintenance, useAuth } from '@domain';
 import { showToast } from '@utils';
 
 export function useFeederMaintenanceForm(feederId: string) {

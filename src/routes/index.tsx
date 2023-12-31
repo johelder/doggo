@@ -2,7 +2,7 @@ import React from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
 
-import { useAuth } from '@hooks';
+import { useAuth } from '@domain';
 import { Splash } from '@screens';
 
 import { AuthenticatedRoutes } from './authenticated';

@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { Linking, Platform } from 'react-native';
 
 import { FeederDomain } from '@data';
-import { useMap } from '@hooks';
+import { useMap } from '@domain';
 import { getFormattedDistanceBetweenTwoPoints } from '@utils';
 
 export function useFeederLocationSection(feeder: FeederDomain) {

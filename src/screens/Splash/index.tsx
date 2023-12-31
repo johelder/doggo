@@ -3,7 +3,7 @@ import React from 'react';
 import Logo from '@assets/images/logo.svg';
 import Animated from 'react-native-reanimated';
 
-import { useAuth } from '@hooks';
+import { useAuth } from '@domain';
 
 import * as S from './styles';
 import { useSplash } from './useSplash';

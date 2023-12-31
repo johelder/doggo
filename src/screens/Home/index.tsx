@@ -3,7 +3,7 @@ import { StatusBar } from 'react-native';
 
 import { Loader } from '@components';
 import { useFeederFindAll, useFeederFindNearest } from '@domain';
-import { useMap } from '@hooks';
+import { useMap } from '@domain';
 
 import {
   Map,

@@ -3,8 +3,7 @@ import { useCallback, useRef, useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Region } from 'react-native-maps';
 
-import { GeographicalInformation, Location } from '@domain';
-import { useMap } from '@hooks';
+import { GeographicalInformation, Location, useMap } from '@domain';
 import { TRootStackScreenProps } from '@types';
 import { errorHandler, showToast } from '@utils';
 

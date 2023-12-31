@@ -4,7 +4,7 @@ import {
   RequestLocationPermissionBanner,
   RequestLocationPermissionModal,
 } from '@components';
-import { useMap } from '@hooks';
+import { useMap } from '@domain';
 
 import * as S from './styles';
 
