@@ -4,7 +4,7 @@ import { useTheme } from 'styled-components/native';
 
 import { Button, Icon, NavigationButton } from '@components';
 import { useAuth } from '@domain';
-import { TRootStackScreenProps } from '@types';
+import { AppScreenProps } from '@routes';
 
 import { version } from '../../../package.json';
 
@@ -12,7 +12,7 @@ import * as Styled from './styles';
 
 export function Settings({
   navigation,
-}: TRootStackScreenProps<'Settings'>): React.JSX.Element {
+}: AppScreenProps<'Settings'>): React.JSX.Element {
   const { handleSignOut } = useAuth();
 
   const theme = useTheme();

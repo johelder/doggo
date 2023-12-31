@@ -8,7 +8,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { FeederFormRefProps } from '@components';
 import { FeederDomain } from '@data';
 import { FeederFormFields, useFeederCreate, useAuth } from '@domain';
-import { TRootStackScreenProps } from '@types';
+import { AppScreenProps } from '@routes';
 import { showToast } from '@utils';
 
 export function useCreateFeeder() {
@@ -29,7 +29,7 @@ export function useCreateFeeder() {
     },
   });
 
-  const route = useRoute<TRootStackScreenProps<'CreateFeeder'>['route']>();
+  const route = useRoute<AppScreenProps<'CreateFeeder'>['route']>();
   const navigation = useNavigation();
 
   function navigateToMyFeedersAndResetPreviousPages() {

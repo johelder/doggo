@@ -4,14 +4,14 @@ import { ScrollView } from 'react-native';
 import { useHeaderHeight } from '@react-navigation/elements';
 
 import { FeederForm, CustomHeader, MiniMap } from '@components';
-import { TRootStackScreenProps } from '@types';
+import { AppScreenProps } from '@routes';
 
 import * as Styled from './styles';
 import { useEditFeeder } from './useEditFeeder';
 
 export function EditFeeder({
   route,
-}: TRootStackScreenProps<'EditFeeder'>): React.JSX.Element {
+}: AppScreenProps<'EditFeeder'>): React.JSX.Element {
   const headerHeight = useHeaderHeight();
   const { feederFormRef, handleUpdateFeeder, isPending } = useEditFeeder();
 

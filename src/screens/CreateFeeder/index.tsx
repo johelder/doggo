@@ -4,14 +4,14 @@ import { ScrollView } from 'react-native';
 import { useHeaderHeight } from '@react-navigation/elements';
 
 import { FeederForm, CustomHeader, MiniMap } from '@components';
-import { TRootStackScreenProps } from '@types';
+import { AppScreenProps } from '@routes';
 
 import * as Styled from './styles';
 import { useCreateFeeder } from './useCreateFeeder';
 
 export function CreateFeeder({
   route,
-}: TRootStackScreenProps<'CreateFeeder'>): React.JSX.Element {
+}: AppScreenProps<'CreateFeeder'>): React.JSX.Element {
   const headerHeight = useHeaderHeight();
   const { feederFormRef, handleCreateFeeder, isPending } = useCreateFeeder();
 

@@ -18,11 +18,11 @@ import {
   TermsOfUse,
   SelectLocation,
 } from '@screens';
-import { TRootStackParamList } from '@types';
 
 import { HomeTabs } from './BottomTabs';
+import { AuthenticatedStackParamList } from './types';
 
-const Stack = createNativeStackNavigator<TRootStackParamList>();
+const Stack = createNativeStackNavigator<AuthenticatedStackParamList>();
 
 const wrapperOptions = {
   flex: 1,

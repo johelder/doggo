@@ -4,7 +4,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { Region } from 'react-native-maps';
 
 import { GeographicalInformation, Location, useMap } from '@domain';
-import { TRootStackScreenProps } from '@types';
+import { AppScreenProps } from '@routes';
 import { errorHandler, showToast } from '@utils';
 
 export function useSelectLocation() {
@@ -18,7 +18,7 @@ export function useSelectLocation() {
   const { currentUserLocation, getAddressByCoordinate } = useMap();
 
   const navigation = useNavigation();
-  const route = useRoute<TRootStackScreenProps<'SelectLocation'>['route']>();
+  const route = useRoute<AppScreenProps<'SelectLocation'>['route']>();
 
   const currentLocation = route.params?.location ?? currentUserLocation;
 

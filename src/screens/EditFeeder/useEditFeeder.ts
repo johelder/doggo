@@ -10,14 +10,14 @@ import {
   FeederFormFields,
   useMap,
 } from '@domain';
-import { TRootStackScreenProps } from '@types';
+import { AppScreenProps } from '@routes';
 import { showToast } from '@utils';
 
 export function useEditFeeder() {
   const { currentUserLocation } = useMap();
   const feederFormRef = useRef<FeederFormRefProps>(null);
 
-  const route = useRoute<TRootStackScreenProps<'EditFeeder'>['route']>();
+  const route = useRoute<AppScreenProps<'EditFeeder'>['route']>();
   const navigation = useNavigation();
   const feederId = route.params.feederId;
 

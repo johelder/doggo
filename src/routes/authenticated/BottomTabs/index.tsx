@@ -4,13 +4,13 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { Icon } from '@components';
 import { Home, NewFeederButton, Profile } from '@screens';
-import { TRootTabParamList } from '@types';
 
 import { SelectLocationStack } from '../SelectLocationStack';
 
 import { tabBarOptions } from './options';
+import { AppTabBottomTabParamList } from './types';
 
-const Tab = createBottomTabNavigator<TRootTabParamList>();
+const Tab = createBottomTabNavigator<AppTabBottomTabParamList>();
 
 export function HomeTabs() {
   return (

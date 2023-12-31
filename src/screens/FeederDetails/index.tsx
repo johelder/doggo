@@ -2,14 +2,14 @@ import React from 'react';
 
 import { Loader } from '@components';
 import { useFeederFindOne } from '@domain';
-import { TRootStackScreenProps } from '@types';
+import { AppScreenProps } from '@routes';
 
 import { FeederLocationSection, FeederStatusSection } from './components';
 import * as Styled from './styles';
 
 export function FeederDetails({
   route,
-}: TRootStackScreenProps<'FeederDetails'>): React.JSX.Element | null {
+}: AppScreenProps<'FeederDetails'>): React.JSX.Element | null {
   const { feeder, isLoading } = useFeederFindOne({
     id: route.params.feederId,
   });

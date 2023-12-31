@@ -5,13 +5,13 @@ import { useTheme } from 'styled-components/native';
 
 import { Icon, NavigationButton } from '@components';
 import { useAuth } from '@domain';
-import { THomeTabScreenProps } from '@types';
+import { AppTabScreenProps } from '@routes';
 
 import * as Styled from './styles';
 
 export function Profile({
   navigation,
-}: THomeTabScreenProps<'Profile'>): React.JSX.Element {
+}: AppTabScreenProps<'Profile'>): React.JSX.Element {
   const { user } = useAuth();
   const tabBarHeight = useBottomTabBarHeight();
   const theme = useTheme();
