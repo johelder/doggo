@@ -6,6 +6,7 @@ import { Region } from 'react-native-maps';
 import { GeographicalInformation, Location } from '@domain';
 import { useMap } from '@hooks';
 import { TRootStackScreenProps } from '@types';
+import { errorHandler, showToast } from '@utils';
 
 export function useSelectLocation() {
   const [isLoadingAddress, setIsLoadingAddress] = useState(false);
@@ -60,10 +61,19 @@ export function useSelectLocation() {
 
   const fetchGeographicalInformation = useCallback(
     async (location: Location) => {
-      const { address, region } = await getAddressByCoordinate(location);
+      try {
+        const { address, region } = await getAddressByCoordinate(location);
 
-      setGeographicalInformation({ address, region });
-      setIsLoadingAddress(false);
+        setGeographicalInformation({ address, region });
+        setIsLoadingAddress(false);
+      } catch (error) {
+        errorHandler.reportError(error, fetchGeographicalInformation.name);
+
+        showToast({
+          type: 'error',
+          message: 'Endereço não encontrado, por favor, tente novamente.',
+        });
+      }
     },
     [getAddressByCoordinate],
   );
