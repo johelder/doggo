@@ -10,11 +10,12 @@ import { FeederStatusProps } from './types';
 export function FeederStatus({
   isNeedMaintenance,
   size = 'md',
+  align = 'left',
 }: FeederStatusProps): React.JSX.Element {
   const theme = useTheme();
 
   return (
-    <Styled.Container>
+    <Styled.Container align={align}>
       <Icon
         name={isNeedMaintenance ? 'info' : 'checkCircle'}
         color={theme.colors[isNeedMaintenance ? 'red' : 'green'][500]}

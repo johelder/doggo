@@ -2,13 +2,16 @@ import styled from 'styled-components/native';
 
 import { ThemeSizes } from '@theme';
 
-export const Container = styled.View`
+import { FeederStatusProps } from './types';
+
+export const Container = styled.View<{ align: FeederStatusProps['align'] }>`
   flex-direction: row;
   align-items: center;
   align-self: center;
   gap: ${({ theme }) => theme.spacings.sm}px;
 
   margin-bottom: ${({ theme }) => theme.spacings.xxsm}px;
+  margin-left: ${({ align }) => (align === 'center' ? 'auto' : 0)};
 `;
 
 export const Label = styled.Text<{

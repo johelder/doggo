@@ -24,8 +24,11 @@ export function FeederCard({ feeder, sideButton, onClose }: FeederCardProps) {
   return (
     <S.Container>
       <S.Header>
-        <FeederStatus isNeedMaintenance={isNeedMaintenance()} size="sm" />
-
+        <FeederStatus
+          align={sideButton ? 'center' : 'left'}
+          isNeedMaintenance={isNeedMaintenance()}
+          size="sm"
+        />
         {sideButton}
       </S.Header>
 
