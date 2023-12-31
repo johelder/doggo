@@ -4,14 +4,13 @@ import MapView from 'react-native-maps';
 import { Modalize } from 'react-native-modalize';
 
 import { GeographicalInformation, Location } from '@domain';
-import { UserLocation } from '@types';
 
 export interface MapContextProps {
   mapRef: RefObject<MapView>;
-  currentUserLocation: UserLocation;
+  currentUserLocation: Location;
   getUserCurrentPosition: () => void;
   watchUserPosition: () => number;
-  setCurrentUserLocation: Dispatch<SetStateAction<UserLocation>>;
+  setCurrentUserLocation: Dispatch<SetStateAction<Location>>;
   requestLocationPermissionModalRef: RefObject<Modalize>;
   isLocationAvailable: boolean;
   getAddressByCoordinate: (

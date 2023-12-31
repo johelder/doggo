@@ -15,7 +15,6 @@ import { useModalize } from 'react-native-modalize';
 import { LATITUDE_DELTA, LONGITUDE_DELTA } from '@components';
 import { AddressDomain } from '@data';
 import { Location } from '@domain';
-import { UserLocation } from '@types';
 import { errorHandler } from '@utils';
 
 import { LOCATION_PERMISSION_DENIED, IS_LOCATION_TURN_OFF } from './constants';
@@ -24,7 +23,7 @@ import { MapContextProps } from './types';
 const MapContext = createContext<MapContextProps>({} as MapContextProps);
 
 function MapProvider({ children }: React.PropsWithChildren) {
-  const [currentUserLocation, setCurrentUserLocation] = useState<UserLocation>({
+  const [currentUserLocation, setCurrentUserLocation] = useState<Location>({
     latitude: 0,
     longitude: 0,
   });

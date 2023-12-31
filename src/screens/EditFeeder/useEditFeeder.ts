@@ -70,7 +70,7 @@ export function useEditFeeder() {
       return;
     }
 
-    if (!currentUserLocation || !feeder) {
+    if (!feeder) {
       return;
     }
 

@@ -1,11 +1,11 @@
 import { FeederDomain } from '@data';
-import { UserLocation } from '@types';
+import { Location } from '@domain';
 import { calculateDistanceBetweenTwoPoints } from '@utils';
 
 export const THREE_KILOMETER_IN_METERS = 3000;
 
 export function useFeederFindNearest(
-  location: UserLocation,
+  location: Location,
   feeders: FeederDomain[],
 ) {
   function filterFeedersInThreeKilometerRadio(allFeeders: FeederDomain[]) {
