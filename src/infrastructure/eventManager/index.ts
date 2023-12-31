@@ -1,13 +1,13 @@
-import { TEvent, TListener } from './types';
+import { Event, Listener } from './types';
 
 export class EventManager {
-  listeners: Map<TEvent, any>;
+  listeners: Map<Event, any>;
 
   constructor() {
     this.listeners = new Map();
   }
 
-  on(event: TEvent, listener: TListener) {
+  on(event: Event, listener: Listener) {
     if (!this.listeners.has(event)) {
       this.listeners.set(event, []);
     }
@@ -15,17 +15,17 @@ export class EventManager {
     this.listeners.get(event).push(listener);
   }
 
-  emit(event: TEvent, payload: unknown) {
+  emit(event: Event, payload: unknown) {
     if (!this.listeners.has(event)) {
       return;
     }
 
-    this.listeners.get(event).forEach((listener: TListener) => {
+    this.listeners.get(event).forEach((listener: Listener) => {
       listener(payload);
     });
   }
 
-  removeListener(event: TEvent, listenerToRemove: TListener) {
+  removeListener(event: Event, listenerToRemove: Listener) {
     const listeners = this.listeners.get(event);
 
     if (!listeners) {
@@ -33,7 +33,7 @@ export class EventManager {
     }
 
     const filteredListeners = listeners.filter(
-      (listener: TListener) => listener !== listenerToRemove,
+      (listener: Listener) => listener !== listenerToRemove,
     );
 
     this.listeners.set(event, filteredListeners);

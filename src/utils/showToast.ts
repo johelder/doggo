@@ -1,5 +1,5 @@
 import { Toast } from '@components';
-import { EventManager } from '@lib';
+import { EventManager } from '@infrastructure';
 
 export const toastEventManager = new EventManager();
 

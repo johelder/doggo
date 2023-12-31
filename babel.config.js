@@ -9,7 +9,6 @@ module.exports = {
           '@assets': './src/assets',
           '@components': './src/components',
           '@hooks': './src/hooks',
-          '@lib': './src/lib',
           '@providers': './src/providers',
           '@routes': './src/routes',
           '@screens': './src/screens',
