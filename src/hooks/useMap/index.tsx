@@ -12,6 +12,9 @@ import Geolocation, {
 import MapView from 'react-native-maps';
 import { useModalize } from 'react-native-modalize';
 
+import { LATITUDE_DELTA, LONGITUDE_DELTA } from '@components';
+import { AddressDomain } from '@data';
+import { Location } from '@domain';
 import { UserLocation } from '@types';
 import { errorHandler } from '@utils';
 
@@ -84,6 +87,41 @@ function MapProvider({ children }: React.PropsWithChildren) {
     return watchId;
   }, [handleLocationError]);
 
+  function formatAddressLabel(type: keyof AddressDomain, label?: string) {
+    const labelSwitch: AddressDomain = {
+      houseNumber: 'Sem número',
+      street: 'Rua sem nome',
+      neighborhood: 'Bairro desconhecido',
+      city: 'Cidade desconhecida',
+    };
+
+    if (!label || label === 'Unnamed Road') {
+      return labelSwitch[type] ?? '';
+    }
+
+    return label;
+  }
+
+  const getAddressByCoordinate = useCallback(async (location: Location) => {
+    const address = await mapRef.current?.addressForCoordinate(location);
+
+    const formattedAddress: AddressDomain = {
+      street: formatAddressLabel('street', address?.thoroughfare),
+      houseNumber: formatAddressLabel('houseNumber', address?.name),
+      neighborhood: formatAddressLabel('neighborhood', address?.subLocality),
+      city: formatAddressLabel('city', address?.subAdministrativeArea),
+    };
+
+    return {
+      address: formattedAddress,
+      region: {
+        ...location,
+        latitudeDelta: LATITUDE_DELTA,
+        longitudeDelta: LONGITUDE_DELTA,
+      },
+    };
+  }, []);
+
   return (
     <MapContext.Provider
       value={{
@@ -94,6 +132,7 @@ function MapProvider({ children }: React.PropsWithChildren) {
         setCurrentUserLocation,
         requestLocationPermissionModalRef,
         isLocationAvailable,
+        getAddressByCoordinate,
       }}>
       {children}
     </MapContext.Provider>
