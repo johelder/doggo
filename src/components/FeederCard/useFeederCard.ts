@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import { FeederDomain } from '@data';
 import { useMap } from '@domain';
-import { getFormattedDistanceBetweenTwoPoints } from '@utils';
+import { getFormattedDistanceBetweenTwoLocations } from '@utils';
 
 export function useFeederCard(feeder: FeederDomain, onClose?: () => void) {
   const { currentUserLocation } = useMap();
@@ -21,7 +21,7 @@ export function useFeederCard(feeder: FeederDomain, onClose?: () => void) {
   }
 
   const estimatedDistanceUntilTheFeeder = useMemo(() => {
-    return getFormattedDistanceBetweenTwoPoints(
+    return getFormattedDistanceBetweenTwoLocations(
       currentUserLocation,
       feeder.coordinates,
     );

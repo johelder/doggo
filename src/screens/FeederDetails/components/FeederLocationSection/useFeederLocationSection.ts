@@ -3,13 +3,13 @@ import { Linking, Platform } from 'react-native';
 
 import { FeederDomain } from '@data';
 import { useMap } from '@domain';
-import { getFormattedDistanceBetweenTwoPoints } from '@utils';
+import { getFormattedDistanceBetweenTwoLocations } from '@utils';
 
 export function useFeederLocationSection(feeder: FeederDomain) {
   const { currentUserLocation } = useMap();
 
   const estimatedDistanceUntilTheFeeder = useMemo(() => {
-    return getFormattedDistanceBetweenTwoPoints(
+    return getFormattedDistanceBetweenTwoLocations(
       currentUserLocation,
       feeder.coordinates,
     );
