@@ -103,8 +103,11 @@ android {
         applicationId "com.doggo"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 10000004
-        versionName "1.0.4"
+        versionCode 11000000
+        versionName "1.1.0"
+
+        // Workaround for https://github.com/facebook/react-native/issues/42024
+        resConfigs "en", "fr", "es"
     }
 
     splits {
