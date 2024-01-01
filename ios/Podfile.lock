@@ -1653,7 +1653,7 @@ PODS:
     - React-debug
   - react-native-geolocation (3.0.6):
     - React-Core
-  - react-native-maps (1.7.1):
+  - react-native-maps (1.8.4):
     - React-Core
   - react-native-mmkv (2.10.1):
     - MMKV (>= 1.2.13)
@@ -2154,7 +2154,7 @@ SPEC CHECKSUMS:
   React-logger: e0c1e918d9588a9f39c9bc62d9d6bfe9ca238d9d
   React-Mapbuffer: babe0bb3746937775f8a3a89b861cea3c077162d
   react-native-geolocation: 0f7fe8a4c2de477e278b0365cce27d089a8c5903
-  react-native-maps: 667f9b975549c6fa9b1631bf859440f68ebd3b8f
+  react-native-maps: e2b78affd8e90c807a87bd042dc6b1af2decbcf1
   react-native-mmkv: dea675cf9697ad35940f1687e98e133e1358ef9f
   react-native-safe-area-context: 1d596539b05a78f2b346e954e7c577f6f9be7544
   react-native-webview: 88293a0f23eca8465c0433c023ec632930e644d0

@@ -25,7 +25,7 @@
     "react-native": "0.73.1",
     "react-native-gesture-handler": "^2.14.0",
     "react-native-map-clustering": "^3.4.2",
-    "react-native-maps": "^1.7.1",
+    "react-native-maps": "^1.8.4",
     "react-native-mmkv": "^2.10.1",
     "react-native-modalize": "^2.1.1",
     "react-native-portalize": "^1.0.7",
