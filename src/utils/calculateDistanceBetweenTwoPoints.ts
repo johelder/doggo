@@ -1,11 +1,11 @@
-import { TCoordinates } from '@types';
+import { Location } from '@domain';
 
 const EARTH_RADIUS_IN_METERS = 6371e3;
 const ONE_KILOMETER_IN_METERS = 1000;
 
 export function calculateDistanceBetweenTwoPoints(
-  firstPoint: TCoordinates,
-  secondPoint: TCoordinates,
+  firstPoint: Location,
+  secondPoint: Location,
 ) {
   const { latitude: firstLatitude, longitude: firstLongitude } = firstPoint;
   const { latitude: secondLatitude, longitude: secondLongitude } = secondPoint;
@@ -33,8 +33,8 @@ export function calculateDistanceBetweenTwoPoints(
 }
 
 export function getFormattedDistanceBetweenTwoPoints(
-  firstPoint: TCoordinates,
-  secondPoint: TCoordinates,
+  firstPoint: Location,
+  secondPoint: Location,
 ) {
   const distance = calculateDistanceBetweenTwoPoints(firstPoint, secondPoint);
 

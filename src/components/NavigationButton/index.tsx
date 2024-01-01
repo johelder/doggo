@@ -1,27 +1,31 @@
 import React from 'react';
 
-import * as S from './styles';
-import { INavigationButtonProps } from './types';
+import { Icon } from '../Icon';
+
+import * as Styled from './styles';
+import { NavigationButtonProps } from './types';
 
 export function NavigationButton({
   title,
   description,
   icon: IconComponent,
   ...rest
-}: INavigationButtonProps) {
+}: NavigationButtonProps): React.JSX.Element {
   return (
-    <S.Container {...rest}>
-      <S.Content>
+    <Styled.Container {...rest}>
+      <Styled.Content>
         {IconComponent && <IconComponent />}
 
-        <S.TitlesContainer>
-          <S.Title>{title}</S.Title>
+        <Styled.TitlesContainer>
+          <Styled.Title>{title}</Styled.Title>
 
-          {description && <S.Description>{description}</S.Description>}
-        </S.TitlesContainer>
-      </S.Content>
+          {description && (
+            <Styled.Description>{description}</Styled.Description>
+          )}
+        </Styled.TitlesContainer>
+      </Styled.Content>
 
-      <S.ArrowRight weight="bold" />
-    </S.Container>
+      <Icon name="caretRight" />
+    </Styled.Container>
   );
 }

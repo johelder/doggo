@@ -1,17 +1,16 @@
 import React from 'react';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import MapPinLine from 'phosphor-react-native/src/icons/MapPinLine';
-import ProfileIcon from 'phosphor-react-native/src/icons/User';
 
+import { Icon } from '@components';
 import { Home, NewFeederButton, Profile } from '@screens';
-import { TRootTabParamList } from '@types';
 
 import { SelectLocationStack } from '../SelectLocationStack';
 
 import { tabBarOptions } from './options';
+import { AppTabBottomTabParamList } from './types';
 
-const Tab = createBottomTabNavigator<TRootTabParamList>();
+const Tab = createBottomTabNavigator<AppTabBottomTabParamList>();
 
 export function HomeTabs() {
   return (
@@ -20,7 +19,7 @@ export function HomeTabs() {
         name="Map"
         component={Home}
         options={{
-          tabBarIcon: ({ color }) => <MapPinLine color={color} weight="bold" />,
+          tabBarIcon: ({ color }) => <Icon name="mapPinLine" color={color} />,
           tabBarShowLabel: false,
         }}
       />
@@ -40,9 +39,7 @@ export function HomeTabs() {
         name="Profile"
         component={Profile}
         options={{
-          tabBarIcon: ({ color }) => (
-            <ProfileIcon color={color} weight="bold" />
-          ),
+          tabBarIcon: ({ color }) => <Icon name="user" color={color} />,
           tabBarShowLabel: false,
         }}
       />

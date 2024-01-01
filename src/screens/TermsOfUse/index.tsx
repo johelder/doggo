@@ -1,9 +1,19 @@
 import React from 'react';
 
-import * as S from './styles';
+import { Loader } from '@components';
 
-export function TermsOfUse(): JSX.Element {
+import * as Styled from './styles';
+
+export function TermsOfUse(): React.JSX.Element {
   return (
-    <S.Container source={{ uri: 'https://doggoapp.com.br/terms-of-use' }} />
+    <Styled.Container
+      source={{ uri: 'https://doggoapp.com.br/terms-of-use' }}
+      startInLoadingState
+      renderLoading={() => (
+        <Styled.LoadingContainer>
+          <Loader.Component />
+        </Styled.LoadingContainer>
+      )}
+    />
   );
 }

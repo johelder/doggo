@@ -65,3 +65,5 @@ export const theme = {
     xxlg: 48,
   },
 };
+
+export type ThemeSizes = keyof (typeof theme)['sizes'];

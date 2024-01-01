@@ -1,16 +1,13 @@
-import { TFoods, IFeeder, IFeederAddress } from '@types';
+import { FeederDomain, FoodDomain } from '@data';
+import { FeederFormFields } from '@domain';
 
-export interface IFeederFormProps {
-  onSubmit: (feederAddress: IFeederAddress) => Promise<void>;
+export interface FeederFormProps {
+  onSubmit: (feederProps: FeederFormFields) => Promise<void>;
+  isLoading?: boolean;
 }
 
-export interface IUseFeederFormProps {
-  onSubmit: (feederAddress: IFeederAddress) => Promise<void>;
-}
-
-export type IFeederFormRef = {
-  feederFoods: TFoods;
+export type FeederFormRefProps = {
+  feederFoods: FoodDomain;
   addressNumber: string;
-  clearFields: () => void;
-  populateFields: (feeder: IFeeder) => void;
+  populateFields: (feeder: FeederDomain) => void;
 };

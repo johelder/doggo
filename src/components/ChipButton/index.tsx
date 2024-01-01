@@ -1,16 +1,16 @@
 import React from 'react';
 
-import * as S from './styles';
-import { IChipButtonProps } from './types';
+import * as Styled from './styles';
+import { ChipButtonProps } from './types';
 
 export function ChipButton({
   isSelected = false,
   children,
   ...rest
-}: IChipButtonProps) {
+}: ChipButtonProps): React.JSX.Element {
   return (
-    <S.Container isSelected={isSelected} {...rest}>
+    <Styled.Container isSelected={isSelected} {...rest}>
       {children}
-    </S.Container>
+    </Styled.Container>
   );
 }

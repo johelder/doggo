@@ -1,70 +1,61 @@
 import React from 'react';
 
-import CheckCircle from 'phosphor-react-native/src/icons/CheckCircle';
-import CookingPot from 'phosphor-react-native/src/icons/CookingPot';
-import Info from 'phosphor-react-native/src/icons/Info';
-import Signpost from 'phosphor-react-native/src/icons/Signpost';
-import User from 'phosphor-react-native/src/icons/User';
 import { useTheme } from 'styled-components/native';
 
+import { useMaintenance } from '@domain';
 import { getFoodsLabel } from '@utils';
 
-import { Button } from '../Button';
+import { Button, FeederStatus, InformationLabel } from '..';
 
-import * as S from './styles';
-import { IFeedCardProps } from './types';
+import * as Styled from './styles';
+import { FeederCardProps } from './types';
 import { useFeederCard } from './useFeederCard';
 
-export function FeederCard({ feeder, sideButton, onClose }: IFeedCardProps) {
-  const {
-    estimatedDistanceUntilTheFeeder,
-    isNeedMaintenance,
-    handleNavigateToFeederDetails,
-  } = useFeederCard(feeder, onClose);
+export function FeederCard({
+  feeder,
+  sideButton,
+  onClose,
+}: FeederCardProps): React.JSX.Element {
+  const { estimatedDistanceUntilTheFeeder, handleNavigateToFeederDetails } =
+    useFeederCard(feeder, onClose);
+
+  const { isNeedMaintenance } = useMaintenance(feeder.maintenanceStatus);
 
   const theme = useTheme();
 
+  const { street, houseNumber, neighborhood, city } = feeder.address;
+
   return (
-    <S.Container>
-      <S.Header>
-        <S.HighlightedWarningContainer hasActionButton={!!sideButton}>
-          {isNeedMaintenance() ? (
-            <Info color={theme.colors.red[500]} />
-          ) : (
-            <CheckCircle color={theme.colors.green[500]} />
-          )}
-          <S.HighlightedWarning isNeedMaintenance={isNeedMaintenance()}>
-            {isNeedMaintenance()
-              ? 'Precisando de manutenção'
-              : 'Manutenção em dias'}
-          </S.HighlightedWarning>
-        </S.HighlightedWarningContainer>
-
+    <Styled.Container>
+      <Styled.Header>
+        <FeederStatus
+          align={sideButton ? 'center' : 'left'}
+          isNeedMaintenance={isNeedMaintenance()}
+          size="sm"
+        />
         {sideButton}
-      </S.Header>
+      </Styled.Header>
 
-      <S.Session>
-        <Signpost color={theme.colors.gray[700]} />
+      <InformationLabel
+        label={`${street}, ${houseNumber}, ${neighborhood}, ${city} (≈ ${estimatedDistanceUntilTheFeeder})`}
+        iconName="signpost"
+        color={theme.colors.gray[700]}
+        size="sm"
+      />
 
-        <S.Title>
-          {feeder?.address.street}, {feeder?.address.houseNumber},{' '}
-          {feeder?.address.neighborhood}, {feeder?.address.city} (≈
-          {estimatedDistanceUntilTheFeeder})
-        </S.Title>
-      </S.Session>
+      <InformationLabel
+        label={getFoodsLabel(feeder.foods)}
+        iconName="cookingPot"
+        size="sm"
+      />
 
-      <S.Session>
-        <CookingPot color={theme.colors.gray[500]} />
-        <S.SubTitle>{getFoodsLabel(feeder?.foods)}</S.SubTitle>
-      </S.Session>
+      <InformationLabel
+        label={`Comedouro de ${feeder.user.name}`}
+        iconName="user"
+        size="sm"
+      />
 
-      <S.Session>
-        <User color={theme.colors.gray[500]} />
-
-        <S.SubTitle>Comedouro de {feeder?.user.name}</S.SubTitle>
-      </S.Session>
-
-      <S.Actions>
+      <Styled.Actions>
         <Button.Root
           type="unfilled"
           height={25}
@@ -73,7 +64,7 @@ export function FeederCard({ feeder, sideButton, onClose }: IFeedCardProps) {
             Ver detalhes
           </Button.Text>
         </Button.Root>
-      </S.Actions>
-    </S.Container>
+      </Styled.Actions>
+    </Styled.Container>
   );
 }

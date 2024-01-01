@@ -1,11 +1,18 @@
 module.exports = {
   root: true,
-  extends: ['@react-native', 'plugin:react-hooks/recommended'],
-  plugins: ['import', 'react-hooks'],
+  extends: [
+    '@react-native',
+    'plugin:react-hooks/recommended',
+    'plugin:@tanstack/eslint-plugin-query/recommended',
+  ],
+  plugins: ['import', 'react-hooks', '@tanstack/query'],
   rules: {
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     'react/no-unstable-nested-components': 'off',
+    '@tanstack/query/exhaustive-deps': 'error',
+    '@tanstack/query/no-rest-destructuring': 'warn',
+    '@tanstack/query/stable-query-client': 'error',
   },
   overrides: [
     {
@@ -23,7 +30,7 @@ module.exports = {
               },
               {
                 pattern:
-                  '@+(routes|screens|components|hooks|lib|providers|services|styles|utils|theme|assets|types)',
+                  '@+(assets|components|data|domain|hooks|infrastructure|lib|providers|routes|screens|services|styles|types|utils|theme)',
                 group: 'internal',
                 position: 'before',
               },

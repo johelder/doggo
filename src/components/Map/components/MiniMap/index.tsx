@@ -10,12 +10,15 @@ import {
 } from '../../constants';
 import { grayScale } from '../../customStyles';
 
-import * as S from './styles';
-import { IMiniMapProps } from './types';
+import * as Styled from './styles';
+import { MiniMapProps } from './types';
 
-export function MiniMap({ coords, headerHeight }: IMiniMapProps) {
+export function MiniMap({
+  coords,
+  headerHeight,
+}: MiniMapProps): React.JSX.Element {
   return (
-    <S.Container
+    <Styled.Container
       initialRegion={{
         latitude: coords.latitude,
         longitude: coords.longitude,
@@ -36,6 +39,6 @@ export function MiniMap({ coords, headerHeight }: IMiniMapProps) {
           longitude: coords.longitude,
         }}
       />
-    </S.Container>
+    </Styled.Container>
   );
 }

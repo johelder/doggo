@@ -1,9 +1,19 @@
 import React from 'react';
 
-import * as S from './styles';
+import { Loader } from '@components';
 
-export function PrivacyPolicy(): JSX.Element {
+import * as Styled from './styles';
+
+export function PrivacyPolicy(): React.JSX.Element {
   return (
-    <S.Container source={{ uri: 'https://doggoapp.com.br/privacy-policy' }} />
+    <Styled.Container
+      source={{ uri: 'https://doggoapp.com.br/privacy-policy' }}
+      startInLoadingState
+      renderLoading={() => (
+        <Styled.LoadingContainer>
+          <Loader.Component />
+        </Styled.LoadingContainer>
+      )}
+    />
   );
 }

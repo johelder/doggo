@@ -4,8 +4,8 @@ import { theme } from '@theme';
 
 import { Loader } from '../Loader';
 
-import * as S from './styles';
-import { IButtonIconProps, IButtonRootProps, IButtonTextProps } from './types';
+import * as Styled from './styles';
+import { ButtonIconProps, ButtonRootProps, ButtonTextProps } from './types';
 
 function ButtonRoot({
   type = 'filled',
@@ -14,27 +14,31 @@ function ButtonRoot({
   height,
   children,
   ...rest
-}: IButtonRootProps) {
+}: ButtonRootProps): React.JSX.Element {
   return (
-    <S.ButtonRootContainer type={type} color={color} height={height} {...rest}>
+    <Styled.ButtonRootContainer
+      type={type}
+      color={color}
+      height={height}
+      {...rest}>
       {isLoading ? <Loader.Component /> : children}
-    </S.ButtonRootContainer>
+    </Styled.ButtonRootContainer>
   );
 }
 
-function ButtonIcon({ children }: IButtonIconProps) {
-  return <S.ButtonIconContainer>{children}</S.ButtonIconContainer>;
+function ButtonIcon({ children }: ButtonIconProps): React.JSX.Element {
+  return <Styled.ButtonIconContainer>{children}</Styled.ButtonIconContainer>;
 }
 
 function ButtonText({
   color = theme.colors.gray[0],
   children,
   ...rest
-}: IButtonTextProps) {
+}: ButtonTextProps): React.JSX.Element {
   return (
-    <S.ButtonTextContainer color={color} {...rest}>
+    <Styled.ButtonTextContainer color={color} {...rest}>
       {children}
-    </S.ButtonTextContainer>
+    </Styled.ButtonTextContainer>
   );
 }
 

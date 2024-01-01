@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { TextProps, TouchableOpacityProps } from 'react-native';
 
-export interface IButtonRootProps extends TouchableOpacityProps {
+export interface ButtonRootProps extends TouchableOpacityProps {
   children: ReactNode;
   type: 'filled' | 'unfilled' | 'outline';
   color?: string;
@@ -9,11 +9,11 @@ export interface IButtonRootProps extends TouchableOpacityProps {
   height?: number;
 }
 
-export interface IButtonIconProps {
+export interface ButtonIconProps {
   children: ReactNode;
 }
 
-export interface IButtonTextProps extends TextProps {
+export interface ButtonTextProps extends TextProps {
   children: string;
   color?: string;
 }

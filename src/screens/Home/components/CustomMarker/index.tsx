@@ -1,12 +1,11 @@
 import React from 'react';
-import { View } from 'react-native';
 
-import Bone from '@assets/icons/bone.svg';
+import { useTheme } from 'styled-components/native';
 
-export function CustomMarker() {
-  return (
-    <View>
-      <Bone width={50} height={50} color="red" />
-    </View>
-  );
+import { Icon } from '@components';
+
+export function CustomMarker(): React.JSX.Element {
+  const theme = useTheme();
+
+  return <Icon name="boneFilled" size={50} color={theme.colors.orange[500]} />;
 }

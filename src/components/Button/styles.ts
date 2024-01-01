@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components/native';
 
-import { IButtonRootProps, IButtonTextProps } from './types';
+import { ButtonRootProps, ButtonTextProps } from './types';
 
-export const ButtonRootContainer = styled.TouchableOpacity<IButtonRootProps>`
+export const ButtonRootContainer = styled.TouchableOpacity<ButtonRootProps>`
   width: 100%;
   height: ${({ height, theme }) => height ?? theme.spacings.xxlg}px;
 
@@ -42,7 +42,7 @@ export const ButtonRootContainer = styled.TouchableOpacity<IButtonRootProps>`
 
 export const ButtonIconContainer = styled.View``;
 
-export const ButtonTextContainer = styled.Text<IButtonTextProps>`
+export const ButtonTextContainer = styled.Text<ButtonTextProps>`
   font-family: ${({ theme }) => theme.fonts.primary.semiBold};
   font-size: ${({ theme }) => theme.sizes.md}px;
 

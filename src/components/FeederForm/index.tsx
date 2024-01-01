@@ -1,19 +1,15 @@
 import React, { forwardRef, useImperativeHandle } from 'react';
 
-import ArchiveBox from 'phosphor-react-native/src/icons/ArchiveBox';
-import Cat from 'phosphor-react-native/src/icons/Cat';
-import Dog from 'phosphor-react-native/src/icons/Dog';
-import DotsThreeCircle from 'phosphor-react-native/src/icons/DotsThreeCircle';
 import { useTheme } from 'styled-components/native';
 
-import { Input, ChipButton, Button } from '..';
+import { Input, ChipButton, Button, Icon } from '..';
 
-import * as S from './styles';
-import { IFeederFormProps, IFeederFormRef } from './types';
+import * as Styled from './styles';
+import { FeederFormProps, FeederFormRefProps } from './types';
 import { useFeederForm } from './useFeederForm';
 
-export const FeederForm = forwardRef<IFeederFormRef, IFeederFormProps>(
-  ({ onSubmit }, ref) => {
+export const FeederForm = forwardRef<FeederFormRefProps, FeederFormProps>(
+  ({ onSubmit, isLoading = false }, ref): React.JSX.Element => {
     const theme = useTheme();
 
     const {
@@ -25,31 +21,28 @@ export const FeederForm = forwardRef<IFeederFormRef, IFeederFormProps>(
       setAddressReference,
       feederFoods,
       handleToggleFeedFoods,
-      isLoading,
       handleSubmit,
-      clearFields,
       populateFields,
     } = useFeederForm({ onSubmit });
 
     useImperativeHandle(ref, () => ({
       feederFoods,
       addressNumber,
-      clearFields,
       populateFields,
     }));
 
     return (
-      <S.FormContent>
-        <S.InputsWrapper>
-          <S.InputContainer flex={1}>
+      <Styled.FormContent>
+        <Styled.InputsWrapper>
+          <Styled.InputContainer flex={1}>
             <Input
               value={addressNumber}
               onChangeText={setAddressNumber}
               placeholder="Número"
             />
-          </S.InputContainer>
+          </Styled.InputContainer>
 
-          <S.InputContainer flex={3}>
+          <Styled.InputContainer flex={3}>
             <Input
               value={addressComplement}
               onChangeText={setAddressComplement}
@@ -57,73 +50,78 @@ export const FeederForm = forwardRef<IFeederFormRef, IFeederFormProps>(
               isOptional
             />
 
-            <S.FieldDescription>Apto / Bloco / Casa</S.FieldDescription>
-          </S.InputContainer>
-        </S.InputsWrapper>
+            <Styled.FieldDescription>
+              Apto / Bloco / Casa
+            </Styled.FieldDescription>
+          </Styled.InputContainer>
+        </Styled.InputsWrapper>
 
-        <S.InputsWrapper>
+        <Styled.InputsWrapper>
           <Input
             value={addressReference}
             onChangeText={setAddressReference}
             placeholder="Ponto de referência"
             isOptional
           />
-        </S.InputsWrapper>
+        </Styled.InputsWrapper>
 
-        <S.FormFooter>
-          <S.Label>Seu comedouro alimenta: </S.Label>
+        <Styled.FormFooter>
+          <Styled.Label>Seu comedouro alimenta: </Styled.Label>
 
-          <S.ChipsWrapper>
-            <S.ChipButtonContainer>
+          <Styled.ChipsWrapper>
+            <Styled.ChipButtonContainer>
               <ChipButton
                 isSelected={feederFoods.dog}
                 onPress={() => handleToggleFeedFoods('dog')}>
-                <Dog
+                <Icon
+                  name="dog"
                   color={
                     feederFoods.dog
                       ? theme.colors.orange[500]
                       : theme.colors.gray[500]
                   }
                 />
-                <S.ChipButtonLabel isSelected={feederFoods.dog}>
+                <Styled.ChipButtonLabel isSelected={feederFoods.dog}>
                   Cachorros
-                </S.ChipButtonLabel>
+                </Styled.ChipButtonLabel>
               </ChipButton>
-            </S.ChipButtonContainer>
+            </Styled.ChipButtonContainer>
 
-            <S.ChipButtonContainer>
+            <Styled.ChipButtonContainer>
               <ChipButton
                 isSelected={feederFoods.cat}
                 onPress={() => handleToggleFeedFoods('cat')}>
-                <Cat
+                <Icon
+                  name="cat"
                   color={
                     feederFoods.cat
                       ? theme.colors.orange[500]
                       : theme.colors.gray[500]
                   }
                 />
-                <S.ChipButtonLabel isSelected={feederFoods.cat}>
+                <Styled.ChipButtonLabel isSelected={feederFoods.cat}>
                   Gatos
-                </S.ChipButtonLabel>
+                </Styled.ChipButtonLabel>
               </ChipButton>
-            </S.ChipButtonContainer>
-          </S.ChipsWrapper>
+            </Styled.ChipButtonContainer>
+          </Styled.ChipsWrapper>
 
           <ChipButton
             isSelected={feederFoods.others}
             onPress={() => handleToggleFeedFoods('others')}>
-            <DotsThreeCircle
+            <Icon
+              name="dotsThreeCircle"
               color={
                 feederFoods.others
                   ? theme.colors.orange[500]
                   : theme.colors.gray[500]
               }
             />
-            <S.ChipButtonLabel isSelected={feederFoods.others}>
+            <Styled.ChipButtonLabel isSelected={feederFoods.others}>
               Outros
-            </S.ChipButtonLabel>
+            </Styled.ChipButtonLabel>
           </ChipButton>
-        </S.FormFooter>
+        </Styled.FormFooter>
 
         <Button.Root
           type="filled"
@@ -132,14 +130,14 @@ export const FeederForm = forwardRef<IFeederFormRef, IFeederFormProps>(
           disabled={isLoading}
           isLoading={isLoading}>
           <Button.Icon>
-            <ArchiveBox color={theme.colors.gray[0]} />
+            <Icon name="archiveBox" color={theme.colors.gray[0]} />
           </Button.Icon>
 
           <Button.Text color={theme.colors.gray[0]}>
             Salvar comedouro
           </Button.Text>
         </Button.Root>
-      </S.FormContent>
+      </Styled.FormContent>
     );
   },
 );

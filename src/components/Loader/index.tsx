@@ -6,23 +6,23 @@ import {
   THIRD_BALL_ANIMATION_DURATION,
 } from './constants';
 import { LoaderBall } from './LoaderBall';
-import * as S from './styles';
+import * as Styled from './styles';
 
-function Component() {
+function Component(): React.JSX.Element {
   return (
-    <S.ComponentContainer>
+    <Styled.ComponentContainer>
       <LoaderBall initialDelay={FIRST_BALL_ANIMATION_DURATION} />
       <LoaderBall initialDelay={SECOND_BALL_ANIMATION_DURATION} />
       <LoaderBall initialDelay={THIRD_BALL_ANIMATION_DURATION} />
-    </S.ComponentContainer>
+    </Styled.ComponentContainer>
   );
 }
 
-function Page() {
+function Page(): React.JSX.Element {
   return (
-    <S.PageContainer>
+    <Styled.PageContainer>
       <Component />
-    </S.PageContainer>
+    </Styled.PageContainer>
   );
 }
 

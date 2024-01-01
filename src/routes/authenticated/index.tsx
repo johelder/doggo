@@ -18,11 +18,11 @@ import {
   TermsOfUse,
   SelectLocation,
 } from '@screens';
-import { TRootStackParamList } from '@types';
 
 import { HomeTabs } from './BottomTabs';
+import { AuthenticatedStackParamList } from './types';
 
-const Stack = createNativeStackNavigator<TRootStackParamList>();
+const Stack = createNativeStackNavigator<AuthenticatedStackParamList>();
 
 const wrapperOptions = {
   flex: 1,
@@ -87,7 +87,15 @@ export function AuthenticatedRoutes() {
               headerTitle: 'FAVORITOS',
             }}
           />
-          <Stack.Screen name="FeederDetails" component={FeederDetails} />
+          <Stack.Screen
+            name="FeederDetails"
+            component={FeederDetails}
+            options={({ route }) => ({
+              title: `COMEDOURO DE ${route.params.feederOwner
+                ?.split(' ')[0]
+                .toUpperCase()}`,
+            })}
+          />
           <Stack.Screen
             name="Settings"
             component={Settings}

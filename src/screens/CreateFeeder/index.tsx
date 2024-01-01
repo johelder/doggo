@@ -4,37 +4,41 @@ import { ScrollView } from 'react-native';
 import { useHeaderHeight } from '@react-navigation/elements';
 
 import { FeederForm, CustomHeader, MiniMap } from '@components';
-import { TRootStackScreenProps } from '@types';
+import { AppScreenProps } from '@routes';
 
-import * as S from './styles';
+import * as Styled from './styles';
 import { useCreateFeeder } from './useCreateFeeder';
 
 export function CreateFeeder({
   route,
-}: TRootStackScreenProps<'CreateFeeder'>): JSX.Element {
+}: AppScreenProps<'CreateFeeder'>): React.JSX.Element {
   const headerHeight = useHeaderHeight();
-  const { feederFormRef, handleCreateFeeder } = useCreateFeeder();
+  const { feederFormRef, handleCreateFeeder, isPending } = useCreateFeeder();
 
   const { latitude, longitude } = route.params.coordinate;
   const { street, neighborhood, city } = route.params.address;
 
   return (
-    <S.Container>
+    <Styled.Container>
       <CustomHeader />
 
       <ScrollView showsVerticalScrollIndicator={false}>
         <MiniMap coords={{ latitude, longitude }} headerHeight={headerHeight} />
 
-        <S.FormContainer>
-          <S.Title>{street}</S.Title>
+        <Styled.FormContainer>
+          <Styled.Title>{street}</Styled.Title>
 
-          <S.Subtitle>
+          <Styled.Subtitle>
             {neighborhood}, {city}
-          </S.Subtitle>
+          </Styled.Subtitle>
 
-          <FeederForm ref={feederFormRef} onSubmit={handleCreateFeeder} />
-        </S.FormContainer>
+          <FeederForm
+            ref={feederFormRef}
+            onSubmit={handleCreateFeeder}
+            isLoading={isPending}
+          />
+        </Styled.FormContainer>
       </ScrollView>
-    </S.Container>
+    </Styled.Container>
   );
 }

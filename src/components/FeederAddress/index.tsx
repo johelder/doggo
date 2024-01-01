@@ -1,32 +1,35 @@
 import React from 'react';
 
-import DotsThreeVertical from 'phosphor-react-native/src/icons/DotsThreeVertical';
-import MapPin from 'phosphor-react-native/src/icons/MapPin';
 import { useTheme } from 'styled-components/native';
 
 import { getFoodsLabel } from '@utils';
 
-import * as S from './styles';
-import { IFeederAddressProps } from './types';
+import { Icon } from '../Icon';
 
-export function FeederAddress({ feeder, onOpenDetails }: IFeederAddressProps) {
+import * as Styled from './styles';
+import { FeederAddressProps } from './types';
+
+export function FeederAddress({
+  feeder,
+  onOpenDetails,
+}: FeederAddressProps): React.JSX.Element {
   const { street, houseNumber, neighborhood, city } = feeder.address;
   const theme = useTheme();
 
   return (
-    <S.Container onPress={onOpenDetails}>
-      <MapPin weight="fill" color={theme.colors.orange[500]} />
+    <Styled.Container onPress={onOpenDetails}>
+      <Icon name="mapPinFilled" color={theme.colors.orange[500]} />
 
-      <S.LabelsContainer>
-        <S.Title>
+      <Styled.LabelsContainer>
+        <Styled.Title>
           {street}, {houseNumber}, {neighborhood} - {city}
-        </S.Title>
-        <S.Description>{getFoodsLabel(feeder.foods)}</S.Description>
-      </S.LabelsContainer>
+        </Styled.Title>
+        <Styled.Description>{getFoodsLabel(feeder.foods)}</Styled.Description>
+      </Styled.LabelsContainer>
 
-      <S.IconContainer>
-        <DotsThreeVertical color={theme.colors.gray[700]} weight="bold" />
-      </S.IconContainer>
-    </S.Container>
+      <Styled.IconContainer>
+        <Icon name="dotsThreeVertical" color={theme.colors.gray[700]} />
+      </Styled.IconContainer>
+    </Styled.Container>
   );
 }
