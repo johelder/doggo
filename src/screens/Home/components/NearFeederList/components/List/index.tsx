@@ -1,6 +1,8 @@
 import React from 'react';
 import { ListRenderItemInfo } from 'react-native';
 
+import Animated, { FadeInDown } from 'react-native-reanimated';
+
 import { FeederCard } from '@components';
 import { FeederDomain } from '@data';
 
@@ -36,11 +38,13 @@ export function List({
   }
 
   return (
-    <Styled.List
-      data={feeders}
-      keyExtractor={(feeder: FeederDomain) => feeder.id}
-      renderItem={renderNearFeeder}
-      showsHorizontalScrollIndicator={false}
-    />
+    <Animated.View entering={FadeInDown}>
+      <Styled.List
+        data={feeders}
+        keyExtractor={(feeder: FeederDomain) => feeder.id}
+        renderItem={renderNearFeeder}
+        showsHorizontalScrollIndicator={false}
+      />
+    </Animated.View>
   );
 }

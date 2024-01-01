@@ -1,6 +1,8 @@
 import React from 'react';
 import { ListRenderItemInfo } from 'react-native';
 
+import Animated, { FadeInUp } from 'react-native-reanimated';
+
 import { FeederAddress, Loader } from '@components';
 import { FeederDomain } from '@data';
 
@@ -27,10 +29,12 @@ export function MyFeeders(): React.JSX.Element {
 
   function renderFeeder({ item: feeder }: ListRenderItemInfo<FeederDomain>) {
     return (
-      <FeederAddress
-        feeder={feeder}
-        onOpenDetails={() => handleOpenDetailsModal(feeder)}
-      />
+      <Animated.View entering={FadeInUp}>
+        <FeederAddress
+          feeder={feeder}
+          onOpenDetails={() => handleOpenDetailsModal(feeder)}
+        />
+      </Animated.View>
     );
   }
 
