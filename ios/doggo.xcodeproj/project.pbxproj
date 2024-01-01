@@ -12,13 +12,13 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		47F7C6451F9C0F69B59F914A /* Pods_doggo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 681FC9311504BB7632B47B03 /* Pods_doggo.framework */; };
-		4AE4B5250DAE452B8D21809B /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D2F78ADF9A9431E89337652 /* Inter-Medium.ttf */; };
-		7ECD175DD19746BDA870CC23 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B47E8676DAB04115AE717334 /* Inter-SemiBold.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		A737A5B008F5D781285C1E02 /* Pods_doggo_doggoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9EDF6C1826B8A073A2EAB8E /* Pods_doggo_doggoTests.framework */; };
-		AE0FC63491294E1884262A0D /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85E56CF5F412415CADED6EB0 /* Inter-Regular.ttf */; };
-		BA1EB814CDBD4C7E896584AC /* Inter-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 598113CDE942428E93E537C6 /* Inter-Light.ttf */; };
 		E9AADB46298585560096BD85 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9AADB45298585560096BD85 /* GoogleService-Info.plist */; };
+		63E94FF8F4F445C2BA058F47 /* Inter-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1ABF79EB11234BE58772D370 /* Inter-Light.ttf */; };
+		B880DDB2417745EB957DBA77 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 44D9B5C125E94AD2BA8F60A5 /* Inter-Medium.ttf */; };
+		F1531BB5ADFF4F6CBA6A76C1 /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEC86136CB7F47E1805C6873 /* Inter-Regular.ttf */; };
+		DE1003D082B84512911FB471 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB0C70506A614B3A8750A7DA /* Inter-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +35,6 @@
 		00E356EE1AD99517003FC87E /* doggoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = doggoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* doggoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = doggoTests.m; sourceTree = "<group>"; };
-		0D2F78ADF9A9431E89337652 /* Inter-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Medium.ttf"; path = "../assets/fonts/Inter-Medium.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* doggo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = doggo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = doggo/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = doggo/AppDelegate.mm; sourceTree = "<group>"; };
@@ -44,16 +43,17 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = doggo/main.m; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-doggo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-doggo.debug.xcconfig"; path = "Target Support Files/Pods-doggo/Pods-doggo.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-doggo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-doggo.release.xcconfig"; path = "Target Support Files/Pods-doggo/Pods-doggo.release.xcconfig"; sourceTree = "<group>"; };
-		598113CDE942428E93E537C6 /* Inter-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Light.ttf"; path = "../assets/fonts/Inter-Light.ttf"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-doggo-doggoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-doggo-doggoTests.debug.xcconfig"; path = "Target Support Files/Pods-doggo-doggoTests/Pods-doggo-doggoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		681FC9311504BB7632B47B03 /* Pods_doggo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_doggo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = doggo/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		85E56CF5F412415CADED6EB0 /* Inter-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Regular.ttf"; path = "../assets/fonts/Inter-Regular.ttf"; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-doggo-doggoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-doggo-doggoTests.release.xcconfig"; path = "Target Support Files/Pods-doggo-doggoTests/Pods-doggo-doggoTests.release.xcconfig"; sourceTree = "<group>"; };
-		B47E8676DAB04115AE717334 /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-SemiBold.ttf"; path = "../assets/fonts/Inter-SemiBold.ttf"; sourceTree = "<group>"; };
 		E9AADB45298585560096BD85 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E9EDF6C1826B8A073A2EAB8E /* Pods_doggo_doggoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_doggo_doggoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		1ABF79EB11234BE58772D370 /* Inter-Light.ttf */ = {isa = PBXFileReference; name = "Inter-Light.ttf"; path = "../src/assets/fonts/Inter-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		44D9B5C125E94AD2BA8F60A5 /* Inter-Medium.ttf */ = {isa = PBXFileReference; name = "Inter-Medium.ttf"; path = "../src/assets/fonts/Inter-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		CEC86136CB7F47E1805C6873 /* Inter-Regular.ttf */ = {isa = PBXFileReference; name = "Inter-Regular.ttf"; path = "../src/assets/fonts/Inter-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BB0C70506A614B3A8750A7DA /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; name = "Inter-SemiBold.ttf"; path = "../src/assets/fonts/Inter-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,10 +119,10 @@
 		82979D173E4748CCAE7C7E57 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				598113CDE942428E93E537C6 /* Inter-Light.ttf */,
-				0D2F78ADF9A9431E89337652 /* Inter-Medium.ttf */,
-				85E56CF5F412415CADED6EB0 /* Inter-Regular.ttf */,
-				B47E8676DAB04115AE717334 /* Inter-SemiBold.ttf */,
+				1ABF79EB11234BE58772D370 /* Inter-Light.ttf */,
+				44D9B5C125E94AD2BA8F60A5 /* Inter-Medium.ttf */,
+				CEC86136CB7F47E1805C6873 /* Inter-Regular.ttf */,
+				BB0C70506A614B3A8750A7DA /* Inter-SemiBold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -268,11 +268,11 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				BA1EB814CDBD4C7E896584AC /* Inter-Light.ttf in Resources */,
-				4AE4B5250DAE452B8D21809B /* Inter-Medium.ttf in Resources */,
-				AE0FC63491294E1884262A0D /* Inter-Regular.ttf in Resources */,
-				7ECD175DD19746BDA870CC23 /* Inter-SemiBold.ttf in Resources */,
 				E9AADB46298585560096BD85 /* GoogleService-Info.plist in Resources */,
+				63E94FF8F4F445C2BA058F47 /* Inter-Light.ttf in Resources */,
+				B880DDB2417745EB957DBA77 /* Inter-Medium.ttf in Resources */,
+				F1531BB5ADFF4F6CBA6A76C1 /* Inter-Regular.ttf in Resources */,
+				DE1003D082B84512911FB471 /* Inter-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,6 +634,12 @@
 					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers",
 					" ${PODS_CONFIGURATION_BUILD_DIR}/React-Fabric/React_Fabric.framework/Headers/react/renderer/components/view/platform/cxx",
 					" ${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-Fabric/React_Fabric.framework/Headers/react/renderer/components/view/platform/cxx",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-Fabric/React_Fabric.framework/Headers/react/renderer/components/view/platform/cxx",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -719,6 +725,12 @@
 					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers/platform/ios",
 					"${PODS_CONFIGURATION_BUILD_DIR}/React-NativeModulesApple/React_NativeModulesApple.framework/Headers",
 					"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers/react/renderer/graphics/platform/ios",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-Fabric/React_Fabric.framework/Headers/react/renderer/components/view/platform/cxx",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-Fabric/React_Fabric.framework/Headers/react/renderer/components/view/platform/cxx",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers",
 					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers",
 					" ${PODS_CONFIGURATION_BUILD_DIR}/React-Fabric/React_Fabric.framework/Headers/react/renderer/components/view/platform/cxx",
 					" ${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers",
