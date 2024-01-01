@@ -1,9 +1,12 @@
 import React from 'react';
+
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { SignIn } from '@screens';
 
-const Stack = createNativeStackNavigator();
+import { UnauthenticatedStackParamList } from './types';
+
+const Stack = createNativeStackNavigator<UnauthenticatedStackParamList>();
 
 export function UnauthenticatedRoutes() {
   return (

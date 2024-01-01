@@ -1,82 +1,46 @@
-import React, { useCallback, useLayoutEffect } from 'react';
+import React from 'react';
+
 import { useTheme } from 'styled-components/native';
 
+import { Button, Map, CustomHeader, grayScale } from '@components';
+
+import { Marker } from './components/Marker';
+import * as Styled from './styles';
 import { useSelectLocation } from './useSelectLocation';
 
-import { Button, Loader, Map, CustomHeader } from '@components';
-import { CustomHeaderTitle } from '@app/src/components/CustomHeader/components/CustomHeaderTitle';
-import { Marker } from './components/Marker';
-import { grayScale } from '@app/src/components/Map/customStyles';
-import {
-  LATITUDE_DELTA,
-  LONGITUDE_DELTA,
-} from '@app/src/components/Map/constants';
-
-import type { TRootStackScreenProps } from '@types';
-
-import * as S from './styles';
-
-export function SelectLocation({
-  navigation,
-}: TRootStackScreenProps<'SelectLocation'>): JSX.Element {
+export function SelectLocation(): React.JSX.Element {
   const {
     onTouchStart,
     onRegionChangeComplete,
     onMapReady,
     isLoadingAddress,
-    address,
     handleNavigateToCreateFeeder,
     isShowingTooltip,
-    initialRegion,
+    geographicalInformation: { address, region },
   } = useSelectLocation();
+
   const theme = useTheme();
 
-  const renderCustomHeaderTitle = useCallback(() => {
-    if (isLoadingAddress) {
-      return <Loader.Component />;
-    }
-
-    if (!address) {
-      return '';
-    }
-
-    return (
-      <CustomHeaderTitle
-        title={`${address.street}, ${address.houseNumber}`}
-        subTitle={`${address.neighborhood} - ${address.city}`}
-      />
-    );
-  }, [isLoadingAddress, address]);
-
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: renderCustomHeaderTitle,
-    });
-  }, [navigation, renderCustomHeaderTitle]);
-
   return (
-    <S.Container>
-      <CustomHeader />
+    <Styled.Container>
+      <CustomHeader
+        title={`${address?.street}, ${address?.houseNumber}`}
+        subTitle={`${address?.neighborhood} - ${address?.city}`}
+        isLoading={isLoadingAddress}
+      />
 
-      {initialRegion && (
-        <Map
-          onMapReady={onMapReady}
-          showsUserLocation
-          onRegionChangeComplete={onRegionChangeComplete}
-          onTouchStart={onTouchStart}
-          region={{
-            latitude: initialRegion.latitude,
-            longitude: initialRegion.longitude,
-            latitudeDelta: LATITUDE_DELTA,
-            longitudeDelta: LONGITUDE_DELTA,
-          }}
-          customMapStyle={grayScale}
-        />
-      )}
+      <Map
+        onMapReady={onMapReady}
+        showsUserLocation
+        onRegionChangeComplete={onRegionChangeComplete}
+        onTouchStart={onTouchStart}
+        region={region}
+        customMapStyle={grayScale}
+      />
 
       <Marker isTooltipVisible={isShowingTooltip} />
 
-      <S.ButtonContainer>
+      <Styled.ButtonContainer>
         <Button.Root
           disabled={isLoadingAddress || !address}
           type="filled"
@@ -84,7 +48,7 @@ export function SelectLocation({
           onPress={handleNavigateToCreateFeeder}>
           <Button.Text color={theme.colors.gray[0]}>Continuar</Button.Text>
         </Button.Root>
-      </S.ButtonContainer>
-    </S.Container>
+      </Styled.ButtonContainer>
+    </Styled.Container>
   );
 }

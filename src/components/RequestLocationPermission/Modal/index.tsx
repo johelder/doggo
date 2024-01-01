@@ -1,18 +1,18 @@
 import React from 'react';
+
 import { Portal } from 'react-native-portalize';
 import { useTheme } from 'styled-components/native';
 
-import { Modal } from '../../Modal';
 import { Button } from '../../Button';
+import { Modal } from '../../Modal';
+
+import * as Styled from './styles';
+import { RequestLocationPermissionModalProps } from './types';
 import { useRequestLocationPermissionModal } from './useRequestLocationPermissionModal';
-
-import type { IRequestLocationPermissionModalProps } from './types';
-
-import * as S from './styles';
 
 export function RequestLocationPermissionModal({
   modalRef,
-}: IRequestLocationPermissionModalProps) {
+}: RequestLocationPermissionModalProps): React.JSX.Element {
   const { handleOpenAppLocationSettings } = useRequestLocationPermissionModal();
   const theme = useTheme();
 
@@ -23,19 +23,19 @@ export function RequestLocationPermissionModal({
         adjustToContentHeight
         handlePosition="inside"
         modalStyle={{ padding: theme.spacings.md }}>
-        <S.Container>
-          <S.Title>Não conseguimos acesso à sua localização.</S.Title>
-          <S.Description>
+        <Styled.Container>
+          <Styled.Title>Não conseguimos acesso à sua localização.</Styled.Title>
+          <Styled.Description>
             Verifique se a sua localização está ativada e se o aplicativo possui
             permissão para usá-la.
-          </S.Description>
+          </Styled.Description>
 
-          <S.Footer>
+          <Styled.Footer>
             <Button.Root type="filled" onPress={handleOpenAppLocationSettings}>
               <Button.Text>Ir para configurações</Button.Text>
             </Button.Root>
-          </S.Footer>
-        </S.Container>
+          </Styled.Footer>
+        </Styled.Container>
       </Modal>
     </Portal>
   );

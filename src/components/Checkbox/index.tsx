@@ -1,18 +1,23 @@
 import React from 'react';
+
 import { useTheme } from 'styled-components/native';
 
-import Check from 'phosphor-react-native/src/icons/Check';
+import { Icon } from '../Icon';
 
-import type { ICheckboxProps } from './types';
+import * as Styled from './styles';
+import { CheckboxProps } from './types';
 
-import * as S from './styles';
-
-export function Checkbox({ isSelected = false, color }: ICheckboxProps) {
+export function Checkbox({
+  isSelected = false,
+  color,
+}: CheckboxProps): React.JSX.Element {
   const theme = useTheme();
 
   return (
-    <S.Container isSelected={isSelected} color={color}>
-      {isSelected && <Check size={16} color={theme.colors.gray[0]} />}
-    </S.Container>
+    <Styled.Container isSelected={isSelected} color={color}>
+      {isSelected && (
+        <Icon name="check" size={16} color={theme.colors.gray[0]} />
+      )}
+    </Styled.Container>
   );
 }

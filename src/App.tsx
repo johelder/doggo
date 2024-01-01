@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Geolocation from '@react-native-community/geolocation';
 import { enableLatestRenderer } from 'react-native-maps';
 
@@ -10,7 +11,7 @@ Geolocation.setRNConfiguration({
   skipPermissionRequests: true,
 });
 
-export function App(): JSX.Element {
+export function App(): React.JSX.Element {
   return (
     <AppProvider>
       <Routes />

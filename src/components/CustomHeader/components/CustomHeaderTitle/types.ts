@@ -1,4 +1,4 @@
-export interface ICustomHeaderTitle {
+export interface CustomHeaderTitleProps {
   title: string;
-  subTitle: string;
+  subTitle?: string;
 }

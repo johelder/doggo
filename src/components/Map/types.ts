@@ -1,14 +1,8 @@
-import type { ReactNode } from 'react';
-import type { MapViewProps } from 'react-native-maps';
+import { ReactNode } from 'react';
 
-export interface IMapProps extends MapViewProps {
+import { MapViewProps } from 'react-native-maps';
+
+export interface MapProps extends MapViewProps {
   isClustering?: boolean;
   children?: ReactNode;
-}
-
-export interface ICurrentUserLocation {
-  latitude: number | null;
-  longitude: number;
-  latitudeDelta: number;
-  longitudeDelta: number;
 }

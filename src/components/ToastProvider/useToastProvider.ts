@@ -2,21 +2,24 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { toastEventManager } from '@utils';
 
-import type { IToast } from './types';
+import type { Toast } from './types';
 
 export function useToastProvider() {
-  const [toast, setToast] = useState<IToast | null>(null);
+  const [toasts, setToasts] = useState<Toast[]>([]);
 
-  const handleAddToast = useCallback(({ type, message, duration }: IToast) => {
-    setToast({
-      type,
-      message,
-      duration,
-    });
+  const handleAddToast = useCallback(({ type, message, duration }: Toast) => {
+    setToasts([
+      {
+        id: Math.random(),
+        type,
+        message,
+        duration,
+      },
+    ]);
   }, []);
 
   const handleRemoveToast = useCallback(() => {
-    setToast(null);
+    setToasts([]);
   }, []);
 
   useEffect(() => {
@@ -25,5 +28,5 @@ export function useToastProvider() {
     return () => toastEventManager.removeListener('addToast', handleAddToast);
   }, [handleAddToast]);
 
-  return { toast, handleRemoveToast };
+  return { toasts, handleRemoveToast };
 }

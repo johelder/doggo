@@ -1,8 +1,10 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
+
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useTheme } from 'styled-components/native';
 
+import { IS_FIRST_ACCESS_KEY, useStorage } from '@hooks';
 import {
   CreateFeeder,
   MyFeeders,
@@ -16,13 +18,11 @@ import {
   TermsOfUse,
   SelectLocation,
 } from '@screens';
+
 import { HomeTabs } from './BottomTabs';
-import { useStorage } from '@hooks';
-import { IS_FIRST_ACCESS_KEY } from '@app/src/hooks/useStorage/constants';
+import { AuthenticatedStackParamList } from './types';
 
-import type { TRootStackParamList } from '@types';
-
-const Stack = createNativeStackNavigator<TRootStackParamList>();
+const Stack = createNativeStackNavigator<AuthenticatedStackParamList>();
 
 const wrapperOptions = {
   flex: 1,
@@ -87,7 +87,15 @@ export function AuthenticatedRoutes() {
               headerTitle: 'FAVORITOS',
             }}
           />
-          <Stack.Screen name="FeederDetails" component={FeederDetails} />
+          <Stack.Screen
+            name="FeederDetails"
+            component={FeederDetails}
+            options={({ route }) => ({
+              title: `COMEDOURO DE ${route.params.feederOwner
+                ?.split(' ')[0]
+                .toUpperCase()}`,
+            })}
+          />
           <Stack.Screen
             name="Settings"
             component={Settings}

@@ -1,12 +1,13 @@
-import type { RefObject } from 'react';
-import type { Modalize } from 'react-native-modalize';
-import type { IFeeder } from '@types';
+import { RefObject } from 'react';
 
-export interface IFeederDetailsModal {
+import { Modalize } from 'react-native-modalize';
+
+import { FeederDomain } from '@data';
+
+export interface FeederDetailsModalProps {
   detailsModalRef: RefObject<Modalize>;
-  feeder: IFeeder | null;
+  feeder: FeederDomain | null;
   onCancel: () => void;
-  onDelete: (feederId: string) => Promise<void>;
+  onDelete: (id: string) => void;
   onEdit: () => void;
-  isLoadingDelete: boolean;
 }

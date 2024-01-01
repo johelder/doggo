@@ -1,6 +1,6 @@
-import type { IFeeder } from '@src/types';
+import { FeederDomain } from '@data';
 
-export interface IFeederAddressProps {
-  feeder: IFeeder;
+export interface FeederAddressProps {
+  feeder: FeederDomain;
   onOpenDetails: () => void;
 }

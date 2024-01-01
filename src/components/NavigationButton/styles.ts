@@ -1,7 +1,6 @@
-import styled from 'styled-components/native';
 import { StyleSheet } from 'react-native';
 
-import CaretRight from 'phosphor-react-native/src/icons/CaretRight';
+import styled from 'styled-components/native';
 
 export const Container = styled.TouchableOpacity.attrs({
   activeOpacity: 0.6,
@@ -40,9 +39,3 @@ export const Description = styled.Text`
 
   flex-shrink: 1;
 `;
-
-export const ArrowRight = styled(CaretRight).attrs(({ theme }) => ({
-  size: theme.sizes.xlg,
-  color: theme.colors.gray[500],
-  weight: 'bold',
-}))``;

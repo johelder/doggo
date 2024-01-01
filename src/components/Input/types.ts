@@ -1,6 +1,6 @@
-import type { TextInputProps } from 'react-native';
+import { TextInputProps } from 'react-native';
 
-export interface IInputProps extends TextInputProps {
+export interface InputProps extends TextInputProps {
   placeholder: string;
   isOptional?: boolean;
 }

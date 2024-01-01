@@ -4,13 +4,9 @@ import Geolocation, {
 import { CommonActions, useNavigation } from '@react-navigation/native';
 import { useModalize } from 'react-native-modalize';
 
+import { LOCATION_PERMISSION_DENIED, IS_LOCATION_TURN_OFF } from '@domain';
+import { IS_FIRST_ACCESS_KEY, useStorage } from '@hooks';
 import { errorHandler } from '@utils';
-import { useStorage } from '@hooks';
-import { IS_FIRST_ACCESS_KEY } from '@app/src/hooks/useStorage/constants';
-import {
-  LOCATION_PERMISSION_DENIED,
-  IS_LOCATION_TURN_OFF,
-} from '@app/src/hooks/useMap/constants';
 
 export function useLocationPermission() {
   const navigation = useNavigation();

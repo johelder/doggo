@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
-import { useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
+import { useRef, useState } from 'react';
+import { LayoutChangeEvent } from 'react-native';
 
-import type { LayoutChangeEvent } from 'react-native';
+import { useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
 
 export function useInput(value?: string) {
   const [isInputFocused, setIsInputFocused] = useState(false);
@@ -28,6 +28,11 @@ export function useInput(value?: string) {
     const { height } = event.nativeEvent.layout;
 
     placeholderContainerHeight.current = height;
+
+    if (value) {
+      isInputFilled.current = true;
+      placeholderPosition.value = -placeholderContainerHeight.current;
+    }
   }
 
   const animatedPlaceholderPositionStyle = useAnimatedStyle(() => {
@@ -35,13 +40,6 @@ export function useInput(value?: string) {
       transform: [{ translateY: placeholderPosition.value }],
     };
   });
-
-  useEffect(() => {
-    if (value) {
-      isInputFilled.current = true;
-      placeholderPosition.value = -placeholderContainerHeight.current;
-    }
-  }, [placeholderPosition, value]);
 
   return {
     onLayout,

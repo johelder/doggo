@@ -1,8 +1,7 @@
-import type { TouchableOpacityProps } from 'react-native';
-import type { IconProps } from 'phosphor-react-native/src/lib';
+import { TouchableOpacityProps } from 'react-native';
 
-export interface INavigationButtonProps extends TouchableOpacityProps {
+export interface NavigationButtonProps extends TouchableOpacityProps {
   title: string;
   description?: string;
-  icon?: React.ComponentType<IconProps>;
+  icon?: () => React.JSX.Element;
 }

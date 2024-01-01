@@ -1,26 +1,13 @@
-import styled, { css } from 'styled-components/native';
 import Animated from 'react-native-reanimated';
-import X from 'phosphor-react-native/src/icons/X';
+import styled, { css } from 'styled-components/native';
 
-import type { TToastType } from '../../types';
+import { ToastType } from '../../types';
 
-export const Container = styled(Animated.View)`
-  min-height: 64px;
-
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 1;
-  elevation: 1;
-
-  margin: ${({ theme }) => theme.spacings.md}px;
-`;
-
-export const Content = styled.View<{ type: TToastType }>`
+export const Content = styled(Animated.View)<{ type: ToastType }>`
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
+  gap: ${({ theme }) => theme.spacings.sm}px;
 
   padding: ${({ theme }) => theme.spacings.md}px;
   border-radius: ${({ theme }) => theme.sizes.xxxsm}px;
@@ -44,8 +31,6 @@ export const Content = styled.View<{ type: TToastType }>`
     `}
 `;
 
-export const IconContainer = styled.View``;
-
 export const Message = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary.medium};
   font-size: ${({ theme }) => theme.sizes.md}px;
@@ -54,11 +39,4 @@ export const Message = styled.Text`
   flex-shrink: 1;
 
   color: ${({ theme }) => theme.colors.gray[0]};
-  padding: 0px ${({ theme }) => theme.spacings.sm}px;
 `;
-
-export const CloseButton = styled.TouchableOpacity`
-  margin-left: auto;
-`;
-
-export const CloseIcon = styled(X)``;

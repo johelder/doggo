@@ -1,24 +1,44 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
+
 import { useNavigation, useRoute } from '@react-navigation/native';
 
-import { FeedersRepository } from '@services';
-import { useMap } from '@hooks';
-import { errorHandler, showToast } from '@utils';
-
-import type { IFeeder, TRootStackScreenProps } from '@types';
-import type { IFeederFormRef } from '@app/src/components/FeederForm/types';
-import type { IFeederAddress } from './types';
+import { FeederFormRefProps } from '@components';
+import { FeederDomain } from '@data';
+import {
+  useFeederUpdate,
+  useFeederFindOne,
+  FeederFormFields,
+  useMap,
+} from '@domain';
+import { AppScreenProps } from '@routes';
+import { showToast } from '@utils';
 
 export function useEditFeeder() {
-  const [currentFeederToEdit, setCurrentFeederToEdit] = useState<IFeeder>(
-    {} as IFeeder,
-  );
   const { currentUserLocation } = useMap();
-  const feederFormRef = useRef<IFeederFormRef>(null);
+  const feederFormRef = useRef<FeederFormRefProps>(null);
 
-  const route = useRoute<TRootStackScreenProps<'EditFeeder'>['route']>();
+  const route = useRoute<AppScreenProps<'EditFeeder'>['route']>();
   const navigation = useNavigation();
   const feederId = route.params.feederId;
+
+  const { updateFeeder, isPending } = useFeederUpdate({
+    onSuccess: () => {
+      showToast({
+        type: 'success',
+        message: 'Comedouro atualizado com sucesso.',
+      });
+
+      navigateToMyFeedersAndResetPreviousPages();
+    },
+    onError: () => {
+      showToast({
+        type: 'error',
+        message:
+          'Ocorreu um erro ao atualizar seu comedouro, por favor, tente novamente mais tarde.',
+      });
+    },
+  });
+  const { feeder, isSuccess } = useFeederFindOne({ id: feederId });
 
   function hasSomeMandatoryFieldNotFilled() {
     return (
@@ -28,99 +48,60 @@ export function useEditFeeder() {
     );
   }
 
-  async function handleUpdateFeeder({
-    addressNumber,
-    addressComplement,
-    addressReference,
-    feederFoods,
-  }: IFeederAddress) {
-    try {
-      if (hasSomeMandatoryFieldNotFilled()) {
-        showToast({
-          type: 'warning',
-          message: 'Preencha todos os campos obrigatórios para continuar.',
-          duration: 4000,
-        });
-
-        return;
-      }
-
-      if (!currentUserLocation) {
-        return;
-      }
-
-      const payload = {
-        ...currentFeederToEdit,
-        coordinates: {
-          latitude: currentUserLocation?.coords.latitude,
-          longitude: currentUserLocation?.coords.longitude,
-        },
-        address: {
-          ...route.params.address,
-          houseNumber: addressNumber,
-          complement: addressComplement,
-          reference: addressReference,
-        },
-        foods: feederFoods,
-      };
-
-      await FeedersRepository.update(payload);
-      feederFormRef.current?.clearFields();
-
-      showToast({
-        type: 'success',
-        message: 'Comedouro atualizado com sucesso.',
-        duration: 4000,
-      });
-
-      navigation.navigate('MyFeeders');
-    } catch (error) {
-      showToast({
-        type: 'error',
-        message:
-          'Ocorreu um erro ao atualizar seu comedouro, por favor, tente novamente mais tarde.',
-        duration: 4000,
-      });
-
-      errorHandler.reportError(error, handleUpdateFeeder.name);
-    }
+  function navigateToMyFeedersAndResetPreviousPages() {
+    navigation.reset({
+      index: 1,
+      routes: [
+        { name: 'HomeTabs', state: { routes: [{ name: 'Profile' }] } },
+        { name: 'MyFeeders' },
+      ],
+    });
   }
 
-  const fetchFeederInformation = useCallback(async () => {
-    try {
-      const feeder = await FeedersRepository.findById(feederId);
-
-      if (!feeder) {
-        showToast({
-          type: 'warning',
-          message:
-            'Comedouro não encontrado, por favor, tente novamente mais tarde.',
-          duration: 4000,
-        });
-
-        return;
-      }
-
-      setCurrentFeederToEdit(feeder);
-      feederFormRef.current?.populateFields(feeder);
-    } catch (error) {
-      errorHandler.reportError(error, fetchFeederInformation.name);
-
+  async function handleUpdateFeeder({
+    houseNumber,
+    complement,
+    reference,
+    foods,
+  }: FeederFormFields) {
+    if (hasSomeMandatoryFieldNotFilled()) {
       showToast({
-        type: 'error',
-        message:
-          'Ocorreu um erro no servidor, por favor, tente novamente mais tarde.',
+        type: 'warning',
+        message: 'Preencha todos os campos obrigatórios para continuar.',
         duration: 4000,
       });
+
+      return;
     }
-  }, [feederId]);
+
+    if (!feeder) {
+      return;
+    }
+
+    const payload: FeederDomain = {
+      ...feeder,
+      coordinates: currentUserLocation,
+      address: {
+        ...route.params.address,
+        houseNumber,
+        complement,
+        reference,
+      },
+      foods,
+    };
+
+    updateFeeder(payload);
+  }
 
   useEffect(() => {
-    fetchFeederInformation();
-  }, [fetchFeederInformation]);
+    if (isSuccess && feeder) {
+      feederFormRef.current?.populateFields(feeder);
+    }
+  }, [feeder, isSuccess]);
 
   return {
     handleUpdateFeeder,
     feederFormRef,
+    isPending,
   };
 }

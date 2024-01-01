@@ -1,7 +1,8 @@
-import type { ReactNode, RefObject } from 'react';
-import type { Modalize, ModalizeProps } from 'react-native-modalize';
+import { ReactNode, RefObject } from 'react';
 
-export interface IModalProps extends ModalizeProps {
+import { Modalize, ModalizeProps } from 'react-native-modalize';
+
+export interface ModalProps extends ModalizeProps {
   modalRef: RefObject<Modalize>;
   children: ReactNode;
 }

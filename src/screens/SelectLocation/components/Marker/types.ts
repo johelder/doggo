@@ -1,3 +1,3 @@
-export interface IMarkerProps {
+export interface MarkerProps {
   isTooltipVisible?: boolean;
 }

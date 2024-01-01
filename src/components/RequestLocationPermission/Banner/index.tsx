@@ -2,19 +2,19 @@ import React from 'react';
 
 import LocationIllustration from '@assets/images/location-illustration.svg';
 
-import * as S from './styles';
+import * as Styled from './styles';
 
-export function RequestLocationPermissionBanner() {
+export function RequestLocationPermissionBanner(): React.JSX.Element {
   return (
-    <S.Container>
-      <S.TextsContainer>
-        <S.Title>Permitir localização</S.Title>
-        <S.Description>
+    <Styled.Container>
+      <Styled.TextsContainer>
+        <Styled.Title>Permitir localização</Styled.Title>
+        <Styled.Description>
           Nós usamos sua localização para mostrar os comedouros próximos a você.
-        </S.Description>
-      </S.TextsContainer>
+        </Styled.Description>
+      </Styled.TextsContainer>
 
       <LocationIllustration width="100%" height="50%" />
-    </S.Container>
+    </Styled.Container>
   );
 }

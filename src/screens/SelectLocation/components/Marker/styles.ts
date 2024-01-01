@@ -1,5 +1,4 @@
 import styled from 'styled-components/native';
-import MapPin from 'phosphor-react-native/src/icons/MapPin';
 
 export const Container = styled.View`
   position: absolute;
@@ -68,10 +67,6 @@ export const TooltipTriangle = styled.View`
   align-self: center;
 `;
 
-export const Marker = styled(MapPin).attrs(({ theme }) => ({
-  weight: 'fill',
-  size: 42,
-  color: theme.colors.orange[500],
-}))`
+export const Marker = styled.View`
   margin-bottom: 21px;
 `;

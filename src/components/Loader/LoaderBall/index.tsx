@@ -1,13 +1,13 @@
 import React from 'react';
 
+import * as Styled from './styles';
+import { LoaderBallProps } from './types';
 import { useLoaderBall } from './useLoaderBall';
 
-import type { ILoaderBallProps } from './types';
-
-import * as S from './styles';
-
-export function LoaderBall({ initialDelay }: ILoaderBallProps) {
+export function LoaderBall({
+  initialDelay,
+}: LoaderBallProps): React.JSX.Element {
   const { animatedBallStyle } = useLoaderBall(initialDelay);
 
-  return <S.Ball style={animatedBallStyle} />;
+  return <Styled.Ball style={animatedBallStyle} />;
 }

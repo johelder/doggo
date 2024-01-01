@@ -1,13 +1,14 @@
 import { Alert } from 'react-native';
+
 import auth from '@react-native-firebase/auth';
 
-import { useAuth } from '@hooks';
-import { FeedersRepository, UsersRepository } from '@services';
-
+import { useFeederDeleteAll, useUserRemove, useAuth } from '@domain';
 import { errorHandler, showToast } from '@utils';
 
 export function useDeleteAccount() {
   const { user } = useAuth();
+  const { deleteAllFeeders } = useFeederDeleteAll();
+  const { removeUser } = useUserRemove();
 
   async function handleDeleteAccount() {
     try {
@@ -15,8 +16,8 @@ export function useDeleteAccount() {
         return;
       }
 
-      await FeedersRepository.deleteAllFeedersByUserId(user.id);
-      await UsersRepository.delete(user.id);
+      deleteAllFeeders(user.id);
+      removeUser(user.id);
       await auth().currentUser?.delete();
 
       showToast({

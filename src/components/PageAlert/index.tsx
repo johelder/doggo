@@ -1,9 +1,8 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import type { IPageAlertProps } from './types';
-
-import * as S from './styles';
+import * as Styled from './styles';
+import { PageAlertProps } from './types';
 
 export function PageAlert({
   title,
@@ -11,17 +10,17 @@ export function PageAlert({
   icon,
   color,
   actionButton,
-}: IPageAlertProps) {
+}: PageAlertProps): React.JSX.Element {
   return (
-    <S.Container>
-      <S.IconContainer color={color}>{icon}</S.IconContainer>
+    <Styled.Container>
+      <Styled.IconContainer color={color}>{icon}</Styled.IconContainer>
 
       <View>
-        <S.Title>{title}</S.Title>
-        {description && <S.Description>{description}</S.Description>}
+        <Styled.Title>{title}</Styled.Title>
+        {description && <Styled.Description>{description}</Styled.Description>}
       </View>
 
       {actionButton}
-    </S.Container>
+    </Styled.Container>
   );
 }

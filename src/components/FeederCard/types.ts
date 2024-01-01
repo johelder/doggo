@@ -1,8 +1,9 @@
-import type { ReactElement } from 'react';
-import type { IFeeder } from '@types';
+import { ReactElement } from 'react';
 
-export interface IFeedCardProps {
-  feeder: IFeeder | null;
+import { FeederDomain } from '@data';
+
+export interface FeederCardProps {
+  feeder: FeederDomain;
   sideButton?: ReactElement;
   onClose?: () => void;
 }

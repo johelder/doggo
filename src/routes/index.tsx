@@ -1,22 +1,2 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-
-import { useAuth } from '@hooks';
-import { Splash } from '@screens';
-
-import { UnauthenticatedRoutes } from './unauthenticated';
-import { AuthenticatedRoutes } from './authenticated';
-
-export function Routes() {
-  const { isUserLogged, isLoadingAuthState } = useAuth();
-
-  if (isLoadingAuthState) {
-    return <Splash />;
-  }
-
-  return (
-    <NavigationContainer>
-      {isUserLogged ? <AuthenticatedRoutes /> : <UnauthenticatedRoutes />}
-    </NavigationContainer>
-  );
-}
+export * from './Routes';
+export * from './types';

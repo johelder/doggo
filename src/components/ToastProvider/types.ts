@@ -1,7 +1,8 @@
-export type TToastType = 'success' | 'error' | 'warning' | undefined;
+export type ToastType = 'success' | 'error' | 'warning';
 
-export interface IToast {
-  type: TToastType;
+export interface Toast {
+  id?: number;
+  type: ToastType;
   message: string;
   duration?: number;
 }

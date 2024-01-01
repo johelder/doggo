@@ -1,21 +1,46 @@
 import { useRef } from 'react';
+
+import firestore, {
+  FirebaseFirestoreTypes,
+} from '@react-native-firebase/firestore';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import firestore from '@react-native-firebase/firestore';
 
-import { FeedersRepository } from '@services';
-import { useAuth } from '@hooks';
-import { errorHandler, showToast } from '@utils';
-
-import type { IFeeder, TRootStackScreenProps } from '@types';
-import type { IFeederFormRef } from '@app/src/components/FeederForm/types';
-import type { IFeederAddress } from './types';
+import { FeederFormRefProps } from '@components';
+import { FeederDomain } from '@data';
+import { FeederFormFields, useFeederCreate, useAuth } from '@domain';
+import { AppScreenProps } from '@routes';
+import { showToast } from '@utils';
 
 export function useCreateFeeder() {
   const { user } = useAuth();
-  const feederFormRef = useRef<IFeederFormRef>(null);
+  const feederFormRef = useRef<FeederFormRefProps>(null);
 
-  const route = useRoute<TRootStackScreenProps<'CreateFeeder'>['route']>();
+  const { createFeeder, isPending } = useFeederCreate({
+    onSuccess: () => {
+      showToast({ type: 'success', message: 'Comedouro criado com sucesso.' });
+      navigateToMyFeedersAndResetPreviousPages();
+    },
+    onError: () => {
+      showToast({
+        type: 'error',
+        message:
+          'Ocorreu um erro ao criar seu comedouro, por favor, tente novamente mais tarde.',
+      });
+    },
+  });
+
+  const route = useRoute<AppScreenProps<'CreateFeeder'>['route']>();
   const navigation = useNavigation();
+
+  function navigateToMyFeedersAndResetPreviousPages() {
+    navigation.reset({
+      index: 1,
+      routes: [
+        { name: 'HomeTabs', state: { routes: [{ name: 'Profile' }] } },
+        { name: 'MyFeeders' },
+      ],
+    });
+  }
 
   function hasSomeMandatoryFieldNotFilled() {
     return (
@@ -26,85 +51,59 @@ export function useCreateFeeder() {
   }
 
   async function handleCreateFeeder({
-    addressNumber,
-    addressComplement,
-    addressReference,
-    feederFoods,
-  }: IFeederAddress) {
-    try {
-      if (hasSomeMandatoryFieldNotFilled()) {
-        showToast({
-          type: 'warning',
-          message: 'Preencha todos os campos obrigatórios para continuar.',
-          duration: 4000,
-        });
-
-        return;
-      }
-
-      if (!user?.name) {
-        return;
-      }
-
-      const feeder: IFeeder = {
-        user: {
-          id: user.id,
-          name: user.name,
-        },
-        coordinates: {
-          latitude: route.params.coordinate.latitude,
-          longitude: route.params.coordinate.longitude,
-        },
-        address: {
-          ...route.params.address,
-          houseNumber: addressNumber,
-          complement: addressComplement,
-          reference: addressReference,
-        },
-        foods: feederFoods,
-        maintenanceStatus: {
-          supply: {
-            updatedAt: firestore.FieldValue.serverTimestamp(),
-            updatedBy: {
-              userId: user.id,
-              userName: user.name,
-            },
-          },
-          cleaning: {
-            updatedAt: firestore.FieldValue.serverTimestamp(),
-            updatedBy: {
-              userId: user.id,
-              userName: user.name,
-            },
-          },
-        },
-      };
-
-      await FeedersRepository.create(feeder);
-
+    houseNumber,
+    complement,
+    reference,
+    foods,
+  }: FeederFormFields) {
+    if (hasSomeMandatoryFieldNotFilled()) {
       showToast({
-        type: 'success',
-        message: 'Comedouro criado com sucesso.',
+        type: 'warning',
+        message: 'Preencha todos os campos obrigatórios para continuar.',
         duration: 4000,
       });
 
-      feederFormRef.current?.clearFields();
-
-      navigation.navigate('MyFeeders');
-    } catch (error) {
-      showToast({
-        type: 'error',
-        message:
-          'Ocorreu um erro ao criar seu comedouro, por favor, tente novamente mais tarde.',
-        duration: 4000,
-      });
-
-      errorHandler.reportError(error, 'handleCreateFeeder');
+      return;
     }
+
+    if (!user) {
+      return;
+    }
+
+    const maintenance = {
+      updatedAt:
+        firestore.FieldValue.serverTimestamp() as FirebaseFirestoreTypes.Timestamp,
+      updatedBy: {
+        userId: user.id,
+        userName: user.name,
+      },
+    };
+
+    const feeder: Omit<FeederDomain, 'id'> = {
+      user: {
+        id: user.id,
+        name: user.name,
+      },
+      coordinates: route.params.coordinate,
+      address: {
+        ...route.params.address,
+        houseNumber,
+        complement,
+        reference,
+      },
+      foods,
+      maintenanceStatus: {
+        supply: maintenance,
+        cleaning: maintenance,
+      },
+    };
+
+    createFeeder(feeder);
   }
 
   return {
     handleCreateFeeder,
     feederFormRef,
+    isPending,
   };
 }
