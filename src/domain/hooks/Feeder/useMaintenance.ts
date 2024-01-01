@@ -18,9 +18,9 @@ export function useMaintenance({ supply, cleaning }: MaintenanceStatusDomain) {
   }
 
   function isNeedMaintenance() {
-    const lastSupplyUpdate = date.getDaysDifference(supply.updatedAt.toDate());
+    const lastSupplyUpdate = date.getDaysDifference(supply.updatedAt?.toDate());
     const lastCleaningUpdate = date.getDaysDifference(
-      cleaning.updatedAt.toDate(),
+      cleaning.updatedAt?.toDate(),
     );
 
     return (
@@ -30,8 +30,8 @@ export function useMaintenance({ supply, cleaning }: MaintenanceStatusDomain) {
 
   function getLastUpdateInformation() {
     return {
-      supply: date.formatRelativeDate(supply.updatedAt.toDate()),
-      cleaning: date.formatRelativeDate(cleaning.updatedAt.toDate()),
+      supply: date.formatRelativeDate(supply.updatedAt?.toDate()),
+      cleaning: date.formatRelativeDate(cleaning.updatedAt?.toDate()),
       users: getUpdaterUsers(
         supply.updatedBy.userName,
         cleaning.updatedBy.userName,
