@@ -4,9 +4,9 @@ import { Path, Svg, G, Defs, ClipPath, Rect } from 'react-native-svg';
 
 import { IconBase } from '@components';
 
-export function Users({ size = 24, color = 'black' }: IconBase) {
+export function Users({ size = 24, color = 'black', ...rest }: IconBase) {
   return (
-    <Svg width={size} height={size} viewBox="0 0 32 32" fill="none">
+    <Svg width={size} height={size} viewBox="0 0 32 32" fill="none" {...rest}>
       <G clipPath="url(#clip0_905_234)">
         <Path
           fillRule="evenodd"
