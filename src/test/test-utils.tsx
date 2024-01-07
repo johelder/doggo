@@ -11,7 +11,7 @@ import { ThemeProvider } from 'styled-components/native';
 
 import { theme } from '@theme';
 
-function wrapperAllTheProviders() {
+function wrapAllTheProviders() {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
@@ -36,7 +36,7 @@ function customRender<T = unknown>(
   component: ReactElement<T>,
   options?: Omit<RenderOptions, 'wrapper'>,
 ) {
-  return render(component, { wrapper: wrapperAllTheProviders(), ...options });
+  return render(component, { wrapper: wrapAllTheProviders(), ...options });
 }
 
 function customRenderHook<Result, Props>(
@@ -44,7 +44,7 @@ function customRenderHook<Result, Props>(
   options?: Omit<RenderHookOptions<Props>, 'wrapper'>,
 ) {
   return renderHook(renderCallback, {
-    wrapper: wrapperAllTheProviders(),
+    wrapper: wrapAllTheProviders(),
     ...options,
   });
 }
