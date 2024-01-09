@@ -4,7 +4,7 @@ import { MMKV } from 'react-native-mmkv';
 
 import { STORAGE_KEY } from './constants';
 
-const storage = new MMKV({
+export const storage = new MMKV({
   id: STORAGE_KEY,
 });
 
