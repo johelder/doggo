@@ -30,3 +30,7 @@ export type AuthenticatedStackParamList = {
   TermsOfUse: undefined;
   DeleteAccount: undefined;
 };
+
+export interface AuthenticatedStackProps {
+  initialRouteName?: keyof AuthenticatedStackParamList;
+}
