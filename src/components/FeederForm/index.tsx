@@ -2,8 +2,10 @@ import React, { forwardRef, useImperativeHandle } from 'react';
 
 import { useTheme } from 'styled-components/native';
 
-import { Input, ChipButton, Button, Icon } from '..';
+import { Button, Icon } from '..';
 
+import { ChipButton } from './components/ChipButton';
+import { Input } from './components/Input';
 import * as Styled from './styles';
 import { FeederFormProps, FeederFormRefProps } from './types';
 import { useFeederForm } from './useFeederForm';
@@ -34,96 +36,59 @@ export const FeederForm = forwardRef<FeederFormRefProps, FeederFormProps>(
     return (
       <Styled.FormContent>
         <Styled.InputsWrapper>
-          <Styled.InputContainer flex={1}>
-            <Input
-              value={addressNumber}
-              onChangeText={setAddressNumber}
-              placeholder="Número"
-            />
-          </Styled.InputContainer>
-
-          <Styled.InputContainer flex={3}>
-            <Input
-              value={addressComplement}
-              onChangeText={setAddressComplement}
-              placeholder="Complemento"
-              isOptional
-            />
-
-            <Styled.FieldDescription>
-              Apto / Bloco / Casa
-            </Styled.FieldDescription>
-          </Styled.InputContainer>
-        </Styled.InputsWrapper>
-
-        <Styled.InputsWrapper>
           <Input
-            value={addressReference}
-            onChangeText={setAddressReference}
-            placeholder="Ponto de referência"
+            value={addressNumber}
+            onChangeText={setAddressNumber}
+            placeholder="Número"
+            flex={1}
+          />
+
+          <Input
+            value={addressComplement}
+            onChangeText={setAddressComplement}
+            placeholder="Complemento"
+            description="Apto / Bloco / Casa"
             isOptional
+            flex={3}
           />
         </Styled.InputsWrapper>
+
+        <Input
+          value={addressReference}
+          onChangeText={setAddressReference}
+          placeholder="Ponto de referência"
+          isOptional
+        />
 
         <Styled.FormFooter>
           <Styled.Label>Seu comedouro alimenta: </Styled.Label>
 
           <Styled.ChipsWrapper>
-            <Styled.ChipButtonContainer>
-              <ChipButton
-                isSelected={feederFoods.dog}
-                onPress={() => handleToggleFeedFoods('dog')}>
-                <Icon
-                  name="dog"
-                  color={
-                    feederFoods.dog
-                      ? theme.colors.orange[500]
-                      : theme.colors.gray[500]
-                  }
-                />
-                <Styled.ChipButtonLabel isSelected={feederFoods.dog}>
-                  Cachorros
-                </Styled.ChipButtonLabel>
-              </ChipButton>
-            </Styled.ChipButtonContainer>
+            <ChipButton
+              isSelected={feederFoods.dog}
+              onPress={() => handleToggleFeedFoods('dog')}
+              iconName="dog"
+              label="Cachorros"
+            />
 
-            <Styled.ChipButtonContainer>
-              <ChipButton
-                isSelected={feederFoods.cat}
-                onPress={() => handleToggleFeedFoods('cat')}>
-                <Icon
-                  name="cat"
-                  color={
-                    feederFoods.cat
-                      ? theme.colors.orange[500]
-                      : theme.colors.gray[500]
-                  }
-                />
-                <Styled.ChipButtonLabel isSelected={feederFoods.cat}>
-                  Gatos
-                </Styled.ChipButtonLabel>
-              </ChipButton>
-            </Styled.ChipButtonContainer>
+            <ChipButton
+              isSelected={feederFoods.cat}
+              onPress={() => handleToggleFeedFoods('cat')}
+              iconName="cat"
+              label="Gatos"
+            />
           </Styled.ChipsWrapper>
 
           <ChipButton
             isSelected={feederFoods.others}
-            onPress={() => handleToggleFeedFoods('others')}>
-            <Icon
-              name="dotsThreeCircle"
-              color={
-                feederFoods.others
-                  ? theme.colors.orange[500]
-                  : theme.colors.gray[500]
-              }
-            />
-            <Styled.ChipButtonLabel isSelected={feederFoods.others}>
-              Outros
-            </Styled.ChipButtonLabel>
-          </ChipButton>
+            onPress={() => handleToggleFeedFoods('others')}
+            iconName="dotsThreeCircle"
+            label="Outros"
+          />
         </Styled.FormFooter>
 
         <Button.Root
+          testID="create-feeder-button"
           type="filled"
           color={theme.colors.orange[500]}
           onPress={handleSubmit}
