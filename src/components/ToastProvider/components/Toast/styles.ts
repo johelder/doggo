@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components/native';
 
 import { ToastType } from '../../types';
 
-export const Content = styled(Animated.View)<{ type: ToastType }>`
+export const Content = styled(Animated.View)<{ type?: ToastType }>`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
