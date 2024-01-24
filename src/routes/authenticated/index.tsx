@@ -40,7 +40,7 @@ export function AuthenticatedRoutes({
       return initialRouteName;
     }
 
-    return isFirstAccess ? 'SelectLocation' : 'HomeTabs';
+    return isFirstAccess ? 'LocationPermission' : 'HomeTabs';
   }
 
   return (
