@@ -8,7 +8,7 @@ import { AppScreenProps } from '@routes';
 import { errorHandler, showToast } from '@utils';
 
 export function useSelectLocation() {
-  const [isLoadingAddress, setIsLoadingAddress] = useState(false);
+  const [isLoadingAddress, setIsLoadingAddress] = useState(true);
   const [isShowingTooltip, setIsShowingTooltip] = useState(true);
   const [geographicalInformation, setGeographicalInformation] =
     useState<GeographicalInformation>({} as GeographicalInformation);
