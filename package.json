@@ -9,7 +9,12 @@
     "start": "react-native start",
     "test": "jest --verbose",
     "coverage": "jest --verbose --coverage",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "detox:start": "MY_APP_MODE=mocked npx react-native start",
+    "detox:build-ios": "detox build --configuration ios.sim.debug",
+    "detox:build-android": "detox build --configuration android.emu.debug",
+    "detox:test-ios": "detox build --configuration ios.sim.debug",
+    "detox:test-android": "detox test --configuration android.emu.debug"
   },
   "dependencies": {
     "@react-native-community/geolocation": "^3.0.5",
