@@ -47,7 +47,7 @@ export function MyFeeders(): React.JSX.Element {
   }
 
   return (
-    <Styled.Container>
+    <Styled.Container testID="my-feeders-screen">
       <Styled.Content>
         <Styled.Feeders
           data={feederList}

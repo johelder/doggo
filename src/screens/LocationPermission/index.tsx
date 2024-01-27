@@ -14,11 +14,14 @@ export function LocationPermission(): React.JSX.Element {
     useLocationPermission();
 
   return (
-    <Styled.Container>
+    <Styled.Container testID="location-permission-screen">
       <Styled.Content>
         <RequestLocationPermissionBanner />
 
-        <Button.Root type="filled" onPress={handlerRequestUserLocation}>
+        <Button.Root
+          testID="location-permission-button"
+          type="filled"
+          onPress={handlerRequestUserLocation}>
           <Button.Text>Permitir Localização</Button.Text>
         </Button.Root>
       </Styled.Content>

@@ -12,7 +12,7 @@ export function NewFeederButton({
 }: BottomTabBarButtonProps): React.JSX.Element {
   return (
     <Styled.Container>
-      <Styled.Button onPress={onPress}>
+      <Styled.Button testID="new-feeder-button" onPress={onPress}>
         <Icon name="plusFeeder" size={42} color={theme.colors.gray[0]} />
       </Styled.Button>
     </Styled.Container>

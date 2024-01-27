@@ -21,6 +21,7 @@ export function Map({
   return (
     <View>
       <MapComponent
+        testID="map-component"
         ref={mapRef}
         initialRegion={{
           latitude: currentUserLocation.latitude,

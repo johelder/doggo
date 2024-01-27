@@ -37,6 +37,7 @@ export const FeederForm = forwardRef<FeederFormRefProps, FeederFormProps>(
       <Styled.FormContent>
         <Styled.InputsWrapper>
           <Input
+            testID="address-number"
             value={addressNumber}
             onChangeText={setAddressNumber}
             placeholder="Número"
@@ -44,6 +45,7 @@ export const FeederForm = forwardRef<FeederFormRefProps, FeederFormProps>(
           />
 
           <Input
+            testID="address-complement"
             value={addressComplement}
             onChangeText={setAddressComplement}
             placeholder="Complemento"
@@ -54,6 +56,7 @@ export const FeederForm = forwardRef<FeederFormRefProps, FeederFormProps>(
         </Styled.InputsWrapper>
 
         <Input
+          testID="address-reference"
           value={addressReference}
           onChangeText={setAddressReference}
           placeholder="Ponto de referência"
@@ -65,6 +68,7 @@ export const FeederForm = forwardRef<FeederFormRefProps, FeederFormProps>(
 
           <Styled.ChipsWrapper>
             <ChipButton
+              testID="feeder-dog-foods"
               isSelected={feederFoods.dog}
               onPress={() => handleToggleFeedFoods('dog')}
               iconName="dog"
@@ -72,6 +76,7 @@ export const FeederForm = forwardRef<FeederFormRefProps, FeederFormProps>(
             />
 
             <ChipButton
+              testID="feeder-cat-foods"
               isSelected={feederFoods.cat}
               onPress={() => handleToggleFeedFoods('cat')}
               iconName="cat"
@@ -80,6 +85,7 @@ export const FeederForm = forwardRef<FeederFormRefProps, FeederFormProps>(
           </Styled.ChipsWrapper>
 
           <ChipButton
+            testID="feeder-others-foods"
             isSelected={feederFoods.others}
             onPress={() => handleToggleFeedFoods('others')}
             iconName="dotsThreeCircle"

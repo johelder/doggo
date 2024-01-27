@@ -24,6 +24,7 @@ export function SignIn(): React.JSX.Element {
       </Styled.GreetingsContainer>
 
       <Styled.GoogleButton
+        testID="google-button"
         onPress={handleSignInWithGoogle}
         disabled={isLoadingSignIn}>
         {isLoadingSignIn ? (

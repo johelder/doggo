@@ -23,7 +23,7 @@ export function FeederDetails({
   }
 
   return (
-    <Styled.Container>
+    <Styled.Container testID="feeder-details-screen">
       <Styled.Content>
         <FeederStatusSection
           feederId={feeder.id}
