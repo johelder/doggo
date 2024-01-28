@@ -16,7 +16,7 @@ export function useUserToggleFavoriteFeeder(
 
   const queryClient = useQueryClient();
 
-  const { mutate: addFavoriteFeeder } = useMutation<void, unknown, string>({
+  const { mutate: addFavoriteFeeder } = useMutation<void, Error, string>({
     mutationFn: id => UserRepository.addFavoriteFeeder(user?.id, id),
     onSuccess: () => {
       options?.onSuccess?.();
@@ -26,12 +26,12 @@ export function useUserToggleFavoriteFeeder(
       );
     },
     onError: error => {
-      options?.onError?.();
+      options?.onError?.(error.message);
       errorHandler.reportError(error, addFavoriteFeeder.name);
     },
   });
 
-  const { mutate: removeFavoriteFeeder } = useMutation<void, unknown, string>({
+  const { mutate: removeFavoriteFeeder } = useMutation<void, Error, string>({
     mutationFn: id => UserRepository.removeFavoriteFeeder(user?.id, id),
     onSuccess: () => {
       options?.onSuccess?.();
@@ -41,7 +41,7 @@ export function useUserToggleFavoriteFeeder(
       );
     },
     onError: error => {
-      options?.onError?.();
+      options?.onError?.(error.message);
       errorHandler.reportError(error, removeFavoriteFeeder.name);
     },
   });

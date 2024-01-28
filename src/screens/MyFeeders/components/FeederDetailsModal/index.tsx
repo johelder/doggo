@@ -46,6 +46,7 @@ export function FeederDetailsModal({
 
         <Styled.ActionsContainer>
           <Button.Root
+            testID="delete-feeder-button"
             type="outline"
             color={theme.colors.gray[200]}
             onPress={() => onDelete(feeder?.id ?? '')}>

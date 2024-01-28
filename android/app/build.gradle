@@ -105,6 +105,8 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 11000000
         versionName "1.1.0"
+        testBuildType System.getProperty('testBuildType', 'debug')
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
         // Workaround for https://github.com/facebook/react-native/issues/42024
         resConfigs "en", "fr", "es"
@@ -144,6 +146,7 @@ android {
             signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            proguardFile "${rootProject.projectDir}/../node_modules/detox/android/detox/proguard-rules-app.pro"
             signingConfig signingConfigs.release
         }
     }
@@ -173,6 +176,9 @@ dependencies {
     implementation("com.facebook.react:flipper-integration")
 
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.0.0")
+
+    androidTestImplementation('com.wix:detox:+') { exclude module: "protobuf-lite" }
+    implementation 'androidx.appcompat:appcompat:1.1.0'
     
     if (hermesEnabled.toBoolean()) {
         implementation("com.facebook.react:hermes-android")

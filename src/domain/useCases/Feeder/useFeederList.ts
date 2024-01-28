@@ -7,11 +7,12 @@ import { QueryKeys } from '@infrastructure';
 import { errorHandler } from '@utils';
 
 export function useFeederList(userId: string) {
-  const { data, isLoading, isRefetching, refetch, isError, error } = useQuery({
-    queryKey: [QueryKeys.FeederList, userId],
-    queryFn: () => FeederRepository.findAllByUserId(userId),
-    retry: false,
-  });
+  const { data, isLoading, isRefetching, refetch, isError, error, isSuccess } =
+    useQuery({
+      queryKey: [QueryKeys.FeederList, userId],
+      queryFn: () => FeederRepository.findAllByUserId(userId),
+      retry: false,
+    });
 
   useEffect(() => {
     if (isError) {
@@ -21,6 +22,7 @@ export function useFeederList(userId: string) {
 
   return {
     feederList: data,
+    isSuccess,
     isLoading,
     isRefetching,
     isError,

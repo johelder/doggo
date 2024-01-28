@@ -2,6 +2,8 @@ const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
 
 const defaultConfig = getDefaultConfig(__dirname);
 const { assetExts, sourceExts } = defaultConfig.resolver;
+const defaultSourceExts =
+  require('metro-config/src/defaults/defaults').sourceExts;
 
 /**
  * Metro configuration
@@ -15,7 +17,10 @@ const config = {
   },
   resolver: {
     assetExts: assetExts.filter(ext => ext !== 'svg'),
-    sourceExts: [...sourceExts, 'svg'],
+    sourceExts:
+      process.env.MY_APP_MODE === 'mocked'
+        ? ['mock.tsx', 'mock.ts', 'svg', ...defaultSourceExts]
+        : [...sourceExts, 'svg'],
   },
 };
 

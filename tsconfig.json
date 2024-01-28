@@ -16,6 +16,7 @@
       "@data": ["src/data"],
       "@infrastructure": ["src/infrastructure"],
       "@domain": ["src/domain"],
+      "@test": ["src/test"],
       "test-utils": ["src/test/test-utils"]
     }
   }

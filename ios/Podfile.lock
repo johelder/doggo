@@ -1664,7 +1664,9 @@ PODS:
     - RCTTypeSafety
     - React-Core
     - ReactCommon/turbomodule/core
-  - react-native-webview (13.6.3):
+  - react-native-webview (13.6.4):
+    - glog
+    - RCT-Folly (= 2022.05.16.00)
     - React-Core
   - React-nativeconfig (0.73.1)
   - React-NativeModulesApple (0.73.1):
@@ -2157,7 +2159,7 @@ SPEC CHECKSUMS:
   react-native-maps: e2b78affd8e90c807a87bd042dc6b1af2decbcf1
   react-native-mmkv: dea675cf9697ad35940f1687e98e133e1358ef9f
   react-native-safe-area-context: 1d596539b05a78f2b346e954e7c577f6f9be7544
-  react-native-webview: 88293a0f23eca8465c0433c023ec632930e644d0
+  react-native-webview: 1f6c37318115b6e96285e0b06770307d9a751bb8
   React-nativeconfig: a8685fce6d0ffbb77b1fe983895dbbc7bfe949ad
   React-NativeModulesApple: 63accd5672e433f187e4c35ce61641f2b303098c
   React-perflogger: 5ffc4d6ccb74eaac7b8b2867e58a447232483d6d

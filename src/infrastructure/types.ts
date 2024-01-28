@@ -1,6 +1,6 @@
 export interface MutationOptions<Data> {
   onSuccess?: (data?: Data) => void;
-  onError?: () => void;
+  onError?: (message: string) => void;
 }
 
 export enum QueryKeys {

@@ -7,14 +7,14 @@ import { errorHandler } from '@utils';
 export function useFeederRemove(options?: MutationOptions<string>) {
   const queryClient = useQueryClient();
 
-  const { mutate, isError, isPending } = useMutation<void, unknown, string>({
+  const { mutate, isError, isPending } = useMutation<void, Error, string>({
     mutationFn: id => FeederRepository.remove(id),
     onSuccess: () => {
       options?.onSuccess?.();
       queryClient.invalidateQueries({ queryKey: [QueryKeys.FeederList] });
     },
     onError: error => {
-      options?.onError?.();
+      options?.onError?.(error.message);
       errorHandler.reportError(error, useFeederRemove.name);
     },
   });

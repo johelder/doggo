@@ -2,6 +2,7 @@ import React from 'react';
 import { SafeAreaView } from 'react-native';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { mockedAddress, mockedLocation } from '@test';
 import { useTheme } from 'styled-components/native';
 
 import { IS_FIRST_ACCESS_KEY, useStorage } from '@hooks';
@@ -20,7 +21,7 @@ import {
 } from '@screens';
 
 import { HomeTabs } from './BottomTabs';
-import { AuthenticatedStackParamList } from './types';
+import { AuthenticatedStackParamList, AuthenticatedStackProps } from './types';
 
 const Stack = createNativeStackNavigator<AuthenticatedStackParamList>();
 
@@ -28,9 +29,19 @@ const wrapperOptions = {
   flex: 1,
 };
 
-export function AuthenticatedRoutes() {
+export function AuthenticatedRoutes({
+  initialRouteName,
+}: AuthenticatedStackProps) {
   const theme = useTheme();
   const { storedValue: isFirstAccess } = useStorage(IS_FIRST_ACCESS_KEY, true);
+
+  function getInitialRouteName(): keyof AuthenticatedStackParamList {
+    if (initialRouteName) {
+      return initialRouteName;
+    }
+
+    return isFirstAccess ? 'LocationPermission' : 'HomeTabs';
+  }
 
   return (
     <SafeAreaView style={wrapperOptions}>
@@ -40,7 +51,7 @@ export function AuthenticatedRoutes() {
           headerTitleAlign: 'center',
           headerShadowVisible: false,
         }}
-        initialRouteName={isFirstAccess ? 'LocationPermission' : 'HomeTabs'}>
+        initialRouteName={getInitialRouteName()}>
         <Stack.Group
           screenOptions={{
             headerShown: false,
@@ -57,6 +68,10 @@ export function AuthenticatedRoutes() {
             name="CreateFeeder"
             component={CreateFeeder}
             options={{ headerTitle: '' }}
+            initialParams={{
+              address: mockedAddress,
+              coordinate: mockedLocation,
+            }}
           />
           <Stack.Screen
             name="EditFeeder"

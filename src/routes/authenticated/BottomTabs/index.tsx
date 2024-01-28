@@ -21,6 +21,7 @@ export function HomeTabs() {
         options={{
           tabBarIcon: ({ color }) => <Icon name="mapPinLine" color={color} />,
           tabBarShowLabel: false,
+          tabBarTestID: 'home-screen',
         }}
       />
 
@@ -32,6 +33,7 @@ export function HomeTabs() {
           tabBarStyle: {
             display: 'none',
           },
+          tabBarTestID: 'select-location-screen',
         }}
       />
 
@@ -41,6 +43,7 @@ export function HomeTabs() {
         options={{
           tabBarIcon: ({ color }) => <Icon name="user" color={color} />,
           tabBarShowLabel: false,
+          tabBarTestID: 'profile-screen',
         }}
       />
     </Tab.Navigator>
