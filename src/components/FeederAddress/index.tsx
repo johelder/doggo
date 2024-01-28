@@ -17,7 +17,7 @@ export function FeederAddress({
   const theme = useTheme();
 
   return (
-    <Styled.Container onPress={onOpenDetails}>
+    <Styled.Container onPress={onOpenDetails} testID="feeder-address">
       <Icon name="mapPinFilled" color={theme.colors.orange[500]} />
 
       <Styled.LabelsContainer>

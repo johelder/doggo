@@ -1,21 +1,25 @@
-import React, { PropsWithChildren, useContext } from 'react';
+import React, { PropsWithChildren, useContext, useState } from 'react';
 import { createContext } from 'react';
 
 const AuthContext = createContext({});
 
 function AuthContextProvider({ children }: PropsWithChildren) {
+  const [isUserLogged, setIsUserLogged] = useState(false);
+
   return (
     <AuthContext.Provider
       value={{
         user: {
-          id: 'id-do-usuario',
-          name: 'Nome do Usuário',
-          email: 'usuario@dominio.com',
-          // Outros dados do usuário conforme necessário
+          id: 'rUyn6W4rpahiTukQ8PsB6A7R5O42',
+          name: 'doggo tester',
+          email: 'doggo.app.tester@gmail.com',
+          favorites: [],
+          photo:
+            'https://lh3.googleusercontent.com/a/ACg8ocI3AuLEVoqBA6gYTJMMbMxrMKBr9DUMRj2oOIyDmqiA=s96-c',
         },
-        handleSignInWithGoogle: () => true,
-        handleSignOut: () => true,
-        isUserLogged: true, // Indica que o usuário está logado durante os testes
+        handleSignInWithGoogle: () => setIsUserLogged(true),
+        handleSignOut: () => setIsUserLogged(false),
+        isUserLogged,
         isLoadingSignIn: false,
         isLoadingAuthState: false,
         setIsLoadingAuthState: () => true,

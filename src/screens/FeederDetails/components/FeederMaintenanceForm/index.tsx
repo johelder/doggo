@@ -47,6 +47,7 @@ export function FeederMaintenanceForm({
       />
 
       <Button.Root
+        testID="update-maintenance-button"
         type="filled"
         onPress={handleUpdateFeederMaintenance}
         color={theme.colors.cyan[600]}>

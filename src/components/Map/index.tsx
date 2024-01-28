@@ -19,9 +19,8 @@ export function Map({
   const theme = useTheme();
 
   return (
-    <View>
+    <View testID="map-component">
       <MapComponent
-        testID="map-component"
         ref={mapRef}
         initialRegion={{
           latitude: currentUserLocation.latitude,
