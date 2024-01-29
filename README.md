@@ -1,15 +1,14 @@
-<h1 style="text-align:center">doggo - Ajude animais de rua</h1>
+<h1 align="center">doggo - Ajude animais de rua</h1>
 
-<div style="display:flex;align-items:center;justify-content:center;flex-direction:column">
+<div align="center">
 
 ![](./.github/doggo-icon.png)
 
-  <div style="display:flex;align-items:center;justify-content:center">
-    <a href="https://play.google.com/store/apps/details?id=com.doggo">
+  <a href="https://play.google.com/store/apps/details?id=com.doggo">
   
   ![Play Store](https://img.shields.io/badge/Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white)
-    </a>
-  </div>
+    
+  </a>
 </div>
 
 ---
