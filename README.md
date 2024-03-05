@@ -42,7 +42,23 @@ GOOGLE_MAPS_KEY=YOUR_API_KEY
 
 3. Rode os emuladores do firebase. Siga os passos descritos [aqui.](https://rnfirebase.io/firestore/emulator#running-the-emulator).
 
-4. Agora, você precisará iniciar o Metro, o bundler JavaScript que acompanha o React Native. Para iniciar o Metro, execute o seguinte comando na raiz do projeto:
+4. Instale as depedências do projeto:
+
+```bash
+# Usando Yarn
+yarn
+
+# Ou usando npm
+npm i
+```
+
+Para IOS:
+
+```bash
+cd ios && pod install && cd ..
+```
+
+6. Agora, você precisará iniciar o Metro, o bundler JavaScript que acompanha o React Native. Para iniciar o Metro, execute o seguinte comando na raiz do projeto:
 
 ```bash
 # Usando Yarn
