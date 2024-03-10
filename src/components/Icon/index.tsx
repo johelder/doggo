@@ -21,10 +21,10 @@ export function Icon({
         android_ripple={{
           color: theme.colors.gray[500],
         }}>
-        <IconComponent size={size} color={color} />
+        <IconComponent testID={name} size={size} color={color} />
       </Pressable>
     );
   }
 
-  return <IconComponent size={size} color={color} />;
+  return <IconComponent testID={name} size={size} color={color} />;
 }

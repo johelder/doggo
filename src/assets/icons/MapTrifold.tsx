@@ -4,9 +4,9 @@ import { Path, Svg } from 'react-native-svg';
 
 import { IconBase } from '@components';
 
-export function MapTrifold({ size = 24, color = 'black' }: IconBase) {
+export function MapTrifold({ size = 24, color = 'black', ...rest }: IconBase) {
   return (
-    <Svg width={size} height={size} viewBox="0 0 32 32" fill="none">
+    <Svg width={size} height={size} viewBox="0 0 32 32" fill="none" {...rest}>
       <Path
         fillRule="evenodd"
         clipRule="evenodd"

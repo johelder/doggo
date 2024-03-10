@@ -9,11 +9,7 @@ export const InputsWrapper = styled.View`
   flex-direction: row;
 
   gap: ${({ theme }) => theme.spacings.md}px;
-  margin-top: ${({ theme }) => theme.spacings.lg}px;
-`;
-
-export const InputContainer = styled.View<{ flex: number }>`
-  flex: ${({ flex }) => flex};
+  margin: ${({ theme }) => theme.spacings.lg}px 0px;
 `;
 
 export const ChipsWrapper = styled.View`

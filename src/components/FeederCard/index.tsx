@@ -26,13 +26,14 @@ export function FeederCard({
   const { street, houseNumber, neighborhood, city } = feeder.address;
 
   return (
-    <Styled.Container>
+    <Styled.Container testID="feeder-card">
       <Styled.Header>
         <FeederStatus
           align={sideButton ? 'center' : 'left'}
           isNeedMaintenance={isNeedMaintenance()}
           size="sm"
         />
+
         {sideButton}
       </Styled.Header>
 

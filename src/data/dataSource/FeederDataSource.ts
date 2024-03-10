@@ -1,4 +1,4 @@
-import firestore from '@react-native-firebase/firestore';
+import database from '@react-native-firebase/firestore';
 
 import {
   FeederPersistance,
@@ -12,13 +12,13 @@ import {
 } from './constants';
 
 async function create(feeder: Omit<FeederPersistance, 'id'>): Promise<void> {
-  await firestore()
+  await database()
     .collection<Omit<FeederPersistance, 'id'>>(FIRESTORE_FEEDERS_COLLECTION)
     .add(feeder);
 }
 
 async function findById(id: string): Promise<FeederPersistance | null> {
-  const feeder = await firestore()
+  const feeder = await database()
     .collection<FeederPersistance>(FIRESTORE_FEEDERS_COLLECTION)
     .doc(id)
     .get();
@@ -33,9 +33,9 @@ async function findById(id: string): Promise<FeederPersistance | null> {
 }
 
 async function findAllByUserId(id: string): Promise<FeederPersistance[]> {
-  const userId = new firestore.FieldPath('user', 'id');
+  const userId = new database.FieldPath('user', 'id');
 
-  const snapshot = await firestore()
+  const snapshot = await database()
     .collection<FeederPersistance>(FIRESTORE_FEEDERS_COLLECTION)
     .where(userId, '==', id)
     .get();
@@ -51,7 +51,7 @@ async function findAllByUserId(id: string): Promise<FeederPersistance[]> {
 }
 
 function findAll(onChange: (feeders: FeederPersistance[]) => void): () => void {
-  return firestore()
+  return database()
     .collection<FeederPersistance>(FIRESTORE_FEEDERS_COLLECTION)
     .onSnapshot(collectionSnapshot =>
       onChange(
@@ -64,14 +64,14 @@ function findAll(onChange: (feeders: FeederPersistance[]) => void): () => void {
 }
 
 async function remove(id: string): Promise<void> {
-  await firestore()
+  await database()
     .collection<FeederPersistance>(FIRESTORE_FEEDERS_COLLECTION)
     .doc(id)
     .delete();
 }
 
 async function update(feeder: FeederPersistance): Promise<void> {
-  firestore()
+  database()
     .collection<FeederPersistance>(FIRESTORE_FEEDERS_COLLECTION)
     .doc(feeder.id)
     .set(feeder);
@@ -85,7 +85,7 @@ async function updateMaintenance(
   const isBothUpdate = status.length > 1;
 
   const payload = {
-    updated_at: firestore.FieldValue.serverTimestamp(),
+    updated_at: database.FieldValue.serverTimestamp(),
     updated_by: {
       user_id: user.id,
       user_name: user.name,
@@ -93,7 +93,7 @@ async function updateMaintenance(
   };
 
   if (isBothUpdate) {
-    firestore()
+    database()
       .collection<FeederPersistance>(FIRESTORE_FEEDERS_COLLECTION)
       .doc(feederId)
       .update({
@@ -107,25 +107,25 @@ async function updateMaintenance(
   }
 
   if (status.includes('supply')) {
-    firestore().collection(FIRESTORE_FEEDERS_COLLECTION).doc(feederId).update({
+    database().collection(FIRESTORE_FEEDERS_COLLECTION).doc(feederId).update({
       'maintenance_status.supply': payload,
     });
 
     return;
   }
 
-  firestore().collection(FIRESTORE_FEEDERS_COLLECTION).doc(feederId).update({
+  database().collection(FIRESTORE_FEEDERS_COLLECTION).doc(feederId).update({
     'maintenance_status.cleaning': payload,
   });
 }
 
 async function deleteAllByUserId(id: string): Promise<void> {
-  const snapshot = await firestore()
+  const snapshot = await database()
     .collection<FeederPersistance>(FIRESTORE_FEEDERS_COLLECTION)
-    .where(new firestore.FieldPath('user', 'id'), '==', id)
+    .where(new database.FieldPath('user', 'id'), '==', id)
     .get();
 
-  const batch = firestore().batch();
+  const batch = database().batch();
 
   snapshot.forEach(document => {
     batch.delete(document.ref);
@@ -137,7 +137,7 @@ async function deleteAllByUserId(id: string): Promise<void> {
 async function findAllFavoritesByUserId(
   id: string,
 ): Promise<FeederPersistance[]> {
-  const user = await firestore()
+  const user = await database()
     .collection<UserPersistance>(FIRESTORE_USERS_COLLECTION)
     .doc(id)
     .get();
@@ -148,9 +148,9 @@ async function findAllFavoritesByUserId(
     return [];
   }
 
-  const snapshot = await firestore()
+  const snapshot = await database()
     .collection<FeederPersistance>(FIRESTORE_FEEDERS_COLLECTION)
-    .where(firestore.FieldPath.documentId(), 'in', userFavorites)
+    .where(database.FieldPath.documentId(), 'in', userFavorites)
     .get();
 
   return snapshot.docs.map(documentSnapshot => ({

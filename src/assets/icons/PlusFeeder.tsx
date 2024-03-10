@@ -4,9 +4,9 @@ import { Path, Svg } from 'react-native-svg';
 
 import { IconBase } from '@components';
 
-export function PlusFeeder({ size = 24, color = 'black' }: IconBase) {
+export function PlusFeeder({ size = 24, color = 'black', ...rest }: IconBase) {
   return (
-    <Svg width={size} height={size} viewBox="0 0 28 28" fill="none">
+    <Svg width={size} height={size} viewBox="0 0 28 28" fill="none" {...rest}>
       <Path
         fillRule="evenodd"
         clipRule="evenodd"

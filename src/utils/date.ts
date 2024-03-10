@@ -18,13 +18,7 @@ function formatRelativeDate(date: Date) {
 }
 
 function getDaysDifference(date: Date) {
-  if (!date) {
-    return 0;
-  }
-
-  return Math.round(
-    (date.getTime() - new Date().getTime()) / DAY_IN_MILLISECONDS,
-  );
+  return Math.round((date?.getTime() - Date.now()) / DAY_IN_MILLISECONDS);
 }
 
 export const date = {

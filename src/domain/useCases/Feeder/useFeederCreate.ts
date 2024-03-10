@@ -9,13 +9,13 @@ export function useFeederCreate(
 ) {
   const { mutate, isError, isPending } = useMutation<
     void,
-    unknown,
+    Error,
     Omit<FeederDomain, 'id'>
   >({
     mutationFn: feeder => FeederRepository.create(feeder),
     onSuccess: () => options?.onSuccess?.(),
     onError: error => {
-      options?.onError?.();
+      options?.onError?.(error.message);
       errorHandler.reportError(error, useFeederCreate.name);
     },
   });

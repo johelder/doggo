@@ -69,6 +69,7 @@ export function FeederLocationSection({
       </Button.Root>
 
       <Button.Root
+        testID="favorite-button"
         type="outline"
         color={isFavorite ? theme.colors.cyan[600] : theme.colors.gray[700]}
         isLoading={isLoadingFavorite}

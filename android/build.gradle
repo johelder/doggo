@@ -17,12 +17,21 @@ buildscript {
     dependencies {
         classpath("com.android.tools.build:gradle")
         classpath("com.facebook.react:react-native-gradle-plugin")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
         classpath 'com.google.gms:google-services:4.3.14'
         classpath 'com.android.tools.build:gradle:4.2.1'
         classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.2'
         classpath("com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin:2.0.1")
+        classpath 'com.google.firebase:perf-plugin:1.4.2'
     }
 }
+
+ allprojects {
+   repositories {
+    maven {
+      url("$rootDir/../node_modules/detox/Detox-android")
+    }
+   }
+ }
 
 apply plugin: "com.facebook.react.rootproject"

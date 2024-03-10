@@ -1,6 +1,6 @@
 import { FeederDomain } from '@data';
 import { Location } from '@domain';
-import { calculateDistanceBetweenTwoPoints } from '@utils';
+import { calculateDistanceBetweenTwoLocations } from '@utils';
 
 export const THREE_KILOMETER_IN_METERS = 3000;
 
@@ -10,7 +10,7 @@ export function useFeederFindNearest(
 ) {
   function filterFeedersInThreeKilometerRadio(allFeeders: FeederDomain[]) {
     return allFeeders.filter(feeder => {
-      const distanceBetweenUserAndFeeder = calculateDistanceBetweenTwoPoints(
+      const distanceBetweenUserAndFeeder = calculateDistanceBetweenTwoLocations(
         location,
         feeder.coordinates,
       );
@@ -23,12 +23,12 @@ export function useFeederFindNearest(
 
   function sortFeedersByNearDistance(nearestFeeders: FeederDomain[]) {
     return nearestFeeders.sort((a, b) => {
-      const firstDistance = calculateDistanceBetweenTwoPoints(
+      const firstDistance = calculateDistanceBetweenTwoLocations(
         location,
         a.coordinates,
       );
 
-      const secondDistance = calculateDistanceBetweenTwoPoints(
+      const secondDistance = calculateDistanceBetweenTwoLocations(
         location,
         b.coordinates,
       );

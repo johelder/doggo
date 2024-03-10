@@ -10,9 +10,10 @@ export function PageAlert({
   icon,
   color,
   actionButton,
+  ...rest
 }: PageAlertProps): React.JSX.Element {
   return (
-    <Styled.Container>
+    <Styled.Container {...rest}>
       <Styled.IconContainer color={color}>{icon}</Styled.IconContainer>
 
       <View>

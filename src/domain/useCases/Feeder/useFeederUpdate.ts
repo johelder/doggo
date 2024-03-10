@@ -7,18 +7,16 @@ import { errorHandler } from '@utils';
 export function useFeederUpdate(options?: MutationOptions<FeederDomain>) {
   const queryClient = useQueryClient();
 
-  const { mutate, isError, isPending } = useMutation<
-    void,
-    unknown,
-    FeederDomain
-  >({
-    mutationFn: feeder => FeederRepository.update(feeder),
-    onSuccess: () => options?.onSuccess?.(),
-    onError: error => {
-      options?.onError?.();
-      errorHandler.reportError(error, useFeederUpdate.name);
+  const { mutate, isError, isPending } = useMutation<void, Error, FeederDomain>(
+    {
+      mutationFn: feeder => FeederRepository.update(feeder),
+      onSuccess: () => options?.onSuccess?.(),
+      onError: error => {
+        options?.onError?.(error.message);
+        errorHandler.reportError(error, useFeederUpdate.name);
+      },
     },
-  });
+  );
 
   function updateFeeder(feeder: FeederDomain) {
     mutate(feeder);

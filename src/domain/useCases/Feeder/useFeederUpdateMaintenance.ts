@@ -11,14 +11,14 @@ type Params = {
 };
 
 export function useFeederUpdateMaintenance(options?: MutationOptions<Params>) {
-  const { mutate, isPending, isError } = useMutation<void, unknown, Params>({
+  const { mutate, isPending, isError } = useMutation<void, Error, Params>({
     mutationFn: ({ status, feederId, user }) =>
       FeederRepository.updateMaintenance(status, feederId, user),
     onSuccess: () => {
       options?.onSuccess?.();
     },
     onError: error => {
-      options?.onError?.();
+      options?.onError?.(error.message);
       errorHandler.reportError(error, useFeederUpdateMaintenance.name);
     },
   });

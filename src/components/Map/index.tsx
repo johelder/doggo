@@ -19,7 +19,7 @@ export function Map({
   const theme = useTheme();
 
   return (
-    <View>
+    <View testID="map-component">
       <MapComponent
         ref={mapRef}
         initialRegion={{

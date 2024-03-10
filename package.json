@@ -1,14 +1,20 @@
 {
   "name": "doggo",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest",
-    "prepare": "husky install"
+    "test": "jest --verbose",
+    "coverage": "jest --verbose --coverage",
+    "prepare": "husky install",
+    "detox:start": "MY_APP_MODE=mocked npx react-native start",
+    "detox:build-ios": "detox build --configuration ios.sim.debug",
+    "detox:build-android": "detox build --configuration android.emu.debug",
+    "detox:test-ios": "detox build --configuration ios.sim.debug",
+    "detox:test-android": "detox test --configuration android.emu.debug"
   },
   "dependencies": {
     "@react-native-community/geolocation": "^3.0.5",
@@ -16,6 +22,7 @@
     "@react-native-firebase/auth": "^17.5.0",
     "@react-native-firebase/crashlytics": "^17.5.0",
     "@react-native-firebase/firestore": "^17.5.0",
+    "@react-native-firebase/perf": "^19.0.1",
     "@react-native-google-signin/google-signin": "^9.0.2",
     "@react-navigation/bottom-tabs": "^6.5.7",
     "@react-navigation/native": "^6.1.2",
@@ -26,14 +33,14 @@
     "react-native-gesture-handler": "^2.14.0",
     "react-native-map-clustering": "^3.4.2",
     "react-native-maps": "^1.8.4",
-    "react-native-mmkv": "^2.10.1",
+    "react-native-mmkv": "^2.11.0",
     "react-native-modalize": "^2.1.1",
     "react-native-portalize": "^1.0.7",
     "react-native-reanimated": "^3.6.1",
     "react-native-safe-area-context": "^4.5.0",
     "react-native-screens": "^3.29.0",
     "react-native-svg": "^13.7.0",
-    "react-native-webview": "^13.6.3",
+    "react-native-webview": "^13.6.4",
     "styled-components": "^6.0.7"
   },
   "devDependencies": {
@@ -45,10 +52,14 @@
     "@react-native/metro-config": "^0.73.2",
     "@react-native/typescript-config": "^0.73.1",
     "@tanstack/eslint-plugin-query": "^5.12.1",
+    "@testing-library/react-native": "^12.4.3",
+    "@types/jest": "^29.5.11",
+    "@types/node": "^20.11.5",
     "@types/react": "^18.2.6",
     "@types/react-test-renderer": "^18.0.0",
     "babel-jest": "^29.6.3",
     "babel-plugin-module-resolver": "^5.0.0",
+    "detox": "^20.17.0",
     "eslint": "^8.19.0",
     "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-react-hooks": "^4.6.0",
@@ -58,6 +69,8 @@
     "react-native-dotenv": "^3.4.7",
     "react-native-svg-transformer": "^1.2.0",
     "react-test-renderer": "18.2.0",
+    "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
     "typescript": "5.0.4"
   },
   "engines": {

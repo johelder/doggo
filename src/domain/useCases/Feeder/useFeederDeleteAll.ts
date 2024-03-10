@@ -5,11 +5,11 @@ import { MutationOptions } from '@infrastructure';
 import { errorHandler } from '@utils';
 
 export function useFeederDeleteAll(options?: MutationOptions<string>) {
-  const { mutate, isError, isPending } = useMutation<void, unknown, string>({
+  const { mutate, isError, isPending } = useMutation<void, Error, string>({
     mutationFn: userId => FeederRepository.deleteAllByUserId(userId),
     onSuccess: () => options?.onSuccess?.(),
     onError: error => {
-      options?.onError?.();
+      options?.onError?.(error.message);
       errorHandler.reportError(error, useFeederDeleteAll.name);
     },
   });

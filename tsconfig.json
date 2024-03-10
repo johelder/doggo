@@ -15,7 +15,9 @@
       "@utils": ["src/utils"],
       "@data": ["src/data"],
       "@infrastructure": ["src/infrastructure"],
-      "@domain": ["src/domain"]
+      "@domain": ["src/domain"],
+      "@test": ["src/test"],
+      "test-utils": ["src/test/test-utils"]
     }
   }
 }

@@ -26,9 +26,9 @@ export function CreateFeeder({
         <MiniMap coords={{ latitude, longitude }} headerHeight={headerHeight} />
 
         <Styled.FormContainer>
-          <Styled.Title>{street}</Styled.Title>
+          <Styled.Title testID="address-title">{street}</Styled.Title>
 
-          <Styled.Subtitle>
+          <Styled.Subtitle testID="address-subtitle">
             {neighborhood}, {city}
           </Styled.Subtitle>
 
