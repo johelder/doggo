@@ -104,8 +104,8 @@ android {
         applicationId "com.doggo"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 11000000
-        versionName "1.1.0"
+        versionCode 12000000
+        versionName "1.2.0"
         testBuildType System.getProperty('testBuildType', 'debug')
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
